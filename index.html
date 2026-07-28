@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>WEEKLY SIGNAL</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #10253f;
+      --paper: #f6f1e8;
+      --orange: #d56a32;
+      --ink: #17202a;
+      --muted: #66707a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      line-height: 1.7;
+    }
+    header {
+      padding: 20px clamp(20px, 5vw, 72px);
+      background: var(--navy);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    header strong { letter-spacing: .08em; }
+    nav a { color: white; margin-left: 18px; text-decoration: none; }
+    main {
+      width: min(920px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 72px 0 96px;
+    }
+    .eyebrow {
+      color: var(--orange);
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+    h1 {
+      margin: 10px 0 24px;
+      font-size: clamp(38px, 8vw, 76px);
+      line-height: 1.05;
+    }
+    .card {
+      margin-top: 34px;
+      padding: clamp(24px, 5vw, 48px);
+      background: rgba(255,255,255,.66);
+      border-top: 5px solid var(--orange);
+      box-shadow: 0 18px 50px rgba(16,37,63,.08);
+    }
+    .muted { color: var(--muted); }
+    a.button {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    footer {
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid rgba(16,37,63,.12);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>WEEKLY SIGNAL</strong>
+    <nav>
+      <a href="./">최신호</a>
+      <a href="archive/">과월호</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="eyebrow">WEEKLY CURRENT-AFFAIRS MAGAZINE</div>
+    <h1>첫 발행을 준비하고 있습니다.</h1>
+    <section class="card">
+      <h2>사이트 연결 완료</h2>
+      <p>
+        이 페이지가 보이면 GitHub Pages 게시가 정상적으로 완료된 것입니다.
+        첫 주간 매거진이 생성되면 이 파일이 최신호 내용으로 교체됩니다.
+      </p>
+      <p class="muted">
+        과월호는 날짜별 HTML 파일로 보존되며, 아래 목록에서 다시 열 수 있습니다.
+      </p>
+      <a class="button" href="archive/">과월호 목록 보기</a>
+    </section>
+  </main>
+
+  <footer>WEEKLY SIGNAL</footer>
+</body>
+</html>
