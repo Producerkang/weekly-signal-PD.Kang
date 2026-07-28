@@ -1,0 +1,41 @@
+name: Apply tablet layout refinement
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-tablet-refinement.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild refinement script
+        run: |
+          cat .github/scripts/refine_payload_01.txt .github/scripts/refine_payload_02.txt | base64 --decode > /tmp/refine.py
+          python -m py_compile /tmp/refine.py
+      - name: Apply layout and editorial refinement
+        run: python /tmp/refine.py
+      - name: Remove one-time migration files
+        run: |
+          rm -f .github/scripts/refine_part_01.txt
+          rm -f .github/scripts/refine_payload_01.txt
+          rm -f .github/scripts/refine_payload_02.txt
+          rm -f .github/workflows/apply-tablet-refinement.yml
+      - name: Commit refined issue
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Refine tablet reading layout and reportage"
+          git push
