@@ -1,0 +1,48 @@
+/* WEEKLY SIGNAL v2 — hierarchy, contrast and placement fixes */
+
+/* Contents: section label carries the same visual weight as the number. */
+.toc-meta{align-items:baseline;gap:11px}
+.toc-num,.toc-label{font-size:clamp(27px,3vw,36px)!important;line-height:1!important;font-weight:950!important}
+.toc-label{letter-spacing:.075em!important;color:var(--ink)!important}
+.toc-copy{margin-top:6px!important}
+.toc-copy strong{font-size:clamp(18px,1.9vw,25px)!important;line-height:1.25!important}
+.toc-item.featured .toc-copy strong{font-size:clamp(22px,2.45vw,31px)!important}
+.toc-copy p{margin-top:4px!important}
+
+/* The new editorial cartoon needs a clean frame, not a blocky app-icon treatment. */
+.life-illustration svg{border-radius:10px;outline:1px solid rgba(16,17,20,.14);box-shadow:0 20px 58px rgba(16,17,20,.18)!important}
+
+/* Verification memo always sits at the end of the article-main column. */
+.article-main>.verification-note{width:100%;max-width:820px;margin:34px 0 0!important;color:var(--ink)!important;background:#e9e4da!important;border-color:#bdb5a7!important}
+.verification-note,.verification-note *{color:var(--ink)}
+.verification-card{background:#f8f5ee!important;color:var(--ink)!important}
+.verification-card.analysis{background:#f7e8e2!important;border-color:#d59886!important}
+.verification-card h3{color:var(--accent-2)!important}
+
+/* Chapter numbers are legible, fully opaque and kept in their own grid track. */
+.chapter-inner{grid-template-columns:minmax(100px,150px) minmax(0,1fr) auto!important;align-items:center!important}
+.chapter-index{position:relative!important;inset:auto!important;z-index:1;color:#fff!important;opacity:1!important;font-size:clamp(68px,9vw,128px)!important;line-height:.86!important;letter-spacing:-.07em!important;text-shadow:0 4px 18px rgba(0,0,0,.28)}
+.chapter-copy{position:relative;z-index:2}
+
+/* Reportage text stays dark on every section background, especially Tech. */
+.reportage{color:#171719!important}
+.reportage .reportage-title,.reportage .reportage-dek,.reportage .reportage-prose,.reportage .reportage-prose p,.reportage .reportage-prose h4,.reportage .reportage-note,.reportage .reportage-card,.reportage .reportage-card p,.reportage .reportage-card li,.reportage .reportage-source,.reportage .reportage-source a{color:#171719!important}
+.reportage .reportage-mark,.reportage .reportage-card h4{color:var(--accent-2)!important}
+.reportage:after{color:#fff!important}
+.reportage-tech{--reportage-bg:#e5e1e8!important}
+.reportage-tech .reportage-note{background:rgba(255,255,255,.76)!important;border-color:rgba(23,23,25,.22)!important}
+.reportage-tech .reportage-visual figcaption{color:#4e4a52!important}
+
+@media(max-width:900px){
+ .chapter-inner{grid-template-columns:86px minmax(0,1fr)!important;gap:24px!important}
+ .chapter-index{font-size:76px!important}
+}
+@media(max-width:760px){
+ .toc-num,.toc-label{font-size:29px!important}
+ .toc-copy strong{font-size:18px!important}
+ .toc-item.featured .toc-copy strong{font-size:22px!important}
+ .chapter-inner{grid-template-columns:1fr!important;align-items:end!important}
+ .chapter-index{position:static!important;font-size:72px!important;margin:0 0 14px!important;line-height:.9!important}
+ .chapter-copy h2{margin-top:8px!important}
+ .article-main>.verification-note{margin-top:28px!important}
+}
