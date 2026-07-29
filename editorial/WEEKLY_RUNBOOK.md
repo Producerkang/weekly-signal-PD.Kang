@@ -7,10 +7,15 @@
 작업 시작 전에 다음 문서를 순서대로 읽는다.
 
 1. `editorial/EDITORIAL_STANDARD.md`
-2. `editorial/SOURCE_POLICY.md`
-3. `editorial/IMAGE_DIRECTION.md`
-4. `editorial/ISSUE_HISTORY.md`
-5. 이 문서
+2. `editorial/VOICE_AND_TONE.md`
+3. `editorial/SOURCE_POLICY.md`
+4. `editorial/IMAGE_DIRECTION.md`
+5. `editorial/LAYOUT_SYSTEM.md`
+6. `templates/TEMPLATE_CONTRACT.md`
+7. `editorial/ISSUE_HISTORY.md`
+8. 이 문서
+
+저장소의 최신 문서를 대화 기억, 이전 예약 프롬프트와 과거 호의 일회성 구현보다 우선한다.
 
 저장소는 공개 상태다.
 
@@ -80,6 +85,8 @@ Cover, Economy, Politics, Society, Tech의 후보를 각각 최소 3개 수집�
 
 ## 5. 원고 작성
 
+모든 원고는 `VOICE_AND_TONE.md`를 따른다.
+
 ### 대표 기사
 
 다음 순서로 작성한다.
@@ -108,6 +115,8 @@ Cover, Economy, Politics, Society, Tech의 후보를 각각 최소 3개 수집�
 - 문서·계약·이동·행정·시간표 중 하나를 선택해 순서대로 추적한다.
 - 취재하지 않은 현장 장면과 대화를 만들지 않는다.
 - 이미지를 넣지 않는다.
+- 구성은 내용에 맞춰 타임라인, 문서 경로, 책임표, 단계형 본문 중에서 선택한다.
+- 모든 르포를 동일한 카드 그리드로 반복하지 않는다.
 
 ### Data / Watch
 
@@ -125,10 +134,41 @@ Cover, Economy, Politics, Society, Tech의 후보를 각각 최소 3개 수집�
 - 계획을 성과처럼, 총액을 집행액처럼 표현하지 않았는가
 - 기사 결론이 제목의 약속과 일치하는가
 - 분야별 기사들이 같은 결론을 반복하지 않는가
+- 사실·해석·불확실성이 구분되는가
 
 논리 편집이 끝난 뒤 제목을 작성한다.
 
-## 7. 이미지 제작
+## 7. 지면 설계
+
+`LAYOUT_SYSTEM.md`와 `templates/TEMPLATE_CONTRACT.md`를 따른다.
+
+초기 단계에서는 하나의 고정 셸을 유지하고 기사 내부만 승인된 모듈로 변형한다.
+
+고정 요소:
+
+- 브랜드 색과 타이포그래피 역할
+- 중앙 기준축과 장문 본문 단일 열
+- Splash → Cover → Contents+Life Scene → Opening → Cover Story → Economy → Politics → Society → Tech → Data → Watch → Sources & Method 순서
+- Contents 40% + LIFE SCENE 60% 프런트 스프레드
+- 상단 sticky 내비게이션과 fixed 진행 바
+- 검증 메모와 출처의 기사 후단 배치
+- 르포 무이미지
+
+기사별로 다음 모듈 중 필요한 최소 조합을 선택한다.
+
+- Text-led
+- Image-led Opening
+- Split Opening
+- Evidence Grid
+- Metric Board
+- Process / Timeline
+- Document Reportage
+
+이미지 위치, 비율, 근거 카드, 데이터 패널과 르포 전개는 내용에 맞게 바꿀 수 있다. 단, 시각적 다양성만을 위해 변형하지 않는다.
+
+새로운 모듈이나 배치를 만들 경우 `ISSUE_HISTORY.md`에 사용 이유와 검수 결과를 기록한다. 최소 두 개 이상의 호에서 효과가 확인되기 전에는 정식 템플릿 규칙으로 승격하지 않는다.
+
+## 8. 이미지 제작
 
 `IMAGE_DIRECTION.md`를 따른다.
 
@@ -152,9 +192,11 @@ Cover, Economy, Politics, Society, Tech의 후보를 각각 최소 3개 수집�
 
 Document Reportage에는 이미지를 넣지 않는다.
 
-## 8. 웹 조립
+이미지 비율과 위치는 `LAYOUT_SYSTEM.md`의 허용 범위 안에서 기사 내용에 맞게 선택한다.
 
-현재 저장소의 확정된 레이아웃과 기능을 기준으로 조립한다.
+## 9. 웹 조립
+
+현재 저장소의 확정된 브랜드 셸과 기능을 기준으로 조립한다.
 
 기본 순서:
 
@@ -181,9 +223,13 @@ Document Reportage에는 이미지를 넣지 않는다.
 - 장문 본문은 단일 열
 - 르포는 무이미지
 
-새 호는 가능한 한 `archive/YYYY-MM-DD.html` 하나로 완결되는 독립 보존호로 만든다. 임시 후삽입 스크립트에 대한 의존을 늘리지 않는다.
+현재 제1호의 누적 패치 구조는 시각 참고 자료로만 사용한다. 제1호의 내용, 날짜, 출처와 이미지 경로를 복사하지 않는다.
 
-## 9. 검수
+새 호는 가능한 한 `archive/YYYY-MM-DD.html` 하나로 완결되는 독립 보존호로 만든다. 임시 후삽입 스크립트와 버전별 보정 파일 의존을 늘리지 않는다.
+
+정식 `templates/issue-template.html`이 만들어지기 전에는 `TEMPLATE_CONTRACT.md`를 구조 계약으로 사용한다. 정식 템플릿이 생긴 뒤에는 그 파일을 복사해 콘텐츠와 자산만 교체한다.
+
+## 10. 검수
 
 ### 내용 검수
 
@@ -195,7 +241,18 @@ Document Reportage에는 이미지를 넣지 않는다.
 - [ ] Life Scene의 근거 연결이 분명한가
 - [ ] 르포가 대표 기사를 반복하지 않는가
 - [ ] 계획·계약·집행·성과가 구분되는가
+- [ ] 문체가 `VOICE_AND_TONE.md`와 일치하는가
 - [ ] 개인 정보나 비밀 정보가 없는가
+
+### 레이아웃 검수
+
+- [ ] 고정 셸과 전체 순서가 유지되는가
+- [ ] 선택한 모듈이 기사 논리를 명확하게 하는가
+- [ ] 모든 기사가 같은 템플릿을 기계적으로 반복하지 않는가
+- [ ] 섹션마다 전혀 다른 사이트처럼 보이지 않는가
+- [ ] 이미지 위치와 비율이 기사 내용에 맞는가
+- [ ] 르포 구성이 추적 대상의 경로와 맞는가
+- [ ] 제1호의 콘텐츠나 자산 경로가 남아 있지 않은가
 
 ### 화면 검수
 
@@ -222,12 +279,12 @@ Document Reportage에는 이미지를 넣지 않는다.
 
 직접 확인하지 못한 검수 항목을 통과했다고 기록하지 않는다.
 
-## 10. 커밋과 발행 순서
+## 11. 커밋과 발행 순서
 
 1. 새 보존호와 자산 추가
 2. 레이아웃·콘텐츠 검수
 3. `archive/index.html`에 새 호 추가
-4. `ISSUE_HISTORY.md`에 발행 회고 추가
+4. `ISSUE_HISTORY.md`에 발행 회고와 레이아웃 실험 결과 추가
 5. 마지막으로 `latest.json` 변경
 
 어느 단계라도 실패하면 `latest.json`을 바꾸지 않는다.
@@ -240,7 +297,7 @@ Publish WEEKLY SIGNAL YYYY-MM-DD
 
 대규모 작업에서 여러 커밋이 필요하면 마지막 커밋은 최신호 포인터 갱신임을 명확히 표시한다.
 
-## 11. 발행 후 회고
+## 12. 발행 후 회고
 
 `ISSUE_HISTORY.md`에 다음을 기록한다.
 
@@ -249,13 +306,17 @@ Publish WEEKLY SIGNAL YYYY-MM-DD
 - 개선할 점
 - 다음 호에 적용할 구체적인 규칙
 - 반복하지 않을 주제와 표현
+- 사용한 기사 모듈과 새 레이아웃 변형
+- 데스크톱·태블릿 검수 결과
+- 변형을 재사용할 가치가 있는지 여부
 
 사용자의 피드백이 들어오면 해당 호 기록에 먼저 반영한다. 여러 호에서 반복되는 원칙만 영구 기준 문서로 옮긴다.
 
-## 12. 실패 처리
+## 13. 실패 처리
 
 - 자료 부족: 약한 주장을 만들지 말고 기사 범위를 줄인다.
 - 이미지 생성 실패: 카툰·목업 결과를 사용하지 않고 재생성한다.
+- 레이아웃 실패: 새 변형을 폐기하고 승인된 기본 모듈로 되돌린다.
 - 렌더링 미확인: 미확인 사실을 최종 보고에 명시한다.
 - 링크 오류: 수정 전에는 최신호 포인터를 변경하지 않는다.
 - 비밀 정보 발견: 즉시 커밋을 중단하고 제거한다. 이미 커밋된 경우 `.gitignore`만으로 해결되지 않으므로 기록 제거 절차를 별도로 수행한다.
