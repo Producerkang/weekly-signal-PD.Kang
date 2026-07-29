@@ -8,7 +8,7 @@
     next=next.replace('</head>','<link rel="stylesheet" href="./reader-v4-fixes-v9.css?v=14"><link rel="stylesheet" href="./reader-v14-content.css?v=14"></head>');
    }
    if(next.includes('</body>')&&!next.includes('reader-v4-archive-v12.js')){
-    next=next.replace('</body>','<script src="./reader-v4-archive-v12.js?v=14"></script><script src="./reader-v14-content.js?v=14"></script></body>');
+    next=next.replace('</body>','<script src="./reader-v4-archive-v12.js?v=14"></script><script src="./reader-v14-content.js?v=14"></script><script src="./reader-v14-method.js?v=14"></script></body>');
    }
    return next;
   });
