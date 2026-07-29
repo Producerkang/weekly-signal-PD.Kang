@@ -6,21 +6,25 @@
 <meta name="color-scheme" content="dark">
 <title>WEEKLY SIGNAL — 2026.07.20–07.26</title>
 <style>
-html,body{margin:0;min-height:100%;background:#101114;color:#fff;font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
-.loader{min-height:100dvh;display:grid;place-items:center;padding:28px;text-align:center}
-.brand{font-size:13px;font-weight:900;letter-spacing:.18em}.line{width:54px;height:3px;background:#ff4a2f;margin:22px auto}
-.status{font-family:"Noto Serif KR","Nanum Myeongjo",serif;font-size:clamp(24px,4vw,42px);line-height:1.35;margin:0 0 12px}
-.hint{font-size:13px;color:rgba(255,255,255,.62)}.fallback{display:none;margin-top:22px}.fallback a{color:#fff}
+html,body{margin:0;min-height:100%;background:#07101c;color:#fff;font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+.splash{position:fixed;inset:0;min-height:100dvh;display:grid;place-items:center;padding:28px;text-align:center;background:#07101c;z-index:9999}
+.brand{font-size:13px;font-weight:900;letter-spacing:.18em}.line{width:58px;height:4px;background:#ff4a2f;margin:22px auto}
+.issue{font-family:"Noto Serif KR","Nanum Myeongjo",serif;font-size:clamp(24px,4vw,42px);line-height:1.35;margin:0;color:#fff}
+.fallback{display:none;margin-top:24px;font-size:13px;color:rgba(255,255,255,.72)}.fallback a{color:#fff;font-weight:800}
 </style>
 </head>
 <body>
-<main class="loader"><div><div class="brand">WEEKLY SIGNAL</div><div class="line"></div>
-<p class="status" id="status">읽기 화면을 구성하고 있습니다.</p>
-<p class="hint">태블릿에 맞춘 단일 열 본문을 불러옵니다.</p>
-<p class="fallback" id="fallback"><a href="2026-07-20.html">원본 보존호 열기</a></p>
-</div></main>
+<div class="splash" id="splash" role="status" aria-live="polite">
+ <div>
+  <div class="brand">WEEKLY SIGNAL</div>
+  <div class="line"></div>
+  <p class="issue">2026.07.20—07.26</p>
+  <p class="fallback" id="fallback">보존호를 불러오지 못했습니다. <a href="2026-07-20.html">원본 보존호 열기</a></p>
+ </div>
+</div>
 <script src="reader-v4-economy.js"></script>
 <script src="reader-v4-more.js"></script>
-<script src="reader-v4.js"></script>
+<script src="reader-v4.js?v=6"></script>
 <noscript><meta http-equiv="refresh" content="0;url=2026-07-20.html"></noscript>
-</body></html>
+</body>
+</html>
