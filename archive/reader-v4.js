@@ -4,10 +4,10 @@
  const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
  const el=(doc,tag,className,html)=>{const node=doc.createElement(tag);if(className)node.className=className;if(html!==undefined)node.innerHTML=html;return node};
  try{
-  const res=await fetch('./2026-07-20.html?reader=7',{cache:'no-store'});
+  const res=await fetch('./2026-07-20.html?reader=8',{cache:'no-store'});
   if(!res.ok)throw new Error('HTTP '+res.status);
   const parser=new DOMParser(),doc=parser.parseFromString(await res.text(),'text/html');
-  ['./reader-v4.css?v=7','./reader-v4-fixes.css?v=7'].forEach(href=>{const link=doc.createElement('link');link.rel='stylesheet';link.href=href;doc.head.appendChild(link)});
+  ['./reader-v4.css?v=8','./reader-v4-fixes.css?v=8'].forEach(href=>{const link=doc.createElement('link');link.rel='stylesheet';link.href=href;doc.head.appendChild(link)});
 
   const issue={
    contents:[
@@ -153,7 +153,7 @@
    }
   });
 
-  doc.documentElement.dataset.reader='weekly-signal-v2-refined-7';
+  doc.documentElement.dataset.reader='weekly-signal-v2-refined-8';
   const remain=Math.max(0,2000-(performance.now()-started));
   if(remain)await wait(remain);
   document.open();document.write('<!doctype html>'+doc.documentElement.outerHTML);document.close();
