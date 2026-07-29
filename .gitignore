@@ -23,6 +23,23 @@ logs/
 !.env.example
 *.pem
 *.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.secret
+*.secrets
+secrets/
+credentials/
+*.credentials.json
+service-account*.json
+token*.json
+
+# 로컬 에이전트·도구 설정
+.codex/
+.chatgpt/
+.local/
+.private/
 
 # Python 보조 스크립트를 사용할 경우
 __pycache__/
@@ -51,6 +68,15 @@ working/
 preview/
 *.draft.html
 
+# 공개 저장소에 올리지 않는 편집 메모·개인 자료
+editorial/private/
+editorial/local/
+editorial/scratch/
+*.private.md
+*.local.md
+*.personal.md
+
 # 주의:
 # index.html, archive/index.html, archive/YYYY-MM-DD.html은
 # 실제 게시 파일이므로 무시하지 않습니다.
+# .gitignore는 이미 커밋된 비밀정보를 제거하지 못합니다.
