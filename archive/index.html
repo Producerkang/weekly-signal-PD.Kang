@@ -33,12 +33,7 @@ time{font-size:21px;font-weight:950;letter-spacing:-.03em}
 .issue-summary{display:block;font-family:"Pretendard","Noto Sans KR",sans-serif;font-size:13px;font-weight:400;color:var(--muted);margin-top:7px;letter-spacing:0}
 .issue-open{font-size:11px;font-weight:900;letter-spacing:.12em;white-space:nowrap}
 .empty{display:none;padding:40px 0;color:var(--muted)}
-@media(max-width:760px){
- .archive-head{grid-template-columns:1fr;align-items:start}
- .sort-box{justify-content:flex-start}
- .issue-link{grid-template-columns:1fr;gap:12px}
- .issue-open{display:none}
-}
+@media(max-width:760px){.archive-head{grid-template-columns:1fr;align-items:start}.sort-box{justify-content:flex-start}.issue-link{grid-template-columns:1fr;gap:12px}.issue-open{display:none}}
 </style>
 </head>
 <body>
@@ -56,7 +51,7 @@ time{font-size:21px;font-weight:950;letter-spacing:-.03em}
   <li class="issue-item" data-date="2026-07-20" data-issue="1">
    <a class="issue-link" href="2026-07-20-reader.html">
     <span class="issue-meta"><span class="issue-seq">제1호</span><time datetime="2026-07-20">2026년 30주</time><span class="issue-period">2026.07.20–07.26</span></span>
-    <span class="issue-title">AI는 산업이 아니라 공급망이 됐다<span class="issue-summary">반도체·전력·데이터센터·규제가 AI 경쟁력을 결정하는 구조를 추적합니다.</span></span>
+    <span class="issue-title">병원 문을 나선 뒤에도 치료는 끝나지 않는다<span class="issue-summary">이송·중환자 치료·전원 기록·퇴원 후 돌봄을 하나의 환자 경로로 다시 읽습니다.</span></span>
     <span class="issue-open">ISSUE OPEN ↗</span>
    </a>
   </li>
@@ -69,9 +64,7 @@ time{font-size:21px;font-weight:950;letter-spacing:-.03em}
  const buttons=[...document.querySelectorAll('.sort-button')];
  const sortIssues=mode=>{
   const items=[...list.querySelectorAll('.issue-item')];
-  items.sort((a,b)=>mode==='first'
-   ? Number(a.dataset.issue)-Number(b.dataset.issue)
-   : b.dataset.date.localeCompare(a.dataset.date));
+  items.sort((a,b)=>mode==='first'?Number(a.dataset.issue)-Number(b.dataset.issue):b.dataset.date.localeCompare(a.dataset.date));
   items.forEach(item=>list.appendChild(item));
   buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.sort===mode)));
  };
