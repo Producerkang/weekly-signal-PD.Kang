@@ -1,7 +1,7 @@
 /* WEEKLY SIGNAL v2 — centered reading grid with a persistent top navigation */
 
-/* Only the top navigation follows the reader. Other editorial elements remain in normal flow. */
-#progress{position:absolute!important}
+/* The navigation and reading progress remain visible. Other editorial elements stay in normal flow. */
+#progress{position:fixed!important;top:0!important;left:0!important;height:3px!important;width:0;z-index:1000!important;background:#ff4a2f!important;pointer-events:none!important}
 .editor-note,.article-rail,.reportage-side,.life-illustration{position:static!important;top:auto!important;inset:auto!important}
 .topbar{position:sticky!important;top:0!important;z-index:700!important;backdrop-filter:blur(12px)!important}
 .issue-date{display:block!important;margin-left:auto!important}
@@ -11,6 +11,9 @@
 .issue-period{color:rgba(255,255,255,.64)}
 .issue-arrow{color:#ff765f;font-size:13px}
 .issue-archive-mobile{display:none}
+
+/* Reportages are text-led. Reused section images are not shown. */
+.reportage-visual{display:none!important}
 
 /* True centered article axis: the rail moves below the article instead of pulling it left. */
 .opening{display:block!important;width:min(820px,100%)!important;max-width:820px!important;margin-left:auto!important;margin-right:auto!important}
