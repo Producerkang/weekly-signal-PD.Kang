@@ -4,10 +4,10 @@
  const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
  const el=(doc,tag,className,html)=>{const node=doc.createElement(tag);if(className)node.className=className;if(html!==undefined)node.innerHTML=html;return node};
  try{
-  const res=await fetch('./2026-07-20.html?reader=6',{cache:'no-store'});
+  const res=await fetch('./2026-07-20.html?reader=7',{cache:'no-store'});
   if(!res.ok)throw new Error('HTTP '+res.status);
   const parser=new DOMParser(),doc=parser.parseFromString(await res.text(),'text/html');
-  const link=doc.createElement('link');link.rel='stylesheet';link.href='./reader-v4.css?v=6';doc.head.appendChild(link);
+  ['./reader-v4.css?v=7','./reader-v4-fixes.css?v=7'].forEach(href=>{const link=doc.createElement('link');link.rel='stylesheet';link.href=href;doc.head.appendChild(link)});
 
   const issue={
    contents:[
@@ -47,26 +47,47 @@
     <div class="life-inner">
      <header class="life-head"><div class="life-kicker">LIFE SCENE · 가상 인물, 실제 구조 기반 재구성</div><h2>AI가 느려진 월요일</h2><p>화면의 작은 지연이 한 직장인의 업무 일정과 팀 비용에 도착하는 방식</p></header>
      <div class="life-layout">
-      <figure class="life-illustration" aria-label="노트북 앞에서 AI 서비스의 지연 화면을 바라보는 직장인의 간단한 카툰 삽화">
-       <svg viewBox="0 0 420 560" role="img" aria-hidden="true">
-        <rect width="420" height="560" rx="8" fill="#17202c"/>
-        <rect x="28" y="42" width="364" height="250" rx="8" fill="#f0ece1"/>
-        <rect x="55" y="70" width="310" height="165" rx="6" fill="#101114"/>
-        <circle cx="210" cy="150" r="35" fill="none" stroke="#ff4a2f" stroke-width="10" stroke-dasharray="92 150"/>
-        <text x="210" y="260" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="800" fill="#101114">잠시 후 다시 시도</text>
-        <rect x="48" y="322" width="230" height="16" rx="8" fill="#4c5867"/>
-        <rect x="75" y="350" width="190" height="18" rx="9" fill="#657284"/>
-        <circle cx="318" cy="370" r="42" fill="#d5a47c"/>
-        <path d="M278 365c8-62 76-73 90-12-14-17-32-23-54-19-18 3-28 13-36 31z" fill="#1a1a1c"/>
-        <path d="M270 430c22-48 88-55 119-2v106H248z" fill="#ff4a2f"/>
-        <path d="M304 395c12 12 31 12 44 0" fill="none" stroke="#101114" stroke-width="5" stroke-linecap="round"/>
-        <rect x="52" y="410" width="162" height="105" rx="8" fill="#f0ece1"/>
-        <rect x="69" y="428" width="128" height="70" rx="4" fill="#101114"/>
-        <path d="M88 478l24-26 20 17 22-33 25 42" fill="none" stroke="#ff4a2f" stroke-width="6" stroke-linejoin="round"/>
-        <rect x="196" y="430" width="14" height="82" fill="#c5bfb2"/>
-        <circle cx="233" cy="480" r="19" fill="#f0ece1"/><path d="M246 466c20 4 22 32 2 38" fill="none" stroke="#f0ece1" stroke-width="8"/>
+      <figure class="life-illustration" aria-label="노트북의 AI 서비스 지연 화면을 바라보며 업무 일정을 다시 정리하는 직장인의 편집 카툰">
+       <svg viewBox="0 0 480 640" role="img" aria-hidden="true">
+        <defs>
+         <linearGradient id="lifeBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#122031"/><stop offset="1" stop-color="#26384b"/></linearGradient>
+         <linearGradient id="windowSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dbe7ef"/><stop offset="1" stop-color="#9db1bf"/></linearGradient>
+         <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6a50"/><stop offset="1" stop-color="#d83b28"/></linearGradient>
+         <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#08101a" flood-opacity=".28"/></filter>
+        </defs>
+        <rect width="480" height="640" rx="18" fill="url(#lifeBg)"/>
+        <rect x="30" y="30" width="420" height="580" rx="14" fill="#efe9dc"/>
+        <rect x="52" y="54" width="376" height="148" rx="10" fill="url(#windowSky)"/>
+        <path d="M52 164h376v38H52z" fill="#d2cabd"/>
+        <path d="M72 162l34-42 35 42 28-62 48 62 34-35 41 35 36-58 52 58z" fill="#8195a4" opacity=".48"/>
+        <path d="M52 202h376" stroke="#918a80" stroke-width="4"/>
+        <g opacity=".9"><rect x="72" y="226" width="116" height="82" rx="6" fill="#d7cfbf"/><rect x="86" y="242" width="86" height="8" rx="4" fill="#b3aa9b"/><rect x="86" y="259" width="67" height="8" rx="4" fill="#b3aa9b"/><rect x="86" y="276" width="78" height="8" rx="4" fill="#b3aa9b"/></g>
+        <path d="M58 458h364l24 120H34z" fill="#b68058"/>
+        <path d="M58 458h364" stroke="#835538" stroke-width="8"/>
+        <g filter="url(#shadow)">
+         <path d="M112 322h228a16 16 0 0 1 16 16v130H96V338a16 16 0 0 1 16-16z" fill="#111821"/>
+         <rect x="116" y="344" width="220" height="101" rx="8" fill="#f4f0e7"/>
+         <rect x="136" y="365" width="180" height="51" rx="7" fill="#19222e"/>
+         <circle cx="226" cy="390" r="18" fill="none" stroke="#ff4a2f" stroke-width="8" stroke-linecap="round" stroke-dasharray="62 44"/>
+         <rect x="173" y="426" width="106" height="7" rx="3.5" fill="#b5aea2"/>
+         <path d="M88 468h276l18 25H70z" fill="#c9c1b3"/><path d="M70 493h312" stroke="#8d867c" stroke-width="5"/>
+        </g>
+        <g filter="url(#shadow)">
+         <ellipse cx="369" cy="395" rx="48" ry="54" fill="#d8a27e"/>
+         <path d="M323 392c4-59 75-82 99-24 3 8 5 20 4 32-10-23-33-35-58-35-19 0-35 9-45 27z" fill="#1b1b20"/>
+         <path d="M332 446c16-22 38-34 67-34 24 0 43 9 58 28v138H305z" fill="url(#shirt)"/>
+         <path d="M347 402c8 7 19 9 29 5" fill="none" stroke="#8a513a" stroke-width="3" stroke-linecap="round"/>
+         <circle cx="387" cy="392" r="3" fill="#2e201a"/>
+         <path d="M385 402c7 5 16 5 23 0" fill="none" stroke="#9a533e" stroke-width="3" stroke-linecap="round"/>
+         <path d="M337 452c-24-3-44 7-58 30l-35 52 26 18 45-47" fill="#d8a27e"/>
+         <path d="M279 482l-24 39" stroke="#1b1b20" stroke-width="6" stroke-linecap="round"/>
+         <circle cx="250" cy="532" r="14" fill="#d8a27e"/>
+        </g>
+        <g filter="url(#shadow)"><rect x="72" y="515" width="118" height="63" rx="8" fill="#f6f0e4"/><path d="M86 558l22-18 17 11 22-27 24 34" fill="none" stroke="#ff4a2f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M86 532h35" stroke="#1a232d" stroke-width="5" stroke-linecap="round"/></g>
+        <g filter="url(#shadow)"><ellipse cx="213" cy="548" rx="25" ry="10" fill="#d8d0c3"/><path d="M194 524h38v28c0 14-8 21-19 21s-19-7-19-21z" fill="#f7f2e9"/><path d="M231 530c19-2 21 24 3 27" fill="none" stroke="#f7f2e9" stroke-width="8" stroke-linecap="round"/></g>
+        <g opacity=".9"><circle cx="78" cy="92" r="8" fill="#ff4a2f"/><path d="M98 92h94" stroke="#1d2a38" stroke-width="5" stroke-linecap="round"/><path d="M98 110h132" stroke="#1d2a38" stroke-width="5" stroke-linecap="round"/></g>
        </svg>
-       <figcaption>간단한 편집 카툰 · 인물과 회사, 구체적 상황은 가상입니다.</figcaption>
+       <figcaption>편집 카툰 · 인물과 회사, 구체적 상황은 가상입니다.</figcaption>
       </figure>
       <article class="life-story">
        <p class="life-lead">서울의 12명 규모 콘텐츠 제작사에서 기획자로 일하는 서지훈(39·가명) 씨는 매일 오전 8시 40분, 출근하자마자 전날 쌓인 회의 메모를 AI 서비스에 넣는다. 열다섯 분이면 요약본과 업무 목록이 나온다. 그동안 그는 커피를 내리고 메신저 답장을 정리한다. AI는 어느새 별도의 도구가 아니라 아침 업무 순서의 일부가 됐다.</p>
@@ -111,6 +132,7 @@
   }
 
   [...doc.querySelectorAll('.fact-analysis')].forEach(block=>{
+   const articleMain=block.closest('.article-main');
    const section=block.closest('section');
    const note=doc.createElement('section');note.className='verification-note';note.setAttribute('aria-label','기사 검증 메모');
    const head=doc.createElement('header');head.className='verification-head';
@@ -119,16 +141,19 @@
    [...block.children].forEach(child=>{
     child.classList.remove('fa');child.classList.add('verification-card');
     if(child.classList.contains('analysis'))child.classList.add('analysis');
+    child.removeAttribute('style');child.querySelectorAll('[style]').forEach(node=>node.removeAttribute('style'));
     grid.appendChild(child);
    });
-   note.append(head,grid);block.replaceWith(note);
-   if(section){
-    const report=section.querySelector('.reportage');
-    if(report)section.insertBefore(note,report);else (section.querySelector(':scope > .wrap')||section).appendChild(note);
+   note.append(head,grid);block.remove();
+   if(articleMain){
+    const body=articleMain.querySelector('.article-body');
+    if(body)body.insertAdjacentElement('afterend',note);else articleMain.appendChild(note);
+   }else if(section){
+    const wrap=section.querySelector(':scope > .wrap')||section;wrap.appendChild(note);
    }
   });
 
-  doc.documentElement.dataset.reader='weekly-signal-v2-refined';
+  doc.documentElement.dataset.reader='weekly-signal-v2-refined-7';
   const remain=Math.max(0,2000-(performance.now()-started));
   if(remain)await wait(remain);
   document.open();document.write('<!doctype html>'+doc.documentElement.outerHTML);document.close();
