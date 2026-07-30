@@ -20,7 +20,7 @@
    return response.text();
   })
   .then(data=>{
-   image.src=`data:image/jpeg;base64,${data.trim()}`;
+   image.src=`data:image/jpeg;base64,${data.replace(/\s+/g,'')}`;
    image.dataset.loaded='true';
   })
   .catch(()=>{
