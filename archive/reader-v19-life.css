@@ -1,8 +1,8 @@
-/* WEEKLY SIGNAL issue 01 — LIFE SCENE raster-photo layout v19 */
+/* WEEKLY SIGNAL issue 01 — LIFE SCENE raster-photo layout v22 */
 
 /* CONTENTS and LIFE SCENE start on separate viewport pages. */
-#contents.contents-page{box-sizing:border-box!important;min-height:100svh!important;height:100svh!important;display:grid!important;align-items:center!important;overflow:hidden!important;scroll-margin-top:0!important;scroll-snap-align:start!important;break-after:page!important;page-break-after:always!important}
-#contents .contents-inner{box-sizing:border-box!important;width:min(1180px,100%)!important;margin:auto!important}
+#contents.contents-page{box-sizing:border-box!important;min-height:100svh!important;height:100svh!important;display:block!important;overflow:hidden!important;scroll-margin-top:0!important;scroll-snap-align:start!important;break-after:page!important;page-break-after:always!important}
+#contents .contents-inner{box-sizing:border-box!important;width:min(1120px,100%)!important;margin:auto!important}
 #life-scene{box-sizing:border-box!important;clear:both!important;min-height:100svh!important;scroll-margin-top:0!important;scroll-snap-align:start!important;break-before:page!important;page-break-before:always!important}
 
 /* Smaller title and body-sized text around the image. */
@@ -27,11 +27,7 @@
 #life-scene .life-illustration figcaption{padding-top:10px!important;background:#eee9df!important;font-size:10px!important;line-height:1.6!important;color:#73746f!important}
 #life-scene .life-context{clear:both!important;margin-top:clamp(62px,8vw,96px)!important}
 
-@media(max-height:760px) and (min-width:761px){
- #contents.contents-page{height:auto!important;min-height:100svh!important;overflow:visible!important}
-}
 @media(max-width:760px){
- #contents.contents-page{height:auto!important;min-height:100svh!important;overflow:visible!important}
  #life-scene .life-inner{padding:72px 22px 104px!important}
  #life-scene .life-head{margin-bottom:40px!important;padding-bottom:26px!important}
  #life-scene .life-head h2{font-size:clamp(32px,9vw,42px)!important;line-height:1.2!important}
