@@ -1,22 +1,22 @@
-name: Migrate Issue 01 to standalone
+name: Finalize standalone publication structure
 
 on:
   pull_request:
     types: [opened]
     branches: [main]
     paths:
-      - migration/issue-01-standalone.trigger
+      - migration/finalize-standalone.trigger
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: migrate-issue-01-standalone
+  group: finalize-standalone-publication
   cancel-in-progress: false
 
 jobs:
-  freeze:
+  finalize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,15 +26,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install browser runtime
-        run: |
-          npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium
-      - name: Freeze rendered issue and clean reader patches
-        env:
-          ISSUE_DATE: '2026-07-20'
-        run: node tools/migrate-issue-01-to-standalone.mjs
-      - name: Commit standalone issue to migration branch
+      - name: Finalize publication structure
+        run: node tools/finalize-standalone-structure.mjs
+      - name: Commit finalized structure to branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -43,5 +37,5 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "Freeze Issue 01 as standalone archive [standalone-output]"
+          git commit -m "Finalize standalone publication structure"
           git push origin HEAD:${{ github.head_ref }}
