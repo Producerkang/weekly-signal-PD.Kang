@@ -1,0 +1,41 @@
+/* WEEKLY SIGNAL issue 01 — LIFE SCENE raster-photo layout v19 */
+
+/* CONTENTS and LIFE SCENE start on separate viewport pages. */
+#contents.contents-page{box-sizing:border-box!important;min-height:100svh!important;height:100svh!important;display:grid!important;align-items:center!important;overflow:hidden!important;scroll-margin-top:0!important;scroll-snap-align:start!important;break-after:page!important;page-break-after:always!important}
+#contents .contents-inner{box-sizing:border-box!important;width:min(1180px,100%)!important;margin:auto!important}
+#life-scene{box-sizing:border-box!important;clear:both!important;min-height:100svh!important;scroll-margin-top:0!important;scroll-snap-align:start!important;break-before:page!important;page-break-before:always!important}
+
+/* Smaller title and body-sized text around the image. */
+#life-scene .life-inner{width:min(1120px,100%)!important;padding:clamp(88px,9vw,132px) clamp(24px,6vw,78px) clamp(112px,12vw,166px)!important}
+#life-scene .life-head{max-width:920px!important;margin:0 auto clamp(48px,6vw,74px)!important;padding-bottom:clamp(26px,4vw,42px)!important}
+#life-scene .life-kicker{margin-bottom:15px!important}
+#life-scene .life-head h2{max-width:780px!important;font-size:clamp(40px,5vw,64px)!important;line-height:1.12!important;letter-spacing:-.045em!important}
+#life-scene .life-head>p{max-width:700px!important;margin-top:17px!important;font-family:var(--serif)!important;font-size:17px!important;line-height:1.8!important;letter-spacing:-.01em!important}
+#life-scene .life-layout{max-width:920px!important}
+#life-scene .life-story{font-family:var(--serif)!important;font-size:17px!important;line-height:1.98!important;letter-spacing:-.01em!important}
+#life-scene .life-story p,#life-scene .life-story .life-lead,#life-scene .life-turn,#life-scene .life-message p{font-size:inherit!important;line-height:inherit!important;letter-spacing:inherit!important;font-weight:400!important}
+#life-scene .life-story p{margin-bottom:1.45em!important}
+#life-scene .life-turn{margin-top:2.35em!important}
+#life-scene .life-message{margin:2em 0 2.25em!important;padding:22px 25px!important}
+
+/* The generated photograph replaces every legacy vector/cartoon layer. */
+#life-scene .life-illustration{position:static!important;float:left!important;width:min(35%,330px)!important;max-width:330px!important;margin:7px clamp(30px,4.5vw,48px) 26px 0!important;padding:0!important;border:0!important;background:#d9d8d2!important;box-shadow:none!important;outline:0!important}
+#life-scene .life-illustration:before{content:none!important;display:none!important;background:none!important;background-image:none!important}
+#life-scene .life-illustration svg{display:none!important}
+#life-scene .life-photo{display:block!important;width:100%!important;height:auto!important;aspect-ratio:3/4!important;object-fit:cover!important;object-position:center!important;border:0!important;box-shadow:0 18px 42px rgba(31,40,33,.16)!important}
+#life-scene .life-photo:not([src]){min-height:420px!important;background:linear-gradient(135deg,#deded8,#c9cbc6)!important;box-shadow:none!important}
+#life-scene .life-illustration figcaption{padding-top:10px!important;background:#eee9df!important;font-size:10px!important;line-height:1.6!important;color:#73746f!important}
+#life-scene .life-context{clear:both!important;margin-top:clamp(62px,8vw,96px)!important}
+
+@media(max-height:760px) and (min-width:761px){
+ #contents.contents-page{height:auto!important;min-height:100svh!important;overflow:visible!important}
+}
+@media(max-width:760px){
+ #contents.contents-page{height:auto!important;min-height:100svh!important;overflow:visible!important}
+ #life-scene .life-inner{padding:72px 22px 104px!important}
+ #life-scene .life-head{margin-bottom:40px!important;padding-bottom:26px!important}
+ #life-scene .life-head h2{font-size:clamp(36px,10.5vw,49px)!important}
+ #life-scene .life-head>p{font-size:16px!important;line-height:1.75!important}
+ #life-scene .life-illustration{float:none!important;width:min(76vw,320px)!important;max-width:320px!important;margin:0 auto 34px!important}
+ #life-scene .life-story{font-size:16px!important;line-height:1.92!important}
+}
