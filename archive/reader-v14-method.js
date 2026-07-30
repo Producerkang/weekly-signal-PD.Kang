@@ -5,8 +5,27 @@
  const numbering={
   'cover-story':'03',economy:'04',politics:'05',society:'06',tech:'07',data:'08',watch:'09'
  };
+ const contexts={
+  'cover-story':'이번 주의 가장 큰 산업 발표를 실행 조건으로 검증한다',
+  economy:'관세가 공급계약과 납품원가로 이동하는 경로',
+  politics:'국가의 판단을 기록과 절차로 남기는 책임',
+  society:'환자가 이동하는 시간으로 지역의료망을 평가한다',
+  tech:'AI 도입 전에 데이터의 위치와 삭제 가능성을 묻는다',
+  data:'계획·투입·성과 숫자를 분리해 읽는다',
+  watch:'다음 판단을 바꿀 후속 문서와 일정'
+ };
  Object.entries(numbering).forEach(([id,num])=>{
-  const rule=document.querySelector(`#${id} .rule-title span:first-child`);if(rule)rule.textContent=num;
-  const opener=document.querySelector(`#chapter-${id} .chapter-index`);if(opener)opener.textContent=num;
+  const section=document.querySelector(`#${id}`);
+  const rule=section?.querySelector('.rule-title');
+  const number=rule?.querySelector('span:first-child');
+  if(number)number.textContent=num;
+  if(rule&&!rule.querySelector('.rule-context')){
+   const context=document.createElement('span');
+   context.className='rule-context';
+   context.textContent=contexts[id];
+   rule.append(context);
+  }
+  document.querySelectorAll(`a[href="#chapter-${id}"]`).forEach(link=>link.setAttribute('href',`#${id}`));
+  const opener=document.querySelector(`#chapter-${id}`);if(opener)opener.remove();
  });
 })();
