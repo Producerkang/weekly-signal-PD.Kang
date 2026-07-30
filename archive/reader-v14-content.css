@@ -1,4 +1,4 @@
-/* WEEKLY SIGNAL issue 01 — editorial model v16 */
+/* WEEKLY SIGNAL issue 01 — editorial model v17 */
 .cover:after{background:linear-gradient(90deg,rgba(4,8,15,.96),rgba(4,8,15,.70) 54%,rgba(4,8,15,.20))!important}
 .cover-content{grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr)!important}
 .cover-path{display:grid;border-top:1px solid rgba(255,255,255,.42);border-bottom:1px solid rgba(255,255,255,.22);margin-top:34px}
@@ -28,49 +28,32 @@
 /* Reportages remain text-only; section images are retained above the representative article. */
 .reportage-visual{display:none!important}
 
-/* Compact chapter bands retain each section color without behaving like separate covers. */
-.chapter-opener{min-height:clamp(230px,29vw,340px)!important}
-.chapter-inner{width:min(1180px,100%)!important;padding:clamp(34px,4.5vw,62px) clamp(24px,5vw,72px)!important;grid-template-columns:minmax(92px,150px) minmax(0,1fr)!important;gap:clamp(22px,3.4vw,48px)!important;align-items:center!important}
-.chapter-index{font-size:clamp(64px,8vw,112px)!important;line-height:.82!important;color:rgba(255,255,255,.27)!important}
-.chapter-copy h2{font-size:clamp(44px,5.4vw,72px)!important;line-height:1!important;margin:7px 0 10px!important}
-.chapter-copy p{max-width:720px!important;font-size:clamp(16px,1.55vw,21px)!important;line-height:1.45!important;color:rgba(255,255,255,.78)!important}
-.chapter-edge{display:none!important}
+/* The separate full-width chapter title panels are retired. */
+.chapter-opener{display:none!important}
 
-/* Carry the chapter identity into the article opening. */
-#chapter-cover-story,#cover-story{--section-tone:#687b98;--section-tone-deep:#33455f}
-#chapter-economy,#economy{--section-tone:#8a7046;--section-tone-deep:#594724}
-#chapter-politics,#politics{--section-tone:#4f7894;--section-tone-deep:#294b63}
-#chapter-society,#society{--section-tone:#6b825f;--section-tone-deep:#3c5035}
-#chapter-tech,#tech{--section-tone:#7b6597;--section-tone-deep:#4a395f}
-#chapter-data,#data{--section-tone:#9a7140;--section-tone-deep:#60431f}
-#chapter-watch,#watch{--section-tone:#865864;--section-tone-deep:#55323b}
+/* Carry each section identity in the article opening bar. */
+#cover-story{--section-tone:#687b98;--section-tone-deep:#33455f}
+#economy{--section-tone:#8a7046;--section-tone-deep:#594724}
+#politics{--section-tone:#4f7894;--section-tone-deep:#294b63}
+#society{--section-tone:#6b825f;--section-tone-deep:#3c5035}
+#tech{--section-tone:#7b6597;--section-tone-deep:#4a395f}
+#data{--section-tone:#9a7140;--section-tone-deep:#60431f}
+#watch{--section-tone:#865864;--section-tone-deep:#55323b}
 :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch)>.wrap{padding-top:clamp(48px,6vw,78px)!important}
-:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title{display:flex!important;grid-template-columns:none!important;justify-content:flex-start!important;align-items:center!important;gap:12px!important;margin-bottom:34px!important;padding:0 0 14px!important;border-bottom:4px solid var(--section-tone)!important;color:var(--section-tone-deep)!important}
+:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title{display:flex!important;grid-template-columns:none!important;justify-content:flex-start!important;align-items:center!important;gap:12px!important;flex-wrap:nowrap!important;margin-bottom:34px!important;padding:0 0 14px!important;border-bottom:4px solid var(--section-tone)!important;color:var(--section-tone-deep)!important}
 :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title:before,
 :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title:after{display:none!important}
-:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:first-child{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:38px!important;height:28px!important;padding:0 8px!important;background:var(--section-tone-deep)!important;color:#fff!important;font-size:11px!important;line-height:1!important;letter-spacing:.08em!important}
-:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:last-child{color:var(--section-tone-deep)!important;font-size:11px!important;letter-spacing:.15em!important}
-:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch).dark .rule-title{color:#fff!important}
-:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch).dark .rule-title span:last-child{color:#fff!important}
+:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:first-child{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;min-width:38px!important;height:28px!important;padding:0 8px!important;background:var(--section-tone-deep)!important;color:#fff!important;font-size:11px!important;line-height:1!important;letter-spacing:.08em!important}
+:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:nth-child(2){flex:0 0 auto!important;color:var(--section-tone-deep)!important;font-size:11px!important;letter-spacing:.15em!important}
+:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title .rule-context{margin-left:auto!important;max-width:56%!important;font-family:var(--serif)!important;font-size:clamp(13px,1.35vw,17px)!important;font-weight:500!important;line-height:1.45!important;letter-spacing:-.018em!important;text-transform:none!important;text-align:right!important;color:#373934!important}
+:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch).dark .rule-title span:nth-child(2){color:#fff!important}
+:is(#cover-story,#economy,#politics,#society,#tech,#data,#watch).dark .rule-title .rule-context{color:rgba(255,255,255,.82)!important}
 
 @media(max-width:900px){.cover-content{grid-template-columns:1fr!important}.argument-grid,.data-hero{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){
- .chapter-opener{min-height:300px!important}
- .chapter-inner{grid-template-columns:72px minmax(0,1fr)!important;gap:18px!important;padding:34px 22px!important;align-items:center!important}
- .chapter-index{position:static!important;right:auto!important;top:auto!important;font-size:72px!important}
- .chapter-copy h2{font-size:clamp(46px,13vw,62px)!important}
- .chapter-copy p{font-size:16px!important}
-}
 @media(max-width:660px){
  .argument-grid,.data-hero,.verification-grid{grid-template-columns:1fr}.source-links a{grid-template-columns:1fr;gap:3px}
- :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title{gap:9px!important;margin-bottom:26px!important;padding-bottom:11px!important;border-bottom-width:3px!important}
+ :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title{gap:9px!important;flex-wrap:wrap!important;margin-bottom:26px!important;padding-bottom:11px!important;border-bottom-width:3px!important}
  :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:first-child{min-width:34px!important;height:25px!important;font-size:10px!important}
- :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:last-child{font-size:9.5px!important;letter-spacing:.12em!important}
-}
-@media(max-width:480px){
- .chapter-opener{min-height:270px!important}
- .chapter-inner{grid-template-columns:58px minmax(0,1fr)!important;gap:14px!important;padding:30px 18px!important}
- .chapter-index{font-size:58px!important}
- .chapter-copy h2{font-size:clamp(40px,12vw,52px)!important}
- .chapter-copy p{font-size:14px!important;line-height:1.48!important}
+ :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:nth-child(2){font-size:9.5px!important;letter-spacing:.12em!important}
+ :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title .rule-context{flex:1 0 100%!important;max-width:none!important;margin-left:43px!important;font-size:13px!important;text-align:left!important}
 }
