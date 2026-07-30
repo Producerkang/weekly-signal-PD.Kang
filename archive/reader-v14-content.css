@@ -1,32 +1,13 @@
-/* WEEKLY SIGNAL issue 01 — editorial model v18 */
+/* WEEKLY SIGNAL issue 01 — editorial model v19 */
 .cover:after{background:linear-gradient(90deg,rgba(4,8,15,.96),rgba(4,8,15,.70) 54%,rgba(4,8,15,.20))!important}
 .cover-content{grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr)!important}
 .cover-path{display:grid;border-top:1px solid rgba(255,255,255,.42);border-bottom:1px solid rgba(255,255,255,.22);margin-top:34px}
 .cover-path div{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:13px 0;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:rgba(255,255,255,.72)}
 .cover-path div:first-child{border-top:0}.cover-path b{color:#ff765f;font-size:11px;letter-spacing:.12em}.cover-path strong{display:block;color:#fff;font-size:14px;margin-bottom:2px}
 
-/* LIFE SCENE is an independent long-form feature with a portrait illustration. */
-.life-scene{min-height:100svh!important;display:block!important;align-items:initial!important;background:#eee9df!important;color:var(--ink)!important;border-top:1px solid #bbb8ae!important;border-bottom:1px solid #bbb8ae!important;scroll-margin-top:56px}
-.life-inner{box-sizing:border-box!important;width:min(1180px,100%)!important;margin:0 auto!important;padding:clamp(104px,12vw,168px) clamp(24px,6vw,84px) clamp(126px,14vw,194px)!important}
-.life-head{display:block!important;width:100%!important;max-width:980px!important;margin:0 auto clamp(58px,8vw,92px)!important;padding-bottom:clamp(34px,5vw,54px)!important;border-bottom:1px solid rgba(40,48,41,.28)!important}
-.life-kicker{margin:0 0 19px!important;font-size:10px!important;font-weight:950!important;letter-spacing:.18em!important;color:#4c6a58!important}
-.life-head h2{max-width:920px!important;margin:0!important;font-family:var(--serif)!important;font-size:clamp(54px,7.3vw,92px)!important;line-height:1.04!important;letter-spacing:-.058em!important}
-.life-head>p{max-width:720px!important;margin:24px 0 0!important;font-family:var(--serif)!important;font-size:clamp(19px,2vw,26px)!important;line-height:1.58!important;color:#4d514b!important}
-.life-layout{display:flow-root!important;width:100%!important;max-width:980px!important;margin:0 auto!important}
-.life-illustration{position:static!important;float:left!important;width:min(37%,360px)!important;max-width:360px!important;margin:8px clamp(34px,5vw,58px) 30px 0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important}
-.life-illustration:before{content:""!important;display:block!important;width:100%!important;aspect-ratio:3/4!important;background-color:#d9ded5!important;background-image:url("./life-scene-health-v18.svg")!important;background-position:center!important;background-size:cover!important;background-repeat:no-repeat!important;border:0!important;box-shadow:0 22px 54px rgba(31,40,33,.16)!important}
-.life-illustration img,.life-illustration svg{display:none!important}
-.life-illustration figcaption{padding-top:11px!important;font-size:9.5px!important;line-height:1.65!important;color:#74766f!important}
-.life-story{display:block!important;width:auto!important;max-width:none!important;margin:0!important;font-family:var(--serif)!important;font-size:17.5px!important;line-height:2.02!important;letter-spacing:-.01em!important}
-.life-story p{margin:0 0 1.52em!important;font-size:inherit!important;line-height:inherit!important;letter-spacing:inherit!important}
-.life-story .life-lead{font-size:clamp(20px,2vw,25px)!important;line-height:1.82!important;font-weight:400!important;letter-spacing:-.022em!important}
-.life-message{margin:2.1em 0 2.4em!important;padding:25px 29px!important;border-left:5px solid #6b825f!important;background:rgba(255,255,255,.55)!important;font-family:var(--sans)!important}
-.life-message p{margin:0!important;font-size:15px!important;line-height:1.86!important;letter-spacing:-.012em!important;color:#313832!important}
-.life-turn{margin-top:2.6em!important;font-size:clamp(20px,2vw,25px)!important;line-height:1.72!important;letter-spacing:-.024em!important}
-.life-context{clear:both!important;margin:clamp(68px,9vw,110px) 0 0!important;padding:clamp(34px,5vw,54px)!important;border:0!important;border-top:6px solid #566d5b!important;background:#dce1d8!important;font-family:var(--sans)!important}
-.life-context-label{margin-bottom:22px!important;font-size:10px!important;font-weight:950!important;letter-spacing:.17em!important;color:#4d6755!important}
-.life-context p{margin:0 0 1.25em!important;font-family:var(--sans)!important;font-size:14px!important;line-height:1.86!important;letter-spacing:-.012em!important;color:#3f4740!important}
-.life-context p:last-child{margin-bottom:0!important}
+/* LIFE SCENE no longer uses the legacy inline vector layer. */
+.life-illustration:before{content:none!important;display:none!important;background:none!important;background-image:none!important}
+.life-illustration svg{display:none!important}
 
 .article-body{columns:1!important;column-count:1!important;column-rule:0!important}
 .section-visual{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;margin:0 0 38px;border:0}
@@ -66,30 +47,11 @@
 :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch).dark .rule-title span:nth-child(2){color:#fff!important}
 :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch).dark .rule-title .rule-context{color:rgba(255,255,255,.82)!important}
 
-@media(max-width:900px){
- .cover-content{grid-template-columns:1fr!important}.argument-grid,.data-hero{grid-template-columns:repeat(2,minmax(0,1fr))}
- .life-inner{padding-top:92px!important;padding-bottom:132px!important}
- .life-illustration{width:min(41%,330px)!important;margin-right:36px!important}
- .life-story{font-size:17px!important}
-}
+@media(max-width:900px){.cover-content{grid-template-columns:1fr!important}.argument-grid,.data-hero{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:660px){
  .argument-grid,.data-hero,.verification-grid{grid-template-columns:1fr}.source-links a{grid-template-columns:1fr;gap:3px}
  :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title{gap:9px!important;flex-wrap:wrap!important;margin-bottom:26px!important;padding-bottom:11px!important;border-bottom-width:3px!important}
  :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:first-child{min-width:34px!important;height:25px!important;font-size:10px!important}
  :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:nth-child(2){font-size:9.5px!important;letter-spacing:.12em!important}
  :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title .rule-context{flex:1 0 100%!important;max-width:none!important;margin-left:43px!important;font-size:13px!important;text-align:left!important}
- .life-inner{padding:76px 22px 106px!important}
- .life-head{margin-bottom:48px!important;padding-bottom:32px!important}
- .life-head h2{font-size:clamp(45px,13vw,62px)!important}
- .life-head>p{font-size:18px!important;margin-top:18px!important}
- .life-illustration{float:none!important;width:min(78vw,340px)!important;max-width:340px!important;margin:0 auto 40px!important}
- .life-story{font-size:16.5px!important;line-height:1.94!important}
- .life-story .life-lead{font-size:20px!important;line-height:1.78!important}
- .life-message{padding:21px 22px!important}
- .life-context{margin-top:74px!important;padding:30px 24px!important}
-}
-@media(max-width:480px){
- .life-illustration{width:min(86vw,330px)!important}
- .life-story{font-size:16px!important}
- .life-context p{font-size:13.5px!important}
 }
