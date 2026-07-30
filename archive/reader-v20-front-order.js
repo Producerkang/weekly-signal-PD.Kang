@@ -13,5 +13,13 @@
  });
  contents.insertAdjacentElement('afterend',life);
  life.insertAdjacentElement('afterend',opening);
- document.documentElement.dataset.frontMatterLayout='single-column-v20';
+ const nav=document.querySelector('.nav');
+ if(nav){
+  const contentsLink=nav.querySelector('a[href="#contents"]');
+  const lifeLink=nav.querySelector('a[href="#life-scene"]');
+  const openingLink=nav.querySelector('a[href="#opening"]');
+  if(contentsLink&&lifeLink)contentsLink.insertAdjacentElement('afterend',lifeLink);
+  if(lifeLink&&openingLink)lifeLink.insertAdjacentElement('afterend',openingLink);
+ }
+ document.documentElement.dataset.frontMatterLayout='single-column-v21';
 })();
