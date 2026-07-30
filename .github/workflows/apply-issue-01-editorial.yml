@@ -24,11 +24,37 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Apply editorial migration
-        run: node tools/apply-issue-01-editorial.mjs
-      - name: Validate standalone issue
-        run: node tools/validate-published-issue.mjs
+      - name: Apply and validate
+        id: migration
+        shell: bash
+        run: |
+          set +e
+          node tools/apply-issue-01-editorial.mjs > migration.log 2>&1
+          status=$?
+          if [ "$status" -eq 0 ]; then
+            node tools/validate-published-issue.mjs >> migration.log 2>&1
+            status=$?
+          fi
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          cat migration.log
+          exit 0
+      - name: Report failure
+        if: github.event_name == 'issues' && steps.migration.outputs.status != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo 'Editorial migration failed:'
+            echo '```text'
+            tail -c 5000 migration.log
+            echo '```'
+          } > issue-comment.md
+          gh issue comment ${{ github.event.issue.html_url }} --body-file issue-comment.md
+      - name: Stop on failure
+        if: steps.migration.outputs.status != '0'
+        run: exit 1
       - name: Commit migration result
+        if: steps.migration.outputs.status == '0'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
