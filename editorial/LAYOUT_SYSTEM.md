@@ -97,16 +97,17 @@ Splash는 사이트 진입용 `index.html`의 UI다. 독립 보존호의 필수 
 독립 보존호의 기본 순서:
 
 1. Cover
-2. Front Spread: Contents 40% + LIFE SCENE 60%
-3. Opening
-4. Cover Story
-5. Economy
-6. Politics
-7. Society
-8. Tech
-9. Data
-10. Watch
-11. Sources & Method
+2. Contents
+3. LIFE SCENE
+4. Opening
+5. Cover Story
+6. Economy
+7. Politics
+8. Society
+9. Tech
+10. Data
+11. Watch
+12. Sources & Method
 
 섹션을 임의로 삭제하거나 순서를 바꾸지 않는다. 약한 분야는 후속 검증·구조 기사·짧은 분석으로 범위를 조정한다.
 
@@ -138,12 +139,14 @@ Opening은 해당 호를 읽는 편집 프레임을 제시한다.
 - 보조 레일은 본문을 한쪽으로 밀지 않는다.
 - 근거 카드와 보조 정보는 본문 사이 또는 본문 아래의 정상 흐름에 둔다.
 
-### Front Spread
+### Contents와 LIFE SCENE
 
-- 넓은 화면: Contents 40%, LIFE SCENE 60%
-- 좁은 화면: Contents 다음 LIFE SCENE의 1열
-- 두 영역은 공통 컨테이너 안에서 관계를 형성한다.
-- 높이와 기준선을 맞추되 콘텐츠를 자르거나 강제 고정 높이를 사용하지 않는다.
+- Contents와 LIFE SCENE은 각각 전체 폭의 독립 지면으로 둔다.
+- Contents는 데스크톱에서 모든 항목을 한 화면 안에 표시하며 내부 스크롤을 만들지 않는다.
+- 항목 수가 많아지면 항목을 숨기거나 잘라내지 않고 섹션명·제목·설명의 크기와 행간, 항목 간격을 함께 조정한다.
+- 목차 순서는 실제 문서 순서와 상단 내비게이션 순서에 일치시킨다.
+- LIFE SCENE은 Contents 다음에 배치하며 이미지 비율·본문 관계는 해당 장면에 맞게 독립적으로 정한다.
+- 좁은 화면에서도 두 지면의 순서를 유지하고 콘텐츠를 자르지 않는다.
 
 ## 7. 승인 모듈
 
@@ -255,8 +258,8 @@ Opening은 해당 호를 읽는 편집 프레임을 제시한다.
 
 - 가로 넘침 없음
 - 장문 본문 단일 열 유지
-- 넓은 화면 Front Spread 40:60
-- 좁은 화면 Contents → LIFE SCENE 1열
+- Contents의 모든 항목이 내부 스크롤 없이 표시됨
+- Contents → LIFE SCENE 순서 유지
 - 제목·이미지·카드 잘림 없음
 - 이미지 핵심 피사체 보존
 - 카드 그리드의 DOM 읽기 순서 유지
@@ -277,7 +280,7 @@ Opening은 해당 호를 읽는 편집 프레임을 제시한다.
 
 ## 11. 독립 보존호 원칙
 
-- 새 호는 `archive/YYYY-MM-DD.html`과 날짜별 자산으로 완결한다.
+- 새 호는 `archive/YYYY-MM-DD.html` 하나를 공개 기준본으로 발행한다. 제작 중 자산이 분리돼 있어도 발행 시 최종 DOM·스타일·이미지와 필수 동작을 고정한다.
 - 공용 CSS·JS는 버전이 고정된 경로만 사용한다.
 - 후속 공용 파일 변경으로 과월호의 내용과 레이아웃이 달라지지 않아야 한다.
 - 임시 후삽입 스크립트와 누적 패치를 새 호의 제작 방식으로 사용하지 않는다.
