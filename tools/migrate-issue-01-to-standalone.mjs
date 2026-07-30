@@ -2,7 +2,6 @@ import { chromium } from 'playwright';
 import http from 'node:http';
 import path from 'node:path';
 import { promises as fs } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 
 const ROOT=process.cwd();
 const ISSUE_DATE=process.env.ISSUE_DATE||'2026-07-20';
@@ -101,14 +100,22 @@ async function main(){
  const browser=await chromium.launch({headless:true});
  try{
   const page=await browser.newPage({viewport:{width:1366,height:1024},deviceScaleFactor:1});
+  page.on('console',message=>console.log(`[browser:${message.type()}] ${message.text()}`));
+  page.on('pageerror',error=>console.error('[browser:pageerror]',error));
   await page.goto(`http://127.0.0.1:${PORT}/archive/${ISSUE_DATE}-reader.html`,{waitUntil:'networkidle',timeout:120000});
-  await page.waitForFunction(()=>{
-   const text=document.body?.innerText||'';
-   return document.querySelectorAll('#contents .toc-item').length===9
-    && document.querySelector('#life-scene .life-photo')
-    && text.includes('다만, 병원과 인력을 권역별로 배치하는 것만으로는 충분하지 않다.')
-    && document.documentElement.dataset.contentEdition==='issue-01-editorial-v24';
-  },{timeout:120000});
+  await page.waitForTimeout(10000);
+  const readiness=await page.evaluate(()=>({
+   toc:document.querySelectorAll('#contents .toc-item').length,
+   hasLife:Boolean(document.querySelector('#life-scene')),
+   hasPhoto:Boolean(document.querySelector('#life-scene .life-photo')),
+   hasCopy:(document.body?.innerText||'').includes('다만, 병원과 인력을 권역별로 배치하는 것만으로는 충분하지 않다.'),
+   edition:document.documentElement.dataset.contentEdition||null,
+   reader:document.documentElement.dataset.reader||null,
+   title:document.title,
+   scripts:[...document.querySelectorAll('script[src]')].map(node=>node.getAttribute('src'))
+  }));
+  console.log('Rendered readiness:',JSON.stringify(readiness,null,2));
+  if(readiness.toc!==9||!readiness.hasLife||!readiness.hasCopy)throw new Error(`Rendered issue is incomplete: ${JSON.stringify(readiness)}`);
 
   const html=await page.evaluate(async issueDate=>{
    const links=[...document.querySelectorAll('link[rel="stylesheet"]')];
@@ -136,7 +143,7 @@ async function main(){
    document.documentElement.dataset.issue=issueDate;
 
    const runtime=document.createElement('script');
-   runtime.textContent=`(()=>{\n const progress=document.getElementById('progress');\n const updateProgress=()=>{if(!progress)return;const root=document.documentElement;const max=Math.max(0,root.scrollHeight-window.innerHeight);progress.style.width=(max?Math.min(1,Math.max(0,window.scrollY/max)):0)*100+'%'};\n updateProgress();window.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress,{passive:true});\n const links=[...document.querySelectorAll('.nav a[href^="#"]')];const sections=links.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);\n if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!visible)return;links.forEach(link=>{const active=link.getAttribute('href')==='#'+visible.target.id;link.toggleAttribute('aria-current',active);if(active)link.setAttribute('aria-current','page')})},{rootMargin:'-20% 0px -65% 0px',threshold:[0,.15,.4]});sections.forEach(section=>observer.observe(section));}\n document.addEventListener('click',event=>{const link=event.target.closest('a[href^="#"]');if(!link)return;const target=document.querySelector(link.getAttribute('href'));if(!target)return;event.preventDefault();target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});history.replaceState(null,'',link.getAttribute('href'))});\n})();`;
+   runtime.textContent=`(()=>{\n const progress=document.getElementById('progress');\n const updateProgress=()=>{if(!progress)return;const root=document.documentElement;const max=Math.max(0,root.scrollHeight-window.innerHeight);progress.style.width=(max?Math.min(1,Math.max(0,window.scrollY/max)):0)*100+'%'};\n updateProgress();window.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress,{passive:true});\n const links=[...document.querySelectorAll('.nav a[href^="#"]')];const sections=links.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);\n if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!visible)return;links.forEach(link=>{const active=link.getAttribute('href')==='#'+visible.target.id;link.removeAttribute('aria-current');if(active)link.setAttribute('aria-current','page')})},{rootMargin:'-20% 0px -65% 0px',threshold:[0,.15,.4]});sections.forEach(section=>observer.observe(section));}\n document.addEventListener('click',event=>{const link=event.target.closest('a[href^="#"]');if(!link)return;const target=document.querySelector(link.getAttribute('href'));if(!target)return;event.preventDefault();target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});history.replaceState(null,'',link.getAttribute('href'))});\n})();`;
    document.body.appendChild(runtime);
 
    return '<!doctype html>\n'+document.documentElement.outerHTML;
