@@ -1,15 +1,14 @@
 name: Apply issue 01 editorial revision once
 
 on:
-  issues:
-    types: [opened, reopened]
+  schedule:
+    - cron: '*/5 * * * *'
 
 permissions:
   contents: write
 
 jobs:
   apply:
-    if: github.event.issue.title == '[one-time] apply issue 01 editorial revision'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
