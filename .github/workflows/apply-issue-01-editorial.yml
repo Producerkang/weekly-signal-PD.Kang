@@ -7,6 +7,9 @@ on:
     paths:
       - tools/apply-issue-01-editorial.mjs
       - .github/workflows/apply-issue-01-editorial.yml
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
