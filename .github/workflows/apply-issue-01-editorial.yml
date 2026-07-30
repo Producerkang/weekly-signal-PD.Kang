@@ -29,7 +29,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          node tools/apply-issue-01-editorial.mjs > migration.log 2>&1
+          node tools/run-issue-01-editorial-migration.mjs > migration.log 2>&1
           status=$?
           if [ "$status" -eq 0 ]; then
             node tools/validate-published-issue.mjs >> migration.log 2>&1
