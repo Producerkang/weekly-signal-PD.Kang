@@ -1,9 +1,25 @@
-/* WEEKLY SIGNAL issue 01 — editorial model v19 */
+/* WEEKLY SIGNAL issue 01 — editorial model v22 */
 .cover:after{background:linear-gradient(90deg,rgba(4,8,15,.96),rgba(4,8,15,.70) 54%,rgba(4,8,15,.20))!important}
 .cover-content{grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr)!important}
 .cover-path{display:grid;border-top:1px solid rgba(255,255,255,.42);border-bottom:1px solid rgba(255,255,255,.22);margin-top:34px}
 .cover-path div{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:13px 0;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:rgba(255,255,255,.72)}
 .cover-path div:first-child{border-top:0}.cover-path b{color:#ff765f;font-size:11px;letter-spacing:.12em}.cover-path strong{display:block;color:#fff;font-size:14px;margin-bottom:2px}
+
+/* CONTENTS is a full-width, single-column page. All nine entries fit without internal scrolling. */
+#contents.contents-page{box-sizing:border-box!important;height:100svh!important;min-height:100svh!important;overflow:hidden!important}
+#contents .contents-inner{box-sizing:border-box!important;width:min(1120px,100%)!important;height:100%!important;margin:0 auto!important;padding:clamp(22px,3.2vh,38px) clamp(24px,5vw,64px)!important;display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;align-content:center!important}
+#contents .contents-head{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:24px!important;margin:0 0 clamp(10px,1.6vh,18px)!important;padding:0 0 clamp(9px,1.35vh,15px)!important}
+#contents .contents-head span{font-size:8px!important;line-height:1!important;letter-spacing:.14em!important}
+#contents .contents-head h2{font-size:clamp(27px,3.4vh,40px)!important;line-height:1!important;letter-spacing:-.045em!important;margin:6px 0 0!important}
+#contents .contents-head p{font-size:9px!important;line-height:1.35!important;margin:0!important}
+#contents .contents-grid{display:grid!important;grid-template-columns:1fr!important;grid-template-rows:repeat(9,minmax(0,1fr))!important;gap:0!important;min-height:0!important;height:100%!important}
+#contents .toc-item,#contents .toc-item.featured{box-sizing:border-box!important;grid-column:auto!important;display:grid!important;grid-template-columns:minmax(132px,.31fr) minmax(0,1fr)!important;align-items:center!important;gap:clamp(12px,2vw,22px)!important;min-height:0!important;margin:0!important;padding:clamp(3px,.7vh,7px) 0!important}
+#contents .toc-meta{display:flex!important;align-items:baseline!important;gap:7px!important;min-width:0!important}
+#contents .toc-num{font-size:clamp(15px,2.2vh,21px)!important;line-height:1!important;letter-spacing:-.04em!important}
+#contents .toc-label{font-size:clamp(9.5px,1.35vh,12px)!important;line-height:1!important;letter-spacing:.11em!important;white-space:nowrap!important}
+#contents .toc-copy{min-width:0!important}
+#contents .toc-copy strong{display:block!important;font-size:clamp(12px,1.65vh,15.5px)!important;line-height:1.22!important;letter-spacing:-.025em!important;margin:0!important}
+#contents .toc-copy p{font-size:clamp(8.5px,1.05vh,10.5px)!important;line-height:1.25!important;margin:2px 0 0!important}
 
 /* LIFE SCENE no longer uses the legacy inline vector layer. */
 .life-illustration:before{content:none!important;display:none!important;background:none!important;background-image:none!important}
@@ -47,8 +63,27 @@
 :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch).dark .rule-title span:nth-child(2){color:#fff!important}
 :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch).dark .rule-title .rule-context{color:rgba(255,255,255,.82)!important}
 
+@media(max-height:720px) and (min-width:661px){
+ #contents .contents-inner{padding-top:14px!important;padding-bottom:14px!important}
+ #contents .contents-head{margin-bottom:7px!important;padding-bottom:8px!important}
+ #contents .contents-head h2{font-size:27px!important}
+ #contents .toc-item,#contents .toc-item.featured{padding:2px 0!important}
+ #contents .toc-num{font-size:15px!important}
+ #contents .toc-label{font-size:9.5px!important}
+ #contents .toc-copy strong{font-size:12px!important}
+ #contents .toc-copy p{font-size:8.5px!important;line-height:1.15!important}
+}
 @media(max-width:900px){.cover-content{grid-template-columns:1fr!important}.argument-grid,.data-hero{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:660px){
+ #contents .contents-inner{padding:16px 14px!important}
+ #contents .contents-head{gap:12px!important;margin-bottom:7px!important;padding-bottom:8px!important}
+ #contents .contents-head h2{font-size:27px!important}
+ #contents .contents-head p{font-size:8px!important}
+ #contents .toc-item,#contents .toc-item.featured{grid-template-columns:88px minmax(0,1fr)!important;gap:9px!important;padding:2px 0!important}
+ #contents .toc-num{font-size:14px!important}
+ #contents .toc-label{font-size:8.5px!important;letter-spacing:.07em!important}
+ #contents .toc-copy strong{font-size:11px!important;line-height:1.15!important}
+ #contents .toc-copy p{font-size:8px!important;line-height:1.15!important;margin-top:1px!important}
  .argument-grid,.data-hero,.verification-grid{grid-template-columns:1fr}.source-links a{grid-template-columns:1fr;gap:3px}
  :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title{gap:9px!important;flex-wrap:wrap!important;margin-bottom:26px!important;padding-bottom:11px!important;border-bottom-width:3px!important}
  :is(#cover-story,#economy,#politics,#society,#tech,#data,#watch) .rule-title span:first-child{min-width:34px!important;height:25px!important;font-size:10px!important}
