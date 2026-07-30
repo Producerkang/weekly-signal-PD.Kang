@@ -2,7 +2,7 @@ name: Apply issue 01 editorial revision once
 
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
 
 permissions:
   contents: write
