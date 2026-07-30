@@ -6,17 +6,16 @@
 
 ## 1. 현재 상태
 
-제1호는 `archive/2026-07-20.html`, reader 파일과 여러 CSS·JS 보정 파일을 결합해 표시되는 과도기 구조다.
+제1호는 `archive/2026-07-20.html` 하나를 공개 기준본으로 사용하는 독립 보존호로 전환됐다. 제작 과정에서 사용한 reader 누적 후처리 구조는 제거했다.
 
-- 제1호는 시각적 참고 자료다.
-- 제1호의 기사 내용·날짜·출처·이미지 자산은 템플릿이 아니다.
-- reader 계열의 fetch·본문 치환·누적 보정 구조를 새 호에 복사하지 않는다.
-- 제2호와 제3호는 이 계약에 따른 독립 보존호로 제작한다.
+- 모든 새 호는 `archive/YYYY-MM-DD.html`을 독립적인 공개 기준본으로 발행한다.
+- 제작 브랜치에서 원고·스타일·이미지를 나누어 작업할 수 있지만, 발행본은 후단 패치나 본문 조립 런타임에 의존하지 않는다.
+- 제1호는 시각적 참고 자료이며 기사 내용·날짜·출처·이미지 자산은 템플릿이 아니다.
 - 정식 템플릿은 제2호와 제3호에서 공통 셸과 모듈이 검증된 뒤 추출한다.
 
 ## 2. 독립 보존호 정의
 
-독립 보존호는 단일 물리 파일만을 의미하지 않는다. 다음 파일만으로 해당 호를 재현할 수 있어야 한다.
+독립 보존호의 공개 기준점은 `archive/YYYY-MM-DD.html` 하나다. 이미지와 버전 고정 자산을 별도 파일로 둘 수 있으나, 다음 범위만으로 해당 호를 재현할 수 있어야 하며 기사 본문과 최종 DOM을 런타임에서 다시 조립하지 않는다.
 
 - `archive/YYYY-MM-DD.html`
 - `archive/assets/YYYY-MM-DD/`의 호별 자산
@@ -58,6 +57,7 @@ assets/runtime/v1/issue.js
 
 날짜별 HTML의 `<head>`에는 최소한 다음을 포함한다.
 
+- `<meta name="weekly-signal-build" content="standalone-YYYY-MM-DD">`
 - UTF-8 charset
 - viewport
 - 고유 `<title>`
@@ -92,7 +92,7 @@ assets/runtime/v1/issue.js
 
 규칙:
 
-- `path`는 reader 래퍼가 아니라 독립 보존호를 가리킨다.
+- `path`는 reader 래퍼가 아니라 독립 보존호를 가리킨다. `*-reader.html`과 `reader-v*` 자산은 발행 경로에 둘 수 없다.
 - 날짜는 실제 발행 메타데이터와 일치해야 한다.
 - `latest.json`은 모든 검수와 배포 확인이 끝난 뒤 마지막으로 갱신한다.
 - 실패 시 이전 값을 유지하거나 즉시 복원한다.
@@ -125,11 +125,8 @@ assets/runtime/v1/issue.js
   <main id="main-content">
     <section id="top" data-section="cover"></section>
 
-    <section id="front-spread" data-section="front-spread">
-      <section id="contents" data-section="contents"></section>
-      <section id="life-scene" data-section="life-scene"></section>
-    </section>
-
+    <section id="contents" data-section="contents"></section>
+    <section id="life-scene" data-section="life-scene"></section>
     <section id="opening" data-section="opening"></section>
     <article id="cover-story" data-section="article" data-channel="cover"></article>
     <article id="economy" data-section="article" data-channel="economy"></article>
@@ -257,7 +254,7 @@ archive/assets/YYYY-MM-DD/
 - `LAYOUT_SYSTEM.md`의 색상·기준폭·breakpoint를 사용한다.
 - 기사마다 서로 다른 기준폭과 breakpoint를 만들지 않는다.
 - 장문 본문은 단일 열이다.
-- Front Spread는 넓은 화면 40:60, 좁은 화면 1열이다.
+- Contents와 LIFE SCENE은 각각 전체 폭의 독립 지면이며, Contents는 데스크톱에서 내부 스크롤 없이 전체 항목을 표시한다.
 - topbar만 sticky, reading progress만 fixed다.
 - 숨김으로 금지 요소를 해결하지 않는다. 금지된 DOM은 생성하지 않는다.
 - 공용 CSS를 여러 버전의 fix 파일로 연속 덮어쓰지 않는다.

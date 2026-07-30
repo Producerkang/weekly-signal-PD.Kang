@@ -144,7 +144,7 @@ Economy, Politics, Society, Tech는 각 분야의 독립 이슈를 선정한다.
 ### LIFE SCENE
 
 - 가장 분명한 생활 영향 경로를 가진 기사에서 파생한다.
-- 가상·합성 사례를 첫 부분과 후단에 고지한다.
+- 가상·합성 사례는 섹션 표기와 후단 SCENARIO NOTE를 통해 실제 취재 사례와 혼동되지 않게 한다.
 - 기사에서 확인된 구조 밖의 극적인 장면을 만들지 않는다.
 - 연결 근거가 약하면 절차형 짧은 사례로 전환한다.
 
@@ -247,7 +247,7 @@ Document Reportage에는 이미지를 만들거나 넣지 않는다.
 
 ## 10. 독립 보존호 조립
 
-새 호는 다음으로 구성한다.
+새 호의 공개 기준점은 `archive/YYYY-MM-DD.html` 하나다. 다음 자산을 함께 사용할 수 있으나 본문과 최종 DOM은 보존호 HTML에 존재해야 한다.
 
 - `archive/YYYY-MM-DD.html`
 - `archive/assets/YYYY-MM-DD/`
@@ -281,6 +281,7 @@ Document Reportage에는 이미지를 만들거나 넣지 않는다.
 - Document Reportage 내부 이미지
 - `document.write`
 - 보존호 본문 fetch
+- `*-reader.html`, `reader-v*`와 후단 누적 패치 참조
 - JS의 기사 콘텐츠 하드코딩
 - 이전 호 날짜·제목·출처·이미지 경로
 - 외부 스톡·추적 스크립트
@@ -304,8 +305,8 @@ Document Reportage에는 이미지를 만들거나 넣지 않는다.
 
 - 가로 넘침
 - 중앙 기준축과 본문 단일 열
-- 넓은 화면 Front Spread 40:60
-- 좁은 화면 Contents → LIFE SCENE
+- Contents의 모든 항목이 내부 스크롤 없이 표시되는지
+- Contents → LIFE SCENE → Opening 순서가 유지되는지
 - 제목·이미지·카드 잘림
 - 이미지 핵심 피사체
 - topbar와 읽기 진행 바
@@ -327,8 +328,8 @@ Document Reportage에는 이미지를 만들거나 넣지 않는다.
 
 ## 13. 발행 순서
 
-1. 보존호 HTML과 날짜별 자산 추가
-2. 정적 검증
+1. 제작 결과를 독립 보존호 HTML과 날짜별 자산으로 동결
+2. `node tools/validate-published-issue.mjs` 정적 검증
 3. 렌더링·기능·접근성 검수
 4. `archive/index.html`에 새 호 추가
 5. 직접 보존호 URL과 과월호 링크 배포 확인

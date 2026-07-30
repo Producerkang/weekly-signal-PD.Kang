@@ -1,0 +1,36 @@
+name: Validate published issue
+
+on:
+  pull_request:
+    paths:
+      - 'archive/**'
+      - 'latest.json'
+      - 'index.html'
+      - 'editorial/**'
+      - 'templates/**'
+      - 'tools/validate-published-issue.mjs'
+      - '.github/workflows/validate-published-issue.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'archive/**'
+      - 'latest.json'
+      - 'index.html'
+      - 'editorial/**'
+      - 'templates/**'
+      - 'tools/validate-published-issue.mjs'
+      - '.github/workflows/validate-published-issue.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/validate-published-issue.mjs
