@@ -1,14 +1,14 @@
 /* WEEKLY SIGNAL v2 — hierarchy, contrast, placement and centered editorial grid */
 
-/* Front spread: contents 40% / LIFE SCENE 60%. */
-main{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);align-items:start}
-main>.cover{grid-column:1/-1;grid-row:1}
-main>.contents-page{grid-column:1;grid-row:2}
-main>.life-scene{grid-column:2;grid-row:2}
-main>#opening{grid-column:1/-1;grid-row:3}
-main>:not(.cover):not(.contents-page):not(.life-scene):not(#opening){grid-column:1/-1}
-.contents-page,.life-scene{min-height:0!important;height:100%;display:block!important;align-self:stretch}
-.contents-page{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* Front matter is a single-column reading flow. */
+main{display:block!important}
+main>.cover,
+main>.contents-page,
+main>.life-scene,
+main>#opening,
+main>:not(.cover):not(.contents-page):not(.life-scene):not(#opening){display:block!important;width:100%!important;grid-column:auto!important;grid-row:auto!important}
+.contents-page,.life-scene{align-self:auto!important}
+.contents-page{border-right:0!important;border-bottom:1px solid var(--line)}
 .life-scene{border-bottom:1px solid var(--line)}
 .contents-inner,.life-inner{width:100%!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important;padding:clamp(42px,5vw,72px) clamp(22px,3vw,46px)!important}
 .contents-grid{grid-template-columns:1fr!important}
@@ -30,10 +30,6 @@ main>:not(.cover):not(.contents-page):not(.life-scene):not(#opening){grid-column
 .toc-copy strong{font-size:clamp(18px,1.9vw,25px)!important;line-height:1.25!important}
 .toc-item.featured .toc-copy strong{font-size:clamp(22px,2.45vw,31px)!important}
 .toc-copy p{margin-top:4px!important}
-
-/* The editorial cartoon uses a clean frame. */
-.life-illustration{margin-left:auto!important;margin-right:auto!important}
-.life-illustration svg{border-radius:10px;outline:1px solid rgba(16,17,20,.14);box-shadow:0 20px 58px rgba(16,17,20,.18)!important}
 
 /* Verification memo always sits at the end of the article-main column. */
 .article-main>.verification-note{width:100%;margin-top:34px!important;color:var(--ink)!important;background:#e9e4da!important;border-color:#bdb5a7!important}
@@ -57,12 +53,6 @@ main>:not(.cover):not(.contents-page):not(.life-scene):not(#opening){grid-column
 .reportage-tech .reportage-visual figcaption{color:#4e4a52!important}
 
 @media(max-width:1100px){
- main{grid-template-columns:1fr}
- main>.cover{grid-column:1;grid-row:1}
- main>.contents-page{grid-column:1;grid-row:2;border-right:0}
- main>.life-scene{grid-column:1;grid-row:3}
- main>#opening{grid-column:1;grid-row:4}
- main>:not(.cover):not(.contents-page):not(.life-scene):not(#opening){grid-column:1}
  .contents-inner,.life-inner{width:min(900px,100%)!important}
 }
 @media(max-width:900px){
