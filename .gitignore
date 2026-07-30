@@ -1,0 +1,48 @@
+# Operating-system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Desktop.ini
+
+# Editor and IDE settings
+.vscode/
+.idea/
+*.code-workspace
+*.swp
+*.swo
+*~
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and runtime caches
+node_modules/
+.cache/
+.parcel-cache/
+.npm/
+.pnpm-store/
+__pycache__/
+*.py[cod]
+
+# Temporary, build, test, and render-review output
+tmp/
+temp/
+build/
+dist/
+coverage/
+playwright-report/
+test-results/
+screenshots/
+review/
+weekly-signal-clean-review/
+*.log
+*.bak
+*.tmp
+
+# Locally generated delivery packages
+/*.zip
+/*.sha256
