@@ -1,11 +1,11 @@
 name: Migrate Issue 01 to standalone
 
 on:
-  push:
+  pull_request:
+    types: [opened]
     branches: [main]
     paths:
-      - tools/migrate-issue-01-to-standalone.mjs
-      - .github/workflows/migrate-issue-01-standalone.yml
+      - migration/issue-01-standalone.trigger
   workflow_dispatch:
 
 permissions:
@@ -17,12 +17,12 @@ concurrency:
 
 jobs:
   freeze:
-    if: ${{ !contains(github.event.head_commit.message || '', '[standalone-output]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -34,7 +34,7 @@ jobs:
         env:
           ISSUE_DATE: '2026-07-20'
         run: node tools/migrate-issue-01-to-standalone.mjs
-      - name: Commit standalone issue
+      - name: Commit standalone issue to migration branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -44,4 +44,4 @@ jobs:
             exit 0
           fi
           git commit -m "Freeze Issue 01 as standalone archive [standalone-output]"
-          git push
+          git push origin HEAD:${{ github.head_ref }}
