@@ -48,6 +48,8 @@
 - 2026년 7월 31일 1회차의 런타임 후처리 CSS·JS를 현재 최종 상태에 병합해 `archive/2026-07-20/index.html` 단일 보존본으로 평탄화했습니다.
 - 이후 회차 수정은 별도 패치 파일을 누적하지 않고 해당 회차의 `index.html` 자체를 직접 갱신하며, 이전 상태는 Git 이력으로만 보존합니다.
 
+- 평탄화 후 실제 적용값이 그대로 드러나 Cover 행간 2.50이 과도하게 벌어진 것을 확인해 최종 기준을 1.60으로 조정했습니다.
+
 ### 다음 회차 적용 규칙
 
 1. 작업 시작 시 `editorial/SECTION_AND_REPORTAGE_STANDARD.md`와 `editorial/HEADLINE_AND_OPENING_STANDARD.md`를 반드시 읽습니다.
