@@ -1,4 +1,4 @@
-const PATCH_MARKER = 'weekly-signal-layout-fix-2026-07-31-v7';
+const PATCH_MARKER = 'weekly-signal-layout-fix-2026-07-31-v8';
 
 self.addEventListener('install', event => {
   self.skipWaiting();
@@ -91,7 +91,7 @@ self.addEventListener('fetch', event => {
 .headline-opening-patch .editor-note .big{font-size:clamp(24px,3vw,36px)!important;line-height:1.12!important}
 .headline-opening-patch .cover h1{
   font-size:clamp(48px,6vw,84px)!important;
-  line-height:1.3!important;
+  line-height:2.5!important;
   letter-spacing:-.05em!important;
   word-break:keep-all!important;
 }
@@ -104,7 +104,7 @@ self.addEventListener('fetch', event => {
   .reportage-evidence{grid-template-columns:1fr!important}
   .headline-opening-patch .article-head h2{font-size:clamp(31px,9.2vw,42px)!important;line-height:1.1!important}
   .headline-opening-patch .reportage-title{font-size:clamp(30px,8.8vw,40px)!important;line-height:1.1!important}
-  .headline-opening-patch .cover h1{font-size:clamp(42px,12vw,60px)!important;line-height:1.3!important}
+  .headline-opening-patch .cover h1{font-size:clamp(42px,12vw,60px)!important;line-height:2.5!important}
 }
 `;
 
