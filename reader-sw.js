@@ -1,4 +1,4 @@
-const PATCH_MARKER = 'weekly-signal-layout-fix-2026-07-31-v8';
+const PATCH_MARKER = 'weekly-signal-layout-fix-2026-07-31-v9';
 
 self.addEventListener('install', event => {
   self.skipWaiting();
@@ -110,7 +110,7 @@ self.addEventListener('fetch', event => {
 
     html = html.replace('</style>', `${css}\n</style>`);
     if(/data-issue=["']2026-07-20["']/.test(html)){
-      html = html.replace('</body>', `<script src="../../current-issue-rewrite.js?v=20260731-1"><\/script>\n<script src="../../headline-opening-patch.js?v=20260731-1"><\/script>\n</body>`);
+      html = html.replace('</body>', `<script src="../../current-issue-rewrite.js?v=20260731-1"><\/script>\n<script src="../../headline-opening-patch.js?v=20260731-2"><\/script>\n</body>`);
     }
 
     const headers = new Headers(response.headers);
