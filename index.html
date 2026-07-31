@@ -54,7 +54,8 @@
 
       const waitForWorkerControl=async()=>{
         if(!('serviceWorker' in navigator))return;
-        await navigator.serviceWorker.register('./reader-sw.js',{scope:'./'});
+        const registration=await navigator.serviceWorker.register('./reader-sw.js?v=20260731-4',{scope:'./',updateViaCache:'none'});
+        await registration.update();
         await navigator.serviceWorker.ready;
         if(navigator.serviceWorker.controller)return;
         await new Promise((resolve,reject)=>{
