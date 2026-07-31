@@ -52,21 +52,16 @@
       const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
       const waitForMinimum=()=>delay(Math.max(0,minimumSplashMs-(performance.now()-started)));
 
-      const waitForWorkerControl=async()=>{
+      const clearLegacyWorker=async()=>{
         if(!('serviceWorker' in navigator))return;
-        const registration=await navigator.serviceWorker.register('./reader-sw.js?v=20260731-9',{scope:'./',updateViaCache:'none'});
-        await registration.update();
-        await navigator.serviceWorker.ready;
-        if(navigator.serviceWorker.controller)return;
-        await new Promise((resolve,reject)=>{
-          const timeout=setTimeout(()=>reject(new Error('service-worker-control-timeout')),5000);
-          navigator.serviceWorker.addEventListener('controllerchange',()=>{clearTimeout(timeout);resolve()},{once:true});
-        });
+        const expectedScope=new URL('./',location.href).href;
+        const registrations=await navigator.serviceWorker.getRegistrations();
+        await Promise.all(registrations.filter(registration=>registration.scope===expectedScope).map(registration=>registration.unregister()));
       };
 
       (async()=>{
         try{
-          const workerReady=waitForWorkerControl();
+          const workerReady=clearLegacyWorker();
           const issueReady=fetch(`./latest.json?t=${Date.now()}`,{cache:'no-store'})
             .then(response=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json()})
             .then(latest=>{if(!latest.path||!latest.path.startsWith('archive/'))throw new Error('Invalid latest path');return new URL(latest.path,location.href).href});
