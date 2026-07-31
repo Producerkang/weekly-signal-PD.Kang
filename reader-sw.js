@@ -1,4 +1,4 @@
-const PATCH_MARKER = 'weekly-signal-layout-fix-2026-07-31';
+const PATCH_MARKER = 'weekly-signal-layout-fix-2026-07-31-v2';
 
 self.addEventListener('install', event => {
   self.skipWaiting();
@@ -14,10 +14,10 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
-  if (!/^\/archive\/\d{4}-\d{2}-\d{2}(?:\/|\/index\.html)$/.test(url.pathname)) return;
+  if (!/\/archive\/\d{4}-\d{2}-\d{2}(?:\/|\/index\.html)$/.test(url.pathname)) return;
 
   event.respondWith((async () => {
-    const response = await fetch(request);
+    const response = await fetch(request,{cache:'no-store'});
     const type = response.headers.get('content-type') || '';
     if (!response.ok || !type.includes('text/html')) return response;
 
