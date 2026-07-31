@@ -65,6 +65,8 @@
   removeManualBreaks();
   // Restore the deliberately art-directed Cover break after the global cleanup.
   setHTML('.cover h1','‘샌프란시스코 AI 선언’<br/>무엇을 약속했나');
+  const coverTitle=q('.cover h1');
+  if(coverTitle)coverTitle.style.setProperty('line-height','1.3','important');
 
   document.documentElement.classList.add('headline-opening-patch');
 })();
