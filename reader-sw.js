@@ -1,4 +1,4 @@
-const PATCH_MARKER = 'weekly-signal-layout-fix-2026-07-31-v4';
+const PATCH_MARKER = 'weekly-signal-layout-fix-2026-07-31-v5';
 
 self.addEventListener('install', event => {
   self.skipWaiting();
@@ -49,12 +49,68 @@ self.addEventListener('fetch', event => {
 .issue-content-rewritten .article-body h3{margin-top:2.25em!important}
 .issue-content-rewritten .article-body h3:first-child{margin-top:0!important}
 .issue-content-rewritten .article-body p{font-size:17px!important;line-height:1.9!important}
-@media(max-width:660px){.reportage-evidence{grid-template-columns:1fr!important}}
+
+/* Headline system: edit copy first, then scale type; do not force ordinary line breaks. */
+.headline-opening-patch .article-head h2{
+  font-size:clamp(36px,4.35vw,56px)!important;
+  line-height:1.06!important;
+  letter-spacing:-.04em!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+  text-wrap:pretty!important;
+}
+.headline-opening-patch .reportage-title{
+  font-size:clamp(34px,4vw,52px)!important;
+  line-height:1.08!important;
+  letter-spacing:-.035em!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+  text-wrap:pretty!important;
+}
+.headline-opening-patch .opening h2{
+  font-size:clamp(34px,4.2vw,54px)!important;
+  line-height:1.04!important;
+  word-break:keep-all!important;
+  text-wrap:pretty!important;
+}
+.headline-opening-patch .opening .prose h3,
+.headline-opening-patch .editor-note .big,
+.headline-opening-patch .toc-copy strong,
+.headline-opening-patch .card-title{
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+  text-wrap:pretty!important;
+}
+.headline-opening-patch .opening .prose h3{
+  font-size:clamp(22px,2.4vw,30px)!important;
+  line-height:1.18!important;
+  margin-top:1.7em!important;
+  margin-bottom:.45em!important;
+}
+.headline-opening-patch .opening .prose h3:first-child{margin-top:0!important}
+.headline-opening-patch .editor-note .big{font-size:clamp(24px,3vw,36px)!important;line-height:1.12!important}
+.headline-opening-patch .cover h1{
+  font-size:clamp(48px,6vw,84px)!important;
+  line-height:.98!important;
+  letter-spacing:-.05em!important;
+  word-break:keep-all!important;
+}
+
+@media(max-width:1024px){
+  .headline-opening-patch .article-head h2{font-size:clamp(34px,5vw,50px)!important}
+  .headline-opening-patch .reportage-title{font-size:clamp(32px,4.7vw,46px)!important}
+}
+@media(max-width:660px){
+  .reportage-evidence{grid-template-columns:1fr!important}
+  .headline-opening-patch .article-head h2{font-size:clamp(31px,9.2vw,42px)!important;line-height:1.1!important}
+  .headline-opening-patch .reportage-title{font-size:clamp(30px,8.8vw,40px)!important;line-height:1.1!important}
+  .headline-opening-patch .cover h1{font-size:clamp(42px,12vw,60px)!important}
+}
 `;
 
     html = html.replace('</style>', `${css}\n</style>`);
     if(/data-issue=["']2026-07-20["']/.test(html)){
-      html = html.replace('</body>', `<script src="../../current-issue-rewrite.js?v=20260731-1"><\/script>\n</body>`);
+      html = html.replace('</body>', `<script src="../../current-issue-rewrite.js?v=20260731-1"><\/script>\n<script src="../../headline-opening-patch.js?v=20260731-1"><\/script>\n</body>`);
     }
 
     const headers = new Headers(response.headers);
