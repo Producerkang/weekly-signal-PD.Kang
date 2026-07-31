@@ -1,0 +1,141 @@
+name: Flatten Issue 01
+
+on:
+  push:
+    paths:
+      - '.github/workflows/flatten-issue-01.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  flatten:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install DOM runtime
+        run: npm install --no-save --package-lock=false jsdom@24
+
+      - name: Flatten current rendered state into Issue 01 HTML
+        run: |
+          cat > /tmp/flatten-issue-01.cjs <<'NODE'
+          const fs = require('fs');
+          const { JSDOM } = require('jsdom');
+
+          const issuePath = 'archive/2026-07-20/index.html';
+          const rewritePath = 'current-issue-rewrite.js';
+          const headlinePath = 'headline-opening-patch.js';
+          const swPath = 'reader-sw.js';
+          const rootPath = 'index.html';
+          const marker = 'weekly-signal-layout-fix-2026-07-31-v9';
+
+          for (const path of [issuePath, rewritePath, headlinePath, swPath, rootPath]) {
+            if (!fs.existsSync(path)) throw new Error(`Missing required file: ${path}`);
+          }
+
+          const source = fs.readFileSync(issuePath, 'utf8');
+          const dom = new JSDOM(source, {
+            runScripts: 'outside-only',
+            url: 'https://example.invalid/archive/2026-07-20/'
+          });
+          const { window } = dom;
+          const { document } = window;
+
+          if (document.documentElement.dataset.issue !== '2026-07-20') {
+            throw new Error('Issue guard mismatch');
+          }
+
+          window.eval(fs.readFileSync(rewritePath, 'utf8'));
+          window.eval(fs.readFileSync(headlinePath, 'utf8'));
+
+          const sw = fs.readFileSync(swPath, 'utf8');
+          const cssMatch = sw.match(/const css = `([\s\S]*?)`;\n/);
+          if (!cssMatch) throw new Error('Could not extract reader CSS');
+          const flattenedCss = cssMatch[1].replace(/\$\{PATCH_MARKER\}/g, marker);
+
+          const style = document.createElement('style');
+          style.setAttribute('data-flattened-reader-css', '2026-07-31');
+          style.textContent = flattenedCss;
+          document.head.appendChild(style);
+
+          // The approved Issue 01 cover leading is 2.50. The old runtime patch still
+          // contained a stale inline 1.3 value, so resolve it in the canonical file.
+          const coverTitle = document.querySelector('.cover h1');
+          if (!coverTitle) throw new Error('Cover title missing after rewrite');
+          coverTitle.style.setProperty('line-height', '2.5', 'important');
+
+          document.querySelectorAll('script[src*="current-issue-rewrite.js"],script[src*="headline-opening-patch.js"]').forEach(el => el.remove());
+
+          const meta = document.createElement('meta');
+          meta.name = 'weekly-signal-flattened';
+          meta.content = '2026-07-31';
+          document.head.appendChild(meta);
+          document.head.appendChild(document.createComment(` ${marker} `));
+
+          let out = '<!doctype html>\n' + document.documentElement.outerHTML;
+
+          const required = [
+            'EDITOR\'S PICK',
+            '큰 발표가 쏟아졌지만, 실제 변화는 ‘누가 무엇을 책임지는가’에서 시작된다.',
+            '‘샌프란시스코 AI 선언’',
+            '미국의 ‘Section 301 관세’, 한국 수출품에는 어떻게 적용되나',
+            '정부포상 198점 취소, 훈장은 어떻게 되돌려지나',
+            '지역의료를 8개 권역으로 묶는 ‘5극3특’은 무엇인가',
+            '개인정보 정책, 제재에서 사전점검·데이터 활용까지',
+            marker,
+            'line-height: 2.5 !important'
+          ];
+          for (const text of required) {
+            if (!out.includes(text)) throw new Error(`Flattened output missing: ${text}`);
+          }
+          if (out.includes('current-issue-rewrite.js') || out.includes('headline-opening-patch.js')) {
+            throw new Error('Runtime patch reference survived flattening');
+          }
+
+          fs.writeFileSync(issuePath, out);
+
+          // Root loader no longer installs a reader patch worker. It only unregisters
+          // the legacy worker once, then resolves latest.json and opens the canonical issue.
+          let root = fs.readFileSync(rootPath, 'utf8');
+          const blockStart = root.indexOf('      const waitForWorkerControl=async()=>{');
+          const blockEndMarker = '      };\n\n      (async()=>{';
+          const blockEnd = root.indexOf(blockEndMarker, blockStart);
+          if (blockStart < 0 || blockEnd < 0) throw new Error('Legacy worker block not found in root index');
+
+          const cleanupBlock = `      const clearLegacyWorker=async()=>{\n        if(!('serviceWorker' in navigator))return;\n        const expectedScope=new URL('./',location.href).href;\n        const registrations=await navigator.serviceWorker.getRegistrations();\n        await Promise.all(registrations.filter(registration=>registration.scope===expectedScope).map(registration=>registration.unregister()));\n      };\n\n      (async()=>{`;
+          root = root.slice(0, blockStart) + cleanupBlock + root.slice(blockEnd + blockEndMarker.length);
+          root = root.replace('          const workerReady=waitForWorkerControl();', '          const workerReady=clearLegacyWorker();');
+          if (root.includes('reader-sw.js') || root.includes('waitForWorkerControl')) throw new Error('Legacy service-worker registration survived root cleanup');
+          fs.writeFileSync(rootPath, root);
+          NODE
+          node /tmp/flatten-issue-01.cjs
+
+      - name: Remove obsolete runtime patch files
+        run: |
+          rm current-issue-rewrite.js headline-opening-patch.js reader-sw.js
+          rm .github/workflows/flatten-issue-01.yml
+
+      - name: Verify canonical structure
+        run: |
+          test -f archive/2026-07-20/index.html
+          ! grep -q 'current-issue-rewrite.js' archive/2026-07-20/index.html
+          ! grep -q 'headline-opening-patch.js' archive/2026-07-20/index.html
+          ! grep -q 'reader-sw.js' index.html
+          grep -q 'weekly-signal-flattened' archive/2026-07-20/index.html
+          grep -q 'weekly-signal-layout-fix-2026-07-31-v9' archive/2026-07-20/index.html
+          grep -q "EDITOR'S PICK" archive/2026-07-20/index.html
+
+      - name: Commit flattened Issue 01
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Flatten issue 01 into canonical standalone HTML'
+          git push
