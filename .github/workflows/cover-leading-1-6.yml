@@ -1,0 +1,79 @@
+name: Set Cover leading to 1.6
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  adjust:
+    if: github.head_ref == 'cover-leading-1-6'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Set current issue and standards to 1.6
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          issue = Path('archive/2026-07-20/index.html')
+          s = issue.read_text(encoding='utf-8')
+          s2 = s.replace('line-height:2.5!important', 'line-height:1.6!important')
+          s2 = s2.replace('line-height: 2.5;', 'line-height: 1.6;')
+          if s2 == s:
+              raise SystemExit('No 2.5 cover leading found in issue HTML')
+          issue.write_text(s2, encoding='utf-8')
+
+          standard = Path('editorial/HEADLINE_AND_OPENING_STANDARD.md')
+          t = standard.read_text(encoding='utf-8')
+          t2 = t.replace('현재 기준 `line-height`는 **2.50**으로 사용한다.', '현재 기준 `line-height`는 **1.60**으로 사용한다.')
+          t2 = t2.replace('현재 기준 2.50으로 충분히 열려 있는가', '현재 기준 1.60으로 충분히 열려 있는가')
+          if t2 == t:
+              raise SystemExit('Cover standard 2.50 text not found')
+          standard.write_text(t2, encoding='utf-8')
+
+          runbook = Path('editorial/WEEKLY_RUNBOOK.md')
+          r = runbook.read_text(encoding='utf-8')
+          r2 = r.replace('현재 기준 `line-height: 2.50`', '현재 기준 `line-height: 1.60`')
+          r2 = r2.replace('현재 기준 2.50으로 충분히 열려 있음', '현재 기준 1.60으로 충분히 열려 있음')
+          if r2 == r:
+              raise SystemExit('Runbook 2.50 text not found')
+          runbook.write_text(r2, encoding='utf-8')
+
+          hist = Path('editorial/ISSUE_HISTORY.md')
+          h = hist.read_text(encoding='utf-8')
+          note = '- 평탄화 후 실제 적용값이 그대로 드러나 Cover 행간 2.50이 과도하게 벌어진 것을 확인해 최종 기준을 1.60으로 조정했습니다.\n'
+          if note not in h:
+              anchor = '\n### 다음 회차 적용 규칙\n'
+              pos = h.find(anchor)
+              if pos < 0:
+                  raise SystemExit('Issue history insertion point missing')
+              h = h[:pos] + '\n' + note + h[pos:]
+              hist.write_text(h, encoding='utf-8')
+          PY
+
+      - name: Verify leading update
+        run: |
+          grep -q 'line-height:1.6!important' archive/2026-07-20/index.html
+          grep -q 'line-height: 1.6;' archive/2026-07-20/index.html
+          ! grep -q 'line-height:2.5!important' archive/2026-07-20/index.html
+          grep -q 'line-height.*1.60' editorial/HEADLINE_AND_OPENING_STANDARD.md
+          grep -q 'line-height: 1.60' editorial/WEEKLY_RUNBOOK.md
+
+      - name: Remove one-off workflow
+        run: rm .github/workflows/cover-leading-1-6.yml
+
+      - name: Commit update
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Set cover headline leading to 1.6'
+          git push origin HEAD:${{ github.head_ref }}
