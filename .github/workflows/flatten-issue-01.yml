@@ -55,11 +55,9 @@ jobs:
             throw new Error('Issue guard mismatch');
           }
 
-          // Reproduce the exact runtime order that was used for Issue 01.
           window.eval(fs.readFileSync(rewritePath, 'utf8'));
           window.eval(fs.readFileSync(headlinePath, 'utf8'));
 
-          // Fold the service-worker reader overrides into the document itself.
           const sw = fs.readFileSync(swPath, 'utf8');
           const cssMatch = sw.match(/const css = `([\s\S]*?)`;\n/);
           if (!cssMatch) throw new Error('Could not extract reader CSS');
@@ -69,13 +67,10 @@ jobs:
           style.textContent = flattenedCss;
           document.head.appendChild(style);
 
-          // The approved final Cover leading is 2.50. Resolve the stale 1.3 inline
-          // value that remained inside the temporary headline patch.
           const coverTitle = document.querySelector('.cover h1');
           if (!coverTitle) throw new Error('Cover title missing after rewrite');
           coverTitle.style.setProperty('line-height', '2.5', 'important');
 
-          // Remove DOM that was already hidden in the approved final runtime layout.
           document.querySelectorAll('.article-rail,.fact-analysis,.chapter-opener,.reportage-visual').forEach(el => el.remove());
           document.querySelectorAll('script[src*="current-issue-rewrite.js"],script[src*="headline-opening-patch.js"]').forEach(el => el.remove());
 
@@ -83,8 +78,6 @@ jobs:
           meta.name = 'weekly-signal-flattened';
           meta.content = '2026-07-31';
           document.head.appendChild(meta);
-          // Old service workers still controlling an already-open tab will see this
-          // marker and return the canonical document without injecting patches again.
           document.head.appendChild(document.createComment(` ${marker} `));
 
           const out = '<!doctype html>\n' + document.documentElement.outerHTML;
@@ -111,8 +104,6 @@ jobs:
           }
           fs.writeFileSync(issuePath, out);
 
-          // Preserve the polished splash, but stop installing a reader patch worker.
-          // On the next root visit this also unregisters the legacy worker for this scope.
           let root = fs.readFileSync(rootPath, 'utf8');
           const blockStart = root.indexOf('      const waitForWorkerControl=async()=>{');
           const blockEndMarker = '      };\n\n      (async()=>{';
@@ -126,7 +117,6 @@ jobs:
           }
           fs.writeFileSync(rootPath, root);
 
-          // Record the structural migration so future runs do not rebuild patch layers.
           let history = fs.readFileSync(historyPath, 'utf8');
           const note = '- 2026년 7월 31일 1회차의 런타임 후처리 CSS·JS를 현재 최종 상태에 병합해 `archive/2026-07-20/index.html` 단일 보존본으로 평탄화했습니다.\n- 이후 회차 수정은 별도 패치 파일을 누적하지 않고 해당 회차의 `index.html` 자체를 직접 갱신하며, 이전 상태는 Git 이력으로만 보존합니다.\n';
           if (!history.includes('단일 보존본으로 평탄화')) {
@@ -137,7 +127,7 @@ jobs:
             fs.writeFileSync(historyPath, history);
           }
           NODE
-          node /tmp/flatten-issue-01.cjs
+          NODE_PATH="$(npm root)" node /tmp/flatten-issue-01.cjs
 
       - name: Remove obsolete runtime patch files
         run: |
