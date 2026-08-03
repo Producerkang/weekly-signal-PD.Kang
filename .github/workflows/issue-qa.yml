@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate-issue:
@@ -17,41 +17,6 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
-      - name: Apply confirmed responsive corrections
-        if: github.head_ref == 'issue-02-exception-build'
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p = Path('archive/2026-07-27/index.html')
-          text = p.read_text()
-          replacements = {
-            '.contents{background:#ebe4d7}': '.contents{background:#ebe4d7;padding:52px 0}',
-            'gap:16px;padding:19px 0;border-bottom': 'gap:16px;padding:8px 0;border-bottom',
-            '.contents-list a{text-decoration:none;font-size:18px;': '.contents-list a{text-decoration:none;font-size:16px;',
-            '.contents-list small{display:block;margin-top:5px;color:var(--muted);font-weight:400;line-height:1.45}': '.contents-list small{display:block;margin-top:3px;color:var(--muted);font-size:12px;font-weight:400;line-height:1.35}',
-            '.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,1fr);gap:clamp(35px,6vw,74px);align-items:center}': '.split{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:clamp(28px,4vw,54px);align-items:center}',
-            '.split .section-title h2{font-size:clamp(42px,5vw,69px)}': '.split .section-title h2{font-size:clamp(38px,3.4vw,48px)}',
-            '@media(max-width:900px)': '@media(max-width:1099px)'
-          }
-          changed = False
-          for old, new in replacements.items():
-            if old in text:
-              text = text.replace(old, new)
-              changed = True
-          if changed:
-            p.write_text(text)
-          PY
-          if git diff --quiet; then
-            echo 'No responsive correction required.'
-          else
-            git config user.name 'weekly-signal-qa'
-            git config user.email 'actions@users.noreply.github.com'
-            git add archive/2026-07-27/index.html
-            git commit -m 'Fix Issue 02 desktop title and contents layout'
-            git push origin HEAD:${{ github.head_ref }}
-          fi
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
