@@ -10,7 +10,7 @@
 
 1. `editorial/EDITORIAL_STANDARD.md`
 2. `editorial/SECTION_AND_REPORTAGE_STANDARD.md`
-3. `editorial/HEADLINE_AND_OPENING_STANDARD.md`
+3. `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`
 4. `editorial/VOICE_AND_TONE.md`
 5. `editorial/SOURCE_POLICY.md`
 6. `editorial/IMAGE_DIRECTION.md`
@@ -134,7 +134,7 @@
 필수 파일:
 
 - `life-scene.md`
-- `opening.md`
+- `editors-pick.md`
 - `data.md`
 - `watch.md`
 - `sources-method.md`
