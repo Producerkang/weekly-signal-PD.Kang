@@ -1,22 +1,8 @@
 {
-  "issueStart": "2026-07-27",
-  "period": "2026-07-27/2026-08-02",
-  "publicationStatus": "production",
-  "currentStage": "01-cover-story",
-  "publishAllowed": false,
-  "updatedAt": "2026-08-03T14:05:00+09:00",
-  "stages": [
-    {"id":"00-plan","status":"complete","updatedAt":"2026-08-03T14:05:00+09:00","files":["parts/00-plan/issue-brief.md","parts/00-plan/source-map.md","parts/00-plan/layout-map.md"],"note":"철회본을 재사용하지 않고 2026-07-27~08-02 공식 1차 자료로 편성 확정"},
-    {"id":"01-cover-story","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"02-economy","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"03-politics","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"04-society","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"05-tech","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"06-reportage","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"07-editorial-pages","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"08-images","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"09-assembly","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"10-screen-qa","status":"pending","updatedAt":null,"files":[],"note":""},
-    {"id":"11-publish","status":"pending","updatedAt":null,"files":[],"note":""}
+  "issueStart":"2026-07-27","period":"2026-07-27/2026-08-02","publicationStatus":"production","currentStage":"02-economy","publishAllowed":false,"updatedAt":"2026-08-03T14:22:00+09:00",
+  "stages":[
+    {"id":"00-plan","status":"complete","updatedAt":"2026-08-03T14:05:00+09:00","files":["parts/00-plan/issue-brief.md","parts/00-plan/source-map.md","parts/00-plan/layout-map.md"],"note":"공식 1차 자료로 편성 확정"},
+    {"id":"01-cover-story","status":"complete","updatedAt":"2026-08-03T14:22:00+09:00","files":["parts/01-cover-story/article.md","parts/01-cover-story/sources.md","parts/01-cover-story/layout.md","parts/01-cover-story/qa.md"],"note":"R&D 예타 제외와 대체 심사 구조 완료"},
+    {"id":"02-economy","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"03-politics","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"04-society","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"05-tech","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"06-reportage","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"07-editorial-pages","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"08-images","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"09-assembly","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"10-screen-qa","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"11-publish","status":"pending","updatedAt":null,"files":[],"note":""}
   ]
 }
