@@ -1,17 +1,96 @@
 {
-  "issueStart":"2026-07-27","period":"2026-07-27/2026-08-02","publicationStatus":"ready_to_publish","currentStage":"11-publish","publishAllowed":true,"updatedAt":"2026-08-03T16:58:00+09:00",
-  "stages":[
-    {"id":"00-plan","status":"complete","updatedAt":"2026-08-03T14:05:00+09:00","files":["parts/00-plan/issue-brief.md","parts/00-plan/source-map.md","parts/00-plan/layout-map.md"],"note":"공식 1차 자료로 편성 확정"},
-    {"id":"01-cover-story","status":"complete","updatedAt":"2026-08-03T14:22:00+09:00","files":["parts/01-cover-story/article.md","parts/01-cover-story/sources.md","parts/01-cover-story/layout.md","parts/01-cover-story/qa.md"],"note":"R&D 예타 제외와 대체 심사 구조 완료"},
-    {"id":"02-economy","status":"complete","updatedAt":"2026-08-03T14:35:00+09:00","files":["parts/02-economy/article.md","parts/02-economy/sources.md","parts/02-economy/layout.md","parts/02-economy/qa.md"],"note":"주요 에너지 연동의 조건과 계약 절차 완료"},
-    {"id":"03-politics","status":"complete","updatedAt":"2026-08-03T14:50:00+09:00","files":["parts/03-politics/article.md","parts/03-politics/sources.md","parts/03-politics/layout.md","parts/03-politics/qa.md"],"note":"보이스피싱 정보공유 권한과 통제 완료"},
-    {"id":"04-society","status":"complete","updatedAt":"2026-08-03T15:05:00+09:00","files":["parts/04-society/article.md","parts/04-society/sources.md","parts/04-society/layout.md","parts/04-society/qa.md"],"note":"폭염 감시통계와 사업주 휴식 의무 완료"},
-    {"id":"05-tech","status":"complete","updatedAt":"2026-08-03T15:20:00+09:00","files":["parts/05-tech/article.md","parts/05-tech/sources.md","parts/05-tech/layout.md","parts/05-tech/qa.md"],"note":"국민·전문가·벤치마크·안전 평가 역할 분리 완료"},
-    {"id":"06-reportage","status":"complete","updatedAt":"2026-08-03T15:34:00+09:00","files":["parts/06-reportage/article.md","parts/06-reportage/sources.md","parts/06-reportage/layout.md","parts/06-reportage/qa.md"],"note":"지급정지부터 환급까지 문서 경로 완료"},
-    {"id":"07-editorial-pages","status":"complete","updatedAt":"2026-08-03T15:52:00+09:00","files":["parts/07-editorial-pages/contents.md","parts/07-editorial-pages/life-scene.md","parts/07-editorial-pages/editors-pick.md","parts/07-editorial-pages/data.md","parts/07-editorial-pages/watch.md","parts/07-editorial-pages/sources-method.md","parts/07-editorial-pages/qa.md"],"note":"보조 편집 지면 완료"},
-    {"id":"08-images","status":"complete","updatedAt":"2026-08-03T16:10:00+09:00","files":["assets/cover-rnd-gate.svg","assets/life-scene-energy-contract.svg","assets/cover-story-rnd-review.svg","assets/economy-energy-linkage.svg","assets/politics-fraud-data.svg","assets/society-heat-rest.svg","assets/tech-ai-evaluation.svg","assets/manifest.md"],"note":"지면별 생성 SVG 7장 저장, 르포 무이미지"},
-    {"id":"09-assembly","status":"complete","updatedAt":"2026-08-03T16:35:00+09:00","files":["index.html","parts/09-assembly/qa.md"],"note":"독립형 HTML 조립 및 정적 구조 검사 완료"},
-    {"id":"10-screen-qa","status":"complete","updatedAt":"2026-08-03T16:58:00+09:00","files":["parts/10-screen-qa/qa.md","scripts/validate-issue.mjs",".github/workflows/issue-qa.yml"],"note":"Chromium 1440×1200, 1366×1024, 1024×1366, 390×844 렌더링 통과"},
-    {"id":"11-publish","status":"pending","updatedAt":null,"files":[],"note":""}
+  "issueStart": "2026-07-27",
+  "period": "2026-07-27/2026-08-02",
+  "publicationStatus": "published",
+  "currentStage": "11-publish",
+  "publishAllowed": true,
+  "publishedAt": "2026-08-03T14:30:30+09:00",
+  "updatedAt": "2026-08-03T14:30:30+09:00",
+  "timestampNote": "단계별 실제 작업 순서는 Git 커밋 이력이 보존하며, 단계 updatedAt은 최종 발행 상태 스냅샷 시각으로 정규화했다.",
+  "stages": [
+    {
+      "id": "00-plan",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["parts/00-plan/issue-brief.md", "parts/00-plan/source-map.md", "parts/00-plan/layout-map.md"],
+      "note": "철회본을 재사용하지 않고 조사 기간의 공식 1차 자료로 편성을 다시 확정했다."
+    },
+    {
+      "id": "01-cover-story",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["parts/01-cover-story/article.md", "parts/01-cover-story/sources.md", "parts/01-cover-story/layout.md", "parts/01-cover-story/qa.md"],
+      "note": "국가 R&D 예타 제외와 비구축형·구축형 대체 심사 구조를 완료했다."
+    },
+    {
+      "id": "02-economy",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["parts/02-economy/article.md", "parts/02-economy/sources.md", "parts/02-economy/layout.md", "parts/02-economy/qa.md"],
+      "note": "주요 에너지 연동의 적용 조건과 계약 절차를 완료했다."
+    },
+    {
+      "id": "03-politics",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["parts/03-politics/article.md", "parts/03-politics/sources.md", "parts/03-politics/layout.md", "parts/03-politics/qa.md"],
+      "note": "보이스피싱 정보공유 권한·목적 제한·오탐 정정 책임을 완료했다."
+    },
+    {
+      "id": "04-society",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["parts/04-society/article.md", "parts/04-society/sources.md", "parts/04-society/layout.md", "parts/04-society/qa.md"],
+      "note": "온열질환 잠정 표본감시와 사업주의 폭염 휴식 의무를 완료했다."
+    },
+    {
+      "id": "05-tech",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["parts/05-tech/article.md", "parts/05-tech/sources.md", "parts/05-tech/layout.md", "parts/05-tech/qa.md"],
+      "note": "국민평가와 전문가·벤치마크·안전성 평가의 역할 분리를 완료했다."
+    },
+    {
+      "id": "06-reportage",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["parts/06-reportage/article.md", "parts/06-reportage/sources.md", "parts/06-reportage/layout.md", "parts/06-reportage/qa.md"],
+      "note": "지급정지부터 채권소멸 공고와 환급 결정까지의 문서 경로를 무이미지로 완료했다."
+    },
+    {
+      "id": "07-editorial-pages",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["parts/07-editorial-pages/contents.md", "parts/07-editorial-pages/life-scene.md", "parts/07-editorial-pages/editors-pick.md", "parts/07-editorial-pages/data.md", "parts/07-editorial-pages/watch.md", "parts/07-editorial-pages/sources-method.md", "parts/07-editorial-pages/qa.md"],
+      "note": "Contents, LIFE SCENE, Editor's Pick, DATA, WATCH와 Sources & Method를 완료했다."
+    },
+    {
+      "id": "08-images",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["assets/cover-rnd-gate.svg", "assets/life-scene-energy-contract.svg", "assets/cover-story-rnd-review.svg", "assets/economy-energy-linkage.svg", "assets/politics-fraud-data.svg", "assets/society-heat-rest.svg", "assets/tech-ai-evaluation.svg", "assets/manifest.md"],
+      "note": "지면별 편집용 생성 SVG 7장을 저장하고 기존 단일 스프라이트를 제거했다. Document Reportage에는 이미지를 넣지 않았다."
+    },
+    {
+      "id": "09-assembly",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["index.html", "parts/09-assembly/qa.md"],
+      "note": "CSS와 최소 JavaScript를 내장한 독립형 보존 HTML 조립과 정적 구조 검사를 완료했다."
+    },
+    {
+      "id": "10-screen-qa",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["parts/10-screen-qa/qa.md", "../../../scripts/validate-issue.mjs", "../../../.github/workflows/issue-qa.yml"],
+      "note": "첫 검수 실패를 수정한 뒤 Chromium 1440×1200, 1366×1024, 1024×1366, 390×844 렌더링을 모두 통과했다."
+    },
+    {
+      "id": "11-publish",
+      "status": "complete",
+      "updatedAt": "2026-08-03T14:30:30+09:00",
+      "files": ["../../../editorial/ISSUE_HISTORY.md", "../../../issues.json", "../../index.html", "../../../latest.json", "production.json"],
+      "note": "ISSUE_HISTORY.md → issues.json → archive/index.html → latest.json 순서로 공개 메타데이터를 반영하고 최종 발행 상태를 기록했다."
+    }
   ]
 }
