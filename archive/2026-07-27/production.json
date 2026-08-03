@@ -1,11 +1,12 @@
 {
-  "issueStart":"2026-07-27","period":"2026-07-27/2026-08-02","publicationStatus":"production","currentStage":"05-tech","publishAllowed":false,"updatedAt":"2026-08-03T15:05:00+09:00",
+  "issueStart":"2026-07-27","period":"2026-07-27/2026-08-02","publicationStatus":"production","currentStage":"06-reportage","publishAllowed":false,"updatedAt":"2026-08-03T15:20:00+09:00",
   "stages":[
     {"id":"00-plan","status":"complete","updatedAt":"2026-08-03T14:05:00+09:00","files":["parts/00-plan/issue-brief.md","parts/00-plan/source-map.md","parts/00-plan/layout-map.md"],"note":"공식 1차 자료로 편성 확정"},
     {"id":"01-cover-story","status":"complete","updatedAt":"2026-08-03T14:22:00+09:00","files":["parts/01-cover-story/article.md","parts/01-cover-story/sources.md","parts/01-cover-story/layout.md","parts/01-cover-story/qa.md"],"note":"R&D 예타 제외와 대체 심사 구조 완료"},
     {"id":"02-economy","status":"complete","updatedAt":"2026-08-03T14:35:00+09:00","files":["parts/02-economy/article.md","parts/02-economy/sources.md","parts/02-economy/layout.md","parts/02-economy/qa.md"],"note":"주요 에너지 연동의 조건과 계약 절차 완료"},
     {"id":"03-politics","status":"complete","updatedAt":"2026-08-03T14:50:00+09:00","files":["parts/03-politics/article.md","parts/03-politics/sources.md","parts/03-politics/layout.md","parts/03-politics/qa.md"],"note":"보이스피싱 정보공유 권한과 통제 완료"},
     {"id":"04-society","status":"complete","updatedAt":"2026-08-03T15:05:00+09:00","files":["parts/04-society/article.md","parts/04-society/sources.md","parts/04-society/layout.md","parts/04-society/qa.md"],"note":"폭염 감시통계와 사업주 휴식 의무 완료"},
-    {"id":"05-tech","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"06-reportage","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"07-editorial-pages","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"08-images","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"09-assembly","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"10-screen-qa","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"11-publish","status":"pending","updatedAt":null,"files":[],"note":""}
+    {"id":"05-tech","status":"complete","updatedAt":"2026-08-03T15:20:00+09:00","files":["parts/05-tech/article.md","parts/05-tech/sources.md","parts/05-tech/layout.md","parts/05-tech/qa.md"],"note":"국민·전문가·벤치마크·안전 평가 역할 분리 완료"},
+    {"id":"06-reportage","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"07-editorial-pages","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"08-images","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"09-assembly","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"10-screen-qa","status":"pending","updatedAt":null,"files":[],"note":""},{"id":"11-publish","status":"pending","updatedAt":null,"files":[],"note":""}
   ]
 }
