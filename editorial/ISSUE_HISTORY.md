@@ -41,7 +41,7 @@
 - 일반 섹션 기사 제목을 핵심 명제 중심으로 압축하고 Cover 외 수동 줄바꿈을 제거하는 방향으로 개정했습니다.
 - 제목 크기를 한 단계 낮추고 `word-break: keep-all`을 적용해 한국어 제목의 과도한 조기 줄바꿈을 줄였습니다.
 - Cover는 이미지 구도를 위해 의도적 줄바꿈을 유지하되 제목 자체는 짧게 줄였습니다.
-- Opening에서 내부 서술 원칙 설명을 제거하고 `EDITOR'S PICK` 형식의 실제 편집 콘텐츠로 교체했습니다.
+- Editor's Pick에서 내부 서술 원칙 설명을 제거하고 실제 편집 콘텐츠로 교체했습니다.
 - 이후 Editor's Pick을 기사 3개 요약에서 한 단계 확장해, 이번 호 전체의 결론인 `발표보다 실제 의무와 책임으로 바뀌는 지점이 중요하다`를 먼저 제시하고 AI·지역의료·무역 기사를 그 결론의 근거로 연결했습니다.
 - Editor's Pick의 마지막에는 `무엇이 발표됐는가 / 무엇이 확정됐는가 / 누가 실행 책임을 지는가`라는 독해 질문을 남기도록 수정했습니다.
 - 2026년 7월 31일 1회차의 런타임 후처리 CSS·JS를 현재 최종 상태에 병합해 `archive/2026-07-20/index.html` 단일 보존본으로 평탄화했습니다.
@@ -50,7 +50,7 @@
 
 ### 다음 회차 적용 규칙
 
-1. 작업 시작 시 `editorial/SECTION_AND_REPORTAGE_STANDARD.md`와 `editorial/HEADLINE_AND_OPENING_STANDARD.md`를 반드시 읽습니다.
+1. 작업 시작 시 `editorial/SECTION_AND_REPORTAGE_STANDARD.md`와 `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`를 반드시 읽습니다.
 2. 새 정책명·산업 용어·법률명은 독자가 이미 안다고 가정하지 않습니다.
 3. 제목 또는 첫 세 문단에서 핵심 용어의 정의, 대상과 범위를 설명합니다.
 4. 섹션 기사 전반부는 사건·정의·구조·기관별 역할·일정·재정·확정/미정 상태를 중심으로 씁니다.
@@ -83,6 +83,7 @@
 - Society:
 - Tech:
 - LIFE SCENE:
+- Editor's Pick:
 - Document Reportage:
 - DATA:
 - WATCH:
