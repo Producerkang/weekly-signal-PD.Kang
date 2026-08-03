@@ -1,0 +1,46 @@
+name: Issue browser QA
+
+on:
+  pull_request:
+    paths:
+      - 'archive/**'
+      - 'scripts/validate-issue.mjs'
+      - '.github/workflows/issue-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-issue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start static server
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 > /tmp/weekly-signal-server.log 2>&1 &
+          for i in {1..30}; do
+            curl -fsS http://127.0.0.1:8000/archive/2026-07-27/index.html >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/weekly-signal-server.log
+          exit 1
+      - name: Validate four viewports
+        run: node scripts/validate-issue.mjs http://127.0.0.1:8000/archive/2026-07-27/index.html qa-artifacts
+      - name: Upload QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue-02-browser-qa
+          path: qa-artifacts
+          if-no-files-found: error
+          retention-days: 14
