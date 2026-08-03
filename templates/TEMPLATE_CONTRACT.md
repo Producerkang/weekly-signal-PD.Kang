@@ -35,7 +35,7 @@ archive/YYYY-MM-DD/
 
 - `contents`
 - `life-scene`
-- `opening`
+- `editors-pick`
 - `cover-story`
 - `economy`
 - `politics`
