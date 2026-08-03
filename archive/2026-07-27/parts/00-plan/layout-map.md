@@ -2,7 +2,7 @@
 
 ## 고정 셸
 
-Cover → Contents → LIFE SCENE → Opening → Cover Story → Economy → Politics → Society → Tech → Data → Watch → Sources 순서를 유지한다.
+Cover → Contents → LIFE SCENE → Editor's Pick → Cover Story → Economy → Politics → Society → Tech → Data → Watch → Sources 순서를 유지한다.
 
 상단 내비게이션, 진행 바, 중앙 기준축, 장문 본문 단일 열, 브랜드 색상 역할과 Document Reportage 무이미지 원칙을 유지한다.
 
