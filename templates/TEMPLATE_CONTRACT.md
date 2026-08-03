@@ -61,7 +61,7 @@ archive/YYYY-MM-DD/
 
 - `contents.md`
 - `life-scene.md`
-- `opening.md`
+- `editors-pick.md`
 - `data.md`
 - `watch.md`
 - `sources-method.md`
@@ -117,7 +117,7 @@ archive/YYYY-MM-DD/
 
 - `contents`
 - `life-scene`
-- `opening`
+- `editors-pick`
 - `cover-story`
 - `economy`
 - `politics`
