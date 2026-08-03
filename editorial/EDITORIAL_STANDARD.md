@@ -21,7 +21,7 @@ WEEKLY SIGNAL은 사건을 많이 나열하는 대신 독자가 다음 판단에
 1. Cover
 2. Contents
 3. LIFE SCENE
-4. Opening / Editor's Pick
+4. Editor's Pick
 5. Cover Story
 6. Economy
 7. Politics
@@ -35,7 +35,7 @@ Document Reportage는 관련 섹션 기사 뒤에 배치해 제도 설명을 반
 
 섹션을 채우기 위해 약한 사건을 부풀리지 않습니다. 근거가 부족하면 범위를 줄입니다.
 
-## 3. Opening / Editor's Pick
+## 3. Editor's Pick
 
 Editor's Pick은 기사 목록을 다시 요약하는 두 번째 Contents가 아닙니다. 해당 호의 기사와 근거가 충분히 정리된 뒤, 실제로 반복해 나타난 구조·갈등·전환점을 바탕으로 한 가지 편집적 결론·질문·긴장을 제시합니다.
 
@@ -47,7 +47,7 @@ Editor's Pick은 기사 목록을 다시 요약하는 두 번째 Contents가 아
 - 공통 주제가 약하면 모든 분야를 억지로 묶지 않습니다. 가장 중요한 한 이슈, 두 흐름의 대비, 또는 핵심 질문 하나를 중심으로 구성할 수 있습니다.
 - 조사 기간·기준일·내부 조사 절차·상시 편집 철학은 Editor's Pick의 기본 내용으로 넣지 않습니다. 필요한 경우 발행 메타데이터나 Sources & Method에 둡니다.
 
-세부 규칙은 `editorial/HEADLINE_AND_OPENING_STANDARD.md`를 따릅니다.
+세부 규칙은 `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`를 따릅니다.
 
 ## 4. LIFE SCENE
 
