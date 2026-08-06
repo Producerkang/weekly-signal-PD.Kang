@@ -1,0 +1,15 @@
+exclude:
+  - .github
+  - editorial
+  - templates
+  - tools
+  - publication
+  - requirements-ci.txt
+  - README.md
+  - _site
+  - work
+  - drafts
+
+keep_files:
+  - .git
+  - .svn
