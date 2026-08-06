@@ -4,7 +4,7 @@ exclude:
   - templates
   - tools
   - publication
-  - requirements-ci.txt
+  - requirements-tools.txt
   - README.md
   - _site
   - work
