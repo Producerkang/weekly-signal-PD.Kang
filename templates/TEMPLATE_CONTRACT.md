@@ -25,29 +25,40 @@ archive/YYYY-MM-DD/
 - 회차 폴더 밖의 기사 조각, 버전별 CSS·JS와 임시 데이터를 불러오지 않는다.
 - 이미지 자산은 WebP, PNG, JPEG만 허용하며 SVG는 두지 않는다.
 
-## 3. 새 회차의 내용 순서
+## 3. 제작 순서와 문서 배치
 
-새 회차는 다음 제작 결과를 바탕으로 실제 필요한 섹션만 HTML에 넣는다.
+제작 순서:
+
+1. 리서치
+2. 섹션별 일반 기사 전체 작성·검증
+3. DEEP DIVE 선정·작성
+4. LIFE SCENE 선정·작성
+5. EDITOR'S PICK 작성
+6. 보조 지면·표지·이미지·HTML 제작
+
+최종 HTML의 기본 독서 순서:
 
 1. Cover
 2. Contents
 3. LIFE SCENE
 4. EDITOR'S PICK
 5. Cover Story와 분야별 일반 기사
-6. 선택된 DEEP DIVE
+6. 각 일반 기사에 연결된 선택적 DEEP DIVE
 7. 필요한 DATA
 8. 필요한 WATCH
 9. Sources
 
-제작 순서와 문서 배치 순서는 다르다. 실제 제작은 일반 기사 → DEEP DIVE → LIFE SCENE → EDITOR'S PICK 순서다.
+제작 순서와 문서 배치 순서는 다르다. DEEP DIVE는 일반 기사 전체가 완성된 뒤 제작하지만, 최종 HTML에서는 심화하는 일반 기사 바로 뒤에 배치한다.
 
 ## 4. DOM 원칙
 
 - 각 주요 섹션은 고유한 `id`를 가진다.
-- 목차와 내비게이션은 실제 DOM 순서 및 존재하는 섹션만 반영한다.
+- 목차와 내비게이션은 실제 DOM 순서와 존재하는 섹션만 반영한다.
 - 일반 기사와 DEEP DIVE는 서로 다른 클래스와 라벨을 사용한다.
 - 새 회차에서 `reportage`, `document-reportage`, `reportage-*` 클래스와 라벨을 사용하지 않는다.
+- LIFE SCENE의 제목과 부제는 생활 장면과 인물의 상황을 중심으로 쓴다. 정책명과 기사 요약을 전면에 두지 않는다.
 - LIFE SCENE은 서사 본문과 마지막 `SCENARIO NOTE`를 구분한다.
+- 관련 정책·기사와의 명시적 연결은 `SCENARIO NOTE`에서 처리한다.
 - 미사용 섹션, 빈 카드, 숨김 레거시 모듈을 DOM에 남기지 않는다.
 
 ## 5. CSS·JavaScript
