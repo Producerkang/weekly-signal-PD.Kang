@@ -22,6 +22,7 @@ LEGACY_FILE = ROOT / "publication" / "legacy-issues.json"
 
 DATE_DIR_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 ALLOWED_IMAGE_SUFFIXES = {".webp", ".png", ".jpg", ".jpeg"}
+FORBIDDEN_ROOT_DIRS = {"work", "drafts", "_work", "_drafts"}
 PLACEHOLDER_PATTERNS = (
     "[TITLE]",
     "[DECK]",
@@ -96,8 +97,7 @@ class IssueHTMLParser(HTMLParser):
         if element_id:
             self.ids.add(element_id)
 
-        classes = values.get("class", "").split()
-        self.class_names.update(classes)
+        self.class_names.update(values.get("class", "").split())
 
         if tag == "section":
             self.section_stack.append(element_id)
@@ -261,7 +261,7 @@ def validate_strict_issue(issue_dir: Path, issue_start: str, errors: list[str]) 
 
     for image in parser.images:
         if not image.alt:
-            errors.append(f"{label} 대체 텍스트가 없는 이미지: {image.src or '(src 없음)' }")
+            errors.append(f"{label} 대체 텍스트가 없는 이미지: {image.src or '(src 없음)'}")
         if not image.src.startswith("./assets/"):
             errors.append(f"{label} 이미지는 ./assets/ 상대경로만 허용합니다: {image.src}")
             continue
@@ -323,22 +323,30 @@ def validate_strict_issue(issue_dir: Path, issue_start: str, errors: list[str]) 
 
 
 def validate_repository(root: Path = ROOT) -> list[str]:
-    del root  # Repository root is fixed from this script location.
+    del root
     errors: list[str] = []
+
+    for dirname in sorted(FORBIDDEN_ROOT_DIRS):
+        if (ROOT / dirname).exists():
+            errors.append(f"작업 디렉터리 {dirname}/가 병합 대상에 남아 있습니다. 작업 브랜치에서 제거해야 합니다.")
+
+    for required_file in (ROOT / "index.html", ARCHIVE_DIR / "index.html"):
+        if not required_file.is_file():
+            errors.append(f"필수 공개 파일이 없습니다: {required_file.relative_to(ROOT)}")
 
     try:
         issues = load_json(ISSUES_FILE)
         latest = load_json(LATEST_FILE)
         legacy_payload = load_json(LEGACY_FILE)
     except ValueError as exc:
-        return [str(exc)]
+        return errors + [str(exc)]
 
     if not isinstance(issues, list) or not issues:
-        return ["issues.json은 비어 있지 않은 배열이어야 합니다."]
+        return errors + ["issues.json은 비어 있지 않은 배열이어야 합니다."]
     if not isinstance(latest, dict):
-        return ["latest.json은 객체여야 합니다."]
+        return errors + ["latest.json은 객체여야 합니다."]
     if not isinstance(legacy_payload, dict) or not isinstance(legacy_payload.get("issues"), list):
-        return ["publication/legacy-issues.json 형식이 잘못되었습니다."]
+        return errors + ["publication/legacy-issues.json 형식이 잘못되었습니다."]
 
     legacy_starts = {
         item.get("issueStart")
@@ -348,6 +356,8 @@ def validate_repository(root: Path = ROOT) -> list[str]:
 
     normalized_issues: list[dict[str, object]] = []
     listed_dirs: set[str] = set()
+    seen_starts: set[str] = set()
+    issue_starts: list[str] = []
     for position, item in enumerate(issues):
         if not isinstance(item, dict):
             errors.append(f"issues.json {position + 1}번째 항목은 객체여야 합니다.")
@@ -361,12 +371,19 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         if not isinstance(issue_start, str) or not DATE_DIR_RE.fullmatch(issue_start):
             errors.append(f"잘못된 issueStart: {issue_start!r}")
             continue
+        if issue_start in seen_starts:
+            errors.append(f"issues.json에 중복 issueStart가 있습니다: {issue_start}")
+        seen_starts.add(issue_start)
+        issue_starts.append(issue_start)
         if path_value != f"archive/{issue_start}/":
             errors.append(f"issueStart와 path가 일치하지 않습니다: {issue_start} / {path_value}")
         if path_value in listed_dirs:
             errors.append(f"issues.json에 중복 경로가 있습니다: {path_value}")
         listed_dirs.add(path_value)
         normalized_issues.append(item)
+
+    if issue_starts != sorted(issue_starts, reverse=True):
+        errors.append("issues.json은 최신 issueStart부터 내림차순이어야 합니다.")
 
     if normalized_issues and latest != normalized_issues[0]:
         errors.append("latest.json은 issues.json의 첫 번째 항목과 정확히 같아야 합니다.")
