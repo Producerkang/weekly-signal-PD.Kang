@@ -16,7 +16,7 @@
 10. `editorial/ISSUE_HISTORY.md`
 11. `editorial/WEEKLY_RUNBOOK.md`
 
-`editorial/ISSUE01_LAYOUT_SPEC.md`와 `archive/2026-07-20/index.html`은 제1호 기록·참고자료이며 새 회차의 내용 구조나 CSS를 복제하는 기준이 아니다.
+`archive/2026-07-20/index.html`은 제1호 발행 기록이며 새 회차의 내용 구조나 CSS를 복제하는 기준이 아니다.
 
 ## 2. 리서치
 
