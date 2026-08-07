@@ -9,9 +9,11 @@
 - `editorial/IMAGE_DIRECTION.md`
 - `work/2026-07-27/LAYOUT_PLAN.md`
 
+> 이 문서는 **제2호 전용 실행 계획**이다. 여기의 슬롯 수·파일명·장면 브리프·LIFE SCENE 4:3 선택은 일반 이미지 계약이 아니다. 일반 계약은 `editorial/IMAGE_PIPELINE.md`와 `editorial/IMAGE_DIRECTION.md`가 소유한다.
+
 ## 1. 현행 원칙
 
-제2호 이미지는 과거의 8장 일괄 생성 방식으로 만들지 않는다.
+제2호 이미지는 과거의 다중 이미지 일괄 생성 방식으로 만들지 않는다.
 
 각 슬롯을 **한 장씩 독립적으로** 생성하고, 각 이미지가 통과하면 그 슬롯을 닫는다.
 
@@ -26,7 +28,7 @@
 
 ## 2. 품질선
 
-제1호 실제 이미지와 현재 시연에서 확인한 정도의 사진적·에디토리얼 품질이면 합격권으로 본다.
+현행 일반 이미지 계약의 품질선을 적용한다.
 
 필수 조건:
 
@@ -50,18 +52,20 @@
 
 ## 4. 슬롯 상태
 
-| 슬롯 | 파일명 | 상태 | 시도 | 비율 | 최소 목표 | 핵심 규칙 |
-|---|---|---:|---:|---|---:|---|
-| Cover | `cover.webp` | READY | 0/3 | 유연 | 2200px | 제목 안전영역, Cover Story와 다른 원본 |
-| LIFE SCENE | `life-scene.webp` | READY | 0/3 | **4:3** | 2000px | 생활 장면, 현행 프런트 스프레드용 |
-| Cover Story | `cover-story.webp` | READY | 0/3 | 유연 | 2000px | Cover보다 가까운 다른 장면 |
-| Economy | `economy.webp` | READY | 0/3 | 유연 | 2000px | 석유 공급·유통과 자연스럽게 연결 |
-| Politics | `politics.webp` | READY | 0/3 | 유연 | 2000px | **완전 무인** |
-| Politics DEEP DIVE | `deep-dive-politics.webp` | READY | 0/3 | 유연 | 2000px | **완전 무인** |
-| Society | `society.webp` | READY | 0/3 | 유연 | 2000px | 돌봄·생활 서비스와 자연스럽게 연결 |
-| Tech | `tech.webp` | READY | 0/3 | 유연 | 2000px | 나노팹·장비·연구 인프라와 자연스럽게 연결 |
+제2호 `LAYOUT_PLAN.md`에서 아래 8개 슬롯을 실제 지면에 사용하기로 확정했으므로 모두 `REQUIRED`다.
 
-현행 제2호 지면은 위 8개 슬롯을 사용한다. PROLOGUE와 EDITOR'S AFTERWORD에는 별도 생성 이미지를 만들지 않는다.
+| 슬롯 | 필요성 | 파일명 | 상태 | 시도 | 비율 | 최소 목표 | 핵심 규칙 |
+|---|---|---|---:|---:|---|---:|---|
+| Cover | REQUIRED | `cover.webp` | READY | 0/3 | 유연 | 2200px | 제목 안전영역, Cover Story와 다른 원본 |
+| LIFE SCENE | REQUIRED | `life-scene.webp` | READY | 0/3 | **4:3** | 2000px | 제2호 지면 오버라이드, 생활 장면 |
+| Cover Story | REQUIRED | `cover-story.webp` | READY | 0/3 | 유연 | 2000px | Cover보다 가까운 다른 장면 |
+| Economy | REQUIRED | `economy.webp` | READY | 0/3 | 유연 | 2000px | 석유 공급·유통과 자연스럽게 연결 |
+| Politics | REQUIRED | `politics.webp` | READY | 0/3 | 유연 | 2000px | **완전 무인** |
+| Politics DEEP DIVE | REQUIRED | `deep-dive-politics.webp` | READY | 0/3 | 유연 | 2000px | **완전 무인** |
+| Society | REQUIRED | `society.webp` | READY | 0/3 | 유연 | 2000px | 돌봄·생활 서비스와 자연스럽게 연결 |
+| Tech | REQUIRED | `tech.webp` | READY | 0/3 | 유연 | 2000px | 나노팹·장비·연구 인프라와 자연스럽게 연결 |
+
+PROLOGUE와 EDITOR'S AFTERWORD에는 별도 생성 이미지를 만들지 않는다.
 
 ## 5. Cover
 
@@ -85,9 +89,9 @@
 
 ### 비율
 
-현행 제2호 프런트 스프레드는 **가로형 4:3**을 사용한다.
+일반 계약의 기본값은 세로 `4:5`이지만, **제2호는 `LAYOUT_PLAN.md`에서 넓은 프런트 스프레드를 확정했기 때문에 회차별 오버라이드로 가로 `4:3`을 사용한다.**
 
-향후 다른 회차에서 세로형 지면을 선택하면 `4:5`를 사용할 수 있다.
+이 4:3 선택을 다음 회차의 기본값으로 계승하지 않는다.
 
 ### 역할
 
@@ -250,10 +254,10 @@ Politics에는 추가로:
 
 이미지 제작 단계는 다음을 만족하면 COMPLETE다.
 
-- 제2호 필수 8개 슬롯 모두 ACCEPTED 또는 SAVED
+- 제2호 REQUIRED 8개 슬롯 모두 ACCEPTED 또는 SAVED
 - Cover와 Cover Story 서로 다른 원본
 - Politics와 Politics DEEP DIVE 완전 무인
-- LIFE SCENE 4:3 지면용 원본 확보
+- LIFE SCENE은 제2호 오버라이드인 4:3 지면용 원본 확보
 - 동일 이미지 재사용 없음
 - 최종 지면에 사용할 수 있는 해상도와 디테일 확보
 
