@@ -66,6 +66,7 @@ work/
    │  ├─ SCENE_MAP.md
    │  └─ ARTICLE.md
    ├─ 08_prologue/
+   │  ├─ PREVIEW_MAP.md
    │  └─ ARTICLE.md
    └─ 09_editor_afterword/
       └─ ARTICLE.md
@@ -194,24 +195,32 @@ LIFE SCENE은 `editorial/LIFE_SCENE_STANDARD.md`의 독립 제작 알고리즘�
 
 ## 10. PROLOGUE
 
-PROLOGUE는 **독서 순서에서는 앞에 있지만 제작 순서에서는 뒤에 쓰는 선택적 프리뷰**다.
+PROLOGUE는 **한 호의 지면을 넓게 열었다가 몇 군데로 시선을 좁히고 본문으로 넘기는 매거진 도입부**다.
 
 일반 기사·DEEP DIVE·LIFE SCENE이 모두 COMPLETE가 된 뒤 작성한다.
 
+본문 전에 반드시 `08_prologue/PREVIEW_MAP.md`를 만든다. PROLOGUE는 PREVIEW MAP 없이 바로 ARTICLE을 쓰지 않는다.
+
 제작 로직:
 
-`ISSUE READBACK → SELECTIVE PREVIEW → TEASER DETAIL → NATURAL ARTICLE INTRO → COVERAGE PRESSURE PASS → SPOILER PASS → HANDOFF`
+`ISSUE READBACK → PREVIEW MAP → PANORAMA → ORIENTATION → FOCUS → ARTICLE PREVIEW → RHYTHM PASS → DEPTH CEILING PASS → REPEATED COVERAGE PASS → HANDOFF → COMPLETE`
 
 핵심:
 
 - 독자는 뒤의 기사를 아직 읽지 않았다고 가정한다.
-- 모든 기사와 모든 분야를 한 번씩 언급할 의무가 없다.
-- Contents가 전체 목록을 맡고 PROLOGUE는 선택과 강조를 맡는다.
-- 기사마다 같은 분량이나 대표 숫자를 배정하지 않는다.
-- 한 문단에서 여러 토픽을 빠르게 소환해 커버리지를 채우지 않는다.
-- 분량을 늘리기 위해 공통 주제·공통 질문·공통 교훈·`왜 중요한가` 단락을 만들지 않는다.
-- 좋은 장면·숫자·기사 소개의 해상도를 높이는 방식으로만 확장한다.
-- 기사 결론을 미리 소진하지 않는다.
+- PANORAMA에서는 여러 분야와 주요 토픽이 한꺼번에 등장해도 된다.
+- 초반의 넓은 시야 자체를 커버리지 압박으로 오판하지 않는다.
+- PANORAMA 뒤에는 시야가 점점 좁아져야 한다.
+- ORIENTATION은 읽기의 방향만 잡고 공통 교훈·공통 질문을 만들지 않는다.
+- FOCUS에서는 일부 숫자·장면·문서·행동만 조금 가까이 보여준다.
+- ARTICLE PREVIEW에서는 필요한 기사만 한 단계 더 구체적으로 소개하되 본문 설명을 끝내지 않는다.
+- `Cover 한 문단 → Economy 한 문단 → Politics 한 문단` 같은 선택 기사 미니 요약 구조도 실패다.
+- PANORAMA에서 이미 넓게 보여준 모든 토픽을 뒤 문단에서 다시 한 번씩 반복하지 않는다.
+- 기사마다 같은 분량·대표 숫자·대표 장면을 배정하지 않는다.
+- 기사 핵심 메커니즘·후속 절차·근거·비교 사례를 본문 수준으로 미리 설명하지 않는다.
+- 지배적인 읽기 움직임은 `넓게 → 좁게 → 본문`이어야 한다.
+
+PREVIEW MAP에는 최소한 `PANORAMA / ORIENTATION / FOCUS / ARTICLE PREVIEW / DEPTH CEILING / HANDOFF`를 기록한다. PREVIEW MAP만 읽어도 시선이 넓은 데서 좁은 데로 이동하는 것이 보여야 한다.
 
 상세 기준은 `HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`의 PROLOGUE 항목이 소유한다.
 
@@ -290,7 +299,9 @@ EDITOR'S AFTERWORD는 한 호의 마지막 편집 원고로 쓰는 **에디터 �
 - 기본 구성과 Contents 일치
 - LIFE SCENE에서 PROLOGUE로의 전환
 - PROLOGUE가 본문 결론을 미리 소진하지 않는지
-- PROLOGUE가 전 기사 커버리지 압박으로 과밀해지지 않았는지
+- PROLOGUE가 `넓게 → 좁게 → 본문`의 시선 이동을 갖는지
+- PROLOGUE가 선택한 기사 몇 편의 미니 요약집으로 변하지 않았는지
+- PANORAMA의 넓은 커버리지를 뒤에서 반복하지 않는지
 - 기사별 시각적 차이
 - DEEP DIVE 중복 여부
 - EDITOR'S AFTERWORD가 실제 후기처럼 자연스러운지
@@ -342,7 +353,7 @@ GitHub Actions, 자동 배포와 자동 병합은 사용하지 않는다.
 - 실패한 기사만 `work/YYYY-MM-DD/`에서 다시 검증·작성한다.
 - 읽기 흐름이 실패한 일반 기사는 사실을 더 추가하기 전에 FLOW와 문단 경계를 다시 설계한다.
 - LIFE SCENE이 설명문처럼 실패하면 `SCENE_MAP.md`의 인과 사슬부터 다시 만든다.
-- PROLOGUE가 제작 후기·기사 요약·전 기사 커버리지 압박으로 실패하면 선택적 프리뷰 로직에서 다시 쓴다.
+- PROLOGUE가 기사 요약·선택 기사 미니 초록·반복 커버리지·과도한 본문 설명으로 실패하면 문장만 고치지 말고 `PREVIEW_MAP.md`부터 다시 만든다.
 - EDITOR'S AFTERWORD가 기사 요약·대표 항목 선정문·편집 방법론 보고서로 실패하면 실제 제작 후기 역할에서 다시 쓴다.
 - 부정문이 과도한 경우 표현만 치환하지 말고 그 부정이 논증에 필요한지부터 다시 판정한다.
 - 이미지가 준비되지 않았거나 실제 렌더링을 확인하지 못한 상태는 발행 불가다.
