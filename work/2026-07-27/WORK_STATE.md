@@ -12,6 +12,8 @@
 
 08 PROLOGUE는 현행 `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`와 `editorial/WEEKLY_RUNBOOK.md`의 새 PROLOGUE 로직으로 백지 재제작을 완료했다. `08_prologue/PREVIEW_MAP.md`를 먼저 작성·검수한 뒤 `08_prologue/ARTICLE.md`를 작성했고, PANORAMA → ORIENTATION → FOCUS → ARTICLE PREVIEW → HANDOFF 구조와 DEPTH CEILING·REPEATED COVERAGE 기준을 모두 통과했다.
 
+08 PROLOGUE의 문장 리듬에는 추가 개선 여지가 확인됐지만 **제2호 원고는 여기서 수정 종료**한다. 이 회차 원고를 다시 고치지 않고, 확인된 개선사항은 현행 `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`의 `PROSE RHYTHM PASS`에 반영해 제3호부터 적용한다.
+
 09 EDITOR'S AFTERWORD는 기존 EDITOR'S PICK이나 삭제된 과거 원고를 복원·참조하지 않는다. 현행 AFTERWORD 로직으로 처음부터 작성한다.
 
 09가 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
@@ -93,6 +95,20 @@
 - 마지막은 7월 27일 오후 3시 Cover Story 첫 장면으로 접속
 - 현행 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
+### 제3호 이후 PROLOGUE에 이월할 개선사항
+
+현행 표준의 `PROSE RHYTHM PASS`를 반드시 적용한다.
+
+- PANORAMA·ORIENTATION·FOCUS·ARTICLE PREVIEW를 실제 문단과 1:1 대응시키지 않는다.
+- 같은 소재가 FOCUS와 ARTICLE PREVIEW에 걸치면 한 문단에서 자연스럽게 합칠 수 있다.
+- 구체적인 장면이 이미 의미를 전달하면 뒤에 추상 해설을 자동으로 한 문장 더 붙이지 않는다.
+- 같은 숫자·시간·사실을 제작 단계가 바뀌었다는 이유로 반복 설명하지 않는다.
+- 한 문단의 중심 이미지·숫자·행동·명제가 첫눈에 잡히게 한다.
+- 고유명사·기관명·숫자·절차를 한 문장에 과밀하게 쌓지 않는다.
+- HANDOFF는 첫 문단의 재설명이 아니라 짧은 콜백과 본문 접속으로 처리한다.
+- LIFE SCENE이 앞에 배치됐다는 이유만으로 `앞서 LIFE SCENE에서 본…` 같은 연결 멘트를 만들지 않는다. 실제 소재 연결이 자연스러울 때만 사용한다.
+- 프롤로그 본문 완료 뒤 독립 제목을 붙인다.
+
 ## 09 EDITOR'S AFTERWORD — PENDING / BLANK SLATE
 
 예정 작업 경로: `09_editor_afterword/ARTICLE.md`
@@ -131,7 +147,7 @@ PROLOGUE와 달리 제작 후 시점을 숨기지 않는다. `이번 호를 만�
 
 ## 최종 독서 순서
 
-`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics DEEP_DIVE → Society → Tech → 선택적 DATA/WATCH → EDITOR'S AFTERWORD → Sources`
+`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics_DEEP_DIVE → Society → Tech → 선택적 DATA/WATCH → EDITOR'S AFTERWORD → Sources`
 
 이번 호 Deep Dive는 Politics 바로 뒤에 둔다.
 
