@@ -6,17 +6,13 @@
 
 ## 현재 재개 지점
 
-**다음 작업은 `09 EDITOR'S AFTERWORD` 백지 제작이다.**
+**01~09 원고 제작이 모두 완료됐다. 다음 작업은 `12 지면 설계`다.**
 
-01~08은 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
+01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
-08 PROLOGUE는 현행 `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`와 `editorial/WEEKLY_RUNBOOK.md`의 새 PROLOGUE 로직으로 백지 재제작을 완료했다. `08_prologue/PREVIEW_MAP.md`를 먼저 작성·검수한 뒤 `08_prologue/ARTICLE.md`를 작성했고, PANORAMA → ORIENTATION → FOCUS → ARTICLE PREVIEW → HANDOFF 구조와 DEPTH CEILING·REPEATED COVERAGE 기준을 모두 통과했다.
+09 EDITOR'S AFTERWORD는 기존 EDITOR'S PICK이나 삭제된 과거 원고를 복원·참조하지 않고 현행 AFTERWORD 로직으로 백지 제작했다. `ISSUE READBACK → MEMORY TRACE → REFLECTION DRAFT → RECAP CUT → METHOD REPORT CUT → AFTERTASTE PASS → COMPLETE` 순서를 적용했고, 초안 검수에서 기사 재요약으로 기울던 문단을 제거한 뒤 실제 제작 후 남은 두 개의 시간 감각에만 집중하는 형태로 닫았다.
 
-08 PROLOGUE의 문장 리듬에는 추가 개선 여지가 확인됐지만 **제2호 원고는 여기서 수정 종료**한다. 이 회차 원고를 다시 고치지 않고, 확인된 개선사항은 현행 `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`의 `PROSE RHYTHM PASS`에 반영해 제3호부터 적용한다.
-
-09 EDITOR'S AFTERWORD는 기존 EDITOR'S PICK이나 삭제된 과거 원고를 복원·참조하지 않는다. 현행 AFTERWORD 로직으로 처음부터 작성한다.
-
-09가 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
+현행 `WEEKLY_RUNBOOK.md`에 따라 EDITOR'S AFTERWORD 뒤 단계는 지면 설계다. DATA와 WATCH는 새 정보가 있을 때만 선택적으로 만든다. 09 완료만으로 지면·이미지·HTML·화면검수·발행 상태를 자동 완료 처리하지 않는다.
 
 ## 진행 상태
 
@@ -29,15 +25,15 @@
 - DEEP_DIVE: COMPLETE
 - LIFE_SCENE: COMPLETE
 - PROLOGUE: COMPLETE
-- EDITOR'S AFTERWORD: PENDING
-- MANUSCRIPT_STAGE: IN_REVIEW
+- EDITOR'S AFTERWORD: COMPLETE
+- MANUSCRIPT_STAGE: COMPLETE
 - LAYOUT: PENDING
 - IMAGES: PENDING
 - HTML: PENDING
 - SCREEN_REVIEW: PENDING
 - PUBLISH: PENDING
 
-## 확정된 01~08
+## 확정된 01~09
 
 ### 01 Cover Story
 - `01_cover/VERIFY.md`: COMPLETE
@@ -109,41 +105,57 @@
 - LIFE SCENE이 앞에 배치됐다는 이유만으로 `앞서 LIFE SCENE에서 본…` 같은 연결 멘트를 만들지 않는다. 실제 소재 연결이 자연스러울 때만 사용한다.
 - 프롤로그 본문 완료 뒤 독립 제목을 붙인다.
 
-## 09 EDITOR'S AFTERWORD — PENDING / BLANK SLATE
+### 09 Editor's Afterword
+- `09_editor_afterword/ARTICLE.md`: COMPLETE
+- 기존 EDITOR'S PICK 및 삭제된 과거 AFTERWORD 미참조
+- 제작 후 시점을 사용한 실제 회고 형태
+- 기사별 요약 구조 없음
+- 대표 기사·대표 숫자·대표 문장을 선정하는 PICK 구조 없음
+- 모든 기사를 하나의 공통 교훈으로 묶지 않음
+- VERIFY·FLOW·검수 절차를 설명하는 방법론 보고서 없음
+- 초안의 재요약 성향을 RECAP CUT에서 제거
+- 돌봄센터 오전 9시와 부모 출근 오전 8시 20분 사이의 40분, 한·메르코수르 협상 이후 남은 장기 절차라는 서로 다른 두 시간 감각에 집중
+- 마지막은 질문·감사·다음 호 예고 없이 자연스러운 여운으로 종료
+- 현행 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
-예정 작업 경로: `09_editor_afterword/ARTICLE.md`
+## 09 EDITOR'S AFTERWORD — COMPLETE
 
-EDITOR'S PICK 제도는 폐기했다. 새 AFTERWORD는 기존 PICK이나 삭제된 과거 원고를 기준으로 수정하지 않는다.
+작업 경로:
 
-현행 제작 로직:
+```text
+09_editor_afterword/
+└─ ARTICLE.md
+```
 
-`ISSUE READBACK → MEMORY TRACE → REFLECTION DRAFT → RECAP CUT → METHOD REPORT CUT → AFTERTASTE PASS → COMPLETE`
+완료 판정:
 
-### 현행 역할
+- [x] 실제 한 호 제작을 마친 뒤 쓸 수 있는 후기다.
+- [x] 제작 후 시점이 자연스럽다.
+- [x] 기사 요약보다 편집자의 회고가 앞에 있다.
+- [x] 이미 읽은 본문을 장황하게 다시 설명하지 않는다.
+- [x] PICK을 위한 억지 선정 논리가 없다.
+- [x] 모든 기사를 묶는 공통 교훈을 만들지 않는다.
+- [x] 내부 방법론 보고서처럼 읽히지 않는다.
+- [x] 존재하지 않는 회의·취재·대화·감정을 만들지 않는다.
+- [x] 마지막이 억지 결론보다 자연스러운 여운으로 닫힌다.
 
-EDITOR'S AFTERWORD는 실제 한 호의 원고를 모두 만든 뒤 남은 생각·망설임·인상·미완의 질문을 자연스럽게 회고하는 에디터 후기다.
+판정: COMPLETE
 
-PROLOGUE와 달리 제작 후 시점을 숨기지 않는다. `이번 호를 만들면서`, `원고를 닫고 나니` 같은 회고 표현을 사용할 수 있다.
+## 다음 단계 — 12 지면 설계
 
-### 반드시 피할 실패 구조
+현행 `editorial/WEEKLY_RUNBOOK.md`의 지면 설계 단계부터 재개한다.
 
-- 대표 기사·대표 숫자·대표 문장 하나를 강제로 선정
-- 기사별로 한 문단씩 다시 요약
-- 모든 기사를 하나의 공통 교훈이나 공식 결론으로 묶기
-- VERIFY·FLOW·검수 절차를 설명하는 제작 방법론 보고서
-- 존재하지 않는 취재 장면·기자 감정·인터뷰를 꾸며내기
-- 마지막에 교훈·질문·다음 호 예고를 의무적으로 붙이기
+기본 원칙:
 
-### 완료 판정
+1. DATA와 WATCH는 새 정보가 있을 때만 선택적으로 만든다.
+2. 대표 기사의 표지 주제를 확정한다.
+3. 기사마다 내용에 맞는 지면 조합을 선택한다.
+4. 한 호에 최소 세 가지 이상의 기사 레이아웃 리듬을 만든다.
+5. 동일 템플릿 구조를 모든 기사에 복제하지 않는다.
+6. 장식 모듈은 본문 반복이 아니라 새로운 정보나 읽기 전환을 제공해야 한다.
+7. 직전 회차보다 섹션 전환·정보 시각화·모바일 흐름 중 하나 이상을 개선한다.
 
-다음을 모두 통과해야 COMPLETE다.
-
-- 실제 이번 호 전체를 읽은 뒤의 회고처럼 읽힘
-- 기사 목록 요약으로 수렴하지 않음
-- 한두 가지 생각에 오래 머물러도 자연스러움
-- 제작 절차 설명이 중심이 되지 않음
-- 과장된 감상이나 인위적 교훈이 없음
-- 마지막에 자연스러운 여운이 남음
+지면 설계를 시작하기 전 현재 `main`의 `editorial/LAYOUT_SYSTEM.md`, `editorial/IMAGE_DIRECTION.md`, `templates/TEMPLATE_CONTRACT.md`, `templates/NAVIGATION_CONTRACT.md`와 관련 현행 기준을 다시 확인한다.
 
 ## 최종 독서 순서
 
@@ -172,16 +184,15 @@ PROLOGUE와 달리 제작 후 시점을 숨기지 않는다. `이번 호를 만�
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 09 EDITOR'S AFTERWORD 백지 제작부터 시작**한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 12 지면 설계부터 시작**한다.
 
-- 01~08 수정 금지
-- 기존 EDITOR'S PICK 및 삭제된 과거 AFTERWORD 복원·참조·문장 재사용 금지
-- 이번 호 전체 완성 원고를 다시 읽고 MEMORY TRACE부터 시작
-- 대표 기사·대표 숫자·대표 문장 강제 선정 금지
-- 기사별 요약 금지
-- 모든 기사를 하나의 공통 교훈·공통 질문으로 묶지 않음
-- VERIFY·FLOW·검수 절차를 설명하는 방법론 보고서 금지
-- 실제 제작 후 남은 생각·망설임·인상·미완의 질문을 자연스럽게 회고
-- 자연스러운 여운으로 종료
-- 09 COMPLETE 전 지면 설계 진행 금지
-- 실제 화면 검수 전 발행 상태로 변경 금지
+- 01~09 수정 금지
+- 01~09 현행 원고를 완성본으로 사용
+- DATA/WATCH는 새 정보가 있을 때만 선택적으로 제작
+- 지면 설계 전 현행 LAYOUT·IMAGE·TEMPLATE·NAVIGATION 기준 확인
+- 기사마다 내용에 맞는 서로 다른 지면 리듬 설계
+- 동일 레이아웃 반복 금지
+- 09 EDITOR'S AFTERWORD는 모든 기사·DEEP DIVE 뒤 Sources 바로 앞에 배치
+- 실제 이미지 생성 전 IMAGES를 COMPLETE로 변경하지 않음
+- 실제 HTML 렌더링·다중 화면 검수 전 SCREEN_REVIEW를 COMPLETE로 변경하지 않음
+- 실제 화면 검수 전 PUBLISH 상태로 변경하지 않음
