@@ -6,7 +6,7 @@
 
 ## 현재 재개 지점
 
-**01~09 원고와 12 지면 설계는 완료됐다. 이미지 파이프라인 재설계도 완료됐으며, 현재 다음 작업은 `13 이미지 제작`을 새 계약에 따라 한 슬롯씩 독립적으로 실행하는 것이다.**
+**01~09 원고와 12 지면 설계는 완료됐다. 이미지 파이프라인 재설계도 완료됐고 `13 이미지 제작`이 진행 중이다. 첫 슬롯 Cover는 생성 결과가 반복해서 저장소·WORK_STATE·작업 대시보드 형태로 나와 `OUTPUT_CONTRACT` 실패로 판정했으며, 유효 이미지 시도는 아직 `0/3`이다. 현재 Cover 상태는 `RETRY`이며 다음 작업은 Cover 슬롯을 단일 에디토리얼 이미지 한 장으로 다시 생성하는 것이다.**
 
 01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
@@ -43,7 +43,7 @@
 - MANUSCRIPT_STAGE: COMPLETE
 - LAYOUT: COMPLETE
 - IMAGE_PIPELINE_DESIGN: COMPLETE
-- IMAGES: READY
+- IMAGES: IN_REVIEW
 - HTML: PENDING
 - SCREEN_REVIEW: PENDING
 - PUBLISH: PENDING
@@ -139,7 +139,7 @@ Cover
 - Cover / LIFE SCENE / PROLOGUE / 일반 기사 / DEEP DIVE / AFTERWORD 역할 분리
 - 기존 `archive/2026-07-27/` 과거 HTML/CSS 재사용 금지
 
-## 13 이미지 제작 — READY
+## 13 이미지 제작 — IN_REVIEW
 
 활성 계획:
 
@@ -155,6 +155,14 @@ Cover
 6. `deep-dive-politics.webp`
 7. `society.webp`
 8. `tech.webp`
+
+### 현재 슬롯
+
+- Cover: `RETRY`
+- 유효 이미지 시도: `0/3`
+- 실패 코드: `OUTPUT_CONTRACT`
+- 실패 결과는 최종 자산으로 저장하지 않음
+- 다음 실행은 Cover 장면 브리프만 유지한 단일 에디토리얼 이미지 재생성
 
 ### 일반 계약 핵심
 
@@ -209,7 +217,7 @@ HTML은 이미지 전체 완료를 기다려야만 구조 작업을 시작하는
 6. `LAYOUT_PLAN.md`
 7. `IMAGE_PLAN.md`
 
-그 후 `IMAGE_PLAN.md`의 첫 `READY` 슬롯부터 **한 장만** 처리한다.
+그 후 `IMAGE_PLAN.md`에 `RETRY` 슬롯이 있으면 그 슬롯을 먼저 처리하고, 없으면 첫 `READY` 슬롯부터 **한 장만** 처리한다.
 
 실행 순서:
 
