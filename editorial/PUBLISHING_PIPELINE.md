@@ -15,9 +15,11 @@
 - 일반 기사 전체를 먼저 작성하고 검증한다.
 - 이후 DEEP DIVE, LIFE SCENE을 완성한다.
 - 기사 전체가 완성된 뒤 PROLOGUE를 작성한다. PROLOGUE는 앞에 배치되지만 뒤의 내용을 아직 모르는 독자의 시점으로 쓴다.
-- EDITOR'S PICK은 마지막 편집 원고로 작성한다. 본문을 모두 읽은 뒤 만나는 에필로그 역할을 갖는다.
+- EDITOR'S AFTERWORD는 PROLOGUE까지 닫힌 뒤 마지막 편집 원고로 작성한다. 본문을 모두 읽은 뒤 만나는 실제 제작 후기다.
 - 이미지와 HTML은 모든 원고가 완성된 뒤 제작한다.
 - 기사 수를 맞추기 위해 약한 원고를 넣거나 분야를 임의로 삭제하지 않는다.
+
+EDITOR'S AFTERWORD는 대표 기사나 대표 숫자를 `픽`하지 않는다. 한 호 제작을 마친 뒤 실제로 남은 생각·망설임·인상·미완의 질문을 자연스러운 회고 흐름으로 쓴다. 제작 후 시점을 숨길 필요는 없지만 기사 요약, 편집 방법론 보고서, 억지 공통 교훈으로 바꾸지 않는다.
 
 품질 향상 목표에는 최소한 다음 세 축이 포함되어야 한다.
 
@@ -43,7 +45,7 @@ archive/YYYY-MM-DD/
 - 기사 본문을 별도 HTML 파일이나 `fetch()`로 조립하지 않는다.
 - 모든 주요 이미지는 회차의 `assets/`에 저장한다.
 - 외부 이미지 URL을 직접 사용하지 않는다.
-- 기본 독서 순서는 `Cover → Contents → LIFE SCENE → PROLOGUE → 본 기사와 연결 DEEP DIVE → EDITOR'S PICK → Sources`로 잡는다.
+- 기본 독서 순서는 `Cover → Contents → LIFE SCENE → PROLOGUE → 본 기사와 연결 DEEP DIVE → EDITOR'S AFTERWORD → Sources`로 잡는다.
 
 ## 4. 제작자 직접 검수
 
@@ -55,10 +57,13 @@ archive/YYYY-MM-DD/
 - 각 기사가 보도자료 정리에 머물지 않는가
 - DEEP DIVE가 일반 기사를 반복하지 않는가
 - LIFE SCENE이 개인 조언으로 끝나지 않는가
-- PROLOGUE가 앞으로 읽을 사건과 질문을 예고하되 기사 결론을 미리 소진하지 않는가
+- PROLOGUE가 앞으로 읽을 사건과 내용을 예고하되 기사 결론을 미리 소진하지 않는가
 - PROLOGUE가 제작 후기나 이미 읽은 독자를 전제로 한 문체가 아닌가
-- EDITOR'S PICK이 기사별 요약이 아닌가
-- EDITOR'S PICK이 본문 뒤의 편집 에필로그로 기능하는가
+- PROLOGUE가 모든 기사를 빠짐없이 언급하려는 압축 목차로 변하지 않았는가
+- EDITOR'S AFTERWORD가 기사별 요약이 아닌가
+- EDITOR'S AFTERWORD가 실제 제작 후 시점의 후기인가
+- EDITOR'S AFTERWORD가 대표 하나를 억지로 고르거나 공통 교훈을 만들지 않는가
+- EDITOR'S AFTERWORD가 편집 검증 방법론 보고서로 변하지 않았는가
 - 출처와 사실 상태가 정확한가
 - 직전 회차보다 질문과 정보 밀도가 개선됐는가
 
@@ -75,7 +80,7 @@ archive/YYYY-MM-DD/
 
 - 완성된 잡지로 보이는가
 - LIFE SCENE → PROLOGUE → 본 기사 진입이 자연스러운가
-- EDITOR'S PICK이 Sources 직전에서 한 호를 닫는가
+- EDITOR'S AFTERWORD가 Sources 직전에서 서사적 독서를 닫는가
 - 기사마다 시각적 리듬이 실제로 다른가
 - 장식 모듈이 본문을 반복하지 않는가
 - 1440px, 1366px, 1024px, 390px 화면에서 문제가 없는가
@@ -124,8 +129,8 @@ GitHub Pages는 `main` 브랜치 루트의 정적 파일을 그대로 사용한�
 - `main`에 반영하지 않는다.
 - 공개 `archive/`에 실패본을 남기지 않는다.
 - 작업 환경에서 원고·이미지·HTML을 다시 만든다.
-- PROLOGUE가 기사 요약이나 제작 후기로 실패하면 독자 시점을 다시 잡는다.
-- EDITOR'S PICK이 프리뷰처럼 실패하면 본문 뒤의 에필로그 역할에서 다시 쓴다.
+- PROLOGUE가 기사 요약이나 제작 후기로 실패하면 독자 시점과 선택적 프리뷰 로직을 다시 잡는다.
+- EDITOR'S AFTERWORD가 기사 요약·대표 항목 선정문·편집 방법론 보고서로 실패하면 실제 제작 후기 역할에서 다시 쓴다.
 - 기술적 조건만 맞추는 우회 수정은 하지 않는다.
 
 외부 이미지가 준비되지 않았거나 실제 렌더링을 확인하지 못한 상태는 발행 불가다.
