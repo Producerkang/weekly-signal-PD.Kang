@@ -31,7 +31,7 @@ archive/YYYY-MM-DD/
 
 - 기본 디자인 토큰
 - 접근 가능한 상단 내비게이션
-- Cover·Contents·LIFE SCENE·PROLOGUE·기사·DEEP DIVE·EDITOR'S PICK·Sources의 의미 구조 예시
+- Cover·Contents·LIFE SCENE·PROLOGUE·기사·DEEP DIVE·EDITOR'S AFTERWORD·Sources의 의미 구조 예시
 - 반응형 최소 기반
 
 템플릿을 플레이스홀더만 교체해 그대로 발행하지 않는다. 다음 작업이 반드시 추가되어야 한다.
@@ -65,14 +65,14 @@ archive/YYYY-MM-DD/
 14. Tech에 연결된 선택적 DEEP DIVE
 15. 필요한 DATA
 16. 필요한 WATCH
-17. EDITOR'S PICK
+17. EDITOR'S AFTERWORD
 18. Sources
 
 Cover Story는 분야 일반 기사를 대체하지 않는다. DEEP DIVE는 일반 기사 전체가 완성된 뒤 제작하지만 최종 HTML에서는 심화 대상 기사 바로 뒤에 둔다.
 
-PROLOGUE는 본문 전체가 완성된 뒤 작성하지만 최종 HTML에서는 본격적인 기사 묶음 앞에 둔다. 독자가 뒤의 기사를 아직 읽지 않았다는 전제로 사건과 질문을 프리뷰한다.
+PROLOGUE는 본문 전체가 완성된 뒤 작성하지만 최종 HTML에서는 본격적인 기사 묶음 앞에 둔다. 독자가 뒤의 기사를 아직 읽지 않았다는 전제로 선택적으로 사건과 내용을 프리뷰한다. 모든 기사를 빠짐없이 언급할 의무는 없다.
 
-EDITOR'S PICK은 전체 원고가 완성된 뒤 작성하고 최종 HTML에서는 모든 기사와 DEEP DIVE 뒤, Sources 바로 앞에 둔다. 독자가 본문을 읽은 뒤 만나는 편집 에필로그다.
+EDITOR'S AFTERWORD는 전체 원고가 완성된 뒤 마지막 편집 원고로 작성하고 최종 HTML에서는 모든 기사와 DEEP DIVE 뒤, Sources 바로 앞에 둔다. 독자가 본문을 읽은 뒤 만나는 실제 제작 후기다. 대표 기사·대표 숫자·공통 교훈을 고르는 `PICK` 구조를 사용하지 않는다.
 
 ## 5. DOM 원칙
 
@@ -82,8 +82,8 @@ EDITOR'S PICK은 전체 원고가 완성된 뒤 작성하고 최종 HTML에서�
 - `reportage`, `document-reportage`, `reportage-*`를 사용하지 않는다.
 - LIFE SCENE 제목과 부제는 생활 장면 중심으로 쓴다.
 - LIFE SCENE의 정책 연결은 마지막 `SCENARIO NOTE`에만 둔다.
-- PROLOGUE는 기사의 답을 미리 공개하지 않고 앞으로 펼쳐질 사건과 질문을 예고한다.
-- EDITOR'S PICK은 본문 뒤에서 편집 과정의 판단 변화나 남은 질문을 회수한다.
+- PROLOGUE는 기사의 답을 미리 공개하지 않고 선택적인 사건·장면·기사 소개로 관심을 환기한다.
+- EDITOR'S AFTERWORD는 본문 뒤에서 실제 제작을 돌아보되 기사별 요약이나 편집 방법론 강의로 변하지 않는다.
 - 미사용 섹션, 빈 카드, 숨김 모듈을 남기지 않는다.
 
 ## 6. 기사 지면 차별화
@@ -138,7 +138,9 @@ EDITOR'S PICK은 전체 원고가 완성된 뒤 작성하고 최종 HTML에서�
 - DEEP DIVE의 일반 기사 반복
 - LIFE SCENE의 개인 조언형 결말
 - PROLOGUE가 기사 결론을 미리 소진하거나 제작 후기처럼 쓰임
-- EDITOR'S PICK이 기사별 요약이거나 본문 앞에 배치됨
+- PROLOGUE가 모든 기사 커버리지를 채우는 압축 목차처럼 쓰임
+- EDITOR'S AFTERWORD가 기사별 요약·대표 항목 선정문·편집 방법론 보고서로 쓰임
+- EDITOR'S AFTERWORD가 본문 앞에 배치됨
 - 저디테일 또는 프로그램 생성 이미지
 - 실제 화면 미검수
 
