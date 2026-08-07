@@ -23,7 +23,7 @@
 
 - COVER STORY: COMPLETE
 - ECONOMY: COMPLETE
-- POLITICS: WRITING
+- POLITICS: COMPLETE
 - SOCIETY: PENDING
 - TECH: PENDING
 - CROSS_ARTICLE_REVIEW: PENDING
@@ -31,11 +31,36 @@
 - LIFE_SCENE: PENDING
 - EDITORS_PICK: PENDING
 
+## 이번 실행 완료
+
+### Cover Story
+
+- `01_cover/VERIFY.md`: COMPLETE
+- `01_cover/ARTICLE.md`: COMPLETE
+- 제목: `폭염 위기경보 ‘심각’, 중앙재난안전대책본부는 무엇을 움직이나`
+- 검증 핵심: 행안부 위기경보·중대본과 사업장 체감온도 규칙의 역할을 분리하고, 경보 이후 실제 보호를 운영기록으로 추적하도록 구성
+
+### Economy
+
+- `02_economy/VERIFY.md`: COMPLETE
+- `02_economy/ARTICLE.md`: COMPLETE
+- 제목: `휘발유 1,784원 상한은 주유소까지 어떻게 전달되나`
+- 검증 핵심: 석유 최고가격의 적용대상을 정유사 공급가격으로 확정하고, 오피넷 공급가격·주유소 판매가격의 정의와 전달 시차·비용 부담을 분리
+
+### Politics
+
+- `03_politics/VERIFY.md`: COMPLETE
+- `03_politics/ARTICLE.md`: COMPLETE
+- 제목: `일곱 개 협력문서와 한·메르코수르 협상의 서로 다른 시간표`
+- 검증 핵심: 7개 MOU·MOC, 한·브라질 경제·통상 위원회, 한·메르코수르 무역협상의 권한·절차·효력 발생 시점을 분리하고 2021년 이후 공식 협상 라운드 미재개 상태를 확인
+
 ## 다음 작업
 
-`03_politics/VERIFY.md`의 검증 결과를 바탕으로 `03_politics/ARTICLE.md`를 독자용 원고로 작성한다.
+`04_society/VERIFY.md`를 생성하고 Society 기사 검증부터 시작한다.
 
-7개 MOU·MOC, 한·브라질 경제·통상 위원회, 한·메르코수르 무역협상을 서로 다른 후속 경로로 설명한다. 메르코수르 협상은 2018년 시작해 2021년 7차 라운드까지 진행된 이력과 2026년 브라질 공개 의견수렴을 배경으로 두고, 7월 27일 정상회담의 `연내 재개 추진 합의`가 실제 공식 라운드·협정 타결·발효로 이어지기 위해 필요한 다음 문서를 기사 후반에서 제시한다.
+현재 Cover → Economy → Politics는 각각 `VERIFY → NARRATIVE → ANALYSIS → STYLE PASS → HEADLINE & DECK → ARTICLE REVIEW → COMPLETE`를 닫았다. Society 본문은 아직 작성하지 않았으며, 다음 실행에서도 검증을 먼저 끝낸 뒤에만 `04_society/ARTICLE.md`로 이동한다.
+
+일반 기사 5편이 모두 COMPLETE가 되기 전에는 CROSS_ARTICLE_REVIEW, DEEP_DIVE, LIFE_SCENE, EDITORS_PICK, 이미지·HTML 제작으로 넘어가지 않는다.
 
 ## 현재 핵심 교정 원칙
 
