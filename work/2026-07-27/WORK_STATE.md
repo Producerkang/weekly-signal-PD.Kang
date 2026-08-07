@@ -4,32 +4,15 @@
 발행 경로: `archive/2026-07-27/`
 작업 경로: `work/2026-07-27/`
 
-## 현재 목표
+## 현재 재개 지점
 
-제1호의 설명 완결성을 유지하면서, 내부 검증 언어가 독자용 문체를 지배하지 않게 하고, 충분한 정보를 독자가 한 줄로 따라갈 수 있는 흐름으로 조직한다.
+**다음 작업은 `08 PROLOGUE`다.**
 
-부정·대조는 기사 분위기를 만들기 위한 기본 서사 장치로 사용하지 않는다. 사건과 구조를 먼저 설명한 뒤, 이미 세운 논증의 범위를 한정하거나 실제 반론을 검토할 때만 사용한다.
+01~07은 현행 완성본으로 확정한다. 새 대화에서는 다시 작성하거나 재검토하지 않는다.
 
-## 적용 구조
+08 PROLOGUE와 09 EDITOR'S PICK은 새 구조를 검증하기 위해 **깨끗하게 다시 작성**한다. 이전에 작성했던 08/09 시험 원고는 작업 트리에서 삭제했으며 Git 이력에만 남아 있다. 새 원고를 만들 때 이전 시험 원고를 복원하거나 문장을 재사용하지 않는다.
 
-각 일반 기사는 다음 순서로 하나씩 완성한다.
-
-`VERIFY → FLOW MAP → NARRATIVE → ANALYSIS → COHERENCE PASS → STYLE & ARGUMENT PASS → HEADLINE & DECK → ARTICLE REVIEW → COMPLETE`
-
-- `VERIFY.md`: 내부 검증 전용
-- `FLOW.md`: 독자 이해 순서와 문단 논리 설계 전용
-- `ARTICLE.md`: 독자용 최종 기사 전용
-- 세 파일의 언어와 역할을 섞지 않는다.
-- 현재 기사 COMPLETE 전에는 다음 일반 기사 본문을 작성하지 않는다.
-
-LIFE SCENE은 별도 제작 구조를 따른다.
-
-`SUBJECT SELECT → FACT BOUNDARY → CHARACTER & ORDINARY PLAN → SCENE MAP → NARRATIVE DRAFT → CAUSALITY PASS → EXPLANATION LEAK PASS → SCENARIO NOTE → LIFE SCENE REVIEW → COMPLETE`
-
-PROLOGUE와 EDITOR'S PICK은 기사 전체가 완성된 뒤 작성한다. 다만 독서 시점은 반대다.
-
-- PROLOGUE: 뒤의 기사를 아직 읽지 않은 독자의 프리뷰
-- EDITOR'S PICK: 모든 기사와 DEEP DIVE를 읽은 뒤 만나는 편집 에필로그
+08과 09가 모두 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
 
 ## 진행 상태
 
@@ -41,262 +24,146 @@ PROLOGUE와 EDITOR'S PICK은 기사 전체가 완성된 뒤 작성한다. 다만
 - CROSS_ARTICLE_REVIEW: COMPLETE
 - DEEP_DIVE: COMPLETE
 - LIFE_SCENE: COMPLETE
-- PROLOGUE: COMPLETE
-- EDITORS_PICK: COMPLETE
+- PROLOGUE: PENDING
+- EDITORS_PICK: PENDING
 
-## 일반 기사 완료
+## 확정된 01~07
 
-### Cover Story
-
+### 01 Cover Story
 - `01_cover/VERIFY.md`: COMPLETE
 - `01_cover/ARTICLE.md`: COMPLETE
 - 제목: `폭염 위기경보 ‘심각’, 중앙재난안전대책본부는 무엇을 움직이나`
-- 검증 핵심: 행안부 위기경보·중대본과 사업장 체감온도 규칙의 역할을 분리하고, 경보 이후 실제 보호를 운영기록으로 추적하도록 구성
 
-### Economy
-
+### 02 Economy
 - `02_economy/VERIFY.md`: COMPLETE
 - `02_economy/ARTICLE.md`: COMPLETE
 - 제목: `휘발유 1,784원 상한은 주유소까지 어떻게 전달되나`
-- 검증 핵심: 석유 최고가격의 적용대상을 정유사 공급가격으로 확정하고, 오피넷 공급가격·주유소 판매가격의 정의와 전달 시차·비용 부담을 분리
-- 후속 편집 검토에서 정보 정확성과 설명량은 충분하지만 문장·문단이 병렬적으로 퍼지는 문제가 확인됐다. 이를 계기로 FLOW MAP과 COHERENCE PASS를 현행 제작 표준에 추가했다.
 
-### Politics
-
+### 03 Politics
 - `03_politics/VERIFY.md`: COMPLETE
 - `03_politics/ARTICLE.md`: COMPLETE
 - 제목: `일곱 개 협력문서와 한·메르코수르 협상의 서로 다른 시간표`
-- 검증 핵심: 7개 MOU·MOC, 한·브라질 경제·통상 위원회, 한·메르코수르 무역협상의 권한·절차·효력 발생 시점을 분리하고 2021년 이후 공식 협상 라운드 미재개 상태를 확인
 
-### Society
-
+### 04 Society
 - `04_society/VERIFY.md`: COMPLETE
 - `04_society/FLOW.md`: COMPLETE
 - `04_society/ARTICLE.md`: COMPLETE
 - 제목: `방학 오전 아홉 시를 누가 맡나, 틈새돌봄 1,461곳이 시작됐다`
-- 검증 핵심: 7월 13일 최초 2,500개소 목표와 7월 23일 실제 첫 운영 확정 1,461개소를 구분하고, 기존 마을돌봄시설의 운영시간·급식 확대가 가정의 실제 이용경로로 어떻게 이어지는지 설명
-- CROSS_ARTICLE_REVIEW에서 목표·집행 구분을 둘러싼 교정형 부정문을 줄이고, 신청·이용조건과 교육부·복지부 사업의 관계를 긍정형 정의 중심으로 재작성했다. 결말은 시설 수·이용시간·실제 이용자의 관계로 회수했다.
 
-### Tech
-
+### 05 Tech
 - `05_tech/VERIFY.md`: COMPLETE
 - `05_tech/FLOW.md`: COMPLETE
 - `05_tech/ARTICLE.md`: COMPLETE
 - 제목: `공공나노팹센터 두 곳 출범, 공동활용의 지원·평가 근거가 생겼다`
-- 검증 핵심: 한국나노기술원·나노종합기술원은 기존 나노팹 운영기관이며, 2026년 5월 공공나노팹센터로 지정된 뒤 7월 29일 출범했다. 정부 출연·공유재산 특례·통합정보시스템·연간 보고·평가라는 법적 운영구조와 실제 이용성과를 구분
-- CROSS_ARTICLE_REVIEW에서 반박형 FLOW를 `공동활용 필요 → 법정 기능 → 지원 수단 → 이용 경로 → 보고·평가 → 성과`로 재설계하고, 제목·Deck·소제목·결말의 대조형 서사를 직접 설명형으로 교정했다.
 
-## CROSS_ARTICLE_REVIEW 완료
+### CROSS_ARTICLE_REVIEW
+- `CROSS_ARTICLE_REVIEW.md`: COMPLETE
+- 일반 기사 5편 전체 PASS
 
-- 검토 파일: `CROSS_ARTICLE_REVIEW.md`
-- 판정: 일반 기사 5편 전체 통과
-- 수정 기사: Society, Tech
-- 수정 없음: Cover Story, Economy, Politics
-
-### 핵심 판정
-
-1. 다섯 기사의 중심 질문과 대상은 서로 분리돼 있어 주제 중복 없음
-2. Politics·Tech가 상대적으로 길지만 제도 복잡도에 따른 필요한 깊이로 판단
-3. 기사 전반의 1차 자료 비중이 높으므로 DEEP_DIVE에서는 일반 기사와 다른 독립 출처를 최소 2개 이상 확보하는 기준을 강하게 적용
-4. Cover·Economy·Politics의 대조는 실제 권한·가격단계·협상경로 차이를 설명하는 기능이 있어 유지
-5. Society는 가상 오해 반박 문장을 줄이고 목표·첫 집행·이용조건을 각각 정의하는 방향으로 교정
-6. Tech는 FLOW부터 재설계해 `새 시설이 아니다`, `이름만 바뀐 것인가`, `현판이 아니다` 같은 반박형 추진력을 제거
-7. 반복되던 `다음 기록·운영실적을 봐야 한다`형 결말은 Society와 Tech에서 기사 고유의 작동원리로 회수
-8. Tech 제목을 질문형에서 선언형으로 바꿔 Cover·Economy와의 제목 리듬 반복을 줄임
-
-## DEEP_DIVE 완료
-
-심화 대상: Politics
-심화 유형: 구조 해부형
-
-- 작업 경로: `06_deep_dive/`
+### 06 Deep Dive
 - `06_deep_dive/VERIFY.md`: COMPLETE
 - `06_deep_dive/FLOW.md`: COMPLETE
 - `06_deep_dive/ARTICLE.md`: COMPLETE
 - 제목: `한·메르코수르의 두 번째 시간표, 공동협상 뒤 각국 비준이 시작된다`
-- 중심 질문: 한·메르코수르 무역협상이 최종 타결될 경우, 블록 차원의 공동협상과 각 서명국의 국내 승인·비준·발효는 어떤 순서로 연결되며 실제 관세 적용 시점은 왜 국가별로 달라질 수 있는가?
+- 연결 대상: Politics
 
-### 심화 차별성
-
-1. 일반 Politics의 `협력문서 / 양자 위원회 / 무역협상` 3갈래를 반복하지 않고 무역협상 내부 구조 한 축만 확장했다.
-2. 브라질의 2026년 공개 의견수렴을 통해 `국가별 이해관계 형성 → 메르코수르 공동안 조정`이라는 일반 기사에 없던 선행 단계를 설명했다.
-3. CMC 결정 32/00의 공동협상 원칙과 메르코수르 합의형 의사결정을 연결해 블록 차원의 협상안이 만들어지는 구조를 보강했다.
-4. 메르코수르 내부 규범의 Art. 40 편입·동시발효 구조와 외부 FTA의 개별 발효조항을 분리했다.
-5. 메르코수르–싱가포르 FTA가 파라과이 2026-02-01, 우루과이 2026-03-01, 브라질 2026-08-01에 각각 발효한 실제 사례를 사용해 공동협상과 국가별 발효의 시간표가 분리될 수 있음을 보여줬다.
-6. 싱가포르 협정의 발효 방식을 한·메르코수르의 미래 구조로 예측하지 않고 최종 협정문에서 확인할 변수로 한정했다.
-7. 볼리비아가 현재 Estado Parte이면서 가입 이행기간에 있다는 점과, 2026년 6월 일본 협상 개시문이 기존 4개국을 당사자로 명시한 사례를 확인해 회원국 지위와 개별 대외협상 참여 범위를 자동으로 동일시하지 않도록 했다.
-
-### ARTICLE REVIEW 판정
-
-- 일반 Politics와 질문·자료·결론의 실질적 중복 없음
-- 새 핵심 주장 3개 이상 확보
-- 일반 기사에 없던 독립 1차 자료 2개 이상 확보
-- 설명 흐름: `국내 이해관계 → 공동안 → 서명 → 국내 비준 → 국가별 발효 → 최종 협정문 → 회원국 범위`로 선형 연결
-- 싱가포르 비교 사례가 역사 소개나 성공담으로 확장되지 않음
-- 부정·대조는 내부 규범/외부 협정, 회원국/개별 협상 당사자처럼 법적 범위를 실제로 바꾸는 지점에만 사용
-- 결말은 `협상 시계 / 국내 비준 시계 / 이행 시계` 세 단계로 기사 고유의 분석을 회수
-- 판정: PASS
-
-## LIFE_SCENE 완료
-
-연결 대상: Society
-
-- 작업 경로: `07_life_scene/`
+### 07 Life Scene
 - `07_life_scene/SCENE_MAP.md`: COMPLETE
 - `07_life_scene/ARTICLE.md`: COMPLETE
 - 제목: `아홉 시에 문이 열리는데, 엄마는 여덟 시 이십 분에 집을 나서야 했다`
-- 형식: 실제 정책 구조를 FACT BOUNDARY로 두고 구체적인 가상 인물의 시간·행동을 따라가는 생활 서사
+- 연결 대상: Society
+- 현재 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
-### 최초본 재검토와 교정
+## 08 PROLOGUE — 다음 작업
 
-최초 LIFE SCENE은 `시간 공백 → 정원 → 이동 → 근무일정 변경 → 가족 분담 → 비용`처럼 생활 마찰 항목을 차례로 설명해, 형식상 가상 시나리오였지만 실제로는 정책 사례 설명문에 가까웠다.
+작업 경로: `08_prologue/`
 
-제1호 LIFE SCENE 「세 번째 병원에서야 이름이 불렸다」와 교정된 제2호를 비교해 다음 공통 원리를 현행 표준으로 추출했다.
+PROLOGUE는 LIFE SCENE 뒤, 본격적인 기사 묶음 앞에 배치되는 **이번 호의 프리뷰**다.
 
-1. 정책 문제가 아니라 인물과 시간이 전진한다.
-2. 먼저 구체적인 가상 인물과 평범한 원래 계획을 세운다.
-3. `시각·장소·행동`의 구체적인 장면에서 시작한다.
-4. `상황/장애 → 인물의 행동 → 직접 결과 → 다음 장면`의 인과 사슬로 진행한다.
-5. 대기·이동·비용·정보 부족 등은 목표 개수로 채우지 않고 인물이 움직인 결과로 생길 때만 쓴다.
-6. 생활 디테일은 물건·장소·메시지·전화·이동 같은 실제 행동 속에서 자연스럽게 발생시킨다.
-7. 정책명·전국 수치·행정 설명과 구조적 해석은 본문을 지배하지 않고 마지막 `SCENARIO NOTE`에서 정확하게 정리한다.
-8. 결말은 정책 평가문이 아니라 달라진 생활 장면이나 구체적인 이미지로 닫는다.
+### 작성 시점
 
-### 현행 LIFE SCENE 제작 로직
+- 일반 기사 5편, CROSS_ARTICLE_REVIEW, DEEP_DIVE, LIFE_SCENE이 모두 완성된 뒤 작성한다.
+- 따라서 작성자는 전체 내용을 알고 있다.
+- 그러나 **독자는 뒤의 기사를 아직 하나도 읽지 않았다고 가정**하고 쓴다.
 
-`SUBJECT SELECT → FACT BOUNDARY → CHARACTER & ORDINARY PLAN → SCENE MAP → NARRATIVE DRAFT → CAUSALITY PASS → EXPLANATION LEAK PASS → SCENARIO NOTE → LIFE SCENE REVIEW → COMPLETE`
+### 역할
 
-- `SCENE_MAP.md`는 필수다.
-- 장면 A와 B의 순서를 바꿔도 문제가 없다면 인과 사슬이 약한 것으로 판정한다.
-- 각 주요 문단은 `그래서 다음에 무엇을 했는가?`에 답할 수 있어야 한다.
-- 본문을 정책 문제 A/B/C로 요약할 수 있으면 실패다.
-- `이 사람이 A를 하려다 B를 만나 C를 했고, 그래서 D가 생겼다`로 요약할 수 있어야 한다.
+- 앞으로 펼쳐질 주요 사건과 질문을 자연스럽게 연다.
+- 독자가 이번 호에서 무엇을 만나게 될지 이해하고 계속 읽게 만든다.
+- 기사 결론을 먼저 알려주는 요약문이 아니다.
+- 제작 후기나 편집 회고가 아니다.
 
-### 골든 레퍼런스
+### 필수 기준
 
-1. ISSUE 01 「세 번째 병원에서야 이름이 불렸다」 — `archive/2026-07-20/index.html#life-scene`
-2. ISSUE 02 「아홉 시에 문이 열리는데, 엄마는 여덟 시 이십 분에 집을 나서야 했다」 — `work/2026-07-27/07_life_scene/ARTICLE.md`
+1. 완성된 기사 전체를 읽고 이번 호에서 독자에게 먼저 보여줄 사건·질문을 고른다.
+2. 각 기사 제목과 Deck을 순서대로 축약한 Contents 산문을 만들지 않는다.
+3. 핵심 사건은 구체적으로 소개할 수 있지만 기사에서 밝혀질 결론·평가·해답은 소진하지 않는다.
+4. 독자가 기사 내용을 이미 안다고 가정하는 표현을 쓰지 않는다.
+5. 실제 연속 기획이 아니면 `이번 호에도`, `지난 호에 이어`처럼 전호를 전제하는 표현을 쓰지 않는다.
+6. 여러 기사를 억지로 하나의 거대한 교훈이나 공통 결론으로 묶지 않는다.
+7. 마지막은 본격적인 기사 독서로 자연스럽게 넘긴다.
+8. 작성 후 `PROLOGUE REVIEW`를 통과하고 `PROLOGUE: COMPLETE`로 변경한다.
 
-두 글의 문단 수·시간표·대화량·결말 형식은 복제하지 않는다. 공통 서사 원리만 참고한다.
+상세 기준은 `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`를 따른다.
 
-### LIFE SCENE REVIEW 판정
+## 09 EDITOR'S PICK — PROLOGUE 다음 작업
 
-- 구체적인 가상 인물과 평범한 원래 계획이 존재함
-- 실제 취재 사례가 아님을 `SCENARIO NOTE`에서 명시함
-- 시간·장소·행동에서 시작해 가족의 대응이 다음 장면을 만드는 인과 사슬 유지
-- 회사 메시지, 편의점 주차장, 내비게이션, 냉장고 달력 등 생활 디테일이 장면 안의 행동으로 기능함
-- 생활 마찰을 목표 개수로 배치하지 않음
-- 정책명과 실제 수치 설명은 `SCENARIO NOTE`로 분리
-- 결말은 다음 주 달력의 다섯 칸에 가족 이름이 채워진 생활 장면으로 회수
-- 판정: PASS
+작업 경로: `09_editors_pick/`
 
-## PROLOGUE 완료
+EDITOR'S PICK은 모든 기사와 연결 DEEP_DIVE를 읽은 뒤, Sources 직전에 배치되는 **편집 에필로그**다.
 
-- 작업 경로: `08_prologue/`
-- `08_prologue/ARTICLE.md`: COMPLETE
-- 제목: `경보·가격·협상·돌봄·나노팹, 이번 주의 변화가 움직이는 경로`
-- 역할: LIFE SCENE 다음, 본격적인 기사 묶음 앞에서 앞으로 읽을 사건과 질문을 예고하는 프리뷰
+### 작성 시점과 독서 시점
 
-### PROLOGUE 작성 원칙
+- PROLOGUE 완료 뒤 작성한다.
+- 작성 자체는 전체 제작의 마지막 원고 단계다.
+- 독자는 일반 기사와 DEEP_DIVE를 모두 읽은 상태라고 전제할 수 있다.
 
-1. 전체 일반 기사·DEEP_DIVE·LIFE_SCENE이 완성된 뒤 작성했다.
-2. 작성자는 전체 내용을 알고 있지만 독자는 뒤의 기사를 아직 읽지 않았다고 가정했다.
-3. 각 기사의 결론을 먼저 설명하지 않고 사건과 중심 질문만 열었다.
-4. 실제 연속 기획이 아니므로 `이번 호에도`, `지난 호에 이어`처럼 전호를 전제하는 표현을 사용하지 않았다.
-5. Politics 뒤 DEEP_DIVE의 추가 질문은 예고하되 답을 미리 닫지 않았다.
-6. 마지막은 본격적인 기사 묶음으로 독서를 넘긴다.
+### 역할
 
-### PROLOGUE REVIEW 판정
+- 실제 리서치와 편집 과정에서 판단이 바뀐 지점, 오래 남은 사실, 망설임이나 질문을 짧은 편집 산문으로 회수한다.
+- 기사별 요약문이나 호 전체의 공식 논설문이 아니다.
+- 모든 기사를 언급할 필요가 없다.
 
-- 제작 후기 시점 아님
-- 뒤의 기사를 이미 읽었다는 전제 없음
-- 주요 기사 결론의 선공개 없음
-- 기사 제목·Deck의 기계적 재나열 아님
-- 실제 완성된 기사 범위 밖의 공통 프레임을 만들지 않음
-- 판정: PASS
+### 필수 기준
 
-## EDITORS_PICK 완료
+1. 실제 제작 과정에서 나온 한 중심축을 고른다.
+2. 기사 내용을 다시 설명하기보다 편집 과정에서 무엇을 다시 보게 됐는지를 쓴다.
+3. 존재하지 않는 기자·회의·취재 장면·감정을 만들지 않는다.
+4. 한 문단에 기사 하나씩 배치하지 않는다.
+5. 모든 분야를 하나의 교훈으로 억지로 묶지 않는다.
+6. Sources 직전의 에필로그로 읽었을 때 자연스러운지 확인한다.
+7. 작성 후 `EDITOR'S PICK REVIEW`를 통과하고 `EDITORS_PICK: COMPLETE`로 변경한다.
 
-- 작업 경로: `09_editors_pick/`
-- `09_editors_pick/ARTICLE.md`: COMPLETE
-- 제목: `숫자는 맞았는데, 뜻이 달랐다`
-- 역할: 모든 기사와 DEEP_DIVE를 읽은 뒤 Sources 직전에 만나는 편집 에필로그
-- 중심축: 이번 호의 실제 편집 과정에서 반복해서 확인한 `숫자·문서의 단계와 적용대상 구분`
+상세 기준은 `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`를 따른다.
 
-### 편집 산문 선택 이유
+## 최종 독서 순서
 
-1. 기사 목록 전체를 다시 요약하지 않고 실제로 판단이 바뀐 한 편집 경험만 남겼다.
-2. 2,500과 1,461은 `목표/첫 집행`, 1,784원은 `정유사 공급단계/주유소 판매단계`, 무역문서는 `서명/비준/발효`라는 서로 다른 상태를 구분해야 했다.
-3. 서로 다른 분야에서 반복된 경험을 `숫자 옆의 동사를 다시 읽는 일`이라는 하나의 편집적 관찰로 묶었다.
-4. 존재하지 않는 기자, 인터뷰, 취재 현장이나 감정을 만들지 않았다.
-5. 독자에게 공식 교훈을 선언하기보다 다음에 숫자를 읽을 때 남을 작은 질문으로 마무리했다.
+`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → 연결 DEEP_DIVE가 있으면 해당 기사 바로 뒤 → Economy → Politics → Politics DEEP_DIVE → Society → Tech → 선택적 DATA/WATCH → EDITOR'S PICK → Sources`
 
-### EDITORS_PICK REVIEW 판정
+실제 DEEP_DIVE 위치는 연결 대상 기사 바로 뒤에 둔다. 이번 호 Deep Dive는 Politics 뒤에 둔다.
 
-- 모든 기사와 DEEP_DIVE 뒤에서 읽는 에필로그 위치로 변경
-- 한 문단에 기사 하나씩 나열하는 구조 아님
-- 일반 기사·DEEP_DIVE의 결론 재설명으로 확장되지 않음
-- 실제 검증·교정 과정에서 확인된 사실만 사용
-- 한 호 전체를 억지로 하나의 정치·사회적 주장으로 묶지 않음
-- 짧은 편집 산문 길이와 어조 유지
-- 판정: PASS
+## 현행 제작 기준
 
-## 다음 작업
-
-원고 제작 단계는 모두 COMPLETE다. 다음 실행은 `지면 설계`부터 시작한다.
-
-### 지면·발행 단계 시작 순서
-
-1. `editorial/IMAGE_DIRECTION.md`, `editorial/LAYOUT_SYSTEM.md`, `editorial/PUBLISHING_PIPELINE.md`, `templates/TEMPLATE_CONTRACT.md`, `templates/NAVIGATION_CONTRACT.md`를 다시 확인한다.
-2. DATA와 WATCH는 실제 새 정보가 있는 기사에만 사용한다.
-3. 표지와 각 기사에 서로 다른 지면 역할을 부여하고 한 호에 최소 세 가지 이상의 레이아웃 리듬을 만든다.
-4. 지면 설계를 먼저 닫은 뒤 주요 이미지를 새로 제작한다.
-5. Cover는 장변 1800px 이상, 나머지 주요 이미지는 장변 1600px 이상을 기준으로 한다.
-6. 이미지마다 실제 파일을 열어 얼굴·손·장비·문자 오류와 데스크톱·모바일 크롭을 검수한다.
-7. `templates/ISSUE_TEMPLATE.html`을 시작 셸로 사용해 `archive/2026-07-27/index.html`을 제작한다.
-8. 독서 순서는 `Cover → Contents → LIFE SCENE → PROLOGUE → 본 기사와 연결 DEEP_DIVE → EDITOR'S PICK → Sources`로 구성한다.
-9. DEEP DIVE는 Politics 일반 기사 바로 뒤에 배치한다.
-10. EDITOR'S PICK은 모든 기사와 DEEP_DIVE 뒤, Sources 바로 앞에 배치한다.
-11. 목차·내비게이션·DOM 순서를 일치시킨다.
-12. 1440px 이상, 1366px, 1024px, 390px 실제 화면을 검수한다.
-13. 비교 검수와 최종 반영을 마친 뒤 `ISSUE_HISTORY.md`, `issues.json`, `archive/index.html`, `latest.json`을 마지막에 함께 갱신한다.
-
-사용자가 수정한 LIFE SCENE 현행본은 이후 지면 제작에서 현재 `main`의 `07_life_scene/ARTICLE.md`를 그대로 기준으로 사용하며, 별도 편집 요청이 없으면 다시 고치지 않는다.
-
-## 현재 핵심 교정 원칙
-
-1. 내부 검증에서는 계획·계약·집행·성과와 유사 제도의 차이를 엄격히 구분한다.
-2. 독자용 기사에서는 VERIFY를 복사하지 않고 FLOW를 기준으로 처음부터 새로 서술한다.
-3. 독자가 잘못 알고 있다고 가정하는 문체를 기본값으로 쓰지 않는다.
-4. 설명은 정의·사실·작동을 먼저 세운다.
-5. 부정은 이미 세운 논증의 범위를 한정하거나 실제 반론을 검토하거나 조건·예외를 명시할 때만 사용한다.
-6. 부정을 위해 가상의 오해·반박 대상을 만들지 않는다.
-7. 여러 사실·기관·제도 트랙을 한꺼번에 열지 않고 하나를 설명해 닫은 뒤 다음 축으로 이동한다.
-8. 앞 문단의 결론이 다음 문단의 질문·전제·시간 변화·작동 단계로 이어지게 한다.
-9. 문단은 하나의 중심 질문 또는 논리 단위를 묶는 단위이며, 3~5문장은 일반적인 호흡일 뿐 고정 규칙이 아니다.
-10. 한계·부작용·미확정 사항은 충분한 소개와 설명 뒤에 배치한다.
-11. 제목과 Deck은 COHERENCE PASS와 STYLE & ARGUMENT PASS가 끝난 뒤 만든다.
-12. LIFE SCENE은 정책 항목을 인물에게 대입하지 않고 `ACTION → CONSEQUENCE`의 연속 장면으로 쓴다.
-13. LIFE SCENE의 정책 해설과 사실 수치는 원칙적으로 `SCENARIO NOTE`에서 처리한다.
-14. PROLOGUE는 전체 원고 완성 뒤 작성하지만 독자가 뒤의 기사를 모르는 시점에서 쓴다.
-15. EDITOR'S PICK은 본문을 읽은 뒤 만나는 에필로그이며 Sources 직전에 둔다.
-
-## 기준 문서
+새 대화에서는 반드시 현재 `main`의 다음 문서를 기준으로 한다.
 
 1. `editorial/ARTICLE_WRITING_STANDARD.md`
 2. `editorial/WEEKLY_RUNBOOK.md`
 3. `editorial/EDITORIAL_STANDARD.md`
-4. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
-5. `editorial/LIFE_SCENE_STANDARD.md`
-6. `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`
-7. `editorial/VOICE_AND_TONE.md`
-8. `editorial/SOURCE_POLICY.md`
-9. `editorial/IMAGE_DIRECTION.md`
-10. `editorial/LAYOUT_SYSTEM.md`
-11. `editorial/PUBLISHING_PIPELINE.md`
-12. `templates/TEMPLATE_CONTRACT.md`
-13. `templates/NAVIGATION_CONTRACT.md`
+4. `editorial/ISSUE_QUALITY_GATE.md`
+5. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
+6. `editorial/LIFE_SCENE_STANDARD.md`
+7. `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`
+8. `editorial/VOICE_AND_TONE.md`
+9. `editorial/SOURCE_POLICY.md`
+10. `templates/TEMPLATE_CONTRACT.md`
+11. `templates/NAVIGATION_CONTRACT.md`
 
-## 이전 테스트 처리
+## 새 대화 실행 규칙
 
-이전 테스트 초안과 과거 커밋의 주제 선택은 현재 기사 주제 선정 기준으로 사용하지 않는다. 현재 `main`의 현행 기준과 `WORK_STATE`, 해당 회차의 새 리서치 결과만으로 다음 단계를 결정한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 08 PROLOGUE부터 진행**한다.
+
+- 01~07 수정 금지
+- 삭제된 이전 08/09 시험 원고 복원 금지
+- PROLOGUE를 먼저 완성하고 REVIEW 통과
+- 그다음 EDITOR'S PICK 작성 및 REVIEW
+- 두 원고가 COMPLETE가 된 뒤에만 지면 설계로 이동
