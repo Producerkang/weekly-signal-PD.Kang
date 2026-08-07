@@ -11,7 +11,7 @@
 3. `editorial/ISSUE_QUALITY_GATE.md`
 4. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
 5. `editorial/LIFE_SCENE_STANDARD.md`
-6. `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`
+6. `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`
 7. `editorial/VOICE_AND_TONE.md`
 8. `editorial/SOURCE_POLICY.md`
 9. `editorial/IMAGE_DIRECTION.md`
@@ -22,7 +22,7 @@
 
 LIFE SCENE 제작에서는 `LIFE_SCENE_STANDARD.md`가 세부 제작 로직을 소유하며 다른 일반 문체 지침보다 우선한다.
 
-PROLOGUE와 EDITOR'S PICK은 `HEADLINE_AND_EDITORS_PICK_STANDARD.md`의 독립 역할과 독서 시점을 따른다.
+PROLOGUE와 EDITOR'S AFTERWORD는 `HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`의 독립 역할과 독서 시점을 따른다.
 
 HTML 제작 단계에서 `templates/ISSUE_TEMPLATE.html`을 시작 셸로 사용한다.
 
@@ -33,7 +33,7 @@ HTML 제작 단계에서 `templates/ISSUE_TEMPLATE.html`을 시작 셸로 사용
 - `work/YYYY-MM-DD/` = 제작 상태와 검증·흐름설계·원고 작업
 - `archive/YYYY-MM-DD/` = 독자에게 공개되는 완성 발행본
 
-`work/`는 GitHub Pages에서 제외한다. 제작 중 파일을 저장소에 남겨 턴 사이의 작업 상태를 이어갈 수 있지만, 발행본과 섞지 않는다.
+`work/`는 GitHub Pages에서 제외한다.
 
 기본 작업 구조:
 
@@ -67,28 +67,24 @@ work/
    │  └─ ARTICLE.md
    ├─ 08_prologue/
    │  └─ ARTICLE.md
-   └─ 09_editors_pick/
+   └─ 09_editor_afterword/
       └─ ARTICLE.md
 ```
 
 Git은 빈 폴더를 보존하지 않으므로 아직 시작하지 않은 기사 폴더는 미리 만들지 않아도 된다.
 
-일반 기사의 `VERIFY.md`, `FLOW.md`, `ARTICLE.md` 역할은 `ARTICLE_WRITING_STANDARD.md`를 따른다. LIFE SCENE의 `SCENE_MAP.md`와 `ARTICLE.md` 역할은 `LIFE_SCENE_STANDARD.md`를 따른다.
-
 ## 3. 작업 상태
 
 각 회차의 `WORK_STATE.md`가 현재 진행 상태를 소유한다.
-
-기본 상태:
 
 - `PENDING`: 아직 시작하지 않음
 - `VERIFYING`: 검증·리서치 중
 - `FLOWING`: 독자 이해 순서와 문단 논리 설계 중
 - `WRITING`: 독자용 기사 작성·분석 보강 중
-- `IN_REVIEW`: COHERENCE·STYLE & ARGUMENT·사실·완결성 검수 중
-- `COMPLETE`: 다음 기사로 이동 가능
+- `IN_REVIEW`: 검수 중
+- `COMPLETE`: 다음 단계로 이동 가능
 
-현재 기사 하나를 `COMPLETE`로 닫기 전에는 다음 일반 기사 본문을 작성하지 않는다.
+현재 일반 기사 하나를 COMPLETE로 닫기 전에는 다음 일반 기사 본문을 작성하지 않는다.
 
 ## 4. 기본 구성
 
@@ -102,14 +98,12 @@ Git은 빈 폴더를 보존하지 않으므로 아직 시작하지 않은 기사
 - DEEP DIVE 1~2편
 - LIFE SCENE 1편
 - PROLOGUE 1편
-- EDITOR'S PICK 1편
+- EDITOR'S AFTERWORD 1편
 - Sources
 
-Cover Story가 특정 분야를 다뤄도 해당 분야 일반 기사를 생략하지 않는다. 기사 후보가 부족하면 리서치를 계속한다.
+Cover Story가 특정 분야를 다뤄도 해당 분야 일반 기사를 생략하지 않는다.
 
 ## 5. 회차 후보 선정
-
-집필 전에 대상 주간의 이슈를 분야별로 훑고 기본 기사 후보를 잡는다.
 
 1. 각 기본 분야에서 후보를 최소 2개 이상 검토한다.
 2. 핵심 사실과 1차 자료가 존재하는지 확인한다.
@@ -117,7 +111,7 @@ Cover Story가 특정 분야를 다뤄도 해당 분야 일반 기사를 생략�
 4. Cover Story와 분야별 기사가 과도하게 겹치지 않는지 확인한다.
 5. Cover Story와 4개 분야의 주제만 확정한다.
 
-이 단계에서 모든 기사의 상세 분석 프레임·제목·결론을 미리 만들지 않는다. 기사별 심층 리서치는 해당 기사의 차례가 왔을 때 수행한다.
+이 단계에서 모든 기사의 상세 분석 프레임·제목·결론을 미리 만들지 않는다.
 
 ## 6. 일반 기사 직렬 제작
 
@@ -127,51 +121,37 @@ Cover Story가 특정 분야를 다뤄도 해당 분야 일반 기사를 생략�
 
 기사 하나마다 다음을 끝낸 뒤 다음 기사로 이동한다.
 
-1. `WORK_STATE.md`를 현재 기사 `VERIFYING`으로 변경
-2. 해당 기사 폴더와 `VERIFY.md` 생성
-3. 사건·수치·상태·절차·예외·영향·실제 반론·후속자료 검증
-4. 검증이 충분하면 `FLOW.md`를 만들고 상태를 `FLOWING`으로 변경
-5. 기사 중심 질문 1개와 5~7개 안팎의 설명 단위를 선형 순서로 설계
-6. 각 설명 단위가 직전 단위에서 무엇을 받아 다음 단위로 무엇을 넘기는지 확인
-7. 각 단위가 `무엇을 부정할 것인가`가 아니라 `무엇을 이해시킬 것인가`로 설계됐는지 확인
-8. FLOW가 닫히면 `ARTICLE.md` 작성
-9. 독자용 설명을 먼저 완결하고 기사 후반에 필요한 분석·한계·부작용을 보강
-10. COHERENCE PASS에서 문장·문단·문단 사이 연결과 과도한 병렬 나열을 검사
-11. 같은 사고 단위를 한두 문장씩 과도하게 잘게 끊었는지, 반대로 서로 다른 중심 질문을 한 문단에 밀어 넣었는지 검사
-12. STYLE & ARGUMENT PASS에서 부정·대조가 논증의 한정·실제 반론 검토·조건 명시라는 기능을 갖는지 검사
-13. 부정적 논조를 만들기 위해 독자의 오해나 가상의 반박 대상을 구성한 문장을 삭제하거나 재작성
-14. 마지막에 제목과 Deck 작성
-15. ARTICLE REVIEW
-16. 통과하면 `COMPLETE`
-
-상세 규칙은 `ARTICLE_WRITING_STANDARD.md`가 소유한다.
+1. 상태를 VERIFYING으로 변경
+2. `VERIFY.md` 생성 및 사건·수치·상태·절차·예외·영향·반론·후속자료 검증
+3. 검증이 충분하면 `FLOW.md`를 만들고 FLOWING으로 변경
+4. 기사 중심 질문과 설명 단위를 선형 순서로 설계
+5. FLOW가 닫히면 `ARTICLE.md` 작성
+6. 설명을 먼저 완결하고 후반에 분석·한계·부작용 보강
+7. COHERENCE PASS
+8. STYLE & ARGUMENT PASS
+9. 마지막에 제목과 Deck 작성
+10. ARTICLE REVIEW
+11. 통과하면 COMPLETE
 
 ### FLOW와 COHERENCE의 핵심
 
 - 필요한 정보를 모두 넣는 것보다 독자가 한 줄로 따라갈 수 있게 배열하는 것을 우선한다.
 - 같은 급의 사실을 옆에 늘어놓지 않는다.
 - 여러 제도·기관·협상 트랙이 있으면 하나를 먼저 설명해 닫은 뒤 다음 축으로 이동한다.
-- 앞 문단의 결론이 다음 문단의 질문·전제·시간 변화·작동 단계가 되게 한다.
 - 문단은 하나의 중심 질문 또는 논리 단위를 끝까지 설명한다.
-- 일반적인 호흡은 3~5문장 정도가 자연스럽지만 문장 수를 강제하지 않는다.
 - 한두 문장마다 습관적으로 문단을 끊지 않는다.
-- 새 문단은 주제·시간·원인·행위주체·작동 단계·분석 단계가 실제로 바뀔 때 연다.
 
 ### 부정과 대조의 핵심
 
 - 설명과 논증이 먼저다.
 - 부정·대조는 이미 세운 주장의 범위를 한정하거나 실제 반론을 검토할 때 사용한다.
-- 상태 차이가 중요하면 각각의 정의와 관계를 먼저 설명한다.
 - 독자가 잘못 알고 있을 것이라는 가정에서 기사 단위를 만들지 않는다.
-- 부정문이 없으면 논증의 정확도가 떨어지는지 확인한다. 그렇지 않다면 삭제하거나 긍정형 설명으로 바꾼다.
 
-모든 일반 기사가 동일한 소제목 수와 문단 리듬을 갖지 않게 한다. 본문이 디자인·카드·이미지 없이도 충분히 읽히고, 정보가 병렬적으로 퍼지지 않을 때만 COMPLETE로 인정한다.
-
-이 단계에서는 DEEP DIVE, LIFE SCENE, PROLOGUE, EDITOR'S PICK, 이미지와 HTML을 먼저 만들지 않는다.
+이 단계에서는 DEEP DIVE, LIFE SCENE, PROLOGUE, EDITOR'S AFTERWORD, 이미지와 HTML을 먼저 만들지 않는다.
 
 ## 7. 일반 기사 전체 비교
 
-Cover Story와 Economy·Politics·Society·Tech가 모두 `COMPLETE`가 된 뒤 처음으로 다섯 기사를 한꺼번에 비교한다.
+Cover Story와 Economy·Politics·Society·Tech가 모두 COMPLETE가 된 뒤 처음으로 다섯 기사를 한꺼번에 비교한다.
 
 - 주제와 설명 중복
 - 같은 결론·수사 반복
@@ -180,13 +160,10 @@ Cover Story와 Economy·Politics·Society·Tech가 모두 `COMPLETE`가 된 뒤 
 - 빠진 배경지식
 - 기사마다 설명 흐름이 선형적으로 이어지는지
 - 기사별 FLOW가 같은 템플릿으로 수렴하지 않는지
-- 짧은 문단이 습관적으로 반복되는지
 - 부정·대조가 기사 기본 추진력으로 반복되는지
-- 각 부정문이 논증 강화·한정이라는 실제 기능을 갖는지
-- 독자의 오해를 가정해 만든 반박문이 있는지
 - 한 호 전체 정보 밀도
 
-수정이 필요하면 해당 기사만 `IN_REVIEW`로 되돌리고 필요한 경우 FLOW부터 다시 설계한다.
+수정이 필요하면 해당 기사만 IN_REVIEW로 되돌린다.
 
 ## 8. DEEP DIVE
 
@@ -198,56 +175,72 @@ Cover Story와 Economy·Politics·Society·Tech가 모두 `COMPLETE`가 된 뒤 
 6. 같은 정의·원인·경로·결론을 반복하지 않는다.
 7. 반론은 논증을 시험하기 위해 사용하며 존재하지 않는 반대 입장을 만들지 않는다.
 
-차이를 만들 수 없으면 DEEP DIVE를 억지로 붙이지 않고 다른 질문이나 다른 기사를 선택한다.
+차이를 만들 수 없으면 다른 질문이나 다른 기사를 선택한다.
 
 ## 9. LIFE SCENE
 
-LIFE SCENE은 일반 기사 문체를 생활 사례에 적용하는 단계가 아니다. `editorial/LIFE_SCENE_STANDARD.md`의 독립 제작 알고리즘을 따른다.
-
-제작 순서:
+LIFE SCENE은 `editorial/LIFE_SCENE_STANDARD.md`의 독립 제작 알고리즘을 따른다.
 
 `SUBJECT SELECT → FACT BOUNDARY → CHARACTER & ORDINARY PLAN → SCENE MAP → NARRATIVE DRAFT → CAUSALITY PASS → EXPLANATION LEAK PASS → SCENARIO NOTE → LIFE SCENE REVIEW → COMPLETE`
 
-1. 일반 기사와 DEEP DIVE가 완성된 뒤 생활 장면으로 전환할 가치가 가장 높은 주제 하나를 고른다.
-2. 실제 정책·서비스의 시간·범위·조건을 `FACT BOUNDARY`로 확정한다.
-3. 구체적인 가상 인물 또는 한 가정과 그날의 평범한 원래 계획을 만든다.
-4. `07_life_scene/SCENE_MAP.md`를 먼저 작성한다.
-5. SCENE MAP에서 `상황/장애 → 인물의 행동 → 직접 결과 → 다음 장면이 필요한 이유`의 인과 사슬을 만든다.
-6. 대기·이동·비용·정보 부족·일정 변경·돌봄·책임 공백을 미리 목표 개수로 정하지 않는다. 인물이 움직이는 과정에서 자연스럽게 생길 때만 사용한다.
-7. 본문은 구체적 시간·장소·행동에서 시작하며, 정책명·전국 수치·행정 해설이 이야기를 끌고 가지 않게 한다.
-8. `CAUSALITY PASS`에서 각 주요 장면의 결과가 다음 장면을 실제로 만드는지 검사한다.
-9. `EXPLANATION LEAK PASS`에서 장면마다 붙은 정책 해설, 기사 재요약, 경우의 수 설명을 제거하거나 SCENARIO NOTE로 이동한다.
-10. 결말은 정책 평가문이 아니라 달라진 일정·물건·이동·대기 종료 같은 구체적인 생활 장면으로 닫는다.
-11. 마지막 `SCENARIO NOTE`에서 가상 범위와 실제 정책 사실을 명확히 분리한다.
-12. `LIFE_SCENE_STANDARD.md`의 STORY / POLICY BOUNDARY / ANTI-CHECKLIST 검수를 모두 통과해야 COMPLETE로 인정한다.
+핵심:
 
-현재 골든 레퍼런스는 ISSUE 01 「세 번째 병원에서야 이름이 불렸다」와 ISSUE 02 「아홉 시에 문이 열리는데, 엄마는 여덟 시 이십 분에 집을 나서야 했다」다. 소재·문단 수·시간표를 복제하지 않고 `인물의 목표 → 사건 → 행동 → 결과 → 다음 사건 → 생활의 변화`라는 공통 원리만 참고한다.
+- 구체적인 가상 인물과 평범한 원래 계획을 만든다.
+- `상황/장애 → 행동 → 직접 결과 → 다음 장면`의 인과 사슬을 만든다.
+- 생활 마찰을 목표 개수로 정하지 않는다.
+- 본문은 시간·장소·행동이 전진해야 한다.
+- 정책명·전국 수치·행정 해설은 이야기를 지배하지 않는다.
+- 마지막 SCENARIO NOTE에서 가상 범위와 실제 사실을 구분한다.
 
 ## 10. PROLOGUE
 
-PROLOGUE는 **독서 순서에서는 앞에 있지만 제작 순서에서는 뒤에 쓰는 프리뷰**다.
+PROLOGUE는 **독서 순서에서는 앞에 있지만 제작 순서에서는 뒤에 쓰는 선택적 프리뷰**다.
 
-1. 일반 기사·DEEP DIVE·LIFE SCENE이 모두 COMPLETE가 된 뒤 작성한다.
-2. 전체 완성 원고를 읽고 이번 호에 실제로 담긴 사건과 질문만 추린다.
-3. 독자는 뒤의 기사를 아직 읽지 않았다고 가정한다.
-4. 각 기사의 결론을 요약하지 않고 `무슨 일이 있었고, 뒤에서 어떤 질문을 따라갈 것인가`를 보여준다.
-5. 기사들을 억지로 하나의 공통 교훈으로 묶지 않는다.
-6. 직전 호를 읽었다고 가정하지 않는다. 실제 연속 기획이 아니라면 `이번 호에도`, `지난 호에 이어` 같은 연결 표현을 쓰지 않는다.
-7. 기사 제목·Deck을 그대로 재나열하지 않는다.
-8. 마지막은 본격적인 기사 묶음으로 독서를 넘긴다.
+일반 기사·DEEP DIVE·LIFE SCENE이 모두 COMPLETE가 된 뒤 작성한다.
 
-상세 기준은 `HEADLINE_AND_EDITORS_PICK_STANDARD.md`의 PROLOGUE 항목이 소유한다.
+제작 로직:
 
-## 11. EDITOR'S PICK
+`ISSUE READBACK → SELECTIVE PREVIEW → TEASER DETAIL → NATURAL ARTICLE INTRO → COVERAGE PRESSURE PASS → SPOILER PASS → HANDOFF`
 
-EDITOR'S PICK은 전체 원고가 완성된 뒤 쓰는 **편집 에필로그**다.
+핵심:
 
-- 실제로 판단이 바뀐 한 지점 또는 오래 남은 한 사실을 중심축으로 고른다.
-- 모든 기사를 언급하려 하지 않는다.
-- 기사명보다 편집 과정의 판단과 인상을 쓴다.
-- 한 문단에 기사 하나씩 배치하지 않는다.
-- 최종 지면에서는 모든 일반 기사와 연결된 DEEP DIVE가 끝난 뒤, Sources 바로 앞에 배치한다.
-- 독자가 본문을 이미 읽었다는 전제는 허용하지만 본문 요약으로 되돌아가지 않는다.
+- 독자는 뒤의 기사를 아직 읽지 않았다고 가정한다.
+- 모든 기사와 모든 분야를 한 번씩 언급할 의무가 없다.
+- Contents가 전체 목록을 맡고 PROLOGUE는 선택과 강조를 맡는다.
+- 기사마다 같은 분량이나 대표 숫자를 배정하지 않는다.
+- 한 문단에서 여러 토픽을 빠르게 소환해 커버리지를 채우지 않는다.
+- 분량을 늘리기 위해 공통 주제·공통 질문·공통 교훈·`왜 중요한가` 단락을 만들지 않는다.
+- 좋은 장면·숫자·기사 소개의 해상도를 높이는 방식으로만 확장한다.
+- 기사 결론을 미리 소진하지 않는다.
+
+상세 기준은 `HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`의 PROLOGUE 항목이 소유한다.
+
+## 11. EDITOR'S AFTERWORD
+
+EDITOR'S AFTERWORD는 한 호의 마지막 편집 원고로 쓰는 **에디터 후기**다.
+
+일반 기사·DEEP DIVE·LIFE SCENE·PROLOGUE가 모두 닫힌 뒤 작성한다.
+
+제작 로직:
+
+`ISSUE READBACK → MEMORY TRACE → REFLECTION DRAFT → RECAP CUT → METHOD REPORT CUT → AFTERTASTE PASS → COMPLETE`
+
+핵심:
+
+- PROLOGUE와 달리 제작 후 시점을 숨기지 않는다.
+- `이번 호를 만들면서`, `원고를 닫고 나니` 같은 회고 표현을 사용할 수 있다.
+- `이번 호의 PICK`을 만들지 않는다.
+- 대표 기사·대표 숫자·대표 문장 하나를 반드시 고르지 않는다.
+- 모든 기사를 하나의 공통 교훈으로 묶지 않는다.
+- 실제로 남은 생각·망설임·인상·미완의 질문을 자연스럽게 쓴다.
+- 한 가지에 오래 머물 수도 있고 두세 가지 생각이 이어질 수도 있다.
+- 기사별 요약을 하지 않는다.
+- VERIFY·FLOW·검수 절차를 설명하는 편집 방법론 보고서로 만들지 않는다.
+- 억지 질문, 다음 호 예고, 감사 인사로 끝낼 의무가 없다.
+
+최종 지면에서는 모든 일반 기사와 연결된 DEEP DIVE 뒤, Sources 바로 앞에 배치한다.
+
+상세 기준은 `HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`의 EDITOR'S AFTERWORD 항목이 소유한다.
 
 ## 12. 지면 설계
 
@@ -265,21 +258,18 @@ EDITOR'S PICK은 전체 원고가 완성된 뒤 쓰는 **편집 에필로그**�
 2. 표지·Cover Story·각 분야 기사·DEEP DIVE·LIFE SCENE에 서로 다른 역할과 구도를 부여한다.
 3. Cover 장변 1800px 이상, 나머지 주요 이미지 장변 1600px 이상을 사용한다.
 4. 벡터·SVG·플랫·아이콘·아이소메트릭 이미지를 사용하지 않는다.
-5. 외부 이미지 URL을 직접 연결하지 않고 회차의 `assets/`에 저장한다.
-6. 각 파일을 실제로 열어 얼굴·손·장비·문자 오류와 디테일을 확인한다.
+5. 외부 이미지 URL을 직접 연결하지 않는다.
+6. 각 파일을 실제로 열어 생성 오류와 디테일을 확인한다.
 7. 데스크톱과 모바일 크롭을 확인한다.
-8. 직전 회차보다 디테일·장면 구체성·기사별 차별성 중 하나 이상을 개선한다.
-
-이미지에 실패하면 임시 그래픽으로 대체하지 않고 다시 생성한다.
 
 ## 14. HTML 제작
 
 1. `ISSUE_TEMPLATE.html`을 시작점으로 사용하되 그대로 복제한 결과를 완성본으로 보지 않는다.
 2. `work/YYYY-MM-DD/`의 COMPLETE 원고만 가져온다.
 3. 완성된 본문·CSS·최소 JavaScript를 회차별 `archive/YYYY-MM-DD/index.html` 하나에 넣는다.
-4. 기본 독서 순서는 `Cover → Contents → LIFE SCENE → PROLOGUE → 본 기사와 연결 DEEP DIVE → EDITOR'S PICK → Sources`다.
+4. 기본 독서 순서는 `Cover → Contents → LIFE SCENE → PROLOGUE → 본 기사와 연결 DEEP DIVE → EDITOR'S AFTERWORD → Sources`다.
 5. DEEP DIVE는 관련 일반 기사 바로 뒤에 둔다.
-6. EDITOR'S PICK은 모든 기사·DEEP DIVE가 끝난 뒤 Sources 바로 앞에 둔다.
+6. EDITOR'S AFTERWORD는 모든 기사·DEEP DIVE가 끝난 뒤 Sources 바로 앞에 둔다.
 7. 목차·내비게이션·DOM 순서를 일치시킨다.
 8. 기본 분야 기사 누락을 다시 확인한다.
 9. 미사용 클래스, 숨겨진 모듈과 임시 주석을 삭제한다.
@@ -298,11 +288,13 @@ EDITOR'S PICK은 전체 원고가 완성된 뒤 쓰는 **편집 에필로그**�
 
 - Cover 제목 안전영역과 이미지 선명도
 - 기본 구성과 Contents 일치
-- LIFE SCENE에서 PROLOGUE로의 전환이 자연스러운지
+- LIFE SCENE에서 PROLOGUE로의 전환
 - PROLOGUE가 본문 결론을 미리 소진하지 않는지
+- PROLOGUE가 전 기사 커버리지 압박으로 과밀해지지 않았는지
 - 기사별 시각적 차이
 - DEEP DIVE 중복 여부
-- EDITOR'S PICK이 본문 뒤의 에필로그로 자연스러운지
+- EDITOR'S AFTERWORD가 실제 후기처럼 자연스러운지
+- EDITOR'S AFTERWORD가 기사 요약이나 편집 방법론 보고서로 변하지 않았는지
 - LIFE SCENE 서사 흐름
 - 이미지 디테일과 크롭
 - 표·카드·제목 오버플로
@@ -319,7 +311,7 @@ python -m pip install -r requirements-tools.txt
 python tools/validate_repository.py
 ```
 
-이 검사는 외부 이미지, 분할 HTML, 누락 파일과 잘못된 링크 같은 기술적 실수를 찾는 용도다. 기사 깊이, 이미지 미감과 지면 완성도를 판정하지 않는다.
+이 검사는 외부 이미지, 분할 HTML, 누락 파일과 잘못된 링크 같은 기술적 실수를 찾는 용도다.
 
 ## 17. 비교 검수
 
@@ -331,7 +323,7 @@ python tools/validate_repository.py
 - 모바일에서 읽기 흐름이 나아졌는가
 - 긴 블로그 문서가 아니라 매거진으로 보이는가
 
-이전 회차 코드는 복제하지 않는다. 이전 회차보다 나아진 점이 없거나 품질이 낮으면 발행하지 않는다.
+이전 회차 코드는 복제하지 않는다.
 
 ## 18. 최종 반영
 
@@ -349,10 +341,8 @@ GitHub Actions, 자동 배포와 자동 병합은 사용하지 않는다.
 - 실패본을 `archive/`에 남기지 않는다.
 - 실패한 기사만 `work/YYYY-MM-DD/`에서 다시 검증·작성한다.
 - 읽기 흐름이 실패한 일반 기사는 사실을 더 추가하기 전에 FLOW와 문단 경계를 다시 설계한다.
-- LIFE SCENE이 설명문처럼 실패하면 문장을 꾸미지 말고 `SCENE_MAP.md`의 인과 사슬부터 다시 만든다.
-- LIFE SCENE에서 생활 마찰을 항목별로 채우는 구조가 보이면 해당 체크리스트를 버리고 `ACTION → CONSEQUENCE`로 재설계한다.
-- PROLOGUE가 제작 후기처럼 보이거나 기사의 답을 먼저 말하면 독자 시점에서 다시 작성한다.
-- EDITOR'S PICK이 앞쪽 프리뷰처럼 쓰였거나 기사별 요약이 되면 에필로그 역할에서 다시 작성한다.
+- LIFE SCENE이 설명문처럼 실패하면 `SCENE_MAP.md`의 인과 사슬부터 다시 만든다.
+- PROLOGUE가 제작 후기·기사 요약·전 기사 커버리지 압박으로 실패하면 선택적 프리뷰 로직에서 다시 쓴다.
+- EDITOR'S AFTERWORD가 기사 요약·대표 항목 선정문·편집 방법론 보고서로 실패하면 실제 제작 후기 역할에서 다시 쓴다.
 - 부정문이 과도한 경우 표현만 치환하지 말고 그 부정이 논증에 필요한지부터 다시 판정한다.
-- 기술 조건만 형식적으로 맞추는 우회 수정을 하지 않는다.
 - 이미지가 준비되지 않았거나 실제 렌더링을 확인하지 못한 상태는 발행 불가다.
