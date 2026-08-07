@@ -16,7 +16,7 @@
 
 1. Contents
 2. LIFE SCENE
-3. EDITOR'S PICK
+3. PROLOGUE
 4. Cover Story
 5. Cover Story에 연결된 선택적 DEEP DIVE
 6. Economy
@@ -29,15 +29,20 @@
 13. Tech에 연결된 선택적 DEEP DIVE
 14. 선택적 DATA
 15. 선택적 WATCH
-16. Sources
+16. EDITOR'S PICK
+17. Sources
 
 DEEP DIVE는 한데 모아 후반부로 보내지 않고 심화 대상 기사 바로 뒤에 둔다.
+
+PROLOGUE는 기사 전체가 완성된 뒤 작성하지만 독서 순서에서는 본격적인 기사 묶음 앞에 둔다.
+
+EDITOR'S PICK은 독서 순서에서 모든 기사와 DEEP DIVE 뒤, Sources 바로 앞에 둔다.
 
 ## 3. 상단 라벨
 
 - `Contents`
 - `Life`
-- `Editor's Pick`
+- `Prologue`
 - `Cover`
 - `Economy`
 - `Politics`
@@ -46,6 +51,7 @@ DEEP DIVE는 한데 모아 후반부로 보내지 않고 심화 대상 기사 �
 - `Deep Dive · 분야 또는 주제`
 - `Data`
 - `Watch`
+- `Editor's Pick`
 
 DEEP DIVE가 여러 편이면 같은 라벨만 반복하지 말고 분야나 핵심 주제를 덧붙인다.
 
@@ -58,6 +64,8 @@ DEEP DIVE가 여러 편이면 같은 라벨만 반복하지 말고 분야나 핵
 ## 5. 검수
 
 - Cover·Economy·Politics·Society·Tech가 모두 있는가
+- LIFE SCENE 다음에 PROLOGUE가 있고 그 뒤 본격적인 기사 묶음이 시작되는가
+- EDITOR'S PICK이 모든 기사와 DEEP DIVE 뒤, Sources 바로 앞에 있는가
 - 목차·내비게이션·DOM 순서가 같은가
 - 모든 링크가 실제 섹션으로 이동하는가
 - DEEP DIVE가 심화 대상 기사 바로 뒤에 있는가
