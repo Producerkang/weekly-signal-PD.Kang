@@ -21,8 +21,8 @@
 
 ## 진행 상태
 
-- COVER STORY: WRITING
-- ECONOMY: PENDING
+- COVER STORY: COMPLETE
+- ECONOMY: VERIFYING
 - POLITICS: PENDING
 - SOCIETY: PENDING
 - TECH: PENDING
@@ -33,9 +33,9 @@
 
 ## 다음 작업
 
-`01_cover/VERIFY.md` 검증 결과를 바탕으로 `01_cover/ARTICLE.md`를 독자용 원고로 처음부터 작성한다.
+`02_economy/VERIFY.md`에서 2026년 7월 27일 8차 석유 최고가격 결정의 적용 대상·가격 단위·기간·법적 성격을 먼저 확인한다.
 
-사건·위기경보의 의미·기존 폭염 대응체계·이번 격상 뒤의 운영 변화·취약계층과 야외노동 현장에 도달하는 경로를 먼저 설명하고, 기사 후반에서 집행의 한계와 다음 확인 지표를 다룬다. 내부 검증의 대조 문법은 본문에 복사하지 않는다.
+정유사 공급가격 상한과 주유소 소비자가격을 분리하고, 국제제품가격·환율·재고·유통비용이 소비자가격으로 전달되는 경로와 비용 부담 주체를 검증한 뒤에만 `02_economy/ARTICLE.md`를 작성한다.
 
 ## 현재 핵심 교정 원칙
 
