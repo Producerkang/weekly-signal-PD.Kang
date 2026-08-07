@@ -21,7 +21,7 @@
 
 ## 진행 상태
 
-- COVER STORY: PENDING
+- COVER STORY: VERIFYING
 - ECONOMY: PENDING
 - POLITICS: PENDING
 - SOCIETY: PENDING
@@ -33,9 +33,9 @@
 
 ## 다음 작업
 
-`01_cover/VERIFY.md`를 생성하고 Cover Story 검증부터 시작한다.
+`01_cover/VERIFY.md`에 2026년 7월 27일 폭염 위기경보 ‘심각’ 격상과 중앙재난안전대책본부 가동의 사실 구조를 검증한다.
 
-검증이 끝난 뒤 `01_cover/ARTICLE.md`에 독자용 최종 기사만 작성한다. 기존의 `PASS 1`, `PASS 2`, `오해 교정` 중심 구조는 사용하지 않는다.
+행정안전부의 위기경보·중대본 조치, 질병관리청의 온열질환 감시자료, 고용노동부의 폭염 작업 규칙 등 서로 다른 1차 자료 역할을 분리해 확인한 뒤에만 `01_cover/ARTICLE.md` 작성으로 이동한다.
 
 ## 현재 핵심 교정 원칙
 
