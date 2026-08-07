@@ -22,8 +22,8 @@
 ## 진행 상태
 
 - COVER STORY: COMPLETE
-- ECONOMY: WRITING
-- POLITICS: PENDING
+- ECONOMY: COMPLETE
+- POLITICS: VERIFYING
 - SOCIETY: PENDING
 - TECH: PENDING
 - CROSS_ARTICLE_REVIEW: PENDING
@@ -33,9 +33,9 @@
 
 ## 다음 작업
 
-`02_economy/VERIFY.md`의 검증 결과를 바탕으로 `02_economy/ARTICLE.md`를 독자용 원고로 작성한다.
+`03_politics/VERIFY.md`에서 2026년 7월 27일 한·브라질 정상회담의 합의 문서, 양국 경제·통상 협의 채널, 한·메르코수르 무역협정 협상의 현재 상태를 각각 분리해 검증한다.
 
-8차 최고가격의 정확한 적용대상과 기간을 먼저 설명하고, 오피넷의 정유사 공급가격·주유소 판매가격 정의를 이용해 가격이 유통단계를 거쳐 소비자에게 전달되는 경로를 보여준다. 법적 손실지원 가능성과 수급·가격 왜곡 위험은 기본 작동 설명 뒤 기사 후반에서 다룬다.
+정상 공동발표·MOU·위원회 설치 또는 운영·무역협상 재개 의향·실제 협상 라운드·협정 서명·비준·발효를 단계별로 구분한 뒤에만 `03_politics/ARTICLE.md`를 작성한다.
 
 ## 현재 핵심 교정 원칙
 
