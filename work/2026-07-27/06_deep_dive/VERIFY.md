@@ -98,14 +98,20 @@ CMC 결정 32/00은 회원국들이 역외 제3국 또는 국가블록과 관세
 
 2026년 6월 메르코수르 정상 공동성명은 볼리비아를 `Estado Parte`로 포함한다. 동시에 메르코수르 국가 안내는 볼리비아가 2024년 비준서 기탁 뒤 최대 4년 동안 공동 규범과 대외협정 체계를 편입하는 이행기간에 있으며, 기존 대외협정 편입과 진행 중 외부협상 참여도 가입 절차의 일부라고 설명한다.
 
+회원국 지위와 개별 대외협상의 당사자 범위를 자동으로 같다고 볼 수도 없다. 2026년 6월 30일 정상 공동성명에는 볼리비아가 Estado Parte로 참여했지만, 같은 날 발표된 메르코수르–일본 경제동반자협정 협상 개시문은 아르헨티나·브라질·파라과이·우루과이 정부와 일본 정부를 협상 당사자로 명시했다. 이는 볼리비아의 가입 이행이 진행되는 동안 개별 대외협상 참여 범위를 해당 협상 문서에서 다시 확인해야 한다는 실제 사례다.
+
 한·메르코수르 협상은 2018년 아르헨티나·브라질·파라과이·우루과이 중심으로 시작됐다. 공개된 현재 자료만으로는 재개될 한·메르코수르 협상에서 볼리비아가 어떤 형식으로 참여하고 최종 협정에 어떤 방식으로 편입될지 확정하지 않는다.
 
-따라서 DEEP DIVE에서는 `메르코수르 4개국` 또는 `5개국이 모두 같은 조건으로 협상한다`고 단순화하지 않는다. 필요한 경우 `기존 한·메르코수르 협상 참여국`과 `현재 메르코수르 회원국 체계`를 구분한다.
+따라서 DEEP DIVE에서는 `메르코수르 4개국` 또는 `5개국이 모두 같은 조건으로 협상한다`고 단순화하지 않는다. 필요한 경우 `기존 한·메르코수르 협상 참여국`과 `현재 메르코수르 회원국 체계`, `개별 대외협상의 명시적 당사자`를 구분한다.
 
 - 주장 분류: 현재 제도 상태 + 미확정 사항
 - 근거 역할: 회원국 범위 예외
-- 1차 자료: MERCOSUR, 「Países」
+- 1차 자료 1: MERCOSUR, 「Países」
 - 원문: https://www.mercosur.int/acerca-del-mercosur/paises
+- 1차 자료 2: MERCOSUR, 「Comunicado Conjunto de los presidentes de los Estados Partes del MERCOSUR」, 2026-06-30
+- 원문: https://www.mercosur.int/comunicado-conjunto-de-los-presidentes-de-los-estados-partes-del-mercosur-3
+- 1차 자료 3: MERCOSUR, 「Lanzamiento de las negociaciones para un Acuerdo de Asociación Económica entre los Estados Partes del MERCOSUR y Japón」, 2026-06-30
+- 원문: https://www.mercosur.int/lanzamiento-de-las-negociaciones-para-un-acuerdo-de-asociacion-economica-entre-los-estados-partes-del-mercosur-y-japon
 
 ## 새 핵심 주장 후보
 
