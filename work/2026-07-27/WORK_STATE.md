@@ -6,13 +6,13 @@
 
 ## 현재 재개 지점
 
-**다음 작업은 `08 PROLOGUE` 백지 제작이다.**
+**다음 작업은 `09 EDITOR'S AFTERWORD` 백지 제작이다.**
 
-01~07은 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
+01~08은 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
-08 PROLOGUE와 09 EDITOR'S AFTERWORD는 모두 기존 원고를 기준으로 수정하지 않는다. 현행 제작 기준만 읽고 처음부터 새로 만든다.
+09 EDITOR'S AFTERWORD는 기존 EDITOR'S PICK 원고나 삭제된 과거 원고를 기준으로 수정하지 않는다. 현행 제작 기준만 읽고 처음부터 새로 만든다.
 
-08 PROLOGUE가 COMPLETE가 된 뒤에만 09 EDITOR'S AFTERWORD를 시작한다. 08과 09가 모두 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
+09 EDITOR'S AFTERWORD가 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
 
 ## 진행 상태
 
@@ -24,7 +24,7 @@
 - CROSS_ARTICLE_REVIEW: COMPLETE
 - DEEP_DIVE: COMPLETE
 - LIFE_SCENE: COMPLETE
-- PROLOGUE: PENDING
+- PROLOGUE: COMPLETE
 - EDITOR'S AFTERWORD: PENDING
 - MANUSCRIPT_STAGE: IN_REVIEW
 - LAYOUT: PENDING
@@ -33,7 +33,7 @@
 - SCREEN_REVIEW: PENDING
 - PUBLISH: PENDING
 
-## 확정된 01~07
+## 확정된 01~08
 
 ### 01 Cover Story
 - `01_cover/VERIFY.md`: COMPLETE
@@ -80,53 +80,15 @@
 - 연결 대상: Society
 - 현재 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
-## 08 PROLOGUE — PENDING / BLANK SLATE
-
-예정 작업 경로: `08_prologue/ARTICLE.md`
-
-기존 08 PROLOGUE 원고는 작업 트리에서 삭제했다. Git 이력에는 남아 있지만 새 제작의 기준 답안·참고 문안·골든 레퍼런스로 사용하지 않는다.
-
-### 역할
-
-본격적인 기사 묶음 앞에서 독자에게 앞으로 어떤 사건과 내용이 펼쳐질지 보여주는 **선택적 프리뷰**다. 독자는 뒤의 기사를 아직 읽지 않았다고 가정한다.
-
-### 현행 제작 로직
-
-`ISSUE READBACK → SELECTIVE PREVIEW → TEASER DETAIL → NATURAL ARTICLE INTRO → COVERAGE PRESSURE PASS → SPOILER PASS → HANDOFF`
-
-### 필수 사고 원칙
-
-1. Contents가 전체 목록을 담당하고 PROLOGUE는 선택과 강조를 담당한다.
-2. 모든 기사·모든 분야를 최소 한 번씩 언급할 의무가 없다.
-3. 기사별·분야별 균등 분량을 맞추지 않는다.
-4. 기사마다 대표 숫자·장면 하나씩 배정하지 않는다.
-5. 한 문단에서 빠진 토픽을 채우기 위해 여러 분야를 빠르게 소환하지 않는다.
-6. 공통 주제·공통 질문·공통 교훈을 억지로 만들지 않는다.
-7. 질문형 문장이나 `왜 중요한가` 단락을 의무적으로 만들지 않는다.
-8. 분량이 필요하면 실제 뒤 기사에서 만나게 될 구체적인 장면·숫자·절차·기사 소개의 해상도를 높인다.
-9. 기사 결론·최종 평가를 미리 소진하지 않는다.
-10. 제작 후기 시점을 사용하지 않는다.
-
-### COVERAGE PRESSURE PASS
-
-초안 완성 뒤 반드시 확인한다.
-
-- 이 문장은 독자의 관심을 더하는가, 아니면 특정 분야를 한 번 언급하려고 존재하는가?
-- 이 토픽을 빼면 프롤로그가 실제로 약해지는가?
-- 한 문단에서 서로 무관한 세 개 이상의 토픽을 빠르게 나열하고 있지 않은가?
-- 기사마다 비슷한 문장 수를 주려는 흔적이 있는가?
-- `모든 기사 소개 완료`라는 내부 체크리스트가 문장 배열을 지배하고 있지 않은가?
-
-커버리지 때문에 존재하는 문장은 삭제한다. 삭제 후 특정 기사가 프롤로그에서 사라져도 괜찮다.
-
-### 완료 조건
-
-- 현행 `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`를 기준으로 처음부터 작성
-- 기존 08 원고 문장·제목·문단 구조를 복원하거나 변형해 사용하지 않음
-- COVERAGE PRESSURE PASS 통과
-- SPOILER PASS 통과
-- 독자가 뒤의 기사를 아직 모르는 상태에서 관심이 생김
-- COMPLETE 후에만 09로 이동
+### 08 Prologue
+- `08_prologue/ARTICLE.md`: COMPLETE
+- 제목: `오후 3시, ‘심각’ 경보가 올라간 뒤`
+- 현행 선택적 프리뷰 로직으로 백지 제작 완료
+- Cover → Economy → Politics/Deep Dive만 선택적으로 예고
+- Society·Tech 커버리지 채우기 문장 미사용
+- COVERAGE PRESSURE PASS: PASS
+- SPOILER PASS: PASS
+- 현재 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
 ## 09 EDITOR'S AFTERWORD — PENDING / BLANK SLATE
 
@@ -190,17 +152,16 @@ PROLOGUE와 달리 제작 후 시점을 숨기지 않는다. 실제 한 호를 �
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 08 PROLOGUE 백지 제작부터 진행**한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 09 EDITOR'S AFTERWORD 백지 제작부터 진행**한다.
 
-- 01~07 수정 금지
-- 기존 08 PROLOGUE 원고 복원·참조·문장 재사용 금지
-- PROLOGUE는 현행 표준의 선택적 프리뷰 로직으로 처음부터 작성
-- 기사별 최소 1회 언급 사고방식 금지
-- 분야별 균등 분량 사고방식 금지
-- 여러 토픽을 한 문단에 압축해 커버리지 채우기 금지
-- 공통 주제·공통 질문·공통 교훈 강제 금지
-- PROLOGUE COMPLETE 전 EDITOR'S AFTERWORD 작성 금지
-- 기존 EDITOR'S PICK 복원·재사용 금지
-- AFTERWORD에서 PICK 구조·기사 요약·방법론 보고서 금지
-- 08·09 COMPLETE 전 지면 설계 진행 금지
+- 01~08 수정 금지
+- 기존 EDITOR'S PICK 복원·참조·문장 재사용 금지
+- 삭제된 과거 AFTERWORD/PICK 원고를 기준 답안·참고 문안·골든 레퍼런스로 사용하지 않음
+- AFTERWORD는 현행 표준의 실제 제작 후 회고 로직으로 처음부터 작성
+- 대표 기사·대표 숫자·대표 문장 강제 선정 금지
+- 모든 기사를 하나의 공통 교훈으로 묶는 사고방식 금지
+- 기사별 요약으로 한 호를 다시 설명하는 구조 금지
+- VERIFY·FLOW·검수 절차를 독자에게 설명하는 방법론 보고서 금지
+- 억지 질문·다음 호 예고·감사 인사 의무화 금지
+- 09 COMPLETE 전 지면 설계 진행 금지
 - 실제 화면 검수 전 발행 상태로 변경 금지
