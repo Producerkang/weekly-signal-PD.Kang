@@ -6,7 +6,7 @@
 
 ## 현재 재개 지점
 
-**01~09 원고 제작이 모두 완료됐다. 다음 작업은 `12 지면 설계`다.**
+**01~09 원고와 12 지면 설계가 완료됐다. 다음 작업은 `13 이미지 제작`이다.**
 
 01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
@@ -14,7 +14,7 @@
 
 09 EDITOR'S AFTERWORD는 기존 EDITOR'S PICK이나 삭제된 과거 원고를 복원·참조하지 않고 현행 AFTERWORD 로직으로 백지 제작했다. 서정적 회고 톤과 `40분 ↔ 긴 시간표 ↔ 두 개의 시계` 구조는 유지하고, 최종본에서는 각 문단의 호흡을 약 10~20% 확장했다. 새 논점이나 새 교훈을 추가하지 않고 기존 장면과 생각을 한 호흡 더 이어가는 방식만 사용했다.
 
-현행 `WEEKLY_RUNBOOK.md`에 따라 EDITOR'S AFTERWORD 뒤 단계는 지면 설계다. DATA와 WATCH는 새 정보가 있을 때만 선택적으로 만든다. 09 완료만으로 지면·이미지·HTML·화면검수·발행 상태를 자동 완료 처리하지 않는다.
+12 지면 설계는 `work/2026-07-27/LAYOUT_PLAN.md`로 확정했다. 기존 `archive/2026-07-27/`의 과거 HTML/CSS는 재사용하지 않으며, 제1호는 매거진 밀도와 리듬의 비교 기준으로만 사용한다. DATA/WATCH는 이번 호에 별도 섹션으로 만들지 않는다.
 
 ## 진행 상태
 
@@ -29,7 +29,7 @@
 - PROLOGUE: COMPLETE
 - EDITOR'S AFTERWORD: COMPLETE
 - MANUSCRIPT_STAGE: COMPLETE
-- LAYOUT: PENDING
+- LAYOUT: COMPLETE
 - IMAGES: PENDING
 - HTML: PENDING
 - SCREEN_REVIEW: PENDING
@@ -152,25 +152,57 @@
 
 판정: COMPLETE
 
-## 다음 단계 — 12 지면 설계
+## 12 지면 설계 — COMPLETE
 
-현행 `editorial/WEEKLY_RUNBOOK.md`의 지면 설계 단계부터 재개한다.
+작업 파일:
 
-기본 원칙:
+- `LAYOUT_PLAN.md`: COMPLETE
 
-1. DATA와 WATCH는 새 정보가 있을 때만 선택적으로 만든다.
-2. 대표 기사의 표지 주제를 확정한다.
-3. 기사마다 내용에 맞는 지면 조합을 선택한다.
-4. 한 호에 최소 세 가지 이상의 기사 레이아웃 리듬을 만든다.
-5. 동일 템플릿 구조를 모든 기사에 복제하지 않는다.
-6. 장식 모듈은 본문 반복이 아니라 새로운 정보나 읽기 전환을 제공해야 한다.
-7. 직전 회차보다 섹션 전환·정보 시각화·모바일 흐름 중 하나 이상을 개선한다.
+확정 사항:
 
-지면 설계를 시작하기 전 현재 `main`의 `editorial/LAYOUT_SYSTEM.md`, `editorial/IMAGE_DIRECTION.md`, `templates/TEMPLATE_CONTRACT.md`, `templates/NAVIGATION_CONTRACT.md`와 관련 현행 기준을 다시 확인한다.
+- 최종 DOM: `Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics_DEEP_DIVE → Society → Tech → EDITOR'S AFTERWORD → Sources`
+- Politics DEEP DIVE는 Politics 바로 뒤에 배치
+- DATA/WATCH 별도 섹션 미제작
+- 최소 여섯 종류 이상의 시각적 리듬 사용
+- Cover / LIFE SCENE / PROLOGUE / 일반 기사 / DEEP DIVE / AFTERWORD의 역할을 명확히 분리
+- Cover와 Cover Story 이미지는 같은 주제라도 서로 다른 장면·거리·구도로 제작
+- 주요 이미지 슬롯 8개 확정
+- 1440px / 1366px / 1024px / 390px 반응형 기준 확정
+- 기존 `archive/2026-07-27/` 과거 HTML/CSS 재사용 금지
+- 제1호는 품질 비교 기준으로만 사용
+- 현행 TEMPLATE/NAVIGATION 계약의 PROLOGUE·EDITOR'S AFTERWORD 구조를 적용
+
+판정: COMPLETE
+
+## 다음 단계 — 13 이미지 제작
+
+현행 `editorial/IMAGE_DIRECTION.md`와 `LAYOUT_PLAN.md`를 기준으로 다음 8개 주요 이미지를 새로 생성한다.
+
+1. `cover.webp` — 장변 1800px 이상
+2. `life-scene.webp` — 장변 1600px 이상
+3. `cover-story.webp` — 장변 1600px 이상
+4. `economy.webp` — 장변 1600px 이상
+5. `politics.webp` — 장변 1600px 이상
+6. `deep-dive-politics.webp` — 장변 1600px 이상
+7. `society.webp` — 장변 1600px 이상
+8. `tech.webp` — 장변 1600px 이상
+
+이미지 제작 규칙:
+
+- 실제 이미지 생성 모델만 사용
+- 고품질 래스터 결과만 허용
+- SVG·벡터·플랫·아이콘·아이소메트릭·기업용 3D 몽타주 금지
+- 이미지 안의 텍스트·숫자·로고·워터마크 금지
+- 특정 실제 사건 현장·실존 일반인·특정 기관 내부를 정확히 재현한 것처럼 만들지 않음
+- 표지와 Cover Story 이미지는 명확히 다른 역할과 구도
+- 모든 이미지를 실제로 열어 얼굴·손·장비·문서·반사면 오류 확인
+- 모바일 크롭에서도 핵심 피사체가 남는지 확인
+- 필요한 경우 `편집용 생성 이미지` 캡션 사용
+- 실제 이미지 검수 전 IMAGES를 COMPLETE로 변경하지 않음
 
 ## 최종 독서 순서
 
-`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics_DEEP_DIVE → Society → Tech → 선택적 DATA/WATCH → EDITOR'S AFTERWORD → Sources`
+`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics_DEEP_DIVE → Society → Tech → EDITOR'S AFTERWORD → Sources`
 
 이번 호 Deep Dive는 Politics 바로 뒤에 둔다.
 
@@ -195,15 +227,15 @@
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 12 지면 설계부터 시작**한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 13 이미지 제작부터 시작**한다.
 
 - 01~09 수정 금지
-- 01~09 현행 원고를 완성본으로 사용
-- DATA/WATCH는 새 정보가 있을 때만 선택적으로 제작
-- 지면 설계 전 현행 LAYOUT·IMAGE·TEMPLATE·NAVIGATION 기준 확인
-- 기사마다 내용에 맞는 서로 다른 지면 리듬 설계
-- 동일 레이아웃 반복 금지
-- 09 EDITOR'S AFTERWORD는 모든 기사·DEEP DIVE 뒤 Sources 바로 앞에 배치
-- 실제 이미지 생성 전 IMAGES를 COMPLETE로 변경하지 않음
+- `LAYOUT_PLAN.md` 확정 지면을 기준으로 이미지 역할·비율·안전영역 결정
+- 기존 `archive/2026-07-27/assets/` 과거 이미지를 현행 이미지로 간주하지 않음
+- 모든 주요 이미지는 실제 이미지 생성 모델로 새로 제작
+- 표지 포함 주요 이미지 8개 제작 및 실제 육안 검수
+- 이미지 생성 실패를 임시 그래픽으로 대체하지 않음
+- 이미지 검수 완료 전 IMAGES를 COMPLETE로 변경하지 않음
+- 이미지 완료 전 HTML 제작 단계로 넘어가지 않음
 - 실제 HTML 렌더링·다중 화면 검수 전 SCREEN_REVIEW를 COMPLETE로 변경하지 않음
 - 실제 화면 검수 전 PUBLISH 상태로 변경하지 않음
