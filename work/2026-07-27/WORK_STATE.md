@@ -6,17 +6,18 @@
 
 ## 현재 목표
 
-제1호의 설명 완결성을 유지하면서, 내부 검증 언어가 독자용 문체를 지배하지 않도록 기사 제작 구조를 다시 적용한다.
+제1호의 설명 완결성을 유지하면서, 내부 검증 언어가 독자용 문체를 지배하지 않게 하고, 충분한 정보를 독자가 한 줄로 따라갈 수 있는 흐름으로 조직한다.
 
 ## 적용 구조
 
 각 일반 기사는 다음 순서로 하나씩 완성한다.
 
-`VERIFY → NARRATIVE → ANALYSIS → STYLE PASS → HEADLINE & DECK → ARTICLE REVIEW → COMPLETE`
+`VERIFY → FLOW MAP → NARRATIVE → ANALYSIS → COHERENCE PASS → STYLE PASS → HEADLINE & DECK → ARTICLE REVIEW → COMPLETE`
 
 - `VERIFY.md`: 내부 검증 전용
+- `FLOW.md`: 독자 이해 순서와 문단 논리 설계 전용
 - `ARTICLE.md`: 독자용 최종 기사 전용
-- 두 파일의 언어와 역할을 섞지 않는다.
+- 세 파일의 언어와 역할을 섞지 않는다.
 - 현재 기사 COMPLETE 전에는 다음 일반 기사 본문을 작성하지 않는다.
 
 ## 진행 상태
@@ -46,6 +47,7 @@
 - `02_economy/ARTICLE.md`: COMPLETE
 - 제목: `휘발유 1,784원 상한은 주유소까지 어떻게 전달되나`
 - 검증 핵심: 석유 최고가격의 적용대상을 정유사 공급가격으로 확정하고, 오피넷 공급가격·주유소 판매가격의 정의와 전달 시차·비용 부담을 분리
+- 후속 편집 검토에서 정보 정확성과 설명량은 충분하지만 문장·문단이 병렬적으로 퍼지는 문제가 확인됐다. 이를 계기로 FLOW MAP과 COHERENCE PASS를 현행 제작 표준에 추가했다.
 
 ### Politics
 
@@ -58,18 +60,32 @@
 
 `04_society/VERIFY.md`를 생성하고 Society 기사 검증부터 시작한다.
 
-현재 Cover → Economy → Politics는 각각 `VERIFY → NARRATIVE → ANALYSIS → STYLE PASS → HEADLINE & DECK → ARTICLE REVIEW → COMPLETE`를 닫았다. Society 본문은 아직 작성하지 않았으며, 다음 실행에서도 검증을 먼저 끝낸 뒤에만 `04_society/ARTICLE.md`로 이동한다.
+Society부터는 새 파이프라인을 처음부터 적용한다.
+
+1. VERIFY를 끝낸다.
+2. `04_society/FLOW.md`에서 기사 중심 질문 1개와 5~7개 안팎의 설명 단위를 선형 순서로 설계한다.
+3. 각 단위가 직전 단위에서 무엇을 받아 다음 단위로 무엇을 넘기는지 확인한다.
+4. FLOW가 닫힌 뒤에만 `04_society/ARTICLE.md`를 작성한다.
+5. NARRATIVE와 ANALYSIS 뒤 COHERENCE PASS를 먼저 실행한다.
+6. 한 문단은 하나의 중심 질문 또는 논리 단위를 충분히 설명한다. 한두 문장마다 습관적으로 끊지 않는다.
+7. 같은 급의 사실이 병렬적으로 퍼지면 정보 추가보다 순서와 문단 경계를 먼저 다시 설계한다.
+8. COHERENCE 통과 후 STYLE PASS, HEADLINE & DECK, ARTICLE REVIEW를 거쳐 COMPLETE로 닫는다.
+
+Cover·Economy·Politics는 기존 COMPLETE 상태를 유지한다. 향후 해당 기사를 다시 편집할 경우 새 기준에 따라 FLOW와 COHERENCE를 적용한다.
 
 일반 기사 5편이 모두 COMPLETE가 되기 전에는 CROSS_ARTICLE_REVIEW, DEEP_DIVE, LIFE_SCENE, EDITORS_PICK, 이미지·HTML 제작으로 넘어가지 않는다.
 
 ## 현재 핵심 교정 원칙
 
 1. 내부 검증에서는 계획·계약·집행·성과와 유사 제도의 차이를 엄격히 구분한다.
-2. 독자용 기사에서는 검증 메모를 복사하지 않고 사건·정의·배경·변화·작동·영향 순으로 새로 서술한다.
+2. 독자용 기사에서는 VERIFY를 복사하지 않고 FLOW를 기준으로 처음부터 새로 서술한다.
 3. 독자가 잘못 알고 있다고 가정하는 문체를 기본값으로 쓰지 않는다.
 4. `A가 아니다. B다.` 구조는 실제 쟁점일 때만 사용한다.
-5. 한계·부작용·미확정 사항은 충분한 소개와 설명 뒤에 배치한다.
-6. 제목과 Deck은 본문 및 STYLE PASS가 끝난 뒤 만든다.
+5. 여러 사실·기관·제도 트랙을 한꺼번에 열지 않고 하나를 설명해 닫은 뒤 다음 축으로 이동한다.
+6. 앞 문단의 결론이 다음 문단의 질문·전제·시간 변화·작동 단계로 이어지게 한다.
+7. 문단은 하나의 중심 질문 또는 논리 단위를 묶는 단위이며, 3~5문장은 일반적인 호흡일 뿐 고정 규칙이 아니다.
+8. 한계·부작용·미확정 사항은 충분한 소개와 설명 뒤에 배치한다.
+9. 제목과 Deck은 COHERENCE PASS와 STYLE PASS가 끝난 뒤 만든다.
 
 ## 기준 문서
 
