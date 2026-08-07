@@ -26,6 +26,11 @@ LIFE SCENE은 별도 제작 구조를 따른다.
 
 `SUBJECT SELECT → FACT BOUNDARY → CHARACTER & ORDINARY PLAN → SCENE MAP → NARRATIVE DRAFT → CAUSALITY PASS → EXPLANATION LEAK PASS → SCENARIO NOTE → LIFE SCENE REVIEW → COMPLETE`
 
+PROLOGUE와 EDITOR'S PICK은 기사 전체가 완성된 뒤 작성한다. 다만 독서 시점은 반대다.
+
+- PROLOGUE: 뒤의 기사를 아직 읽지 않은 독자의 프리뷰
+- EDITOR'S PICK: 모든 기사와 DEEP DIVE를 읽은 뒤 만나는 편집 에필로그
+
 ## 진행 상태
 
 - COVER STORY: COMPLETE
@@ -36,6 +41,7 @@ LIFE SCENE은 별도 제작 구조를 따른다.
 - CROSS_ARTICLE_REVIEW: COMPLETE
 - DEEP_DIVE: COMPLETE
 - LIFE_SCENE: COMPLETE
+- PROLOGUE: COMPLETE
 - EDITORS_PICK: COMPLETE
 
 ## 일반 기사 완료
@@ -184,11 +190,37 @@ LIFE SCENE은 별도 제작 구조를 따른다.
 - 결말은 다음 주 달력의 다섯 칸에 가족 이름이 채워진 생활 장면으로 회수
 - 판정: PASS
 
+## PROLOGUE 완료
+
+- 작업 경로: `08_prologue/`
+- `08_prologue/ARTICLE.md`: COMPLETE
+- 제목: `경보·가격·협상·돌봄·나노팹, 이번 주의 변화가 움직이는 경로`
+- 역할: LIFE SCENE 다음, 본격적인 기사 묶음 앞에서 앞으로 읽을 사건과 질문을 예고하는 프리뷰
+
+### PROLOGUE 작성 원칙
+
+1. 전체 일반 기사·DEEP_DIVE·LIFE_SCENE이 완성된 뒤 작성했다.
+2. 작성자는 전체 내용을 알고 있지만 독자는 뒤의 기사를 아직 읽지 않았다고 가정했다.
+3. 각 기사의 결론을 먼저 설명하지 않고 사건과 중심 질문만 열었다.
+4. 실제 연속 기획이 아니므로 `이번 호에도`, `지난 호에 이어`처럼 전호를 전제하는 표현을 사용하지 않았다.
+5. Politics 뒤 DEEP_DIVE의 추가 질문은 예고하되 답을 미리 닫지 않았다.
+6. 마지막은 본격적인 기사 묶음으로 독서를 넘긴다.
+
+### PROLOGUE REVIEW 판정
+
+- 제작 후기 시점 아님
+- 뒤의 기사를 이미 읽었다는 전제 없음
+- 주요 기사 결론의 선공개 없음
+- 기사 제목·Deck의 기계적 재나열 아님
+- 실제 완성된 기사 범위 밖의 공통 프레임을 만들지 않음
+- 판정: PASS
+
 ## EDITORS_PICK 완료
 
-- 작업 경로: `08_editors_pick/`
-- `08_editors_pick/ARTICLE.md`: COMPLETE
+- 작업 경로: `09_editors_pick/`
+- `09_editors_pick/ARTICLE.md`: COMPLETE
 - 제목: `숫자는 맞았는데, 뜻이 달랐다`
+- 역할: 모든 기사와 DEEP_DIVE를 읽은 뒤 Sources 직전에 만나는 편집 에필로그
 - 중심축: 이번 호의 실제 편집 과정에서 반복해서 확인한 `숫자·문서의 단계와 적용대상 구분`
 
 ### 편집 산문 선택 이유
@@ -201,6 +233,7 @@ LIFE SCENE은 별도 제작 구조를 따른다.
 
 ### EDITORS_PICK REVIEW 판정
 
+- 모든 기사와 DEEP_DIVE 뒤에서 읽는 에필로그 위치로 변경
 - 한 문단에 기사 하나씩 나열하는 구조 아님
 - 일반 기사·DEEP_DIVE의 결론 재설명으로 확장되지 않음
 - 실제 검증·교정 과정에서 확인된 사실만 사용
@@ -221,9 +254,12 @@ LIFE SCENE은 별도 제작 구조를 따른다.
 5. Cover는 장변 1800px 이상, 나머지 주요 이미지는 장변 1600px 이상을 기준으로 한다.
 6. 이미지마다 실제 파일을 열어 얼굴·손·장비·문자 오류와 데스크톱·모바일 크롭을 검수한다.
 7. `templates/ISSUE_TEMPLATE.html`을 시작 셸로 사용해 `archive/2026-07-27/index.html`을 제작한다.
-8. DEEP DIVE는 Politics 일반 기사 바로 뒤에 배치하고, 목차·내비게이션·DOM 순서를 일치시킨다.
-9. 1440px 이상, 1366px, 1024px, 390px 실제 화면을 검수한다.
-10. 비교 검수와 최종 반영을 마친 뒤 `ISSUE_HISTORY.md`, `issues.json`, `archive/index.html`, `latest.json`을 마지막에 함께 갱신한다.
+8. 독서 순서는 `Cover → Contents → LIFE SCENE → PROLOGUE → 본 기사와 연결 DEEP_DIVE → EDITOR'S PICK → Sources`로 구성한다.
+9. DEEP DIVE는 Politics 일반 기사 바로 뒤에 배치한다.
+10. EDITOR'S PICK은 모든 기사와 DEEP_DIVE 뒤, Sources 바로 앞에 배치한다.
+11. 목차·내비게이션·DOM 순서를 일치시킨다.
+12. 1440px 이상, 1366px, 1024px, 390px 실제 화면을 검수한다.
+13. 비교 검수와 최종 반영을 마친 뒤 `ISSUE_HISTORY.md`, `issues.json`, `archive/index.html`, `latest.json`을 마지막에 함께 갱신한다.
 
 사용자가 수정한 LIFE SCENE 현행본은 이후 지면 제작에서 현재 `main`의 `07_life_scene/ARTICLE.md`를 그대로 기준으로 사용하며, 별도 편집 요청이 없으면 다시 고치지 않는다.
 
@@ -242,6 +278,8 @@ LIFE SCENE은 별도 제작 구조를 따른다.
 11. 제목과 Deck은 COHERENCE PASS와 STYLE & ARGUMENT PASS가 끝난 뒤 만든다.
 12. LIFE SCENE은 정책 항목을 인물에게 대입하지 않고 `ACTION → CONSEQUENCE`의 연속 장면으로 쓴다.
 13. LIFE SCENE의 정책 해설과 사실 수치는 원칙적으로 `SCENARIO NOTE`에서 처리한다.
+14. PROLOGUE는 전체 원고 완성 뒤 작성하지만 독자가 뒤의 기사를 모르는 시점에서 쓴다.
+15. EDITOR'S PICK은 본문을 읽은 뒤 만나는 에필로그이며 Sources 직전에 둔다.
 
 ## 기준 문서
 
@@ -250,13 +288,14 @@ LIFE SCENE은 별도 제작 구조를 따른다.
 3. `editorial/EDITORIAL_STANDARD.md`
 4. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
 5. `editorial/LIFE_SCENE_STANDARD.md`
-6. `editorial/VOICE_AND_TONE.md`
-7. `editorial/SOURCE_POLICY.md`
-8. `editorial/IMAGE_DIRECTION.md`
-9. `editorial/LAYOUT_SYSTEM.md`
-10. `editorial/PUBLISHING_PIPELINE.md`
-11. `templates/TEMPLATE_CONTRACT.md`
-12. `templates/NAVIGATION_CONTRACT.md`
+6. `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`
+7. `editorial/VOICE_AND_TONE.md`
+8. `editorial/SOURCE_POLICY.md`
+9. `editorial/IMAGE_DIRECTION.md`
+10. `editorial/LAYOUT_SYSTEM.md`
+11. `editorial/PUBLISHING_PIPELINE.md`
+12. `templates/TEMPLATE_CONTRACT.md`
+13. `templates/NAVIGATION_CONTRACT.md`
 
 ## 이전 테스트 처리
 
