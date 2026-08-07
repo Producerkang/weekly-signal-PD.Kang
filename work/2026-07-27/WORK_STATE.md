@@ -36,7 +36,7 @@ LIFE SCENE은 별도 제작 구조를 따른다.
 - CROSS_ARTICLE_REVIEW: COMPLETE
 - DEEP_DIVE: COMPLETE
 - LIFE_SCENE: COMPLETE
-- EDITORS_PICK: PENDING
+- EDITORS_PICK: COMPLETE
 
 ## 일반 기사 완료
 
@@ -184,23 +184,48 @@ LIFE SCENE은 별도 제작 구조를 따른다.
 - 결말은 다음 주 달력의 다섯 칸에 가족 이름이 채워진 생활 장면으로 회수
 - 판정: PASS
 
+## EDITORS_PICK 완료
+
+- 작업 경로: `08_editors_pick/`
+- `08_editors_pick/ARTICLE.md`: COMPLETE
+- 제목: `숫자는 맞았는데, 뜻이 달랐다`
+- 중심축: 이번 호의 실제 편집 과정에서 반복해서 확인한 `숫자·문서의 단계와 적용대상 구분`
+
+### 편집 산문 선택 이유
+
+1. 기사 목록 전체를 다시 요약하지 않고 실제로 판단이 바뀐 한 편집 경험만 남겼다.
+2. 2,500과 1,461은 `목표/첫 집행`, 1,784원은 `정유사 공급단계/주유소 판매단계`, 무역문서는 `서명/비준/발효`라는 서로 다른 상태를 구분해야 했다.
+3. 서로 다른 분야에서 반복된 경험을 `숫자 옆의 동사를 다시 읽는 일`이라는 하나의 편집적 관찰로 묶었다.
+4. 존재하지 않는 기자, 인터뷰, 취재 현장이나 감정을 만들지 않았다.
+5. 독자에게 공식 교훈을 선언하기보다 다음에 숫자를 읽을 때 남을 작은 질문으로 마무리했다.
+
+### EDITORS_PICK REVIEW 판정
+
+- 한 문단에 기사 하나씩 나열하는 구조 아님
+- 일반 기사·DEEP_DIVE의 결론 재설명으로 확장되지 않음
+- 실제 검증·교정 과정에서 확인된 사실만 사용
+- 한 호 전체를 억지로 하나의 정치·사회적 주장으로 묶지 않음
+- 짧은 편집 산문 길이와 어조 유지
+- 판정: PASS
+
 ## 다음 작업
 
-`EDITORS_PICK`을 시작한다.
+원고 제작 단계는 모두 COMPLETE다. 다음 실행은 `지면 설계`부터 시작한다.
 
-일반 기사 5편, CROSS_ARTICLE_REVIEW, DEEP_DIVE, LIFE_SCENE이 모두 COMPLETE이므로 다음 실행에서는 이번 호의 실제 리서치·편집 과정에서 판단이 달라졌거나 오래 남은 사실과 질문만 골라 짧은 편집 산문을 완성한다.
+### 지면·발행 단계 시작 순서
 
-### EDITORS_PICK 시작 기준
+1. `editorial/IMAGE_DIRECTION.md`, `editorial/LAYOUT_SYSTEM.md`, `editorial/PUBLISHING_PIPELINE.md`, `templates/TEMPLATE_CONTRACT.md`, `templates/NAVIGATION_CONTRACT.md`를 다시 확인한다.
+2. DATA와 WATCH는 실제 새 정보가 있는 기사에만 사용한다.
+3. 표지와 각 기사에 서로 다른 지면 역할을 부여하고 한 호에 최소 세 가지 이상의 레이아웃 리듬을 만든다.
+4. 지면 설계를 먼저 닫은 뒤 주요 이미지를 새로 제작한다.
+5. Cover는 장변 1800px 이상, 나머지 주요 이미지는 장변 1600px 이상을 기준으로 한다.
+6. 이미지마다 실제 파일을 열어 얼굴·손·장비·문자 오류와 데스크톱·모바일 크롭을 검수한다.
+7. `templates/ISSUE_TEMPLATE.html`을 시작 셸로 사용해 `archive/2026-07-27/index.html`을 제작한다.
+8. DEEP DIVE는 Politics 일반 기사 바로 뒤에 배치하고, 목차·내비게이션·DOM 순서를 일치시킨다.
+9. 1440px 이상, 1366px, 1024px, 390px 실제 화면을 검수한다.
+10. 비교 검수와 최종 반영을 마친 뒤 `ISSUE_HISTORY.md`, `issues.json`, `archive/index.html`, `latest.json`을 마지막에 함께 갱신한다.
 
-1. 기사 목록을 다시 요약하지 않는다.
-2. 한 호 전체를 하나의 공식 논설이나 교훈으로 억지로 묶지 않는다.
-3. 실제 작업 과정에서 판단이 바뀐 지점, 처음 예상과 달랐던 사실, 끝까지 남은 질문을 재료로 삼는다.
-4. 존재하지 않는 기자·인터뷰·취재 장면·감정을 만들지 않는다.
-5. 이번 호에서 실제 확인된 편집 경험만 사용한다. 특히 목표와 집행, 공동협상과 국내 발효, 전국 총량과 생활권 접근처럼 같은 숫자·발표가 서로 다른 단계에서 다른 의미를 갖는 장면을 후보로 검토한다.
-6. 일반 기사와 DEEP_DIVE의 결론을 다시 설명하지 않고, 편집 과정에서 무엇을 구분해야 했는지가 독자에게 자연스럽게 남도록 쓴다.
-7. 짧은 편집 산문으로 완성하고 자체 리뷰를 통과한 뒤 `EDITORS_PICK: COMPLETE`로 닫는다.
-
-EDITORS_PICK이 완료되기 전에는 이미지·HTML 제작으로 넘어가지 않는다.
+사용자가 수정한 LIFE SCENE 현행본은 이후 지면 제작에서 현재 `main`의 `07_life_scene/ARTICLE.md`를 그대로 기준으로 사용하며, 별도 편집 요청이 없으면 다시 고치지 않는다.
 
 ## 현재 핵심 교정 원칙
 
@@ -227,7 +252,12 @@ EDITORS_PICK이 완료되기 전에는 이미지·HTML 제작으로 넘어가지
 5. `editorial/LIFE_SCENE_STANDARD.md`
 6. `editorial/VOICE_AND_TONE.md`
 7. `editorial/SOURCE_POLICY.md`
+8. `editorial/IMAGE_DIRECTION.md`
+9. `editorial/LAYOUT_SYSTEM.md`
+10. `editorial/PUBLISHING_PIPELINE.md`
+11. `templates/TEMPLATE_CONTRACT.md`
+12. `templates/NAVIGATION_CONTRACT.md`
 
 ## 이전 테스트 처리
 
-이전 테스트 초안과 과거 커밋의 주제 선택은 현재 기사 주제 선정 기준으로 사용하지 않는다. 현재 `main`의 현행 기준과 `WORK_STATE`, 해당 회차의 새 리서치 결과만으로 다음 기사를 결정한다.
+이전 테스트 초안과 과거 커밋의 주제 선택은 현재 기사 주제 선정 기준으로 사용하지 않는다. 현재 `main`의 현행 기준과 `WORK_STATE`, 해당 회차의 새 리서치 결과만으로 다음 단계를 결정한다.
