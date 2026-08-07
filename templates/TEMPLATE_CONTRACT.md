@@ -15,7 +15,7 @@
 archive/YYYY-MM-DD/
 ├─ index.html
 └─ assets/
-   └─ high-quality raster generated images
+   └─ final raster generated images
 ```
 
 - `index.html`은 해당 회차의 완성된 정적 문서다.
@@ -23,7 +23,7 @@ archive/YYYY-MM-DD/
 - 이미지는 `./assets/...` 상대경로만 사용한다.
 - 외부 이미지 직접 연결과 런타임 기사 조립을 금지한다.
 - 이미지 자산은 WebP, PNG, JPEG만 허용한다.
-- SVG와 프로그램 생성 대체 이미지는 두지 않는다.
+- 실패 후보·연락시트·스토리보드·중간 생성본은 발행 assets에 두지 않는다.
 
 ## 3. 템플릿의 지위
 
@@ -34,16 +34,18 @@ archive/YYYY-MM-DD/
 - Cover·Contents·LIFE SCENE·PROLOGUE·기사·DEEP DIVE·EDITOR'S AFTERWORD·Sources의 의미 구조 예시
 - 반응형 최소 기반
 
-템플릿을 플레이스홀더만 교체해 그대로 발행하지 않는다. 다음 작업이 반드시 추가되어야 한다.
+템플릿을 플레이스홀더만 교체해 그대로 발행하지 않는다.
+
+반드시 추가되어야 하는 작업:
 
 - Cover Story와 Economy·Politics·Society·Tech 전체 기사 삽입
 - 기사별로 다른 지면 조합 설계
 - 최소 세 가지 이상의 시각적 리듬
-- 실제 고품질 생성 이미지 삽입
+- 현행 이미지 슬롯에 맞는 최종 이미지 삽입
 - 사용하지 않는 예시 DOM과 CSS 삭제
 - 실제 화면 검수
 
-모든 기사가 템플릿 예시와 같은 구조이면 발행 실패다.
+`EDITOR'S PICK`은 폐기된 레거시 섹션이며 템플릿에 다시 추가하지 않는다.
 
 ## 4. 기본 회차 구성과 독서 순서
 
@@ -68,11 +70,13 @@ archive/YYYY-MM-DD/
 17. EDITOR'S AFTERWORD
 18. Sources
 
-Cover Story는 분야 일반 기사를 대체하지 않는다. DEEP DIVE는 일반 기사 전체가 완성된 뒤 제작하지만 최종 HTML에서는 심화 대상 기사 바로 뒤에 둔다.
+Cover Story는 분야 일반 기사를 대체하지 않는다.
 
-PROLOGUE는 본문 전체가 완성된 뒤 작성하지만 최종 HTML에서는 본격적인 기사 묶음 앞에 둔다. 독자가 뒤의 기사를 아직 읽지 않았다는 전제로 선택적으로 사건과 내용을 프리뷰한다. 모든 기사를 빠짐없이 언급할 의무는 없다.
+DEEP DIVE는 심화 대상 기사 바로 뒤에 둔다.
 
-EDITOR'S AFTERWORD는 전체 원고가 완성된 뒤 마지막 편집 원고로 작성하고 최종 HTML에서는 모든 기사와 DEEP DIVE 뒤, Sources 바로 앞에 둔다. 독자가 본문을 읽은 뒤 만나는 실제 제작 후기다. 대표 기사·대표 숫자·공통 교훈을 고르는 `PICK` 구조를 사용하지 않는다.
+PROLOGUE는 기사 전체가 완성된 뒤 작성하지만 독서 순서에서는 본격 기사 묶음 앞에 둔다.
+
+EDITOR'S AFTERWORD는 전체 원고가 완성된 뒤 마지막 편집 원고로 작성하고 최종 HTML에서는 모든 기사와 DEEP DIVE 뒤, Sources 바로 앞에 둔다.
 
 ## 5. DOM 원칙
 
@@ -80,10 +84,9 @@ EDITOR'S AFTERWORD는 전체 원고가 완성된 뒤 마지막 편집 원고로 
 - 목차와 내비게이션은 실제 DOM 순서와 존재하는 섹션만 반영한다.
 - 일반 기사와 DEEP DIVE는 서로 다른 클래스·질문·지면을 사용한다.
 - `reportage`, `document-reportage`, `reportage-*`를 사용하지 않는다.
-- LIFE SCENE 제목과 부제는 생활 장면 중심으로 쓴다.
-- LIFE SCENE의 정책 연결은 마지막 `SCENARIO NOTE`에만 둔다.
-- PROLOGUE는 기사의 답을 미리 공개하지 않고 선택적인 사건·장면·기사 소개로 관심을 환기한다.
-- EDITOR'S AFTERWORD는 본문 뒤에서 실제 제작을 돌아보되 기사별 요약이나 편집 방법론 강의로 변하지 않는다.
+- LIFE SCENE의 정책 연결은 마지막 `SCENARIO NOTE`에 둔다.
+- PROLOGUE는 기사 답을 미리 공개하지 않는다.
+- EDITOR'S AFTERWORD는 기사별 요약이나 편집 방법론 강의로 변하지 않는다.
 - 미사용 섹션, 빈 카드, 숨김 모듈을 남기지 않는다.
 
 ## 6. 기사 지면 차별화
@@ -102,11 +105,11 @@ EDITOR'S AFTERWORD는 전체 원고가 완성된 뒤 마지막 편집 원고로 
 - 시나리오 그리드
 - 풀블리드 장면 전환
 
-모듈은 새 정보를 제공해야 한다. 본문의 문장을 다시 카드로 만들지 않는다.
+모듈은 새 정보를 제공해야 한다. 본문 문장을 다시 카드로 만들지 않는다.
 
 ## 7. CSS·JavaScript
 
-- 회차별 CSS는 `LAYOUT_SYSTEM.md`를 따른다.
+- 회차별 CSS는 `editorial/LAYOUT_SYSTEM.md`를 따른다.
 - 과월호 누적 패치 CSS와 일회성 클래스를 복사하지 않는다.
 - 선택자 충돌을 해결하기 위한 장문의 `!important` 패치를 만들지 않는다.
 - JavaScript는 진행 바, 섹션 활성 상태와 필요한 접근성 기능에 한정한다.
@@ -114,18 +117,25 @@ EDITOR'S AFTERWORD는 전체 원고가 완성된 뒤 마지막 편집 원고로 
 
 ## 8. 이미지
 
-- 모든 주요 이미지는 실제 이미지 생성 모델로 만든 고품질 래스터 생성 이미지다.
-- Python·Canvas·CSS·SVG 도형을 래스터화한 대체 이미지를 금지한다.
-- Cover 장변 1800px 이상, 나머지 주요 이미지 장변 1600px 이상을 원칙으로 한다.
-- 장변 1600px 이상인데 80KB 미만인 이미지는 재검사한다.
-- 각 의미 있는 이미지에 대체 텍스트를 제공한다.
-- 실제 사진으로 오인될 수 있으면 생성 이미지 고지를 표시한다.
-- 실제로 열어 디테일·생성 오류·크롭을 확인한다.
+이미지 생성·검수·재시도·저장 절차는 `editorial/IMAGE_PIPELINE.md`, 시각 방향은 `editorial/IMAGE_DIRECTION.md`를 따른다.
+
+현행 핵심 기준:
+
+- 주요 이미지는 고품질 래스터 생성 이미지
+- Cover 장변 2200px 이상 목표
+- 나머지 주요 이미지 장변 2000px 이상 목표
+- 기사 주제와 자연스럽게 연결되면 충분하며 전체 메커니즘을 문자 그대로 재현할 필요 없음
+- 동일 이미지 재사용 금지
+- LIFE SCENE만 생성 전에 4:3 또는 4:5 비율을 명시
+- Politics와 Politics DEEP DIVE는 완전 무인
+- 실제 화면에서 최종 크롭 확인
+
+이미지 전체가 끝날 때까지 HTML 구조 작업을 완전히 중단할 필요는 없다. 다만 모든 필수 이미지가 최종 반영되고 화면 검수를 통과하기 전에는 발행할 수 없다.
 
 ## 9. 접근성과 반응형
 
 - 의미 구조에 맞는 `header`, `nav`, `main`, `section`, `article`, `figure`, `footer`를 사용한다.
-- 모바일에서 1열로 전환하고 가로 스크롤을 만들지 않는다.
+- 모바일에서 1열로 전환하고 본문 가로 스크롤을 만들지 않는다.
 - 키보드 탐색, 링크 이름, 명도 대비와 이미지 대체 텍스트를 확인한다.
 - 1440px·1366px·1024px·390px 화면을 실제로 확인한다.
 
@@ -134,14 +144,13 @@ EDITOR'S AFTERWORD는 전체 원고가 완성된 뒤 마지막 편집 원고로 
 다음 상태에서는 `issues.json`과 `latest.json`을 갱신하지 않는다.
 
 - 기본 분야 기사 누락
-- 템플릿 예시 구조의 반복
+- 템플릿 예시 구조 반복
 - DEEP DIVE의 일반 기사 반복
-- LIFE SCENE의 개인 조언형 결말
-- PROLOGUE가 기사 결론을 미리 소진하거나 제작 후기처럼 쓰임
-- PROLOGUE가 모든 기사 커버리지를 채우는 압축 목차처럼 쓰임
-- EDITOR'S AFTERWORD가 기사별 요약·대표 항목 선정문·편집 방법론 보고서로 쓰임
-- EDITOR'S AFTERWORD가 본문 앞에 배치됨
-- 저디테일 또는 프로그램 생성 이미지
+- LIFE SCENE 역할 실패
+- PROLOGUE 역할 실패
+- EDITOR'S AFTERWORD 역할 실패
+- 필수 이미지 미확보
+- Politics 이미지에 사람 등장
 - 실제 화면 미검수
 
 최종 기준은 `editorial/ISSUE_QUALITY_GATE.md`다.
