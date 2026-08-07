@@ -1,6 +1,6 @@
 # 08 PROLOGUE PREVIEW MAP
 
-상태: IN_REVIEW
+상태: COMPLETE
 
 회차: 2026-07-27—2026-08-02
 
@@ -199,4 +199,13 @@ ARTICLE 작성 시 다음 반복을 금지한다.
 - [x] 마지막은 첫 본 기사 Cover Story로 넘긴다.
 - [x] 지배적인 시선 이동이 `PANORAMA → ORIENTATION → FOCUS → ARTICLE PREVIEW → HANDOFF`로 보인다.
 
-판정: PREVIEW MAP 작성 완료. ARTICLE 작성 전 편집 검수 단계로 이동한다.
+## ARTICLE REVIEW RESULT
+
+- [x] PANORAMA에서 다섯 일반 기사 소재를 넓게 펼친 뒤 다시 전 분야를 순회하지 않았다.
+- [x] 중간 FOCUS는 석유 공급가격·정상회담 후속 일정에서 돌봄의 40분으로 소재 수와 시야를 줄였다.
+- [x] 주 ARTICLE PREVIEW는 Society + LIFE SCENE 조합 하나에 집중했다.
+- [x] 각 기사 본문의 근거 수치·세부 절차·결론을 DEPTH CEILING 아래에 남겼다.
+- [x] 마지막은 7월 27일 오후 3시 Cover Story 첫 장면으로 직접 접속한다.
+- [x] 공개 원고에서 내부 편집 과정 설명과 제작 후기 시점을 제거했다.
+
+판정: PREVIEW MAP 및 ARTICLE 편집 검수 완료. 08 PROLOGUE COMPLETE.
