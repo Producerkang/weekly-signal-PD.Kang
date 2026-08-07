@@ -10,11 +10,13 @@
 
 01~07은 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
-08 PROLOGUE는 현재 문체와 관심 환기 수준은 유지한다. 문제는 문장 자체가 아니라 `모든 기사와 토픽을 빠짐없이 한 번씩 언급해야 한다`는 커버리지 사고방식이 원고 배열에 스며드는 것이다. 현행 `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`의 새 PROLOGUE 로직으로 재검수한다.
+08 PROLOGUE는 현재 문체와 관심 환기 수준은 유지한다. 문제는 문장 자체가 아니라 `모든 기사와 토픽을 빠짐없이 한 번씩 언급해야 한다`는 커버리지 사고방식이 원고 배열에 스며드는 것이다. 현행 `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`의 PROLOGUE 로직으로 재검수한다.
 
-09 EDITOR'S PICK은 현재 결과에 대한 사용자 만족도가 낮아 다시 검토해야 한다. 다만 **08 PROLOGUE를 먼저 닫은 뒤** 별도로 논의·재설계한다. 현재 단계에서 09를 먼저 수정하지 않는다.
+기존 EDITOR'S PICK 제도는 폐기했다. 과거 `09_editors_pick/ARTICLE.md`는 기준 원고로 사용하지 않으며 작업 트리에서 삭제한다.
 
-08과 09가 다시 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
+08 PROLOGUE가 다시 COMPLETE가 된 뒤 새 `09 EDITOR'S AFTERWORD`를 처음부터 작성한다. AFTERWORD는 PICK을 하지 않는 실제 에디터 후기이며, 기존 Editor's Pick 문장·제목·구조를 복원하거나 변형해 사용하지 않는다.
+
+08과 09가 모두 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
 
 ## 진행 상태
 
@@ -27,7 +29,7 @@
 - DEEP_DIVE: COMPLETE
 - LIFE_SCENE: COMPLETE
 - PROLOGUE: IN_REVIEW
-- EDITORS_PICK: IN_REVIEW
+- EDITOR'S AFTERWORD: PENDING
 - MANUSCRIPT_STAGE: IN_REVIEW
 - LAYOUT: PENDING
 - IMAGES: PENDING
@@ -99,7 +101,7 @@
 
 - 모든 기사·모든 분야를 최소 한 번씩 언급해야 한다는 생각
 - 분야별로 비슷한 분량을 배정하려는 생각
-- 한 문단 안에서 빠진 토픽을 채우기 위해 Economy → Society → Politics → Tech를 빠르게 소환하는 배열
+- 한 문단 안에서 빠진 토픽을 채우기 위해 여러 분야를 빠르게 소환하는 배열
 - 기사마다 대표 숫자·장면 하나씩 뽑아 나열하는 방식
 - 여러 기사를 하나의 공통 주제·공통 질문·공통 교훈으로 묶으려는 시도
 - 분량을 늘리기 위해 `왜 중요한가`라는 별도 논증을 만드는 방식
@@ -113,15 +115,13 @@
 1. Contents가 전체 목록을 담당하고 PROLOGUE는 선택과 강조를 담당한다.
 2. 프롤로그 전체에서 어떤 기사가 직접 언급되지 않아도 실패가 아니다.
 3. 한 기사만 길게 소개하고 다른 기사는 짧게 지나가도 된다.
-4. TEASER DETAIL은 기사당 하나씩 배정하지 않는다. 흥미를 높이는 데 필요한 것만 선택한다.
+4. TEASER DETAIL은 기사당 하나씩 배정하지 않는다.
 5. 한 문단에는 한두 소재만 충분히 보여주고 멈출 수 있다.
 6. 질문형 문장이나 `왜 중요한가`를 의무적으로 만들지 않는다.
 7. 분량 확대는 구체적인 장면·숫자·기사 소개의 해상도를 높일 때만 허용한다.
 8. 커버리지 때문에 존재하는 문장은 삭제한다. 삭제 후 특정 토픽이 사라져도 괜찮다.
 
 ### COVERAGE PRESSURE PASS
-
-초안 완성 뒤 반드시 확인한다.
 
 - 이 문장은 흥미를 더하는가, 아니면 특정 분야를 한 번 언급하려고 존재하는가?
 - 이 토픽을 빼면 프롤로그가 실제로 약해지는가?
@@ -135,23 +135,49 @@
 
 1. 현재 `08_prologue/ARTICLE.md`를 새 표준으로 다시 읽는다.
 2. 기존 문장의 좋은 결은 가능한 한 유지한다.
-3. 특히 여러 토픽을 한 문단에서 빠르게 커버하는 문장을 우선 점검한다.
-4. 필요하면 독자가 실제 뒤 기사에서 만나게 될 내용 소개를 조금 확장하되, 모든 기사를 채우지 않는다.
+3. 여러 토픽을 한 문단에서 빠르게 커버하는 문장을 우선 점검한다.
+4. 필요하면 독자가 실제 뒤 기사에서 만나게 될 내용 소개를 조금 확장하되 모든 기사를 채우지 않는다.
 5. COVERAGE PRESSURE PASS와 SPOILER PASS를 통과하면 다시 COMPLETE로 닫는다.
-6. 그 뒤에만 09 EDITOR'S PICK으로 이동한다.
+6. 그 뒤에만 09 EDITOR'S AFTERWORD로 이동한다.
 
-## 09 EDITOR'S PICK — IN_REVIEW / HOLD
+## 09 EDITOR'S AFTERWORD — PENDING
 
-작업 경로: `09_editors_pick/`
-현재 제목: `2,500보다 오래 남은 1,461`
+예정 작업 경로: `09_editor_afterword/`
 
-- 현 원고는 COMPLETE로 간주하지 않는다.
-- PROLOGUE 수정이 끝난 뒤 역할·중심축·문체를 다시 논의한다.
-- 현재 단계에서 기존 문장을 기준 답안이나 골든 레퍼런스로 사용하지 않는다.
+EDITOR'S PICK은 폐기했다. 새 AFTERWORD는 기존 PICK을 고쳐 쓰는 작업이 아니라 새 역할로 처음부터 작성한다.
+
+### 역할
+
+한 호의 기사와 DEEP DIVE를 모두 읽은 뒤, Sources 앞에서 만나는 실제 **에디터 후기**다.
+
+PROLOGUE와 달리 제작 후 시점을 숨기지 않는다. `이번 호를 만들면서`, `원고를 닫고 나니`, `마지막까지 고민한 것은` 같은 실제 회고 표현을 사용할 수 있다.
+
+### 금지할 사고방식
+
+- 이번 호를 대표하는 기사 하나를 골라야 한다.
+- 가장 오래 남은 숫자 하나를 선정해야 한다.
+- 모든 기사를 관통하는 교훈을 찾아야 한다.
+- 중심축을 반드시 하나의 명제로 압축해야 한다.
+- 마지막에 독자에게 질문 하나를 던져야 한다.
+
+### 현행 AFTERWORD 제작 로직
+
+`ISSUE READBACK → MEMORY TRACE → REFLECTION DRAFT → RECAP CUT → METHOD REPORT CUT → AFTERTASTE PASS → COMPLETE`
+
+핵심 원칙:
+
+1. 실제 제작을 마친 뒤 남은 생각·망설임·인상·미완의 질문을 적는다.
+2. 하나에 오래 머물 수도 있고 두세 가지 생각이 자연스럽게 이어질 수도 있다.
+3. 기사별 요약으로 돌아가지 않는다.
+4. 선택한 수치·제도·기사의 정의와 논리를 다시 장황하게 설명하지 않는다.
+5. VERIFY·FLOW·검수 절차를 독자에게 가르치는 방법론 보고서로 만들지 않는다.
+6. 존재하지 않는 회의·취재 현장·감정·대화를 만들지 않는다.
+7. 마지막에 교훈·질문·다음 호 예고·감사 인사를 의무적으로 붙이지 않는다.
+8. 자연스러운 여운으로 닫는다.
 
 ## 최종 독서 순서
 
-`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics DEEP_DIVE → Society → Tech → 선택적 DATA/WATCH → EDITOR'S PICK → Sources`
+`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics DEEP_DIVE → Society → Tech → 선택적 DATA/WATCH → EDITOR'S AFTERWORD → Sources`
 
 이번 호 Deep Dive는 Politics 바로 뒤에 둔다.
 
@@ -165,7 +191,7 @@
 4. `editorial/ISSUE_QUALITY_GATE.md`
 5. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
 6. `editorial/LIFE_SCENE_STANDARD.md`
-7. `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`
+7. `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`
 8. `editorial/VOICE_AND_TONE.md`
 9. `editorial/SOURCE_POLICY.md`
 10. `editorial/IMAGE_DIRECTION.md`
@@ -184,6 +210,8 @@
 - 분야별 균등 분량 사고방식 금지
 - 여러 토픽을 한 문단에 압축해 커버리지 채우기 금지
 - 공통 주제·공통 질문·공통 교훈 강제 금지
-- PROLOGUE COMPLETE 전 EDITOR'S PICK 수정 금지
+- PROLOGUE COMPLETE 전 EDITOR'S AFTERWORD 작성 금지
+- 기존 `09_editors_pick/ARTICLE.md` 복원·재사용 금지
+- AFTERWORD에서 PICK 구조·기사 요약·방법론 보고서 금지
 - 08·09 COMPLETE 전 지면 설계 진행 금지
 - 실제 화면 검수 전 발행 상태로 변경 금지
