@@ -6,8 +6,8 @@
 
 ## 진행 상태
 
-- COVER STORY: IN_PROGRESS
-- ECONOMY: PENDING
+- COVER STORY: COMPLETE
+- ECONOMY: IN_PROGRESS
 - POLITICS: PENDING
 - SOCIETY: PENDING
 - TECH: PENDING
@@ -20,9 +20,9 @@
 
 현재 턴에서는 다음 3단계를 순차 진행한다.
 
-1. Cover Story 완전 재작성·검수
-2. Economy 완전 재작성·검수
-3. Politics 완전 재작성·검수
+1. Cover Story 완전 재작성·검수 — COMPLETE
+2. Economy 완전 재작성·검수 — IN_PROGRESS
+3. Politics 완전 재작성·검수 — PENDING
 
 각 단계 완료 시 해당 기사 파일을 `COMPLETE`로 만들고 이 상태표를 갱신한 뒤 다음 단계로 이동한다.
 
