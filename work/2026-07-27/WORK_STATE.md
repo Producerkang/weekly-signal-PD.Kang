@@ -6,15 +6,15 @@
 
 ## 현재 재개 지점
 
-**다음 작업은 `08 PROLOGUE` 백지 제작이다.**
+**다음 작업은 `09 EDITOR'S AFTERWORD` 백지 제작이다.**
 
-01~07은 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
+01~08은 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
-08 PROLOGUE는 이전 생성본을 수정하거나 참고하지 않는다. 현행 `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`와 `editorial/WEEKLY_RUNBOOK.md`의 새 PROLOGUE 로직만 기준으로 처음부터 다시 만든다.
+08 PROLOGUE는 현행 `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`와 `editorial/WEEKLY_RUNBOOK.md`의 새 PROLOGUE 로직으로 백지 재제작을 완료했다. `08_prologue/PREVIEW_MAP.md`를 먼저 작성·검수한 뒤 `08_prologue/ARTICLE.md`를 작성했고, PANORAMA → ORIENTATION → FOCUS → ARTICLE PREVIEW → HANDOFF 구조와 DEPTH CEILING·REPEATED COVERAGE 기준을 모두 통과했다.
 
-이번 재테스트에서는 ARTICLE을 바로 쓰지 않는다. 먼저 `08_prologue/PREVIEW_MAP.md`를 작성하고 검수한 뒤에만 `ARTICLE.md`를 만든다.
+09 EDITOR'S AFTERWORD는 기존 EDITOR'S PICK이나 삭제된 과거 원고를 복원·참조하지 않는다. 현행 AFTERWORD 로직으로 처음부터 작성한다.
 
-08 PROLOGUE가 COMPLETE가 된 뒤에만 09 EDITOR'S AFTERWORD를 시작한다. 08과 09가 모두 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
+09가 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
 
 ## 진행 상태
 
@@ -26,7 +26,7 @@
 - CROSS_ARTICLE_REVIEW: COMPLETE
 - DEEP_DIVE: COMPLETE
 - LIFE_SCENE: COMPLETE
-- PROLOGUE: PENDING
+- PROLOGUE: COMPLETE
 - EDITOR'S AFTERWORD: PENDING
 - MANUSCRIPT_STAGE: IN_REVIEW
 - LAYOUT: PENDING
@@ -35,7 +35,7 @@
 - SCREEN_REVIEW: PENDING
 - PUBLISH: PENDING
 
-## 확정된 01~07
+## 확정된 01~08
 
 ### 01 Cover Story
 - `01_cover/VERIFY.md`: COMPLETE
@@ -82,67 +82,16 @@
 - 연결 대상: Society
 - 현재 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
-## 08 PROLOGUE — PENDING / BLANK SLATE
-
-예정 작업 경로:
-
-```text
-08_prologue/
-├─ PREVIEW_MAP.md
-└─ ARTICLE.md
-```
-
-이전 08 PROLOGUE 생성본은 실패 테스트로 간주하고 작업 트리에서 삭제했다. 제목·문장·문단 구조를 복원하거나 참고 문안·골든 레퍼런스로 사용하지 않는다.
-
-### 현행 역할
-
-PROLOGUE는 **한 호의 지면을 넓게 열었다가 몇 군데로 시선을 좁히고 본문으로 넘기는 매거진 도입부**다.
-
-핵심 시선 이동:
-
-`PANORAMA → ORIENTATION → FOCUS → ARTICLE PREVIEW → HANDOFF`
-
-초반 PANORAMA에서는 여러 분야와 주요 토픽이 함께 등장해도 된다. 이 넓은 시야 자체를 커버리지 압박으로 오판하지 않는다.
-
-그 뒤에는 반드시 시야가 좁아져야 한다. PANORAMA에서 이미 전체 지형을 보여줬다면 FOCUS와 ARTICLE PREVIEW에서 다시 모든 분야를 한 번씩 순회하지 않는다.
-
-### 필수 제작 로직
-
-`ISSUE READBACK → PREVIEW MAP → PANORAMA → ORIENTATION → FOCUS → ARTICLE PREVIEW → RHYTHM PASS → DEPTH CEILING PASS → REPEATED COVERAGE PASS → HANDOFF → COMPLETE`
-
-### PREVIEW MAP 필수 항목
-
-`PREVIEW_MAP.md`에는 최소한 다음을 적는다.
-
-1. `PANORAMA`: 초반에 넓게 보여줄 사건·장면
-2. `ORIENTATION`: 뒤에서 어떤 종류의 내용을 만나게 될지 잡아주는 방향
-3. `FOCUS`: 조금 가까이 보여줄 일부 숫자·장면·문서·행동
-4. `ARTICLE PREVIEW`: 한 단계 더 구체적으로 소개할 기사 또는 자연스러운 기사 조합
-5. `DEPTH CEILING`: 각 소재에서 프롤로그가 멈춰야 할 선
-6. `HANDOFF`: 본문으로 넘기는 방식
-
-PREVIEW MAP만 읽어도 `넓게 → 좁게 → 본문`의 이동이 보여야 한다. 그렇지 않으면 ARTICLE을 쓰지 않는다.
-
-### 반드시 피할 실패 구조
-
-- PANORAMA 없이 `Cover 한 문단 → Economy 한 문단 → Politics 한 문단`처럼 선택 기사 몇 편을 차례로 깊게 설명
-- 한 문단에 기사 하나씩 배치한 미니 초록 구조
-- PANORAMA에서 여러 토픽을 보여준 뒤 FOCUS와 ARTICLE PREVIEW에서도 다시 전 분야를 한 번씩 반복
-- 기사마다 같은 분량·대표 숫자·대표 장면을 배정
-- 기사 핵심 메커니즘·근거 수치·비교 사례·후속 절차를 본문 수준으로 미리 설명
-- 모든 기사를 하나의 공통 교훈·공통 질문·공통 구조로 묶기
-
-### 완료 판정
-
-다음을 모두 통과해야 COMPLETE다.
-
-- `PREVIEW_MAP.md`가 ARTICLE보다 먼저 존재
-- 초반에 이번 호의 폭이 보임
-- 중간부터 소재 수가 줄고 해상도가 높아짐
-- 선택 기사 미니 요약집처럼 읽히지 않음
-- PANORAMA의 넓은 커버리지를 뒤에서 반복하지 않음
-- 기사 내용은 소개하지만 설명을 끝내지 않음
-- 마지막이 본 기사 쪽으로 자연스럽게 넘어감
+### 08 Prologue
+- `08_prologue/PREVIEW_MAP.md`: COMPLETE
+- `08_prologue/ARTICLE.md`: COMPLETE
+- 백지 재제작 완료
+- PANORAMA에서 Cover·Economy·Politics·Society·Tech 소재를 넓게 펼친 뒤 전 분야를 다시 순회하지 않음
+- FOCUS는 석유 공급가격·정상회담 후속 일정에서 돌봄의 40분으로 시야를 좁힘
+- ARTICLE PREVIEW는 Society + LIFE SCENE 조합에 집중
+- 기사별 세부 근거·후속 절차·결론은 DEPTH CEILING 아래에 남김
+- 마지막은 7월 27일 오후 3시 Cover Story 첫 장면으로 접속
+- 현행 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
 ## 09 EDITOR'S AFTERWORD — PENDING / BLANK SLATE
 
@@ -154,14 +103,31 @@ EDITOR'S PICK 제도는 폐기했다. 새 AFTERWORD는 기존 PICK이나 삭제�
 
 `ISSUE READBACK → MEMORY TRACE → REFLECTION DRAFT → RECAP CUT → METHOD REPORT CUT → AFTERTASTE PASS → COMPLETE`
 
-핵심:
+### 현행 역할
 
-- 실제 한 호 제작을 마친 뒤 남은 생각·망설임·인상·미완의 질문을 자연스럽게 회고
-- 대표 기사·대표 숫자·대표 문장 강제 선정 금지
-- 모든 기사를 하나의 공통 교훈으로 묶지 않음
-- 기사별 요약 금지
-- VERIFY·FLOW·검수 절차를 설명하는 방법론 보고서 금지
-- 자연스러운 여운으로 종료
+EDITOR'S AFTERWORD는 실제 한 호의 원고를 모두 만든 뒤 남은 생각·망설임·인상·미완의 질문을 자연스럽게 회고하는 에디터 후기다.
+
+PROLOGUE와 달리 제작 후 시점을 숨기지 않는다. `이번 호를 만들면서`, `원고를 닫고 나니` 같은 회고 표현을 사용할 수 있다.
+
+### 반드시 피할 실패 구조
+
+- 대표 기사·대표 숫자·대표 문장 하나를 강제로 선정
+- 기사별로 한 문단씩 다시 요약
+- 모든 기사를 하나의 공통 교훈이나 공식 결론으로 묶기
+- VERIFY·FLOW·검수 절차를 설명하는 제작 방법론 보고서
+- 존재하지 않는 취재 장면·기자 감정·인터뷰를 꾸며내기
+- 마지막에 교훈·질문·다음 호 예고를 의무적으로 붙이기
+
+### 완료 판정
+
+다음을 모두 통과해야 COMPLETE다.
+
+- 실제 이번 호 전체를 읽은 뒤의 회고처럼 읽힘
+- 기사 목록 요약으로 수렴하지 않음
+- 한두 가지 생각에 오래 머물러도 자연스러움
+- 제작 절차 설명이 중심이 되지 않음
+- 과장된 감상이나 인위적 교훈이 없음
+- 마지막에 자연스러운 여운이 남음
 
 ## 최종 독서 순서
 
@@ -190,17 +156,16 @@ EDITOR'S PICK 제도는 폐기했다. 새 AFTERWORD는 기존 PICK이나 삭제�
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 08 PROLOGUE의 `PREVIEW_MAP.md` 작성부터 시작**한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 09 EDITOR'S AFTERWORD 백지 제작부터 시작**한다.
 
-- 01~07 수정 금지
-- 기존 08 PROLOGUE 복원·참조·문장 재사용 금지
-- PREVIEW MAP 없이 ARTICLE 작성 금지
-- PANORAMA에서는 여러 주요 토픽을 함께 보여줄 수 있음
-- PANORAMA 뒤에는 반드시 시야를 좁힐 것
-- 선택한 기사 몇 편을 한 문단씩 차례로 설명하는 구조 금지
-- 전 분야 커버리지를 글 전체에서 반복하는 구조 금지
-- 공통 주제·공통 질문·공통 교훈 강제 금지
-- 프롤로그에서 기사 본문 설명을 끝내지 말 것
-- 08 COMPLETE 전 EDITOR'S AFTERWORD 작성 금지
-- 08·09 COMPLETE 전 지면 설계 진행 금지
+- 01~08 수정 금지
+- 기존 EDITOR'S PICK 및 삭제된 과거 AFTERWORD 복원·참조·문장 재사용 금지
+- 이번 호 전체 완성 원고를 다시 읽고 MEMORY TRACE부터 시작
+- 대표 기사·대표 숫자·대표 문장 강제 선정 금지
+- 기사별 요약 금지
+- 모든 기사를 하나의 공통 교훈·공통 질문으로 묶지 않음
+- VERIFY·FLOW·검수 절차를 설명하는 방법론 보고서 금지
+- 실제 제작 후 남은 생각·망설임·인상·미완의 질문을 자연스럽게 회고
+- 자연스러운 여운으로 종료
+- 09 COMPLETE 전 지면 설계 진행 금지
 - 실제 화면 검수 전 발행 상태로 변경 금지
