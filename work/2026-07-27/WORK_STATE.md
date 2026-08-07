@@ -26,13 +26,13 @@
 - ECONOMY: COMPLETE
 - POLITICS: COMPLETE
 - SOCIETY: COMPLETE
-- TECH: VERIFYING
+- TECH: COMPLETE
 - CROSS_ARTICLE_REVIEW: PENDING
 - DEEP_DIVE: PENDING
 - LIFE_SCENE: PENDING
 - EDITORS_PICK: PENDING
 
-## 이번 실행 완료
+## 일반 기사 완료
 
 ### Cover Story
 
@@ -62,22 +62,38 @@
 - `04_society/FLOW.md`: COMPLETE
 - `04_society/ARTICLE.md`: COMPLETE
 - 제목: `방학 오전 아홉 시를 누가 맡나, 틈새돌봄 1,461곳이 시작됐다`
-- 검증 핵심: 7월 13일 최초 2,500개소 목표와 7월 23일 실제 첫 운영 확정 1,461개소를 구분하고, 기존 마을돌봄시설의 운영시간·급식 확대가 가정의 실제 이용경로로 어떻게 이어지는지 설명
+- 검증 핵심: 현재 회차 자료에서 후보를 새로 선별했다. 7월 13일 최초 2,500개소 목표와 7월 23일 실제 첫 운영 확정 1,461개소를 구분하고, 기존 마을돌봄시설의 운영시간·급식 확대가 가정의 실제 이용경로로 어떻게 이어지는지 설명했다.
 
-## 현재 작업
+### Tech
 
-Tech 후보를 현재 회차(2026-07-27—2026-08-02)의 자료에서 새로 선별하고 `05_tech/VERIFY.md`를 생성한다. 과거 실패본·교정본·이전 커밋의 Tech 주제는 현재 주제 선정 근거로 사용하지 않는다.
+- `05_tech/VERIFY.md`: COMPLETE
+- `05_tech/FLOW.md`: COMPLETE
+- `05_tech/ARTICLE.md`: COMPLETE
+- 제목: `두 나노팹에 ‘공공’ 지위를 붙였다, 연구장비 공동활용은 무엇이 달라지나`
+- 검증 핵심: 현재 회차 자료에서 후보를 새로 선별했다. 한국나노기술원·나노종합기술원은 새로 지어진 팹이 아니라 기존 나노팹 운영기관이며, 2026년 5월 공공나노팹센터로 지정된 뒤 7월 29일 출범했다. 정부 출연·공유재산 특례·통합정보시스템·연간 보고·평가라는 법적 운영구조와 실제 이용성과를 구분했다.
 
-Tech도 현행 파이프라인을 처음부터 적용한다.
+## 다음 작업
 
-1. 후보를 최소 2개 이상 비교하고 사건성·1차 자료·다른 기사와의 중복을 확인한다.
-2. 주제를 확정한 뒤 VERIFY를 끝낸다.
-3. `05_tech/FLOW.md`에서 기사 중심 질문 1개와 5~7개 안팎의 설명 단위를 선형 순서로 설계한다.
-4. FLOW가 닫힌 뒤에만 `05_tech/ARTICLE.md`를 작성한다.
-5. NARRATIVE와 ANALYSIS 뒤 COHERENCE PASS를 먼저 실행한다.
-6. COHERENCE 통과 후 STYLE PASS, HEADLINE & DECK, ARTICLE REVIEW를 거쳐 COMPLETE로 닫는다.
+`CROSS_ARTICLE_REVIEW`를 시작한다.
 
-일반 기사 5편이 모두 COMPLETE가 되기 전에는 CROSS_ARTICLE_REVIEW, DEEP_DIVE, LIFE_SCENE, EDITORS_PICK, 이미지·HTML 제작으로 넘어가지 않는다.
+일반 기사 5편이 모두 COMPLETE가 됐으므로 다음 실행부터 처음으로 Cover Story·Economy·Politics·Society·Tech를 한꺼번에 비교한다.
+
+검토 항목:
+
+1. 주제와 설명 중복
+2. 같은 결론·수사 반복
+3. 분야별 깊이 편차
+4. 출처 역할 편중
+5. 빠진 배경지식
+6. 부정형·대조형 제목 반복
+7. 기사마다 설명 흐름이 선형적으로 이어지는지
+8. 기사별 FLOW가 같은 템플릿으로 수렴하지 않는지
+9. 짧은 문단이 습관적으로 반복되는지
+10. 한 호 전체 정보 밀도
+
+수정이 필요한 기사는 해당 기사만 `IN_REVIEW`로 되돌리고, 필요하면 FLOW부터 다시 설계한다.
+
+이번 실행에서는 CROSS_ARTICLE_REVIEW 이후 단계로 넘어가지 않는다. DEEP_DIVE, LIFE_SCENE, EDITORS_PICK, 이미지·HTML 제작은 아직 시작하지 않는다.
 
 ## 현재 핵심 교정 원칙
 
