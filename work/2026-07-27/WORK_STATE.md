@@ -6,13 +6,13 @@
 
 ## 현재 재개 지점
 
-**다음 작업은 `09 EDITOR'S PICK`이다.**
+**다음 작업은 지면 설계다.**
 
-01~08은 현행 완성본으로 확정한다. 새 대화에서는 다시 작성하거나 재검토하지 않는다.
+01~09 원고 단계는 모두 COMPLETE다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
-09 EDITOR'S PICK은 새 구조를 검증하기 위해 **깨끗하게 다시 작성**한다. 이전에 작성했던 08/09 시험 원고는 작업 트리에서 삭제했으며 Git 이력에만 남아 있다. 09 새 원고를 만들 때 이전 시험 원고를 복원하거나 문장을 재사용하지 않는다.
+이제 `editorial/LAYOUT_SYSTEM.md`, `editorial/IMAGE_DIRECTION.md`, `editorial/PUBLISHING_PIPELINE.md`, `templates/TEMPLATE_CONTRACT.md`, `templates/NAVIGATION_CONTRACT.md`를 기준으로 지면 설계부터 진행한다.
 
-09가 COMPLETE가 되기 전에는 지면 설계·이미지·HTML·발행 단계로 넘어가지 않는다.
+지면 설계 → 이미지 제작 → HTML 제작 → 실제 화면 검수 → 저장소 구조 검사 → 비교 검수 → 최종 발행 순서를 지킨다.
 
 ## 진행 상태
 
@@ -25,9 +25,15 @@
 - DEEP_DIVE: COMPLETE
 - LIFE_SCENE: COMPLETE
 - PROLOGUE: COMPLETE
-- EDITORS_PICK: PENDING
+- EDITORS_PICK: COMPLETE
+- MANUSCRIPT_STAGE: COMPLETE
+- LAYOUT: PENDING
+- IMAGES: PENDING
+- HTML: PENDING
+- SCREEN_REVIEW: PENDING
+- PUBLISH: PENDING
 
-## 확정된 01~08
+## 확정된 01~09
 
 ### 01 Cover Story
 - `01_cover/VERIFY.md`: COMPLETE
@@ -82,41 +88,33 @@
 - `PROLOGUE REVIEW`: PASS
 - 현재 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
-## 09 EDITOR'S PICK — 다음 작업
+### 09 Editor's Pick
+- `09_editors_pick/ARTICLE.md`: COMPLETE
+- 제목: `2,500보다 오래 남은 1,461`
+- Society 검증에서 확인된 `2,500개소 목표 → 1,461개소 첫 운영`의 상태 차이를 중심축으로 삼았다.
+- 기사별 요약이 아니라 숫자의 상태를 구분하며 편집 판단이 달라진 지점을 회수했다.
+- `EDITOR'S PICK REVIEW`: PASS
+- 현재 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
-작업 경로: `09_editors_pick/`
+## 다음 작업 — 지면 설계
 
-EDITOR'S PICK은 모든 기사와 연결 DEEP_DIVE를 읽은 뒤, Sources 직전에 배치되는 **편집 에필로그**다.
+원고 단계가 모두 닫혔으므로 다음 턴부터 지면 설계를 시작한다.
 
-### 작성 시점과 독서 시점
+### 기본 원칙
 
-- PROLOGUE 완료 뒤 작성한다.
-- 작성 자체는 전체 제작의 마지막 원고 단계다.
-- 독자는 일반 기사와 DEEP_DIVE를 모두 읽은 상태라고 전제할 수 있다.
-
-### 역할
-
-- 실제 리서치와 편집 과정에서 판단이 바뀐 지점, 오래 남은 사실, 망설임이나 질문을 짧은 편집 산문으로 회수한다.
-- 기사별 요약문이나 호 전체의 공식 논설문이 아니다.
-- 모든 기사를 언급할 필요가 없다.
-
-### 필수 기준
-
-1. 실제 제작 과정에서 나온 한 중심축을 고른다.
-2. 기사 내용을 다시 설명하기보다 편집 과정에서 무엇을 다시 보게 됐는지를 쓴다.
-3. 존재하지 않는 기자·회의·취재 장면·감정을 만들지 않는다.
-4. 한 문단에 기사 하나씩 배치하지 않는다.
-5. 모든 분야를 하나의 교훈으로 억지로 묶지 않는다.
-6. Sources 직전의 에필로그로 읽었을 때 자연스러운지 확인한다.
-7. 작성 후 `EDITOR'S PICK REVIEW`를 통과하고 `EDITORS_PICK: COMPLETE`로 변경한다.
-
-상세 기준은 `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`를 따른다.
+1. `templates/ISSUE_TEMPLATE.html`을 시작 셸로 사용하되 이전 회차 HTML을 복제하지 않는다.
+2. 먼저 전체 독서 순서와 기사별 지면 리듬을 설계한다.
+3. 한 호에 최소 세 가지 이상의 기사 레이아웃 리듬을 만든다.
+4. 기사별 장식·카드·표는 본문을 반복하지 않고 새 정보나 읽기 전환을 제공할 때만 사용한다.
+5. DATA와 WATCH는 새 정보가 있을 때만 추가한다. 형식을 채우기 위해 만들지 않는다.
+6. 이미지 제작보다 먼저 각 기사 이미지의 역할·구도·크롭 위치를 지면 설계와 함께 확정한다.
+7. 지면 설계가 닫힌 뒤 이미지 제작으로 이동한다.
 
 ## 최종 독서 순서
 
-`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → 연결 DEEP_DIVE가 있으면 해당 기사 바로 뒤 → Economy → Politics → Politics DEEP_DIVE → Society → Tech → 선택적 DATA/WATCH → EDITOR'S PICK → Sources`
+`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics DEEP_DIVE → Society → Tech → 선택적 DATA/WATCH → EDITOR'S PICK → Sources`
 
-실제 DEEP_DIVE 위치는 연결 대상 기사 바로 뒤에 둔다. 이번 호 Deep Dive는 Politics 뒤에 둔다.
+이번 호 Deep Dive는 Politics 바로 뒤에 둔다.
 
 ## 현행 제작 기준
 
@@ -131,15 +129,19 @@ EDITOR'S PICK은 모든 기사와 연결 DEEP_DIVE를 읽은 뒤, Sources 직전
 7. `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`
 8. `editorial/VOICE_AND_TONE.md`
 9. `editorial/SOURCE_POLICY.md`
-10. `templates/TEMPLATE_CONTRACT.md`
-11. `templates/NAVIGATION_CONTRACT.md`
+10. `editorial/IMAGE_DIRECTION.md`
+11. `editorial/LAYOUT_SYSTEM.md`
+12. `editorial/PUBLISHING_PIPELINE.md`
+13. `templates/TEMPLATE_CONTRACT.md`
+14. `templates/NAVIGATION_CONTRACT.md`
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 09 EDITOR'S PICK부터 진행**한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 지면 설계부터 진행**한다.
 
-- 01~08 수정 금지
-- 삭제된 이전 08/09 시험 원고 복원 금지
-- 이전 시험 EDITOR'S PICK 문장 재사용 금지
-- EDITOR'S PICK 작성 후 REVIEW 통과
-- `EDITORS_PICK: COMPLETE`가 된 뒤에만 지면 설계로 이동
+- 01~09 원고 수정 금지
+- 삭제된 이전 시험 원고 복원 금지
+- 이전 회차 HTML 복제 금지
+- 지면 설계 완료 전 이미지·HTML 본제작으로 넘어가지 않는다
+- 지면 설계 뒤 이미지 제작, 그다음 HTML 제작 순서를 지킨다
+- 실제 화면 검수 전 발행 상태로 변경하지 않는다
