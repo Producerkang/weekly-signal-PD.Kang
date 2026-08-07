@@ -10,14 +10,17 @@
 2. `editorial/EDITORIAL_STANDARD.md`
 3. `editorial/ISSUE_QUALITY_GATE.md`
 4. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
-5. `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`
-6. `editorial/VOICE_AND_TONE.md`
-7. `editorial/SOURCE_POLICY.md`
-8. `editorial/IMAGE_DIRECTION.md`
-9. `editorial/LAYOUT_SYSTEM.md`
-10. `editorial/PUBLISHING_PIPELINE.md`
-11. `templates/TEMPLATE_CONTRACT.md`
-12. `templates/NAVIGATION_CONTRACT.md`
+5. `editorial/LIFE_SCENE_STANDARD.md`
+6. `editorial/HEADLINE_AND_EDITORS_PICK_STANDARD.md`
+7. `editorial/VOICE_AND_TONE.md`
+8. `editorial/SOURCE_POLICY.md`
+9. `editorial/IMAGE_DIRECTION.md`
+10. `editorial/LAYOUT_SYSTEM.md`
+11. `editorial/PUBLISHING_PIPELINE.md`
+12. `templates/TEMPLATE_CONTRACT.md`
+13. `templates/NAVIGATION_CONTRACT.md`
+
+LIFE SCENE 제작에서는 `LIFE_SCENE_STANDARD.md`가 세부 제작 로직을 소유하며 다른 일반 문체 지침보다 우선한다.
 
 HTML 제작 단계에서 `templates/ISSUE_TEMPLATE.html`을 시작 셸로 사용한다.
 
@@ -58,12 +61,14 @@ work/
    │  └─ ARTICLE.md
    ├─ 06_deep_dive/
    ├─ 07_life_scene/
+   │  ├─ SCENE_MAP.md
+   │  └─ ARTICLE.md
    └─ 08_editors_pick/
 ```
 
 Git은 빈 폴더를 보존하지 않으므로 아직 시작하지 않은 기사 폴더는 미리 만들지 않아도 된다.
 
-`VERIFY.md`, `FLOW.md`, `ARTICLE.md`의 역할은 `ARTICLE_WRITING_STANDARD.md`를 따른다. 검증 언어, 흐름 설계, 독자용 최종 원고를 서로 섞지 않는다.
+일반 기사의 `VERIFY.md`, `FLOW.md`, `ARTICLE.md` 역할은 `ARTICLE_WRITING_STANDARD.md`를 따른다. LIFE SCENE의 `SCENE_MAP.md`와 `ARTICLE.md` 역할은 `LIFE_SCENE_STANDARD.md`를 따른다.
 
 ## 3. 작업 상태
 
@@ -191,13 +196,26 @@ Cover Story와 Economy·Politics·Society·Tech가 모두 `COMPLETE`가 된 뒤 
 
 ## 9. LIFE SCENE
 
-1. 일반 기사와 DEEP DIVE가 완성된 뒤 주제를 고른다.
-2. 개인의 선택이나 주의로 해결되는 문제가 아니라 외부 제도·기관·서비스의 생활 문제인지 확인한다.
-3. 평범한 일상, 현실적 가상 인물, 제한된 정보, 기대와 실제의 차이를 중심으로 쓴다.
-4. 대기·이동·비용·정보 부족·일정 변경·돌봄·책임 공백 중 최소 세 가지가 자연스럽게 누적되게 한다.
-5. 제목과 부제는 생활 장면을 중심으로 쓴다.
-6. 마지막 `SCENARIO NOTE`에서만 정책과 기사 연결을 설명한다.
-7. 개인 투자·소비·자기관리 조언으로 끝내지 않는다.
+LIFE SCENE은 일반 기사 문체를 생활 사례에 적용하는 단계가 아니다. `editorial/LIFE_SCENE_STANDARD.md`의 독립 제작 알고리즘을 따른다.
+
+제작 순서:
+
+`SUBJECT SELECT → FACT BOUNDARY → CHARACTER & ORDINARY PLAN → SCENE MAP → NARRATIVE DRAFT → CAUSALITY PASS → EXPLANATION LEAK PASS → SCENARIO NOTE → LIFE SCENE REVIEW → COMPLETE`
+
+1. 일반 기사와 DEEP DIVE가 완성된 뒤 생활 장면으로 전환할 가치가 가장 높은 주제 하나를 고른다.
+2. 실제 정책·서비스의 시간·범위·조건을 `FACT BOUNDARY`로 확정한다.
+3. 구체적인 가상 인물 또는 한 가정과 그날의 평범한 원래 계획을 만든다.
+4. `07_life_scene/SCENE_MAP.md`를 먼저 작성한다.
+5. SCENE MAP에서 `상황/장애 → 인물의 행동 → 직접 결과 → 다음 장면이 필요한 이유`의 인과 사슬을 만든다.
+6. 대기·이동·비용·정보 부족·일정 변경·돌봄·책임 공백을 미리 목표 개수로 정하지 않는다. 인물이 움직이는 과정에서 자연스럽게 생길 때만 사용한다.
+7. 본문은 구체적 시간·장소·행동에서 시작하며, 정책명·전국 수치·행정 해설이 이야기를 끌고 가지 않게 한다.
+8. `CAUSALITY PASS`에서 각 주요 장면의 결과가 다음 장면을 실제로 만드는지 검사한다.
+9. `EXPLANATION LEAK PASS`에서 장면마다 붙은 정책 해설, 기사 재요약, 경우의 수 설명을 제거하거나 SCENARIO NOTE로 이동한다.
+10. 결말은 정책 평가문이 아니라 달라진 일정·물건·이동·대기 종료 같은 구체적인 생활 장면으로 닫는다.
+11. 마지막 `SCENARIO NOTE`에서 가상 범위와 실제 정책 사실을 명확히 분리한다.
+12. `LIFE_SCENE_STANDARD.md`의 STORY / POLICY BOUNDARY / ANTI-CHECKLIST 검수를 모두 통과해야 COMPLETE로 인정한다.
+
+현재 골든 레퍼런스는 ISSUE 01 「세 번째 병원에서야 이름이 불렸다」와 ISSUE 02 「아홉 시에 문이 열리는데, 엄마는 여덟 시 이십 분에 집을 나서야 했다」다. 소재·문단 수·시간표를 복제하지 않고 `인물의 목표 → 사건 → 행동 → 결과 → 다음 사건 → 생활의 변화`라는 공통 원리만 참고한다.
 
 ## 10. EDITOR'S PICK
 
@@ -302,7 +320,9 @@ GitHub Actions, 자동 배포와 자동 병합은 사용하지 않는다.
 
 - 실패본을 `archive/`에 남기지 않는다.
 - 실패한 기사만 `work/YYYY-MM-DD/`에서 다시 검증·작성한다.
-- 읽기 흐름이 실패한 경우 사실을 더 추가하기 전에 FLOW와 문단 경계를 다시 설계한다.
+- 읽기 흐름이 실패한 일반 기사는 사실을 더 추가하기 전에 FLOW와 문단 경계를 다시 설계한다.
+- LIFE SCENE이 설명문처럼 실패하면 문장을 꾸미지 말고 `SCENE_MAP.md`의 인과 사슬부터 다시 만든다.
+- LIFE SCENE에서 생활 마찰을 항목별로 채우는 구조가 보이면 해당 체크리스트를 버리고 `ACTION → CONSEQUENCE`로 재설계한다.
 - 부정문이 과도한 경우 표현만 치환하지 말고 그 부정이 논증에 필요한지부터 다시 판정한다.
 - 기술 조건만 형식적으로 맞추는 우회 수정을 하지 않는다.
 - 이미지가 준비되지 않았거나 실제 렌더링을 확인하지 못한 상태는 발행 불가다.
