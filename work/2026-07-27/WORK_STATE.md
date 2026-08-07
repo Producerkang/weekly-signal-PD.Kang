@@ -10,14 +10,23 @@
 
 01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
-현행 이미지 실행 기준:
+### 계약과 회차 실행값의 경계
+
+일반 이미지 계약은 다음 두 문서가 소유한다.
 
 - `editorial/IMAGE_PIPELINE.md`
 - `editorial/IMAGE_DIRECTION.md`
-- `work/2026-07-27/IMAGE_PLAN.md`
-- `work/2026-07-27/LAYOUT_PLAN.md`
 
-과거의 8장 일괄 생성, 연락시트·스토리보드 재시도, Canva 제작 보드 대체 시도는 **레거시 실패 이력**이며 현재 실행 지시가 아니다.
+이 두 문서는 특정 회차에 종속되지 않는다.
+
+제2호의 실제 슬롯 수·파일명·장면 브리프·LIFE SCENE 비율 오버라이드는 다음 두 문서가 소유한다.
+
+- `work/2026-07-27/LAYOUT_PLAN.md`
+- `work/2026-07-27/IMAGE_PLAN.md`
+
+따라서 제2호 실행값을 일반 계약으로 역수입하지 않는다.
+
+과거의 다중 이미지 일괄 생성, 연락시트·스토리보드 재시도, Canva 제작 보드 대체 시도는 **레거시 실패 이력**이며 현재 실행 지시가 아니다.
 
 ## 진행 상태
 
@@ -42,44 +51,37 @@
 ## 확정된 01~09
 
 ### 01 Cover Story
-
 - `01_cover/VERIFY.md`: COMPLETE
 - `01_cover/ARTICLE.md`: COMPLETE
 - 제목: `폭염 위기경보 ‘심각’, 중앙재난안전대책본부는 무엇을 움직이나`
 
 ### 02 Economy
-
 - `02_economy/VERIFY.md`: COMPLETE
 - `02_economy/ARTICLE.md`: COMPLETE
 - 제목: `휘발유 1,784원 상한은 주유소까지 어떻게 전달되나`
 
 ### 03 Politics
-
 - `03_politics/VERIFY.md`: COMPLETE
 - `03_politics/ARTICLE.md`: COMPLETE
 - 제목: `일곱 개 협력문서와 한·메르코수르 협상의 서로 다른 시간표`
 
 ### 04 Society
-
 - `04_society/VERIFY.md`: COMPLETE
 - `04_society/FLOW.md`: COMPLETE
 - `04_society/ARTICLE.md`: COMPLETE
 - 제목: `방학 오전 아홉 시를 누가 맡나, 틈새돌봄 1,461곳이 시작됐다`
 
 ### 05 Tech
-
 - `05_tech/VERIFY.md`: COMPLETE
 - `05_tech/FLOW.md`: COMPLETE
 - `05_tech/ARTICLE.md`: COMPLETE
 - 제목: `공공나노팹센터 두 곳 출범, 공동활용의 지원·평가 근거가 생겼다`
 
 ### CROSS-ARTICLE REVIEW
-
 - `CROSS_ARTICLE_REVIEW.md`: COMPLETE
 - 일반 기사 5편 전체 PASS
 
 ### 06 Deep Dive
-
 - `06_deep_dive/VERIFY.md`: COMPLETE
 - `06_deep_dive/FLOW.md`: COMPLETE
 - `06_deep_dive/ARTICLE.md`: COMPLETE
@@ -87,7 +89,6 @@
 - 연결 대상: Politics
 
 ### 07 Life Scene
-
 - `07_life_scene/SCENE_MAP.md`: COMPLETE
 - `07_life_scene/ARTICLE.md`: COMPLETE
 - 제목: `아홉 시에 문이 열리는데, 엄마는 여덟 시 이십 분에 집을 나서야 했다`
@@ -95,7 +96,6 @@
 - 현행 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
 ### 08 Prologue
-
 - `08_prologue/PREVIEW_MAP.md`: COMPLETE
 - `08_prologue/ARTICLE.md`: COMPLETE
 - 현행 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
@@ -103,7 +103,6 @@
 제3호 이후에도 현행 `PROSE RHYTHM PASS`를 적용한다.
 
 ### 09 Editor's Afterword
-
 - `09_editor_afterword/ARTICLE.md`: COMPLETE
 - 기사별 요약 구조 없음
 - 대표 기사·대표 숫자를 억지로 고르는 PICK 구조 없음
@@ -139,7 +138,6 @@ Cover
 - DATA/WATCH 별도 섹션 미제작
 - Cover / LIFE SCENE / PROLOGUE / 일반 기사 / DEEP DIVE / AFTERWORD 역할 분리
 - 기존 `archive/2026-07-27/` 과거 HTML/CSS 재사용 금지
-- 제1호는 매거진 밀도와 이미지 품질 비교 기준으로만 사용
 
 ## 13 이미지 제작 — READY
 
@@ -147,7 +145,7 @@ Cover
 
 - `IMAGE_PLAN.md`
 
-제2호 현행 슬롯:
+제2호 `LAYOUT_PLAN.md`에서 실제 지면에 사용하기로 확정한 REQUIRED 슬롯은 8개다.
 
 1. `cover.webp`
 2. `life-scene.webp`
@@ -158,40 +156,29 @@ Cover
 7. `society.webp`
 8. `tech.webp`
 
-### 현행 품질선
-
-- 제1호 실제 이미지 및 현행 시연 정도의 사진적·에디토리얼 품질이면 PASS 가능
-- 기사 주제와 자연스럽게 연결되면 충분하며 전체 메커니즘을 문자 그대로 재현할 필요 없음
-- 절제된 상징적 합성·네트워크 효과 허용
-- Cover 장변 2200px 이상 목표
-- 나머지 주요 이미지 장변 2000px 이상 목표
-- 동일 이미지 재사용 금지
-
-### Politics 절대 규칙
-
-Politics와 Politics DEEP DIVE 이미지는 **완전 무인(human-free)** 이어야 한다.
-
-사람, 얼굴, 실루엣, 뒷모습, 손, 원거리 인물이 하나라도 보이면 탈락한다.
-
-### LIFE SCENE 규칙
-
-LIFE SCENE만 생성 전에 비율을 명시한다.
-
-- 가로형 `4:3`
-- 세로형 `4:5`
-
-제2호 현행 프런트 스프레드는 `4:3` 가로형을 사용한다.
-
-### 생성 방식
+### 일반 계약 핵심
 
 - 한 번에 이미지 한 장만 생성
 - 각 슬롯 독립 상태 관리
 - 한 슬롯 최대 기본 3회 시도
 - 3회 실패 시 BLOCKED로 기록하고 다른 슬롯 진행
 - 실패한 한 장 때문에 다른 통과 이미지를 다시 만들지 않음
-- 최종 채택본만 `archive/2026-07-27/assets/`에 저장
+- 기사와 자연스럽게 연결되고 실제 지면에서 기능하면 PASS 가능
+- 기사 전체 메커니즘을 한 장에 재현하지 않음
+- Cover 장변 2200px 이상 목표
+- 나머지 주요 이미지 장변 2000px 이상 목표
+- Politics와 Politics DEEP DIVE는 완전 무인
+- LIFE SCENE 일반 기본값은 4:5
+- 특정 회차에서 지면상 이유가 있을 때만 4:3 오버라이드 가능
+- 최종 채택본만 `archive/YYYY-MM-DD/assets/`에 저장
 
-현재 각 슬롯 상태와 브리프는 `IMAGE_PLAN.md`가 소유한다.
+### 제2호 전용 오버라이드
+
+제2호 LIFE SCENE은 `LAYOUT_PLAN.md`에서 넓은 프런트 스프레드를 확정했으므로 **이번 회차에 한해 4:3**을 사용한다.
+
+이 선택은 일반 계약이 아니며 다음 회차로 자동 계승하지 않는다.
+
+현재 각 슬롯 상태와 상세 브리프는 `IMAGE_PLAN.md`가 소유한다.
 
 ## HTML / 화면 검수
 
@@ -199,7 +186,7 @@ HTML은 이미지 전체 완료를 기다려야만 구조 작업을 시작하는
 
 - 레이아웃 구조와 CSS는 이미지 슬롯 확정 후 진행 가능
 - 통과 이미지부터 순차 반영 가능
-- 다만 최종 발행은 필수 이미지가 모두 반영되고 실제 화면 검수를 통과하기 전에는 불가
+- 다만 최종 발행은 REQUIRED 이미지가 모두 반영되고 실제 화면 검수를 통과하기 전에는 불가
 
 검수 화면:
 
@@ -212,20 +199,31 @@ HTML은 이미지 전체 완료를 기다려야만 구조 작업을 시작하는
 
 ## 새 대화 재개 규칙
 
-새 대화에서는 반드시 현재 `main`의 다음 문서를 기준으로 한다.
+새 대화에서는 반드시 현재 `main`의 다음 문서를 순서대로 읽는다.
 
 1. 이 `WORK_STATE.md`
-2. `editorial/WEEKLY_RUNBOOK.md`
-3. `editorial/IMAGE_PIPELINE.md`
-4. `editorial/IMAGE_DIRECTION.md`
-5. `editorial/ISSUE_QUALITY_GATE.md`
-6. `editorial/LAYOUT_SYSTEM.md`
-7. `editorial/PUBLISHING_PIPELINE.md`
-8. `templates/TEMPLATE_CONTRACT.md`
-9. `templates/NAVIGATION_CONTRACT.md`
-10. `LAYOUT_PLAN.md`
-11. `IMAGE_PLAN.md`
+2. `editorial/IMAGE_PIPELINE.md`
+3. `editorial/IMAGE_DIRECTION.md`
+4. `editorial/ISSUE_QUALITY_GATE.md`
+5. `editorial/WEEKLY_RUNBOOK.md`
+6. `LAYOUT_PLAN.md`
+7. `IMAGE_PLAN.md`
 
-다음 실행은 `IMAGE_PLAN.md`의 READY 슬롯을 한 장씩 처리한다.
+그 후 `IMAGE_PLAN.md`의 첫 `READY` 슬롯부터 **한 장만** 처리한다.
+
+실행 순서:
+
+```text
+SLOT CONFIRM
+→ ROLE BRIEF 확인
+→ RATIO / RESOLUTION 확인
+→ SINGLE IMAGE GENERATION
+→ VISUAL INSPECTION
+→ ACCEPT / RETRY / BLOCKED
+```
+
+이미지 생성 대화에서는 처음부터 8장을 묶어서 만들지 않는다.
+
+한 슬롯이 ACCEPTED되면 해당 상태와 시도 횟수를 `IMAGE_PLAN.md`에 반영하고 다음 슬롯으로 이동한다. 저장·HTML 통합을 같은 턴에 무리하게 끝낼 필요는 없다.
 
 01~09 원고는 수정하지 않는다.
