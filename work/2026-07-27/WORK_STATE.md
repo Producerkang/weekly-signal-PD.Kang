@@ -25,7 +25,7 @@
 - COVER STORY: COMPLETE
 - ECONOMY: COMPLETE
 - POLITICS: COMPLETE
-- SOCIETY: PENDING
+- SOCIETY: VERIFYING
 - TECH: PENDING
 - CROSS_ARTICLE_REVIEW: PENDING
 - DEEP_DIVE: PENDING
@@ -56,20 +56,23 @@
 - 제목: `일곱 개 협력문서와 한·메르코수르 협상의 서로 다른 시간표`
 - 검증 핵심: 7개 MOU·MOC, 한·브라질 경제·통상 위원회, 한·메르코수르 무역협상의 권한·절차·효력 발생 시점을 분리하고 2021년 이후 공식 협상 라운드 미재개 상태를 확인
 
-## 다음 작업
+## 현재 작업
 
-`04_society/VERIFY.md`를 생성하고 Society 기사 검증부터 시작한다.
+`04_society/VERIFY.md`를 생성하고 Society 기사 검증을 진행한다.
+
+Society 후보는 현재 회차(2026-07-27—2026-08-02)의 자료에서 새로 선별한다. 과거 실패본·교정본의 Society 주제는 현재 주제 선정 근거로 사용하지 않는다.
 
 Society부터는 새 파이프라인을 처음부터 적용한다.
 
-1. VERIFY를 끝낸다.
-2. `04_society/FLOW.md`에서 기사 중심 질문 1개와 5~7개 안팎의 설명 단위를 선형 순서로 설계한다.
-3. 각 단위가 직전 단위에서 무엇을 받아 다음 단위로 무엇을 넘기는지 확인한다.
-4. FLOW가 닫힌 뒤에만 `04_society/ARTICLE.md`를 작성한다.
-5. NARRATIVE와 ANALYSIS 뒤 COHERENCE PASS를 먼저 실행한다.
-6. 한 문단은 하나의 중심 질문 또는 논리 단위를 충분히 설명한다. 한두 문장마다 습관적으로 끊지 않는다.
-7. 같은 급의 사실이 병렬적으로 퍼지면 정보 추가보다 순서와 문단 경계를 먼저 다시 설계한다.
-8. COHERENCE 통과 후 STYLE PASS, HEADLINE & DECK, ARTICLE REVIEW를 거쳐 COMPLETE로 닫는다.
+1. 후보를 최소 2개 이상 비교하고 사건성·1차 자료·다른 기사와의 중복을 확인한다.
+2. 주제를 확정한 뒤 VERIFY를 끝낸다.
+3. `04_society/FLOW.md`에서 기사 중심 질문 1개와 5~7개 안팎의 설명 단위를 선형 순서로 설계한다.
+4. 각 단위가 직전 단위에서 무엇을 받아 다음 단위로 무엇을 넘기는지 확인한다.
+5. FLOW가 닫힌 뒤에만 `04_society/ARTICLE.md`를 작성한다.
+6. NARRATIVE와 ANALYSIS 뒤 COHERENCE PASS를 먼저 실행한다.
+7. 한 문단은 하나의 중심 질문 또는 논리 단위를 충분히 설명한다. 한두 문장마다 습관적으로 끊지 않는다.
+8. 같은 급의 사실이 병렬적으로 퍼지면 정보 추가보다 순서와 문단 경계를 먼저 다시 설계한다.
+9. COHERENCE 통과 후 STYLE PASS, HEADLINE & DECK, ARTICLE REVIEW를 거쳐 COMPLETE로 닫는다.
 
 Cover·Economy·Politics는 기존 COMPLETE 상태를 유지한다. 향후 해당 기사를 다시 편집할 경우 새 기준에 따라 FLOW와 COHERENCE를 적용한다.
 
