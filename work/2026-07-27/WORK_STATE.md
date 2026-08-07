@@ -22,6 +22,10 @@
 - 세 파일의 언어와 역할을 섞지 않는다.
 - 현재 기사 COMPLETE 전에는 다음 일반 기사 본문을 작성하지 않는다.
 
+LIFE SCENE은 별도 제작 구조를 따른다.
+
+`SUBJECT SELECT → FACT BOUNDARY → CHARACTER & ORDINARY PLAN → SCENE MAP → NARRATIVE DRAFT → CAUSALITY PASS → EXPLANATION LEAK PASS → SCENARIO NOTE → LIFE SCENE REVIEW → COMPLETE`
+
 ## 진행 상태
 
 - COVER STORY: COMPLETE
@@ -132,25 +136,52 @@
 연결 대상: Society
 
 - 작업 경로: `07_life_scene/`
+- `07_life_scene/SCENE_MAP.md`: COMPLETE
 - `07_life_scene/ARTICLE.md`: COMPLETE
-- 제목: `방학 첫 월요일, 출근 시간과 돌봄 시간이 어긋났다`
-- 형식: 실제 정책 구조를 바탕으로 한 명시적 가상 시나리오
+- 제목: `아홉 시에 문이 열리는데, 엄마는 여덟 시 이십 분에 집을 나서야 했다`
+- 형식: 실제 정책 구조를 FACT BOUNDARY로 두고 구체적인 가상 인물의 시간·행동을 따라가는 생활 서사
 
-### 선정 이유
+### 최초본 재검토와 교정
 
-1. Society의 방학 돌봄은 개인의 선택만으로 해결되지 않고 센터 운영시간·정원·거리·급식과 부모 근무시간이 함께 맞아야 실제 이용이 성립한다.
-2. 전국 시설 수를 다시 설명하는 대신 한 가정의 연속된 아침 일정으로 전환했을 때 정책 접근성의 차이가 가장 구체적으로 드러난다.
-3. 대기·이동·추가 비용·근무일정 변경·가족 내 돌봄 분담이 한 생활 흐름 안에서 자연스럽게 누적된다.
-4. Economy는 개인 소비 대응으로 흐를 위험이 있고 Politics·Tech는 생활 장면보다 제도 설명 비중이 커져 LIFE SCENE 역할과 거리가 있어 제외했다.
+최초 LIFE SCENE은 `시간 공백 → 정원 → 이동 → 근무일정 변경 → 가족 분담 → 비용`처럼 생활 마찰 항목을 차례로 설명해, 형식상 가상 시나리오였지만 실제로는 정책 사례 설명문에 가까웠다.
+
+제1호 LIFE SCENE 「세 번째 병원에서야 이름이 불렸다」와 교정된 제2호를 비교해 다음 공통 원리를 현행 표준으로 추출했다.
+
+1. 정책 문제가 아니라 인물과 시간이 전진한다.
+2. 먼저 구체적인 가상 인물과 평범한 원래 계획을 세운다.
+3. `시각·장소·행동`의 구체적인 장면에서 시작한다.
+4. `상황/장애 → 인물의 행동 → 직접 결과 → 다음 장면`의 인과 사슬로 진행한다.
+5. 대기·이동·비용·정보 부족 등은 목표 개수로 채우지 않고 인물이 움직인 결과로 생길 때만 쓴다.
+6. 생활 디테일은 물건·장소·메시지·전화·이동 같은 실제 행동 속에서 자연스럽게 발생시킨다.
+7. 정책명·전국 수치·행정 설명과 구조적 해석은 본문을 지배하지 않고 마지막 `SCENARIO NOTE`에서 정확하게 정리한다.
+8. 결말은 정책 평가문이 아니라 달라진 생활 장면이나 구체적인 이미지로 닫는다.
+
+### 현행 LIFE SCENE 제작 로직
+
+`SUBJECT SELECT → FACT BOUNDARY → CHARACTER & ORDINARY PLAN → SCENE MAP → NARRATIVE DRAFT → CAUSALITY PASS → EXPLANATION LEAK PASS → SCENARIO NOTE → LIFE SCENE REVIEW → COMPLETE`
+
+- `SCENE_MAP.md`는 필수다.
+- 장면 A와 B의 순서를 바꿔도 문제가 없다면 인과 사슬이 약한 것으로 판정한다.
+- 각 주요 문단은 `그래서 다음에 무엇을 했는가?`에 답할 수 있어야 한다.
+- 본문을 정책 문제 A/B/C로 요약할 수 있으면 실패다.
+- `이 사람이 A를 하려다 B를 만나 C를 했고, 그래서 D가 생겼다`로 요약할 수 있어야 한다.
+
+### 골든 레퍼런스
+
+1. ISSUE 01 「세 번째 병원에서야 이름이 불렸다」 — `archive/2026-07-20/index.html#life-scene`
+2. ISSUE 02 「아홉 시에 문이 열리는데, 엄마는 여덟 시 이십 분에 집을 나서야 했다」 — `work/2026-07-27/07_life_scene/ARTICLE.md`
+
+두 글의 문단 수·시간표·대화량·결말 형식은 복제하지 않는다. 공통 서사 원리만 참고한다.
 
 ### LIFE SCENE REVIEW 판정
 
-- 실제 취재 인물·대화·현장 경험을 창작하지 않음
-- 본문은 정책 설명이나 Society 기사 재요약이 아니라 한 가정의 방학 아침과 이동을 중심으로 진행
-- 생활 마찰: 시간 공백, 정원 확인, 추가 이동, 근무일정 변경, 가족 돌봄 분담, 교통·시간비용을 포함
-- 정책명과 실제 수치 설명은 마지막 `SCENARIO NOTE`에 배치
-- `SCENARIO NOTE`에서 가상 범위, 실제 정책 구조, 정책이 줄이려는 공백과 남는 접근성 문제를 명시
-- 과도한 비극·영화적 우연·교훈적 결말 없음
+- 구체적인 가상 인물과 평범한 원래 계획이 존재함
+- 실제 취재 사례가 아님을 `SCENARIO NOTE`에서 명시함
+- 시간·장소·행동에서 시작해 가족의 대응이 다음 장면을 만드는 인과 사슬 유지
+- 회사 메시지, 편의점 주차장, 내비게이션, 냉장고 달력 등 생활 디테일이 장면 안의 행동으로 기능함
+- 생활 마찰을 목표 개수로 배치하지 않음
+- 정책명과 실제 수치 설명은 `SCENARIO NOTE`로 분리
+- 결말은 다음 주 달력의 다섯 칸에 가족 이름이 채워진 생활 장면으로 회수
 - 판정: PASS
 
 ## 다음 작업
@@ -184,6 +215,8 @@ EDITORS_PICK이 완료되기 전에는 이미지·HTML 제작으로 넘어가지
 9. 문단은 하나의 중심 질문 또는 논리 단위를 묶는 단위이며, 3~5문장은 일반적인 호흡일 뿐 고정 규칙이 아니다.
 10. 한계·부작용·미확정 사항은 충분한 소개와 설명 뒤에 배치한다.
 11. 제목과 Deck은 COHERENCE PASS와 STYLE & ARGUMENT PASS가 끝난 뒤 만든다.
+12. LIFE SCENE은 정책 항목을 인물에게 대입하지 않고 `ACTION → CONSEQUENCE`의 연속 장면으로 쓴다.
+13. LIFE SCENE의 정책 해설과 사실 수치는 원칙적으로 `SCENARIO NOTE`에서 처리한다.
 
 ## 기준 문서
 
@@ -191,8 +224,9 @@ EDITORS_PICK이 완료되기 전에는 이미지·HTML 제작으로 넘어가지
 2. `editorial/WEEKLY_RUNBOOK.md`
 3. `editorial/EDITORIAL_STANDARD.md`
 4. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
-5. `editorial/VOICE_AND_TONE.md`
-6. `editorial/SOURCE_POLICY.md`
+5. `editorial/LIFE_SCENE_STANDARD.md`
+6. `editorial/VOICE_AND_TONE.md`
+7. `editorial/SOURCE_POLICY.md`
 
 ## 이전 테스트 처리
 
