@@ -1,6 +1,6 @@
 # ISSUE 02 IMAGE PLAN
 
-상태: READY
+상태: IN_REVIEW
 
 회차: 2026-07-27—2026-08-02
 기준:
@@ -56,7 +56,7 @@
 
 | 슬롯 | 필요성 | 파일명 | 상태 | 시도 | 비율 | 최소 목표 | 핵심 규칙 |
 |---|---|---|---:|---:|---|---:|---|
-| Cover | REQUIRED | `cover.webp` | READY | 0/3 | 유연 | 2200px | 제목 안전영역, Cover Story와 다른 원본 |
+| Cover | REQUIRED | `cover.webp` | RETRY | 0/3 | 유연 | 2200px | 제목 안전영역, Cover Story와 다른 원본 |
 | LIFE SCENE | REQUIRED | `life-scene.webp` | READY | 0/3 | **4:3** | 2000px | 제2호 지면 오버라이드, 생활 장면 |
 | Cover Story | REQUIRED | `cover-story.webp` | READY | 0/3 | 유연 | 2000px | Cover보다 가까운 다른 장면 |
 | Economy | REQUIRED | `economy.webp` | READY | 0/3 | 유연 | 2000px | 석유 공급·유통과 자연스럽게 연결 |
@@ -84,6 +84,17 @@ PROLOGUE와 EDITOR'S AFTERWORD에는 별도 생성 이미지를 만들지 않는
 ### 판정
 
 사진적 완성도와 표지 기능이 충분하면 채택한다. 기사 메커니즘 전체를 묘사할 필요는 없다.
+
+### 현재 실행 상태
+
+- 상태: `RETRY`
+- 유효 이미지 시도: `0/3`
+- 실패 코드: `OUTPUT_CONTRACT`
+- 실패 요약: 단일 에디토리얼 사진이 아니라 저장소·WORK_STATE·작업 대시보드 형태의 출력이 반복됨
+- 처리: 실패 결과는 후보·최종 자산으로 저장하지 않음
+- 다음 실행: Cover 장면 브리프만 유지하고 `1 SLOT = 1 SCENE = 1 IMAGE` 맥락으로 단일 이미지 재생성
+
+`OUTPUT_CONTRACT` 실패는 모델이 사진 생성 작업으로 진입하지 않은 결과이므로 유효 이미지 시도 횟수에는 포함하지 않는다.
 
 ## 6. LIFE SCENE
 
@@ -239,6 +250,7 @@ Politics에는 추가로:
 
 허용 실패 코드:
 
+- `OUTPUT_CONTRACT`
 - `FORMAT`
 - `TEXT_LOGO`
 - `VISUAL_DEFECT`
