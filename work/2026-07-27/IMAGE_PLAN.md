@@ -56,7 +56,7 @@
 
 | 슬롯 | 필요성 | 파일명 | 상태 | 시도 | 비율 | 최소 목표 | 핵심 규칙 |
 |---|---|---|---:|---:|---|---:|---|
-| Cover | REQUIRED | `cover.webp` | BLOCKED | 3/3 | 유연 | 2200px | 제목 안전영역, Cover Story와 다른 원본 |
+| Cover | REQUIRED | `cover.webp` | READY | 0/3 | 유연 | 2200px | 제목 안전영역, Cover Story와 다른 원본 |
 | LIFE SCENE | REQUIRED | `life-scene.webp` | READY | 0/3 | **4:3** | 2000px | 제2호 지면 오버라이드, 생활 장면 |
 | Cover Story | REQUIRED | `cover-story.webp` | READY | 0/3 | 유연 | 2000px | Cover보다 가까운 다른 장면 |
 | Economy | REQUIRED | `economy.webp` | READY | 0/3 | 유연 | 2000px | 석유 공급·유통과 자연스럽게 연결 |
@@ -66,10 +66,6 @@
 | Tech | REQUIRED | `tech.webp` | READY | 0/3 | 유연 | 2000px | 나노팹·장비·연구 인프라와 자연스럽게 연결 |
 
 PROLOGUE와 EDITOR'S AFTERWORD에는 별도 생성 이미지를 만들지 않는다.
-
-### 현재 실패 기록
-
-- Cover `cover.webp` — `BLOCKED`, 3/3. 세 시도 모두 실제 폭염 표지 장면 대신 문서·대시보드·UI 화면을 생성해 `FORMAT` 및 `TOPIC_MISMATCH`로 탈락. 실패본은 `archive/`에 저장하지 않음.
 
 ## 5. Cover
 
