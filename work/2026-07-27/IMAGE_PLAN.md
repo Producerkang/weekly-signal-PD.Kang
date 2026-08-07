@@ -1,76 +1,260 @@
 # ISSUE 02 IMAGE PLAN
 
-상태: IN_REVIEW / GENERATION_RETRY_REQUIRED
+상태: READY
 
 회차: 2026-07-27—2026-08-02
-기준: `editorial/IMAGE_DIRECTION.md`, `work/2026-07-27/LAYOUT_PLAN.md`
+기준:
 
-## 현재 판정
+- `editorial/IMAGE_PIPELINE.md`
+- `editorial/IMAGE_DIRECTION.md`
+- `work/2026-07-27/LAYOUT_PLAN.md`
 
-13 이미지 제작을 실제로 시작했으나 **아직 승인 가능한 이미지 파일은 0개**다. 따라서 `IMAGES: COMPLETE`로 닫지 않는다.
+## 1. 현행 원칙
 
-이번 실행에서 이미지 생성 모델에 독립 사진 8개를 요구했지만, 반복해서 8칸 연락시트·스토리보드·잡지형 제작 보드가 생성됐다. 생성 결과 내부에 기사명·숫자·가격표·온도계·시계·국기·인포그래픽·UI가 포함되어 현행 `IMAGE_DIRECTION.md`의 절대 금지 조건을 위반했다. 연락시트 안의 개별 패널은 원본 해상도가 작아 단순 크롭·확대로 1600/1800px 규격을 맞추는 것도 `저해상도 썸네일 확대` 금지 기준에 걸리므로 현행 자산으로 채택하지 않는다.
+제2호 이미지는 과거의 8장 일괄 생성 방식으로 만들지 않는다.
 
-대체 경로로 단독 1920×1080 Canva 생성 후보도 시험했으나, 내부 검수 결과 하나의 사진이 아니라 여러 이미지 fill과 `2025` 텍스트 요소가 결합된 디자인이었다. 이 역시 현행 주요 기사 이미지로 채택하지 않는다.
+각 슬롯을 **한 장씩 독립적으로** 생성하고, 각 이미지가 통과하면 그 슬롯을 닫는다.
 
-**중요:** 이번 실패 결과를 `archive/2026-07-27/assets/`에 임시 이미지로 넣지 않는다. HTML 단계로도 넘어가지 않는다.
+- 한 번의 생성 요청에는 한 슬롯만 포함
+- 연락시트·스토리보드·이미지 팩 생성 요청 금지
+- 이미 통과한 이미지는 다른 슬롯 실패 때문에 다시 생성하지 않음
+- 한 슬롯 최대 기본 3회 시도
+- 3회 실패 시 `BLOCKED`로 기록하고 다른 슬롯 진행
+- 최종 후보만 `archive/2026-07-27/assets/`에 저장
 
-## 공통 규칙
+과거 연락시트·스토리보드·Canva 제작 보드 실패 기록은 레거시 실행 이력이며 현재 생성 지시가 아니다.
 
-각 결과는 **독립된 한 장의 사진적 에디토리얼 이미지**여야 한다.
+## 2. 품질선
 
-- 이미지 팩·연락시트·무드보드·잡지 지면·인포그래픽·분할 패널 금지
-- 이미지 내부 글자·숫자·로고·워터마크 금지
-- 벡터·플랫·아이소메트릭·기업용 3D 몽타주 금지
-- 실제 사건 현장이나 실존 인물을 정확히 재현한 것처럼 만들지 않음
-- Cover 장변 1800px 이상, 나머지 장변 1600px 이상
-- 실제 파일을 열어 인체·장비·문서·반사면 오류와 모바일 크롭을 육안 확인
+제1호 실제 이미지와 현재 시연에서 확인한 정도의 사진적·에디토리얼 품질이면 합격권으로 본다.
 
-## 1. cover.webp
+필수 조건:
 
-Korean urban neighborhood during an extreme summer heatwave, late afternoon, hard sunlight, shimmering hot air above asphalt, sparse pedestrians in shade, public cooling shelter or shaded rest area subtly visible, realistic city textures and humidity. Wide environmental scene, no identifiable real location or person. Strong title-safe negative space on the left/lower-left; visual tension on the right. No thermometer graphic, no text, no numbers, no readable signs, no logo, no watermark, no infographic, no split panels, no magazine layout.
+- 기사 주제와 자연스럽게 연결
+- 한눈에 읽히는 중심 장면
+- 지면에 사용할 수 있는 사진적 또는 고품질 에디토리얼 래스터 이미지
+- 눈에 띄는 생성 오류 없음
+- 동일 이미지 재사용 없음
+- 최종 해상도 충분
 
-## 2. life-scene.webp
+기사 전체 메커니즘을 이미지 한 장에 설명할 필요는 없다.
 
-Early weekday morning outside a generic Korean community childcare center just before opening; a non-identifiable parent and elementary-school child wait quietly near the entrance or in a parked car, school-break bag and water bottle present, subtle sense of being early and watching the closed door. Natural ordinary clothing, restrained expressions, candid camera perspective, warm but slightly tense morning light. No clocks, readable signage, text, numbers, logos, watermark, infographic, split panels, or magazine layout.
+절제된 네트워크 선·빛·합성 효과는 허용한다.
 
-## 3. cover-story.webp
+## 3. 해상도
 
-Closer heatwave-response scene distinct from the cover: a shaded public rest area in a Korean city during severe heat, bottled water/cooling supplies and shaded seating, nearby outdoor worker or resident resting in the shade without identifiable face, harsh sun visible beyond the shelter. Focus on how a nationwide heat alert translates into a concrete local protective action. No readable signs, text, numbers, logos, thermometer graphic, watermark, infographic, split panels, or magazine layout.
+- `cover.webp`: 장변 2200px 이상 목표
+- 나머지 주요 이미지: 장변 2000px 이상 목표
 
-## 4. economy.webp
+저해상도 결과를 단순 확대해 통과시키지 않는다.
 
-Physical petroleum distribution scene in Korea: fuel tanker truck unloading into a service-station storage connection or refinery/distribution loading bay, hoses and metal fittings in sharp realistic detail, worker present only if non-identifiable and safely equipped. Emphasize supply-chain stage before retail price reaches motorists. No price board, readable text, numbers, logos, brand marks, watermark, infographic, split panels, or magazine layout.
+## 4. 슬롯 상태
 
-## 5. politics.webp
+| 슬롯 | 파일명 | 상태 | 시도 | 비율 | 최소 목표 | 핵심 규칙 |
+|---|---|---:|---:|---|---:|---|
+| Cover | `cover.webp` | READY | 0/3 | 유연 | 2200px | 제목 안전영역, Cover Story와 다른 원본 |
+| LIFE SCENE | `life-scene.webp` | READY | 0/3 | **4:3** | 2000px | 생활 장면, 현행 프런트 스프레드용 |
+| Cover Story | `cover-story.webp` | READY | 0/3 | 유연 | 2000px | Cover보다 가까운 다른 장면 |
+| Economy | `economy.webp` | READY | 0/3 | 유연 | 2000px | 석유 공급·유통과 자연스럽게 연결 |
+| Politics | `politics.webp` | READY | 0/3 | 유연 | 2000px | **완전 무인** |
+| Politics DEEP DIVE | `deep-dive-politics.webp` | READY | 0/3 | 유연 | 2000px | **완전 무인** |
+| Society | `society.webp` | READY | 0/3 | 유연 | 2000px | 돌봄·생활 서비스와 자연스럽게 연결 |
+| Tech | `tech.webp` | READY | 0/3 | 유연 | 2000px | 나노팹·장비·연구 인프라와 자연스럽게 연결 |
 
-Formal bilateral government consultation setting inspired by Korea–Brazil diplomacy without depicting actual leaders: long conference table, blank folders, translation headsets, water glasses, aides or officials seen from behind/side with non-identifiable faces, modern government meeting room. Mood of documents and follow-up work after a summit, not a ceremonial handshake. No readable document text, no logos, no exact flags, no watermark, no infographic, no split panels, no magazine layout.
+현행 제2호 지면은 위 8개 슬롯을 사용한다. PROLOGUE와 EDITOR'S AFTERWORD에는 별도 생성 이미지를 만들지 않는다.
 
-## 6. deep-dive-politics.webp
+## 5. Cover
 
-Realistic trade and customs workflow scene suggesting the long path from agreement to implementation: port or customs office overlooking container terminal, blank trade documents being reviewed on a desk, containers and cranes softly visible through glass, hands turning pages, subdued sense of time created naturally through light and composition rather than a literal hourglass. No maps with labels, no logos, no readable text, no numbers, no watermark, no infographic, no split panels, no magazine layout.
+### 역할
 
-## 7. society.webp
+폭염 위기경보 주제와 자연스럽게 연결되는 강한 표지 장면.
 
-Generic Korean community childcare room during summer break opening hours, children arriving or settling in while a caregiver prepares the space or simple meal, warm everyday environment, cubbies and bags, natural candid moment, no identifiable real children. Focus on the service operating in real time rather than abstract policy. No clocks, readable signage, text, numbers, logos, watermark, infographic, split panels, or magazine layout.
+### 생성 방향
 
-## 8. tech.webp
+- 한국의 도시·생활권 또는 폭염이 체감되는 환경
+- 실제 특정 사건 현장 재현 필요 없음
+- 넓은 환경 장면 또는 상징적 에디토리얼 장면 가능
+- 제목이 놓일 여백 고려
+- Cover Story와 다른 장면·거리·원본
 
-High-detail semiconductor/nanofabrication cleanroom interior with a large realistic process or metrology tool as the central subject; a researcher in cleanroom suit seen from the side/back operating or inspecting equipment, institution-neutral. Emphasize physical shared research infrastructure and equipment access, not futuristic sci-fi. No readable screen text, logos, numbers, watermark, infographic, split panels, or magazine layout.
+### 판정
 
-## 검수 게이트
+사진적 완성도와 표지 기능이 충분하면 채택한다. 기사 메커니즘 전체를 묘사할 필요는 없다.
 
-각 파일은 다음을 모두 통과한 뒤에만 `archive/2026-07-27/assets/`의 현행 이미지로 인정한다.
+## 6. LIFE SCENE
 
-- [ ] 실제 이미지 생성 모델의 독립 이미지 결과
-- [ ] Cover 장변 1800px 이상 / 나머지 1600px 이상
-- [ ] 저해상도 연락시트 패널 확대가 아님
-- [ ] 텍스트·숫자·로고·워터마크 없음
-- [ ] 벡터·플랫·아이소메트릭·인포그래픽풍 아님
-- [ ] 얼굴·손·장비·문서·반사면 생성 오류 없음
-- [ ] 기사와 직접 연결되는 한 장면
-- [ ] 같은 회차 다른 이미지와 의미·구도 중복 없음
-- [ ] 데스크톱·모바일 크롭 안전영역 확인
-- [ ] 필요한 대체 텍스트·`편집용 생성 이미지` 고지 준비
+### 비율
 
-현재 판정: **RETRY REQUIRED — HTML 단계 이동 금지**
+현행 제2호 프런트 스프레드는 **가로형 4:3**을 사용한다.
+
+향후 다른 회차에서 세로형 지면을 선택하면 `4:5`를 사용할 수 있다.
+
+### 역할
+
+방학 오전 돌봄 시간의 어긋남을 생활의 한 순간으로 보여준다.
+
+### 생성 방향
+
+- 한국의 평범한 생활 공간
+- 보호자와 초등학생 아이가 돌봄 공간 개소 전 기다리는 장면
+- 자연스러운 복장과 자세
+- 광고형 포즈 금지
+- 과도한 불안·비극 연출 금지
+- 카메라를 의식하지 않는 구도
+- 가방·물병 등 생활 디테일 허용
+
+한 장면이 자연스럽고 읽히면 충분하다.
+
+## 7. Cover Story
+
+### 역할
+
+표지보다 가까운 거리에서 폭염 대응이 생활 공간이나 공공 공간에 나타나는 장면을 보여준다.
+
+### 생성 방향
+
+- 그늘·쉼터·도시 노동환경·휴식 공간 등
+- 특정 실제 현장 재현 필요 없음
+- Cover와 동일 원본 또는 사실상 같은 구도 금지
+
+## 8. Economy
+
+### 역할
+
+휘발유 공급가격이 소비자 단계 이전의 물리적 유통과 연결된다는 느낌을 준다.
+
+### 생성 방향
+
+- 정유·저장·출하·탱커·주유소 공급 과정 중 한 장면
+- 탱커 트럭, 호스, 파이프, 저장 설비 등 사용 가능
+- 실제 가격 숫자를 이미지 안에 넣을 필요 없음
+- 작업자가 자연스럽게 등장하는 것은 허용
+
+기사 전달경로 전체를 한 장 안에 설명하지 않는다.
+
+## 9. Politics
+
+### 절대 규칙
+
+**사람이 한 명이라도 보이면 탈락한다.**
+
+금지:
+
+- 얼굴
+- 사람
+- 실루엣
+- 뒷모습
+- 손
+- 원거리 인물
+- 정치인·공직자를 연상시키는 인물
+
+### 역할
+
+정상회담 이후 문서·협상·후속 절차가 존재하는 공적 공간의 분위기를 만든다.
+
+### 생성 방향
+
+- 빈 정부 회의실
+- 빈 협상 테이블
+- 빈 브리핑룸·연단
+- 문서·마이크·의자·공적 공간
+
+실제 정상회담 사진처럼 만들지 않는다.
+
+## 10. Politics DEEP DIVE
+
+Politics와 동일하게 **완전 무인**이다.
+
+### 역할
+
+합의 이후 발효까지 이어지는 장기 절차·통상 실무의 분위기를 만든다.
+
+### 생성 방향
+
+- 사람이 없는 통관·항만·문서 검토 공간
+- 사람이 없는 사무 공간과 항만 배경
+- 사물과 공간 중심
+
+정확한 단계는 HTML `stage-matrix`가 설명한다. 이미지 안에 절차 도식을 만들지 않는다.
+
+## 11. Society
+
+### 역할
+
+방학 돌봄 서비스가 실제 생활 공간에서 운영되는 느낌을 준다.
+
+### 생성 방향
+
+- 지역 돌봄 공간
+- 등원·대기·준비·식사 준비 중 한 장면
+- 인물이 있으면 식별 불가능한 가상 인물
+- 정책 설명보다 생활 장면 우선
+
+## 12. Tech
+
+### 역할
+
+공공나노팹센터의 물리적 연구 인프라와 장비 접근을 보여준다.
+
+### 생성 방향
+
+- 클린룸
+- 공정·분석·계측 장비
+- 실제 연구 인프라의 질감
+- 필요하면 비식별 연구자 등장 가능
+- 과도한 SF 분위기 금지
+
+## 13. 공통 생성 지시
+
+각 슬롯 프롬프트에는 필요한 범위에서 다음만 포함한다.
+
+- 한 장의 독립 이미지
+- 장면·공간
+- 중심 피사체
+- 사진적/에디토리얼 품질
+- 기사와의 자연스러운 연결
+- 방해되는 글자·숫자·로고·워터마크 회피
+
+매번 긴 금지 목록을 반복해 모델을 과도하게 제약하지 않는다.
+
+다만 다음은 명시한다.
+
+- one single editorial image
+- no contact sheet
+- no storyboard
+- no split panels
+- no magazine or webpage layout
+
+Politics에는 추가로:
+
+- absolutely no people, no human figures, no faces, no silhouettes, no hands
+
+## 14. 실패 기록
+
+실패하면 상태와 이유만 간결하게 남긴다.
+
+허용 실패 코드:
+
+- `FORMAT`
+- `TEXT_LOGO`
+- `VISUAL_DEFECT`
+- `TOPIC_MISMATCH`
+- `CROP`
+- `LOW_RES`
+- `DUPLICATE`
+- `POLITICS_HUMAN`
+
+같은 실패를 프롬프트 문구만 조금 바꾸며 반복하지 않는다.
+
+## 15. 완료 판정
+
+이미지 제작 단계는 다음을 만족하면 COMPLETE다.
+
+- 제2호 필수 8개 슬롯 모두 ACCEPTED 또는 SAVED
+- Cover와 Cover Story 서로 다른 원본
+- Politics와 Politics DEEP DIVE 완전 무인
+- LIFE SCENE 4:3 지면용 원본 확보
+- 동일 이미지 재사용 없음
+- 최종 지면에 사용할 수 있는 해상도와 디테일 확보
+
+HTML 반영과 최종 크롭 판정은 이후 실제 화면에서 진행한다.
