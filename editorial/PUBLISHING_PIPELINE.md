@@ -8,10 +8,9 @@
 - `main`에는 승인 대기본이나 실패 후보를 쌓지 않는다.
 - `archive/YYYY-MM-DD/`에는 공개 가능한 최종 `index.html`과 실제 사용 이미지 자산만 둔다.
 - 실패본·중간 이미지 후보를 `archive/`에 남기지 않는다.
+- `jobs/`는 예약 작업 실행 인계용이며 발행 대상이 아니다.
 
 ## 2. 제작 순서
-
-기본 순서:
 
 ```text
 원고 제작
@@ -20,42 +19,44 @@
 → LIFE SCENE
 → PROLOGUE
 → EDITOR'S AFTERWORD
-→ 07:00 지면 설계 + 이미지 입력 준비
-→ 08:00 이미지 슬롯별 순차 제작
+→ 07:00 LAYOUT_PLAN + 이미지 실행 패키지 준비
+→ 08:00 jobs/image_job.json 전용 실행
 → 09:00 HTML + 화면 검수 + 발행
 ```
 
-지면 설계와 이미지 생성은 별도 예약 작업으로 분리한다.
+07:00과 08:00은 별도 예약 작업이다.
 
-- 07:00은 `LAYOUT_PLAN.md`, `IMAGE_PLAN.md`, `image_prompts/*.txt`를 완성한다.
-- 08:00은 준비된 프롬프트 파일을 슬롯별로 실행한다.
-- 한 이미지 실패 때문에 이미 완료된 지면 설계를 다시 하지 않는다.
+- 07:00은 `LAYOUT_PLAN.md`, `IMAGE_PLAN.md`, `image_prompts/*.txt`, `jobs/image_job.json`을 완성한다.
+- 08:00은 `jobs/image_job.json`을 유일한 시작점으로 사용한다.
+- 이미지 생성 구간이 끝나기 전에는 `WORK_STATE.md`와 `IMAGE_PLAN.md`를 다시 읽지 않는다.
 - 모든 필수 이미지가 반영되고 실제 화면 검수를 통과하기 전에는 발행하지 않는다.
 
 ## 3. 이미지 제작
 
-이미지 계획·생성·검수·상태·저장은 **`editorial/IMAGE_CONTRACT.md`**를 따른다.
+이미지 준비·생성·검수·상태·저장은 `editorial/IMAGE_CONTRACT.md`를 따른다.
 
 핵심:
 
 ```text
-1 SLOT = 1 PROMPT FILE = 1 SCENE = 1 IMAGE
+1 QUEUE ITEM = 1 PROMPT FILE = 1 SCENE = 1 IMAGE
 ```
 
 - 이미지 장면은 07:00의 `image_prompts/*.txt`에서 확정
-- 08:00은 prompt 파일 하나씩 읽고 한 장씩 순차 생성
+- 08:00은 `jobs/image_job.json`의 queue 순서대로 prompt 파일을 읽고 한 장씩 생성
+- 생성 중간에 `WORK_STATE.md`나 `IMAGE_PLAN.md`를 열지 않음
+- 모든 이미지 호출이 끝난 뒤 한 번에 상태 갱신
 - Cover 장변 2200px 이상 목표
 - 나머지 주요 이미지 장변 2000px 이상 목표
 - LIFE SCENE은 4:3 또는 4:5 중 회차별 하나
 - Politics와 Politics DEEP DIVE는 완전 무인
-- 한 슬롯 기본 최대 3회의 유효 시도
+- 정상 사진 품질 재시도는 슬롯당 기본 최대 3회
 - 합격권 이미지는 취향상 재생성하지 않음
+
+작업 화면·문서·UI형 결과가 나오면 `CONTEXT_FAILURE`로 처리하고 같은 이미지 턴을 중단한다.
 
 최종 채택 이미지와 실제 발행 파일만 회차 assets에 둔다.
 
 ## 4. 발행 후보 구성
-
-모든 원고와 최종 지면이 준비되면 다음 구조를 사용한다.
 
 ```text
 archive/YYYY-MM-DD/
@@ -107,8 +108,6 @@ archive/YYYY-MM-DD/
 
 ## 6. 크롭 검수
 
-이미지 생성 전에 대략적인 안전영역을 고려하지만, 최종 크롭은 실제 HTML에서 판정한다.
-
 크롭 문제가 있으면 다음 순서로 처리한다.
 
 1. CSS `object-position` 조정
@@ -119,7 +118,7 @@ archive/YYYY-MM-DD/
 
 ## 7. 보조 구조 검사
 
-필요하면 다음을 직접 실행한다.
+필요하면:
 
 ```bash
 python -m pip install -r requirements-tools.txt
@@ -128,7 +127,7 @@ python tools/validate_repository.py
 
 검사기는 기술적 실수를 찾는 보조 수단이다. 검사 통과는 발행 품질 통과와 동일하지 않다.
 
-## 8. `main` 직접 반영
+## 8. main 직접 반영
 
 제작자 직접 검수를 모두 통과한 뒤 다음을 `main`에 반영한다.
 
@@ -146,8 +145,9 @@ GitHub Pages는 `main` 루트의 정적 파일을 그대로 사용한다.
 
 - 원고 실패 → 해당 원고 단계
 - 지면 실패 → 해당 레이아웃
-- 이미지 입력 실패 → 해당 `image_prompts/*.txt`
-- 이미지 품질 실패 → 해당 이미지 슬롯
+- 이미지 입력 실패 → 해당 `image_prompts/*.txt`와 `jobs/image_job.json`
+- 정상 이미지 품질 실패 → 해당 이미지 슬롯
+- `CONTEXT_FAILURE` → 같은 이미지 턴 중단 후 새 전용 이미지 턴
 - 크롭 실패 → 먼저 CSS/지면 조정 후 필요할 때만 이미지 재생성
 
 필수 이미지가 끝내 해결되지 않으면 발행은 차단한다.
