@@ -4,28 +4,44 @@
 
 이 저장소의 목적은 단순한 기사 보관이 아니라 **다음 대화·다음 회차에서도 같은 기준으로 제작을 재현할 수 있는 편집 시스템**을 유지하는 것입니다.
 
-GitHub `main`이 현재 상태의 기준이며, 대화 기억보다 저장소의 현행 계약과 회차별 `WORK_STATE.md`를 우선합니다.
+GitHub `main`이 현재 상태의 기준이며, 대화 기억보다 저장소의 현행 계약과 실행 진입점을 우선합니다.
 
 ---
 
-## 1. 운영 방식
+## 1. 예약 작업 진입점
 
-WEEKLY SIGNAL은 한 호 전체를 한 번에 생성하지 않습니다.
+모든 예약 작업이 같은 파일에서 시작하지 않습니다.
 
-기본 운영은 **ChatGPT 예약 작업이 정해진 시간마다 GitHub의 현재 상태를 읽고, 해당 제작 단위를 완료한 뒤 상태를 다시 기록하는 방식**을 전제로 합니다.
+### 기본 진입점
 
-핵심 원칙:
+일반 제작 작업의 기본 진입점은 해당 회차의:
 
-- 각 예약 작업은 시작할 때 해당 회차 `WORK_STATE.md`와 현재 단계에 필요한 계약만 읽습니다.
-- 예약 작업 하나는 명확한 제작 단위 하나를 끝까지 처리합니다.
-- 완료한 결과와 다음 재개 지점은 GitHub에 기록합니다.
-- 다음 예약 작업은 갱신된 상태에서 이어갑니다.
-- 선행 단계가 미완료라면 후속 단계로 건너뛰지 않습니다.
-- 이미 `COMPLETE`된 결과를 불필요하게 다시 만들지 않습니다.
-- GitHub Actions는 사용하지 않습니다.
-- 작업 브랜치와 PR을 기본 제작 절차로 사용하지 않습니다.
+```text
+work/YYYY-MM-DD/WORK_STATE.md
+```
 
-예약 시각은 제작 리듬을 정하기 위한 기준이고, **실제 상태의 선후관계는 `WORK_STATE.md`가 소유합니다.**
+입니다.
+
+### 전용 진입점
+
+특정 작업에 전용 실행 파일이 정의되어 있으면 **전용 진입점이 `WORK_STATE.md`보다 우선**합니다.
+
+현재 전용 진입점:
+
+```text
+월요일 08:00 이미지 제작
+→ jobs/image_job.json
+```
+
+08:00 이미지 작업은 시작 시 `WORK_STATE.md`, README, 주간 런북, 기사 원고, 지면 설계 문서를 먼저 읽지 않습니다. 07:00 작업이 생성한 `jobs/image_job.json`을 직접 실행합니다.
+
+이미지 생성이 모두 끝난 뒤에만 다시 제어 문맥으로 돌아와 `IMAGE_PLAN.md`, `WORK_STATE.md`를 갱신합니다.
+
+### WORK_STATE의 역할
+
+`WORK_STATE.md`는 전체 제작 단계의 제어 상태를 소유합니다. 다만 이미지 생성 직전의 시각 문맥을 제공하는 파일이 아닙니다.
+
+07:00 작업이 끝나 08:00 이미지 단계로 넘어갈 때는 `WORK_STATE.md`도 장문의 제작 보고서가 아니라 다음 진입점을 가리키는 **최소 인계 상태**로 갱신합니다.
 
 ---
 
@@ -33,93 +49,141 @@ WEEKLY SIGNAL은 한 호 전체를 한 번에 생성하지 않습니다.
 
 기본 발행 목표는 **월요일 오전 9시**입니다.
 
-| 시각 | 예약 작업 |
-|---|---|
-| 일요일 22:00 | Cover Story 제작 |
-| 일요일 23:00 | Economy 제작 |
-| 월요일 00:00 | Politics 제작 |
-| 월요일 01:00 | Society 제작 |
-| 월요일 02:00 | Tech 제작 |
-| 월요일 03:00 | CROSS-ARTICLE REVIEW |
-| 월요일 04:00 | DEEP DIVE 제작 |
-| 월요일 05:00 | LIFE SCENE 제작 |
-| 월요일 06:00 | PROLOGUE + EDITOR'S AFTERWORD 제작 |
-| 월요일 07:00 | LAYOUT_PLAN + IMAGE_PLAN 작성 (텍스트 전용) |
-| 월요일 08:00 | 이미지 슬롯별 순차 제작 |
-| 월요일 09:00 | HTML 제작 + 간단 화면 검수 + 발행 |
+| 시각 | 예약 작업 | 진입점 |
+|---|---|---|
+| 일요일 22:00 | Cover Story 제작 | `WORK_STATE.md` |
+| 일요일 23:00 | Economy 제작 | `WORK_STATE.md` |
+| 월요일 00:00 | Politics 제작 | `WORK_STATE.md` |
+| 월요일 01:00 | Society 제작 | `WORK_STATE.md` |
+| 월요일 02:00 | Tech 제작 | `WORK_STATE.md` |
+| 월요일 03:00 | CROSS-ARTICLE REVIEW | `WORK_STATE.md` |
+| 월요일 04:00 | DEEP DIVE 제작 | `WORK_STATE.md` |
+| 월요일 05:00 | LIFE SCENE 제작 | `WORK_STATE.md` |
+| 월요일 06:00 | PROLOGUE + EDITOR'S AFTERWORD 제작 | `WORK_STATE.md` |
+| 월요일 07:00 | LAYOUT_PLAN + IMAGE 입력 패키지 작성 | `WORK_STATE.md` |
+| 월요일 08:00 | 이미지 슬롯별 순차 제작 | `jobs/image_job.json` |
+| 월요일 09:00 | HTML 제작 + 화면 검수 + 발행 | `WORK_STATE.md` |
 
-### 예약 작업 단위
+예약 시각은 제작 리듬을 정하기 위한 기준이고 실제 선후관계는 상태 파일이 소유합니다.
 
-일반 기사 네 분야는 서로 합치지 않습니다.
+---
 
-- Economy
-- Politics
-- Society
-- Tech
+## 3. 07:00 — 이미지 실행 패키지 준비
 
-각 기사 예약 작업은 해당 기사에 필요한 검증·흐름 설계·원고 작성·검수를 한 턴 안에서 완료하는 것을 목표로 합니다.
+07:00은 **텍스트·파일 작업 전용**입니다. 실제 이미지를 생성하지 않습니다.
 
-후반부는 다음과 같이 운영합니다.
+필수 산출물:
 
-- `PROLOGUE + EDITOR'S AFTERWORD`는 한 턴에서 순차 제작합니다.
-- `LAYOUT_PLAN + IMAGE_PLAN 작성`은 월요일 07:00의 **텍스트 전용 독립 턴**입니다.
-- `이미지 슬롯별 순차 제작`은 월요일 08:00의 **이미지 생성 전용 독립 턴**입니다.
-- `HTML 제작 + 간단 화면 검수 + 발행`은 마지막 한 턴에서 처리합니다.
+```text
+work/YYYY-MM-DD/
+├─ LAYOUT_PLAN.md
+├─ IMAGE_PLAN.md
+└─ image_prompts/
+   ├─ 01_*.txt
+   ├─ 02_*.txt
+   └─ ...
 
-### 07:00 LAYOUT_PLAN + IMAGE_PLAN 작성 (텍스트 전용)
+jobs/
+└─ image_job.json
+```
 
-07:00에서는 다음 파일만 완성합니다.
+### image_prompts
 
-- `LAYOUT_PLAN.md`
-- `IMAGE_PLAN.md`
-- `image_prompts/*.txt`
-- `WORK_STATE.md` 갱신
+각 슬롯의 `.txt` 파일에는 실제 이미지로 보일 장면만 담습니다.
 
-각 이미지 슬롯의 실제 생성 문장은 `image_prompts/*.txt`에 별도로 저장합니다. 이 파일은 장면·피사체·카메라·빛·재질·구도처럼 이미지로 보일 내용만 담습니다.
+- 실제 세계의 한 장면
+- 중심 피사체·행동·사물
+- 카메라 거리·구도
+- 빛·재질·공간감
+- 비율·안전영역
+- 필요한 섹션별 하드 제약
 
-**07:00에는 이미지 생성 도구를 호출하지 않습니다.**
+### image_job
 
-### 08:00 이미지 슬롯별 순차 제작
+`jobs/image_job.json`은 08:00 예약 작업의 **고정 진입점**입니다.
 
-08:00은 **이미지 생성 전용 턴**입니다.
+이 파일은 장면을 설명하지 않고 실행 경로만 전달합니다.
 
-실행 기준은 `editorial/IMAGE_CONTRACT.md`입니다.
+예시:
+
+```json
+{
+  "schema": "weekly-signal-image-job-v1",
+  "state": "READY",
+  "scheduled_date": "YYYY-MM-DD",
+  "after_run": {
+    "image_plan": "work/YYYY-MM-DD/IMAGE_PLAN.md",
+    "work_state": "work/YYYY-MM-DD/WORK_STATE.md"
+  },
+  "queue": [
+    {
+      "prompt": "work/YYYY-MM-DD/image_prompts/01_cover.txt",
+      "output": "cover.webp"
+    },
+    {
+      "prompt": "work/YYYY-MM-DD/image_prompts/02_life-scene.txt",
+      "output": "life-scene.webp"
+    }
+  ]
+}
+```
+
+07:00은 이 파일을 **모든 prompt 파일이 확정된 뒤 마지막에 생성 또는 교체**합니다.
+
+07:00 완료 뒤 `WORK_STATE.md`는 장문 보고 대신 최소 인계 상태로 갱신합니다.
+
+```text
+STAGE: IMAGE_GENERATION
+ENTRYPOINT: jobs/image_job.json
+LAYOUT: COMPLETE
+IMAGES: PENDING
+```
+
+---
+
+## 4. 08:00 — 이미지 생성 전용
+
+08:00 예약 작업은 다음 순서로 시작합니다.
+
+```text
+jobs/image_job.json
+→ queue[0].prompt
+→ 이미지 1장 생성·육안 판정
+→ queue[1].prompt
+→ 이미지 1장 생성·육안 판정
+→ ...
+→ 모든 이미지 호출 종료
+→ IMAGE_PLAN / WORK_STATE 갱신
+```
+
+핵심:
 
 ```text
 1 SLOT = 1 PROMPT FILE = 1 SCENE = 1 IMAGE
 ```
 
-08:00은 `IMAGE_PLAN.md`의 큐를 따라 슬롯을 하나씩 처리합니다.
+이미지 생성 구간에서는:
 
-기본 흐름:
+- `WORK_STATE.md`를 읽지 않음
+- `IMAGE_PLAN.md`를 읽지 않음
+- `LAYOUT_PLAN.md`를 읽지 않음
+- 기사 원고를 다시 읽지 않음
+- README나 런북을 다시 읽지 않음
+- prompt 파일을 읽은 뒤 이미지가 반환될 때까지 다른 작업을 하지 않음
 
-```text
-IMAGE_CONTRACT 확인
-→ IMAGE_PLAN 확인
-→ 슬롯 선택
-→ 해당 image_prompts/*.txt 읽기
-→ 즉시 이미지 1장 생성
-→ PHOTO-SCENE / 품질 판정
-→ 상태 기록
-→ 다음 슬롯
-→ 반복
-```
+`IMAGE_PLAN.md`와 `WORK_STATE.md` 갱신은 **모든 이미지 생성 호출이 끝난 뒤** 수행합니다. 한 이미지마다 상태 파일을 열고 닫으며 다음 이미지 문맥을 오염시키지 않습니다.
 
-이미지 생성 직전에는 현재 슬롯의 프롬프트 파일을 마지막으로 읽습니다. 그 뒤 이미지가 반환될 때까지 다른 저장소 문서를 읽거나 작업 설명을 덧붙이지 않습니다.
+사진 장면이 아닌 작업 화면·문서·UI형 결과가 나오면 `CONTEXT_FAILURE`로 처리하고 같은 이미지 턴에서 더 생성하지 않습니다.
 
-결과가 사진 한 장이 아니라 작업 화면·문서·리포트형 구조로 나오면 **`CONTEXT_FAILURE`**입니다. 같은 대화에서 다시 생성하지 않고 08:00 턴을 즉시 종료한 뒤 새 대화에서 재시작합니다.
-
-이미지 품질·상태·재시도·Politics/LIFE SCENE 규칙은 모두 `editorial/IMAGE_CONTRACT.md`가 소유합니다.
-
-월요일 09:00 작업은 HTML 구현부터 발행까지 한 턴에서 처리합니다. 화면 검수는 발행을 막아야 할 핵심 문제를 확인하고 수정하는 최종 안전 확인으로 운영합니다.
+이미지 품질과 섹션별 규칙은 `editorial/IMAGE_CONTRACT.md`가 소유하지만, 08:00 이미지 생성 직전에 이 긴 계약을 다시 읽지는 않습니다. 07:00이 계약을 적용해 prompt 파일에 필요한 시각 조건을 이미 반영해야 합니다.
 
 ---
 
-## 3. 문서 역할
+## 5. 문서 역할
 
 ### `editorial/`
 
-모든 회차에 적용되는 **회차 독립적인 제작 계약과 품질 기준**을 소유합니다.
+회차 독립적인 제작 계약과 품질 기준을 소유합니다.
 
 주요 문서:
 
@@ -135,19 +199,25 @@ IMAGE_CONTRACT 확인
 - `LAYOUT_SYSTEM.md`
 - `PUBLISHING_PIPELINE.md`
 
-`IMAGE_PIPELINE.md`와 `IMAGE_DIRECTION.md`은 레거시 호환용 안내 파일이며 현행 이미지 계약이 아닙니다. 새 작업에서는 읽지 않습니다.
-
 ### `work/YYYY-MM-DD/`
 
-해당 회차의 실제 제작 상태와 실행값을 소유합니다.
+해당 회차의 제작 상태와 실행값을 소유합니다.
 
-- `WORK_STATE.md` — 현재 완료 상태와 다음 재개 지점
+- `WORK_STATE.md` — 현재 단계와 다음 진입점
 - `LAYOUT_PLAN.md` — 해당 회차 지면 설계
-- `IMAGE_PLAN.md` — 이미지 큐·파일명·상태
-- `image_prompts/*.txt` — 실제 생성에 사용할 순수 장면 프롬프트
+- `IMAGE_PLAN.md` — 이미지 결과 상태와 발행 연결 정보
+- `image_prompts/*.txt` — 실제 이미지 생성에 사용할 순수 장면 프롬프트
 - `01_cover/` ~ `09_editor_afterword/` — 제작 원고와 내부 작업 파일
 
-특정 회차의 슬롯, 비율, 파일명, 장면을 일반 계약으로 역수입하지 않습니다.
+### `jobs/`
+
+전용 예약 작업의 실행 인계 파일을 둡니다.
+
+현재 사용 파일:
+
+- `jobs/image_job.json` — 월요일 08:00 이미지 제작 전용 진입점
+
+작업이 아직 준비되지 않았으면 이 파일이 존재하지 않을 수 있습니다.
 
 ### `archive/YYYY-MM-DD/`
 
@@ -163,7 +233,7 @@ archive/YYYY-MM-DD/
 
 ---
 
-## 4. 기본 회차 구성
+## 6. 기본 회차 구성
 
 별도 지시가 없으면 한 호는 다음 구성을 목표로 합니다.
 
@@ -202,7 +272,7 @@ DEEP DIVE는 연결된 일반 기사 바로 뒤에 둡니다.
 
 ---
 
-## 5. 전체 제작 흐름
+## 7. 전체 제작 흐름
 
 ```text
 Cover Story
@@ -214,94 +284,27 @@ Cover Story
 → DEEP DIVE
 → LIFE SCENE
 → PROLOGUE + EDITOR'S AFTERWORD
-→ LAYOUT_PLAN + IMAGE_PLAN 작성 (텍스트 전용)
-→ 이미지 슬롯별 순차 제작
-→ HTML + 화면 검수 + 발행
+→ 07:00 LAYOUT_PLAN + 이미지 실행 패키지 준비
+→ 08:00 전용 image_job 실행
+→ 09:00 HTML + 화면 검수 + 발행
 ```
 
-각 단계의 내부 알고리즘과 품질 기준은 README가 아니라 해당 `editorial/` 계약이 소유합니다.
-
-일반 기사 기본 제작 구조:
-
-```text
-VERIFY
-→ FLOW
-→ ARTICLE DRAFT
-→ ANALYSIS
-→ COHERENCE PASS
-→ STYLE & ARGUMENT PASS
-→ HEADLINE & DECK
-→ ARTICLE REVIEW
-→ COMPLETE
-```
-
-현재 기사 하나가 `COMPLETE`가 되기 전에는 다음 기사 본문으로 넘어가지 않습니다.
+각 단계의 내부 알고리즘과 품질 기준은 해당 `editorial/` 계약이 소유합니다.
 
 ---
 
-## 6. 최우선 제작 원칙
+## 8. 재개 원칙
 
-- GitHub `main`을 현재 상태의 기준으로 사용합니다.
-- 검증 메모와 독자용 원고를 같은 파일에 섞지 않습니다.
-- 형식적 체크 통과보다 실제 읽기 품질을 우선합니다.
-- 실패가 보이면 표면 문구나 임계값만 조정하지 않고 실패를 만든 제작 로직부터 수정합니다.
-- DATA와 WATCH는 새로운 정보가 있을 때만 선택적으로 만듭니다.
-- 이미지 필요 여부와 슬롯은 07:00 계획 파일 작성에서 결정합니다.
-- 이미지 생성 문장은 운영 문서와 분리된 `image_prompts/*.txt`가 소유합니다.
-- 최종 발행은 필수 원고·지면·이미지·HTML이 준비되고 핵심 화면 문제가 없을 때만 수행합니다.
+일반 작업은 `WORK_STATE.md`에서 재개합니다.
 
----
+단, 전용 진입점이 정의된 작업은 해당 파일을 먼저 사용합니다.
 
-## 7. 새 대화 / 작업 재개
-
-기존 회차를 이어갈 때 가장 먼저 읽을 문서는 해당 회차의:
+특히 월요일 08:00 이미지 작업은:
 
 ```text
-work/YYYY-MM-DD/WORK_STATE.md
+jobs/image_job.json
 ```
 
-입니다.
+이 유일한 시작점입니다.
 
-그 다음 `WORK_STATE.md`가 가리키는 **현재 단계에 필요한 계약만** 읽습니다.
-
-완료된 이전 단계의 문서를 새 대화에 불필요하게 다시 쌓지 않습니다.
-
-새 대화에서 과거 채팅 내용을 복원하려고 하기보다 **현재 `main`의 상태 파일과 계약을 기준으로 그대로 다음 작업을 실행**하는 것을 원칙으로 합니다.
-
----
-
-## 8. 저장소 구조
-
-```text
-/
-├─ README.md
-├─ index.html
-├─ latest.json
-├─ issues.json
-├─ archive/
-│  ├─ index.html
-│  └─ YYYY-MM-DD/
-│     ├─ index.html
-│     └─ assets/
-├─ work/
-│  ├─ README.md
-│  └─ YYYY-MM-DD/
-│     ├─ WORK_STATE.md
-│     ├─ LAYOUT_PLAN.md
-│     ├─ IMAGE_PLAN.md
-│     ├─ image_prompts/
-│     ├─ 01_cover/
-│     ├─ 02_economy/
-│     ├─ 03_politics/
-│     ├─ 04_society/
-│     ├─ 05_tech/
-│     ├─ 06_deep_dive/
-│     ├─ 07_life_scene/
-│     ├─ 08_prologue/
-│     └─ 09_editor_afterword/
-├─ editorial/
-├─ templates/
-└─ tools/
-```
-
-`work/YYYY-MM-DD/`와 `archive/YYYY-MM-DD/`는 같은 회차 시작일을 사용해 대응합니다.
+전용 진입점이 없거나 `state`가 `READY`가 아니면 임의로 다른 문서를 읽어 장면을 재구성하지 않고 해당 예약 작업을 중단합니다.
