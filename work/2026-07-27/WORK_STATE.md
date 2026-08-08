@@ -6,25 +6,28 @@
 
 ## 현재 재개 지점
 
-**01~09 원고 제작과 07:00 지면·이미지 입력 설계가 모두 완료됐다. 다음 작업은 `08:00 이미지 슬롯별 순차 제작`이다.**
+**01~09 원고 제작과 07:00 지면·이미지 입력 설계는 모두 완료됐다. 08:00 이미지 슬롯별 순차 제작을 시작했으나 Cover 첫 생성에서 `CONTEXT_FAILURE`가 발생해 계약에 따라 이미지 턴 전체를 즉시 종료했다. 다음 작업은 새 대화에서 `08:00 이미지 슬롯별 순차 제작`을 Cover부터 다시 시작하는 것이다.**
 
 01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
 07:00에서는 `editorial/IMAGE_CONTRACT.md`에 따라 실제 이미지 생성 없이 입력 패키지만 완성했다.
 
+08:00 첫 시도에서는 `image_prompts/01_cover.txt`를 마지막 저장소 읽기로 확인한 직후 Cover 이미지 1장을 생성했으나, 단일 연속 사진 장면이 아니라 저장소·`WORK_STATE.md`를 보여 주는 문서형/UI형 화면이 반환됐다. `PHOTO-SCENE` 게이트 실패이므로 유효 사진 시도 횟수는 증가시키지 않았고, 실패 결과는 저장하지 않았다.
+
 ```text
 06:00  PROLOGUE + EDITOR'S AFTERWORD — COMPLETE
 07:00  LAYOUT_PLAN + IMAGE_PLAN + image_prompts 작성 — COMPLETE / TEXT ONLY
-→ 08:00  이미지 슬롯별 순차 제작 — PENDING
-→ 09:00  HTML + 간단 화면 검수 + 발행 — PENDING
+08:00  이미지 슬롯별 순차 제작 — CONTEXT_FAILURE AT COVER / TURN STOPPED
+→ 다음 새 대화  08:00 이미지 슬롯별 순차 제작 — RETRY FROM COVER
+→ 이후 09:00  HTML + 간단 화면 검수 + 발행 — PENDING
 ```
 
 현재 파일 상태:
 
 - `LAYOUT_PLAN.md`: COMPLETE
-- `IMAGE_PLAN.md`: READY
+- `IMAGE_PLAN.md`: CONTEXT_FAILURE
 - `image_prompts/`: COMPLETE — 생성 대상 7 슬롯에 대응하는 7개 파일
-- 신규 이미지 생성: 시작하지 않음
+- 신규 이미지 생성: ACCEPTED 0장 / Cover 첫 결과는 CONTEXT_FAILURE로 미저장
 
 07:00 확정 사항:
 
@@ -50,7 +53,7 @@
 - EDITOR'S AFTERWORD: COMPLETE
 - MANUSCRIPT_STAGE: COMPLETE
 - LAYOUT: COMPLETE
-- IMAGES: PENDING
+- IMAGES: CONTEXT_FAILURE
 - HTML: PENDING
 - SCREEN_REVIEW: PENDING
 - PUBLISH: PENDING
@@ -114,7 +117,7 @@
 
 ```text
 LAYOUT_PLAN.md              — COMPLETE
-IMAGE_PLAN.md               — READY
+IMAGE_PLAN.md               — CONTEXT_FAILURE
 image_prompts/01_cover.txt
 image_prompts/02_cover_story.txt
 image_prompts/03_economy.txt
@@ -122,24 +125,24 @@ image_prompts/04_politics.txt
 image_prompts/05_society.txt
 image_prompts/06_tech.txt
 image_prompts/07_life_scene.txt
-WORK_STATE.md               — LAYOUT COMPLETE / IMAGES PENDING
+WORK_STATE.md               — LAYOUT COMPLETE / IMAGES CONTEXT_FAILURE
 ```
 
 이미지 큐:
 
 ```text
-1. Cover        → cover.webp        → READY 0/3 → 16:9 → 2400×1350
-2. Cover Story  → cover-story.webp  → READY 0/3 → 3:2  → 2100×1400
-3. Economy      → economy.webp      → READY 0/3 → 3:2  → 2100×1400
-4. Politics     → politics.webp     → READY 0/3 → 3:2  → 2100×1400 / 완전 무인
-5. Society      → society.webp      → READY 0/3 → 3:2  → 2100×1400
-6. Tech         → tech.webp         → READY 0/3 → 3:2  → 2100×1400
-7. LIFE SCENE   → life-scene.webp   → READY 0/3 → 4:5  → 2000×2500
+1. Cover        → cover.webp        → CONTEXT_FAILURE 0/3 → 16:9 → 2400×1350
+2. Cover Story  → cover-story.webp  → READY 0/3           → 3:2  → 2100×1400
+3. Economy      → economy.webp      → READY 0/3           → 3:2  → 2100×1400
+4. Politics     → politics.webp     → READY 0/3           → 3:2  → 2100×1400 / 완전 무인
+5. Society      → society.webp      → READY 0/3           → 3:2  → 2100×1400
+6. Tech         → tech.webp         → READY 0/3           → 3:2  → 2100×1400
+7. LIFE SCENE   → life-scene.webp   → READY 0/3           → 4:5  → 2000×2500
 ```
 
-## 다음 작업 — 08:00 이미지 슬롯별 순차 제작
+## 다음 작업 — 새 대화에서 08:00 이미지 슬롯별 순차 제작 재시작
 
-08:00 현행 기준:
+현행 기준:
 
 1. `editorial/IMAGE_CONTRACT.md`
 2. `IMAGE_PLAN.md`
@@ -147,6 +150,8 @@ WORK_STATE.md               — LAYOUT COMPLETE / IMAGES PENDING
 
 실행 원칙:
 
+- 이 대화의 이미지 턴은 `CONTEXT_FAILURE`로 종료됐으므로 같은 대화에서 추가 이미지 생성 금지
+- 다음 시도는 새 대화에서 Cover부터 시작
 - 01~09 원고 수정 금지
 - 지면 재설계 금지
 - `1 SLOT = 1 PROMPT FILE = 1 SCENE = 1 IMAGE`
@@ -163,6 +168,6 @@ WORK_STATE.md               — LAYOUT COMPLETE / IMAGES PENDING
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 별도 재확인 질문 없이 **08:00 이미지 슬롯별 순차 제작**을 끝까지 수행한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 별도 재확인 질문 없이 **08:00 이미지 슬롯별 순차 제작**을 Cover부터 다시 시작한다.
 
 08:00에서는 `editorial/IMAGE_CONTRACT.md`, `IMAGE_PLAN.md`, 현재 슬롯의 prompt 파일을 기준으로 순차 생성·판정한다. 지면과 원고는 다시 설계하지 않는다.
