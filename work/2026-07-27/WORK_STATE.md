@@ -6,27 +6,35 @@
 
 ## 현재 재개 지점
 
-**01~09 원고 제작은 모두 완료됐다. 다음 작업은 월요일 `07:00 LAYOUT_PLAN + IMAGE_PLAN 작성 (텍스트 전용)`이다.**
+**01~09 원고 제작과 07:00 지면·이미지 입력 설계가 모두 완료됐다. 다음 작업은 `08:00 이미지 슬롯별 순차 제작`이다.**
 
 01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
-현재는 새 `editorial/IMAGE_CONTRACT.md` 적용을 위한 **07:00 시작 전 상태**다.
+07:00에서는 `editorial/IMAGE_CONTRACT.md`에 따라 실제 이미지 생성 없이 입력 패키지만 완성했다.
 
 ```text
 06:00  PROLOGUE + EDITOR'S AFTERWORD — COMPLETE
-→ 07:00  LAYOUT_PLAN + IMAGE_PLAN + image_prompts 작성 — PENDING / TEXT ONLY
+07:00  LAYOUT_PLAN + IMAGE_PLAN + image_prompts 작성 — COMPLETE / TEXT ONLY
 → 08:00  이미지 슬롯별 순차 제작 — PENDING
 → 09:00  HTML + 간단 화면 검수 + 발행 — PENDING
 ```
 
 현재 파일 상태:
 
-- `LAYOUT_PLAN.md`: 없음
-- `IMAGE_PLAN.md`: 없음
-- `image_prompts/`: 없음
+- `LAYOUT_PLAN.md`: COMPLETE
+- `IMAGE_PLAN.md`: READY
+- `image_prompts/`: COMPLETE — 생성 대상 7 슬롯에 대응하는 7개 파일
 - 신규 이미지 생성: 시작하지 않음
 
-과거 테스트에서 만들어진 지면·이미지 계획과 이미지 실패 상태는 새 계약과 호환되지 않아 폐기했다. 새 테스트는 07:00부터 다시 시작한다.
+07:00 확정 사항:
+
+- 최종 DOM: `Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics DEEP DIVE → Society → Tech → EDITOR'S AFTERWORD → Sources`
+- DATA: OMIT
+- WATCH: OMIT
+- 이미지 REQUIRED 슬롯: Cover / Cover Story / Economy / Politics / Society / Tech / LIFE SCENE
+- Politics 이미지: 완전 무인
+- LIFE SCENE 이미지: 4:5 세로형
+- PROLOGUE / Politics DEEP DIVE / EDITOR'S AFTERWORD: 별도 생성 이미지 없음
 
 ## 진행 상태
 
@@ -41,7 +49,7 @@
 - PROLOGUE: COMPLETE
 - EDITOR'S AFTERWORD: COMPLETE
 - MANUSCRIPT_STAGE: COMPLETE
-- LAYOUT: PENDING
+- LAYOUT: COMPLETE
 - IMAGES: PENDING
 - HTML: PENDING
 - SCREEN_REVIEW: PENDING
@@ -102,41 +110,59 @@
 - `09_editor_afterword/ARTICLE.md`: COMPLETE
 - 현행 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
-## 다음 작업 — 07:00 LAYOUT_PLAN + IMAGE_PLAN 작성 (텍스트 전용)
-
-현행 기준:
-
-1. `editorial/WEEKLY_RUNBOOK.md`
-2. `editorial/LAYOUT_SYSTEM.md`
-3. `editorial/IMAGE_CONTRACT.md`
-4. `editorial/ISSUE_QUALITY_GATE.md`
-5. `templates/TEMPLATE_CONTRACT.md`
-6. `templates/NAVIGATION_CONTRACT.md`
-
-07:00의 필수 산출물:
+## 07:00 완료 산출물
 
 ```text
-LAYOUT_PLAN.md          — COMPLETE
-IMAGE_PLAN.md           — READY
-image_prompts/*.txt     — 생성 대상 슬롯마다 1개
-WORK_STATE.md           — LAYOUT COMPLETE / IMAGES PENDING으로 갱신
+LAYOUT_PLAN.md              — COMPLETE
+IMAGE_PLAN.md               — READY
+image_prompts/01_cover.txt
+image_prompts/02_cover_story.txt
+image_prompts/03_economy.txt
+image_prompts/04_politics.txt
+image_prompts/05_society.txt
+image_prompts/06_tech.txt
+image_prompts/07_life_scene.txt
+WORK_STATE.md               — LAYOUT COMPLETE / IMAGES PENDING
 ```
 
-### 07:00 실행 원칙
+이미지 큐:
+
+```text
+1. Cover        → cover.webp        → READY 0/3 → 16:9 → 2400×1350
+2. Cover Story  → cover-story.webp  → READY 0/3 → 3:2  → 2100×1400
+3. Economy      → economy.webp      → READY 0/3 → 3:2  → 2100×1400
+4. Politics     → politics.webp     → READY 0/3 → 3:2  → 2100×1400 / 완전 무인
+5. Society      → society.webp      → READY 0/3 → 3:2  → 2100×1400
+6. Tech         → tech.webp         → READY 0/3 → 3:2  → 2100×1400
+7. LIFE SCENE   → life-scene.webp   → READY 0/3 → 4:5  → 2000×2500
+```
+
+## 다음 작업 — 08:00 이미지 슬롯별 순차 제작
+
+08:00 현행 기준:
+
+1. `editorial/IMAGE_CONTRACT.md`
+2. `IMAGE_PLAN.md`
+3. 현재 슬롯의 `image_prompts/*.txt`
+
+실행 원칙:
 
 - 01~09 원고 수정 금지
-- 최종 DOM 순서와 기사별 지면 리듬 확정
-- DATA / WATCH 필요성 판정
-- 이미지 슬롯 필요성·지면 역할·비율·해상도 확정
-- `IMAGE_PLAN.md`는 큐와 상태만 기록
-- 실제 생성 장면은 슬롯별 `image_prompts/*.txt`에 독립 저장
-- 프롬프트 파일에는 이미지로 보일 장면 정보만 기록
-- 07:00에서는 이미지 생성 도구를 호출하지 않음
+- 지면 재설계 금지
+- `1 SLOT = 1 PROMPT FILE = 1 SCENE = 1 IMAGE`
+- 현재 슬롯 prompt 파일을 이미지 생성 직전 마지막 저장소 읽기로 사용
+- prompt 파일을 읽은 뒤 즉시 해당 슬롯 이미지 1장 생성
+- PHOTO-SCENE 게이트 → 시각 품질 판정 → `ACCEPTED / RETRY / BLOCKED`
+- Politics는 프레임 전체 완전 무인
+- LIFE SCENE은 4:5
+- Cover 장변 2200px 이상 목표, 나머지 주요 이미지 장변 2000px 이상 목표
+- `CONTEXT_FAILURE` 발생 시 같은 대화에서 재생성하지 않고 이미지 턴 전체 종료
+- 합격권 이미지는 취향성 재생성 금지
 
-07:00 완료 뒤 다음 작업은 `08:00 이미지 슬롯별 순차 제작`이다.
+08:00 완료 뒤 다음 작업은 `09:00 HTML + 실제 화면 검수 + 발행`이다.
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 별도 재확인 질문 없이 **07:00 LAYOUT_PLAN + IMAGE_PLAN 작성 (텍스트 전용)**을 끝까지 수행한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 별도 재확인 질문 없이 **08:00 이미지 슬롯별 순차 제작**을 끝까지 수행한다.
 
-이미지는 생성하지 않는다. `LAYOUT_PLAN.md`, `IMAGE_PLAN.md`, `image_prompts/*.txt`, `WORK_STATE.md`만 새 계약에 따라 작성·갱신한다.
+08:00에서는 `editorial/IMAGE_CONTRACT.md`, `IMAGE_PLAN.md`, 현재 슬롯의 prompt 파일을 기준으로 순차 생성·판정한다. 지면과 원고는 다시 설계하지 않는다.
