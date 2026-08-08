@@ -1,6 +1,6 @@
 # ISSUE 02 IMAGE PLAN
 
-상태: READY
+상태: BLOCKED
 
 회차: 2026-07-27—2026-08-02
 
@@ -199,3 +199,32 @@ IMG-01 Cover
 - 한 슬롯이 BLOCKED여도 다음 슬롯을 계속 처리한다.
 - REQUIRED 슬롯이 모두 ACCEPT되기 전에는 `IMAGES: COMPLETE`로 올리지 않는다.
 - 이미지 처리 완료 후 `WORK_STATE.md`의 다음 작업을 09:00 HTML + 간단 화면 검수 + 발행으로 넘긴다.
+
+## 4. 08:00 실행 결과 — BLOCKED
+
+실행 시각: 2026-08-08 14:45 KST
+
+`IMAGE_PIPELINE.md`의 IMAGE TOOL CALL GATE와 각 슬롯의 `SCENE_ONLY_PROMPT`를 확인한 뒤 단일 이미지 생성 호출을 실행했으나, 이미지 생성 도구가 장면 프롬프트 대신 저장소·`WORK_STATE.md`·진행 상태를 시각화한 대시보드/문서 형태의 결과를 반복 반환했다.
+
+이 결과들은 모두 `OUTPUT_CONTRACT` 실패이며 후보·최종 자산으로 인정하지 않고 `archive/2026-07-27/assets/`에도 저장하지 않는다. 장면 생성 작업으로 진입하지 못한 출력이므로 유효 이미지 시도 횟수에도 포함하지 않는다.
+
+반복된 `OUTPUT_CONTRACT` 실패로 현재 대화 컨텍스트에서는 이미지 생성 도구가 scene-only 에디토리얼 이미지를 안정적으로 실행할 수 없는 상태로 판정했다. 잘못된 업무 화면을 추가 생성하는 것을 피하기 위해 남은 슬롯도 도구 가용성 문제로 BLOCKED 처리한다.
+
+### 슬롯 상태
+
+- `IMG-01 Cover`: **BLOCKED — OUTPUT_CONTRACT**. scene-only 입력 후에도 저장소/상태 문서형 이미지 반환. ACCEPT 자산 없음.
+- `IMG-02 LIFE SCENE`: **BLOCKED — OUTPUT_CONTRACT**. scene-only 입력 후에도 저장소/상태 대시보드형 이미지 반환. ACCEPT 자산 없음.
+- `IMG-03 Cover Story`: **BLOCKED — IMAGE TOOL UNAVAILABLE**. 반복된 OUTPUT_CONTRACT 실패 이후 추가 잘못된 출력을 방지하기 위해 생성 호출 중단. ACCEPT 자산 없음.
+- `IMG-04 Economy`: **BLOCKED — IMAGE TOOL UNAVAILABLE**. 반복된 OUTPUT_CONTRACT 실패 이후 추가 잘못된 출력을 방지하기 위해 생성 호출 중단. ACCEPT 자산 없음.
+- `IMG-05 Politics`: **BLOCKED — IMAGE TOOL UNAVAILABLE**. 완전 무인 하드 게이트를 검증할 유효 장면 이미지가 생성되지 않아 미실행 상태로 차단. ACCEPT 자산 없음.
+- `IMG-06 Tech`: **BLOCKED — IMAGE TOOL UNAVAILABLE**. 반복된 OUTPUT_CONTRACT 실패 이후 추가 잘못된 출력을 방지하기 위해 생성 호출 중단. ACCEPT 자산 없음.
+
+### 저장 결과
+
+- ACCEPTED/SAVED 이미지: 0개
+- `archive/2026-07-27/assets/` 신규 저장: 없음
+- 실패본 저장: 없음
+
+### 다음 재개 지점
+
+이미지 생성 도구가 scene-only 입력을 정상 수행할 수 있는 컨텍스트에서 `IMG-01`부터 08:00 이미지 턴을 다시 시작한다. REQUIRED 6개가 모두 ACCEPT/SAVED되기 전에는 `IMAGES: COMPLETE` 및 09:00 HTML 턴으로 올리지 않는다.
