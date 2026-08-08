@@ -6,7 +6,7 @@
 
 ## 현재 재개 지점
 
-**01~09 원고 제작이 모두 완료됐다. 다음 작업은 월요일 `07:00 지면 설계`다.**
+**01~09 원고 제작과 월요일 07:00 지면 설계가 모두 완료됐다. 다음 작업은 월요일 `08:00 이미지 슬롯별 순차 제작`이다.**
 
 01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
@@ -14,18 +14,19 @@
 
 ```text
 06:00  PROLOGUE + EDITOR'S AFTERWORD
-→ 07:00  지면 설계
-→ 08:00  이미지 슬롯별 순차 제작
+→ 07:00  지면 설계 — COMPLETE
+→ 08:00  이미지 슬롯별 순차 제작 — NEXT
 → 09:00  HTML + 간단 화면 검수 + 발행
 ```
 
 07:00 지면 설계와 08:00 이미지 제작은 **서로 다른 예약 작업·서로 다른 대화 컨텍스트**다.
 
-현재는 07:00 지면 설계가 아직 시작되지 않은 상태다.
+현재 07:00 지면 설계는 완료됐고 실제 이미지 생성은 아직 시작하지 않았다.
 
-- `LAYOUT_PLAN.md`: 아직 없음
-- `IMAGE_PLAN.md`: 아직 없음
+- `LAYOUT_PLAN.md`: COMPLETE
+- `IMAGE_PLAN.md`: READY
 - 실제 이미지 생성: 아직 시작하지 않음
+- REQUIRED 이미지 슬롯: 6개, 모두 READY
 
 ## 진행 상태
 
@@ -40,7 +41,7 @@
 - PROLOGUE: COMPLETE
 - EDITOR'S AFTERWORD: COMPLETE
 - MANUSCRIPT_STAGE: COMPLETE
-- LAYOUT: PENDING
+- LAYOUT: COMPLETE
 - IMAGES: PENDING
 - HTML: PENDING
 - SCREEN_REVIEW: PENDING
@@ -139,95 +140,143 @@
 - 같은 사실을 다시 설명하거나 기사 요약으로 분량을 채우지 않는다.
 - 결말의 여운을 설명으로 닫지 않는다.
 
-## 09 EDITOR'S AFTERWORD — COMPLETE
+## 07:00 LAYOUT — COMPLETE
 
-작업 경로:
+완료 산출물:
 
 ```text
-09_editor_afterword/
-└─ ARTICLE.md
+LAYOUT_PLAN.md — COMPLETE
+IMAGE_PLAN.md  — READY
 ```
 
-판정: COMPLETE
+### 확정된 최종 독서 순서
 
-## 다음 단계 — 월요일 07:00 지면 설계
-
-현행 `editorial/WEEKLY_RUNBOOK.md`와 `editorial/LAYOUT_SYSTEM.md`의 **07:00 독립 지면 설계 계약**부터 재개한다.
-
-### 07:00 턴 필수 산출물
-
-1. `LAYOUT_PLAN.md` 작성 후 `COMPLETE`
-2. 최종 DOM 순서 확정
-3. DATA/WATCH 필요성 판정
-4. 기사별 지면 리듬 확정
-5. 이미지 슬롯 필요성·지면 역할 확정
-6. LIFE SCENE 이미지 비율 확정
-7. `IMAGE_PLAN.md` 작성 후 `READY`
-8. 각 생성 대상 슬롯의 장면 브리프와 `SCENE_ONLY_PROMPT` 작성
-9. 이 `WORK_STATE.md`를 `LAYOUT: COMPLETE`, 다음 작업 `08:00 이미지 슬롯별 순차 제작`으로 갱신
-
-### 07:00 턴 이미지 생성 금지
-
-07:00 턴에서는 이미지 생성 도구를 호출하지 않는다.
-
-- 지면 미리보기 이미지를 만들지 않음
-- WORK_STATE·진행률·체크리스트 이미지를 만들지 않음
-- 기사 이미지 샘플을 미리 생성하지 않음
-- 결과는 `LAYOUT_PLAN.md`, `IMAGE_PLAN.md`, `WORK_STATE.md` 텍스트·파일로만 남김
-
-### IMAGE_PLAN 준비 기준
-
-08:00 이미지 턴이 원고 전체나 지면 설계 과정을 다시 해석하지 않아도 되도록 각 슬롯을 충분히 닫는다.
-
-각 생성 대상 슬롯에는 최소한 다음을 포함한다.
-
-- 필요성
-- 지면 역할
-- 비율·해상도
-- 기사와 장면의 자연스러운 연결점
-- 실제 보여줄 장면 하나
-- 중심 피사체·행동·사물
-- 카메라 거리·구도
-- 빛·재질·공간감
-- 필요한 안전영역
-- Politics 완전 무인 같은 하드 규칙
-- 초기 상태 `READY`
-- `SCENE_ONLY_PROMPT`
-
-`SCENE_ONLY_PROMPT`에는 실제 장면 정보만 남긴다. 프로젝트명·회차·GitHub·WORK_STATE·체크리스트·진행 보고·기사 제목을 그대로 그리라는 지시는 넣지 않는다.
-
-## 최종 독서 순서
-
-`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics_DEEP_DIVE → Society → Tech → 선택적 DATA/WATCH → EDITOR'S AFTERWORD → Sources`
+`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Politics_DEEP_DIVE → Society → Tech → EDITOR'S AFTERWORD → Sources`
 
 이번 호 Deep Dive는 Politics 바로 뒤에 둔다.
 
-## 07:00 턴에서 읽을 현행 기준
+### DATA / WATCH
 
-지면 설계를 시작하기 전에 현재 `main`의 다음 문서를 기준으로 한다.
+- DATA: OMIT
+- WATCH: OMIT
 
-1. 이 `WORK_STATE.md`
-2. `editorial/WEEKLY_RUNBOOK.md`
-3. `editorial/LAYOUT_SYSTEM.md`
-4. `editorial/IMAGE_PIPELINE.md`
-5. `editorial/IMAGE_DIRECTION.md`
-6. `editorial/ISSUE_QUALITY_GATE.md`
-7. `templates/TEMPLATE_CONTRACT.md`
-8. `templates/NAVIGATION_CONTRACT.md`
+별도 DATA/WATCH를 만들면 각 기사에서 이미 설명한 수치와 후속 지표를 반복하게 되므로 기사 내부 정보 모듈로 처리한다.
 
-01~09는 완성본으로만 사용하고 수정하지 않는다.
+### 기사별 지면 리듬
+
+- Cover: 풀블리드 이미지 + 제목 안전영역
+- LIFE SCENE: 4:3 와이드 생활 이미지 + 연속 서사
+- PROLOGUE: 이미지 없는 텍스트 스프레드
+- Cover Story: 넓은 이미지 + 현장 번역 매트릭스
+- Economy: 이미지·도입 2열 + 가격 전달 사다리 + 비교표
+- Politics: 완전 무인 이미지 + 세 개의 후속 시간표
+- Politics DEEP DIVE: 이미지 없이 다섯 날짜 타임라인 + 국가별 발효 비교표
+- Society: 이미지 없이 목표/첫 운영 수치 + 운영시간 비교
+- Tech: 클린룸 이미지·도입 2열 + 공동활용 기능·이용 경로
+- EDITOR'S AFTERWORD: 좁은 단일 열, 별도 이미지·카드 없음
+
+### LIFE SCENE 이미지 비율
+
+**4:3 확정**
+
+`차 안의 기다림 + 아이 + 생활 공간`을 한 프레임에 함께 담는 가로형이 이번 프런트 스프레드에 적합하다.
+
+### 08:00 생성 대상 슬롯
+
+1. `IMG-01` Cover — `cover.webp` — READY
+2. `IMG-02` LIFE SCENE — `life-scene.webp` — READY
+3. `IMG-03` Cover Story — `cover-story.webp` — READY
+4. `IMG-04` Economy — `economy.webp` — READY
+5. `IMG-05` Politics — `politics.webp` — READY / 완전 무인
+6. `IMG-06` Tech — `tech.webp` — READY
+
+OMIT:
+
+- Politics DEEP DIVE
+- Society
+- PROLOGUE
+- EDITOR'S AFTERWORD
+- DATA / WATCH
+
+각 생성 대상 슬롯의 장면 브리프·비율·해상도·안전영역·하드 규칙·`SCENE_ONLY_PROMPT`는 `IMAGE_PLAN.md`에 닫혀 있다.
+
+## 다음 단계 — 월요일 08:00 이미지 슬롯별 순차 제작
+
+현행 `editorial/IMAGE_PIPELINE.md`, `editorial/IMAGE_DIRECTION.md`, 이 `WORK_STATE.md`, `IMAGE_PLAN.md`를 기준으로 실행한다.
+
+### 08:00 시작 조건
+
+모두 충족됨:
+
+- `WORK_STATE.md`: `LAYOUT: COMPLETE`
+- `LAYOUT_PLAN.md`: `COMPLETE`
+- `IMAGE_PLAN.md`: `READY`
+
+### 08:00 기본 읽기 범위
+
+1. 이 `WORK_STATE.md`의 현재 단계
+2. `editorial/IMAGE_PIPELINE.md`
+3. `editorial/IMAGE_DIRECTION.md`
+4. `IMAGE_PLAN.md`
+
+`LAYOUT_PLAN.md`는 슬롯 역할이 모호할 때만 보조적으로 확인하고 수정하지 않는다.
+원고 01~09는 기본적으로 다시 읽지 않는다.
+
+### 08:00 실행 방식
+
+```text
+IMAGE TURN PRECHECK
+→ 다음 READY / RETRY 슬롯 선택
+→ 해당 슬롯 블록만 확인
+→ SCENE_ONLY_PROMPT READY 확인
+→ 이미지 1장 생성
+→ OUTPUT CONTRACT 확인
+→ 육안 품질 확인
+→ ACCEPT / RETRY / BLOCKED
+→ IMAGE_PLAN 상태 기록
+→ 다음 슬롯
+→ 반복
+```
+
+- `1 SLOT = 1 SCENE = 1 IMAGE`
+- 한 번의 생성 호출에는 현재 슬롯 한 장만 넣는다.
+- 첫 이미지 한 장 생성 후 턴을 종료하지 않는다.
+- REQUIRED 6개 슬롯을 끝까지 순차 처리한다.
+- 한 슬롯이 BLOCKED여도 다음 슬롯 작업을 계속한다.
+- Politics는 사람·얼굴·실루엣·손·반사 속 인물까지 전부 금지한다.
+- 작업 보고서·대시보드·WORK_STATE·파일트리·문서 페이지를 이미지로 만들지 않는다.
+- 이미지 한 장이 충분히 실사용 가능하면 취향성 재생성을 하지 않는다.
+- 기본 최대 3회의 유효 이미지 시도 후에도 실패하면 해당 슬롯을 BLOCKED로 기록한다.
+
+### 08:00 턴 종료 조건
+
+- REQUIRED 슬롯 6개의 상태가 모두 기록됨
+- ACCEPT 자산의 실제 저장 경로·크기 기록
+- 모든 REQUIRED 슬롯이 ACCEPT된 경우에만 `IMAGES: COMPLETE`
+- REQUIRED 슬롯이 BLOCKED면 `IMAGES: BLOCKED` 또는 현행 계약에 맞는 미완료 상태 유지
+- HTML·SCREEN_REVIEW·PUBLISH는 아직 올리지 않음
+- 이미지 단계가 정상 완료되면 다음 작업을 `09:00 HTML + 간단 화면 검수 + 발행`으로 갱신
+
+## 08:00 이미지 턴 금지사항
+
+- 지면 재설계 금지
+- `LAYOUT_PLAN.md` 재작성 금지
+- 원고 재작성·재검토 금지
+- 여러 슬롯을 한 이미지 생성 호출에 묶기 금지
+- 연락시트·스토리보드·무드보드·이미지 팩 생성 금지
+- 작업 상태·다음 턴·저장소 구조 시각화 금지
+- 실제 이미지 생성 전 IMAGES를 COMPLETE로 변경 금지
+- 실제 HTML 렌더링·화면 검수 전 SCREEN_REVIEW를 COMPLETE로 변경 금지
+- 실제 화면 검수 전 PUBLISH 상태로 변경 금지
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 월요일 07:00 지면 설계 턴을 끝까지 실행**한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 월요일 08:00 이미지 슬롯별 순차 제작 턴을 끝까지 실행**한다.
 
 - 01~09 수정 금지
-- DATA/WATCH는 새 정보가 있을 때만 선택적으로 제작
-- 기사마다 내용에 맞는 서로 다른 지면 리듬 설계
-- 동일 레이아웃 반복 금지
-- 09 EDITOR'S AFTERWORD는 모든 기사·DEEP DIVE 뒤 Sources 바로 앞에 배치
-- 07:00 턴에서 `LAYOUT_PLAN.md`와 `IMAGE_PLAN.md`를 모두 완성
-- 07:00 턴에서 이미지 생성 도구 호출 금지
-- 실제 이미지 생성 전 IMAGES를 COMPLETE로 변경하지 않음
-- 실제 HTML 렌더링·화면 검수 전 SCREEN_REVIEW를 COMPLETE로 변경하지 않음
-- 실제 화면 검수 전 PUBLISH 상태로 변경하지 않음
+- 07:00 지면 설계 재수행 금지
+- `IMAGE_PLAN.md`의 READY 슬롯과 `SCENE_ONLY_PROMPT`를 실행 입력으로 사용
+- 슬롯 하나씩 생성·판정·상태 기록 후 다음 슬롯으로 이동
+- Politics 완전 무인 하드 게이트 유지
+- REQUIRED 슬롯 6개 전체를 처리하기 전 턴 종료 금지
+- 이미지 완료 뒤에만 09:00 HTML 턴으로 넘김
