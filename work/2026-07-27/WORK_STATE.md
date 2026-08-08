@@ -6,7 +6,7 @@
 
 ## 현재 재개 지점
 
-**01~09 원고 제작과 월요일 07:00 지면 설계가 모두 완료됐다. 다음 작업은 월요일 `08:00 이미지 슬롯별 순차 제작`이다.**
+**01~09 원고 제작과 월요일 07:00 지면 설계는 완료됐다. 월요일 08:00 이미지 슬롯별 순차 제작은 이미지 생성 도구의 반복된 OUTPUT_CONTRACT 실패로 BLOCKED 상태다. 다음 재개 작업은 동일한 08:00 이미지 턴을 정상적인 scene-only 생성 컨텍스트에서 다시 실행하는 것이다.**
 
 01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
@@ -15,18 +15,18 @@
 ```text
 06:00  PROLOGUE + EDITOR'S AFTERWORD
 → 07:00  지면 설계 — COMPLETE
-→ 08:00  이미지 슬롯별 순차 제작 — NEXT
-→ 09:00  HTML + 간단 화면 검수 + 발행
+→ 08:00  이미지 슬롯별 순차 제작 — BLOCKED
+→ 09:00  HTML + 간단 화면 검수 + 발행 — PENDING
 ```
 
 07:00 지면 설계와 08:00 이미지 제작은 **서로 다른 예약 작업·서로 다른 대화 컨텍스트**다.
 
-현재 07:00 지면 설계는 완료됐고 실제 이미지 생성은 아직 시작하지 않았다.
+현재 07:00 지면 설계는 완료됐고 08:00 이미지 생성은 scene-only 출력 실패로 완료되지 못했다.
 
 - `LAYOUT_PLAN.md`: COMPLETE
-- `IMAGE_PLAN.md`: READY
-- 실제 이미지 생성: 아직 시작하지 않음
-- REQUIRED 이미지 슬롯: 6개, 모두 READY
+- `IMAGE_PLAN.md`: BLOCKED
+- 실제 이미지 생성: OUTPUT_CONTRACT 실패, ACCEPT 자산 없음
+- REQUIRED 이미지 슬롯: 6개, 모두 BLOCKED 기록
 
 ## 진행 상태
 
@@ -42,7 +42,7 @@
 - EDITOR'S AFTERWORD: COMPLETE
 - MANUSCRIPT_STAGE: COMPLETE
 - LAYOUT: COMPLETE
-- IMAGES: PENDING
+- IMAGES: BLOCKED
 - HTML: PENDING
 - SCREEN_REVIEW: PENDING
 - PUBLISH: PENDING
@@ -192,7 +192,7 @@ IMAGE_PLAN.md  — READY
 
 OMIT:
 
-- Politics DEEP DIVE
+- Politics DEEP_DIVE
 - Society
 - PROLOGUE
 - EDITOR'S AFTERWORD
@@ -280,3 +280,20 @@ IMAGE TURN PRECHECK
 - Politics 완전 무인 하드 게이트 유지
 - REQUIRED 슬롯 6개 전체를 처리하기 전 턴 종료 금지
 - 이미지 완료 뒤에만 09:00 HTML 턴으로 넘김
+
+## 08:00 실행 결과 — BLOCKED
+
+실행 시각: 2026-08-08 14:45 KST
+
+- `IMG-01 Cover`: BLOCKED — `OUTPUT_CONTRACT`
+- `IMG-02 LIFE SCENE`: BLOCKED — `OUTPUT_CONTRACT`
+- `IMG-03 Cover Story`: BLOCKED — 이미지 생성 도구 scene-only 실행 불가
+- `IMG-04 Economy`: BLOCKED — 이미지 생성 도구 scene-only 실행 불가
+- `IMG-05 Politics`: BLOCKED — 이미지 생성 도구 scene-only 실행 불가, 완전 무인 결과 검증 불가
+- `IMG-06 Tech`: BLOCKED — 이미지 생성 도구 scene-only 실행 불가
+
+이미지 생성 도구가 장면 프롬프트 대신 저장소·상태 문서·진행 대시보드 형태를 반복 반환해 `OUTPUT_CONTRACT`를 통과한 후보가 없었다. 해당 결과는 전부 폐기했으며 `archive/2026-07-27/assets/`에 저장한 신규 자산은 없다.
+
+따라서 `IMAGES`는 `COMPLETE`로 올리지 않고 `BLOCKED`를 유지한다. HTML·SCREEN_REVIEW·PUBLISH도 모두 PENDING이다.
+
+다음 재개 시에는 **원고·지면을 다시 만들지 말고**, 정상적인 scene-only 이미지 생성이 가능한 컨텍스트에서 `IMAGE_PLAN.md`의 `IMG-01`부터 08:00 이미지 턴을 다시 실행한다. REQUIRED 6개가 모두 ACCEPT/SAVED된 뒤에만 09:00 HTML + 간단 화면 검수 + 발행으로 이동한다.
