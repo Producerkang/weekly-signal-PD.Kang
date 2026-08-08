@@ -6,7 +6,7 @@
 
 ## 현재 재개 지점
 
-**01~09 원고 제작은 모두 완료됐다. 다음 작업은 월요일 `07:00 지면 설계 + 이미지 입력 준비`다.**
+**01~09 원고 제작은 모두 완료됐다. 다음 작업은 월요일 `07:00 LAYOUT_PLAN + IMAGE_PLAN 작성 (텍스트 전용)`이다.**
 
 01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
@@ -14,7 +14,7 @@
 
 ```text
 06:00  PROLOGUE + EDITOR'S AFTERWORD — COMPLETE
-→ 07:00  지면 설계 + 이미지 입력 준비 — PENDING
+→ 07:00  LAYOUT_PLAN + IMAGE_PLAN + image_prompts 작성 — PENDING / TEXT ONLY
 → 08:00  이미지 슬롯별 순차 제작 — PENDING
 → 09:00  HTML + 간단 화면 검수 + 발행 — PENDING
 ```
@@ -102,7 +102,7 @@
 - `09_editor_afterword/ARTICLE.md`: COMPLETE
 - 현행 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
-## 다음 작업 — 07:00 지면 설계 + 이미지 입력 준비
+## 다음 작업 — 07:00 LAYOUT_PLAN + IMAGE_PLAN 작성 (텍스트 전용)
 
 현행 기준:
 
@@ -137,6 +137,6 @@ WORK_STATE.md           — LAYOUT COMPLETE / IMAGES PENDING으로 갱신
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 별도 재확인 질문 없이 **07:00 지면 설계 + 이미지 입력 준비**를 끝까지 수행한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 별도 재확인 질문 없이 **07:00 LAYOUT_PLAN + IMAGE_PLAN 작성 (텍스트 전용)**을 끝까지 수행한다.
 
 이미지는 생성하지 않는다. `LAYOUT_PLAN.md`, `IMAGE_PLAN.md`, `image_prompts/*.txt`, `WORK_STATE.md`만 새 계약에 따라 작성·갱신한다.
