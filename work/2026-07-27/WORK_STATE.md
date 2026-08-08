@@ -6,15 +6,26 @@
 
 ## 현재 재개 지점
 
-**01~09 원고 제작이 모두 완료됐다. 다음 작업은 `12 지면 설계`다.**
+**01~09 원고 제작이 모두 완료됐다. 다음 작업은 월요일 `07:00 지면 설계`다.**
 
 01~09는 현행 완성본으로 확정한다. 별도 지시 없이 다시 작성하거나 재검토하지 않는다.
 
-08 PROLOGUE는 현행 표준의 PREVIEW MAP과 새 시선 이동 로직으로 제작 완료했다. 문장 리듬에는 추가 개선 여지가 확인됐지만 제2호 원고는 여기서 수정 종료하며, 개선사항은 제3호부터 `PROSE RHYTHM PASS`로 적용한다.
+현행 예약 구조는 다음과 같이 분리되어 있다.
 
-09 EDITOR'S AFTERWORD는 기존 EDITOR'S PICK이나 삭제된 과거 원고를 복원·참조하지 않고 현행 AFTERWORD 로직으로 백지 제작했다. 서정적 회고 톤과 `40분 ↔ 긴 시간표 ↔ 두 개의 시계` 구조는 유지하고, 최종본에서는 각 문단의 호흡을 약 10~20% 확장했다. 새 논점이나 새 교훈을 추가하지 않고 기존 장면과 생각을 한 호흡 더 이어가는 방식만 사용했다.
+```text
+06:00  PROLOGUE + EDITOR'S AFTERWORD
+→ 07:00  지면 설계
+→ 08:00  이미지 슬롯별 순차 제작
+→ 09:00  HTML + 간단 화면 검수 + 발행
+```
 
-현행 `WEEKLY_RUNBOOK.md`에 따라 EDITOR'S AFTERWORD 뒤 단계는 지면 설계다. DATA와 WATCH는 새 정보가 있을 때만 선택적으로 만든다. 09 완료만으로 지면·이미지·HTML·화면검수·발행 상태를 자동 완료 처리하지 않는다.
+07:00 지면 설계와 08:00 이미지 제작은 **서로 다른 예약 작업·서로 다른 대화 컨텍스트**다.
+
+현재는 07:00 지면 설계가 아직 시작되지 않은 상태다.
+
+- `LAYOUT_PLAN.md`: 아직 없음
+- `IMAGE_PLAN.md`: 아직 없음
+- 실제 이미지 생성: 아직 시작하지 않음
 
 ## 진행 상태
 
@@ -80,12 +91,11 @@
 - `07_life_scene/ARTICLE.md`: COMPLETE
 - 제목: `아홉 시에 문이 열리는데, 엄마는 여덟 시 이십 분에 집을 나서야 했다`
 - 연결 대상: Society
-- 현재 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
+- 현행 본문은 확정본이며 별도 지시 없이 수정하지 않는다.
 
 ### 08 Prologue
 - `08_prologue/PREVIEW_MAP.md`: COMPLETE
 - `08_prologue/ARTICLE.md`: COMPLETE
-- 백지 재제작 완료
 - PANORAMA에서 Cover·Economy·Politics·Society·Tech 소재를 넓게 펼친 뒤 전 분야를 다시 순회하지 않음
 - FOCUS는 석유 공급가격·정상회담 후속 일정에서 돌봄의 40분으로 시야를 좁힘
 - ARTICLE PREVIEW는 Society + LIFE SCENE 조합에 집중
@@ -138,35 +148,53 @@
 └─ ARTICLE.md
 ```
 
-완료 판정:
-
-- [x] 실제 한 호 제작을 마친 뒤 쓸 수 있는 후기다.
-- [x] 제작 후 시점이 자연스럽다.
-- [x] 기사 요약보다 편집자의 회고가 앞에 있다.
-- [x] 이미 읽은 본문을 장황하게 다시 설명하지 않는다.
-- [x] PICK을 위한 억지 선정 논리가 없다.
-- [x] 모든 기사를 묶는 공통 교훈을 만들지 않는다.
-- [x] 내부 방법론 보고서처럼 읽히지 않는다.
-- [x] 존재하지 않는 회의·취재·대화·감정을 만들지 않는다.
-- [x] 마지막이 억지 결론보다 자연스러운 여운으로 닫힌다.
-
 판정: COMPLETE
 
-## 다음 단계 — 12 지면 설계
+## 다음 단계 — 월요일 07:00 지면 설계
 
-현행 `editorial/WEEKLY_RUNBOOK.md`의 지면 설계 단계부터 재개한다.
+현행 `editorial/WEEKLY_RUNBOOK.md`와 `editorial/LAYOUT_SYSTEM.md`의 **07:00 독립 지면 설계 계약**부터 재개한다.
 
-기본 원칙:
+### 07:00 턴 필수 산출물
 
-1. DATA와 WATCH는 새 정보가 있을 때만 선택적으로 만든다.
-2. 대표 기사의 표지 주제를 확정한다.
-3. 기사마다 내용에 맞는 지면 조합을 선택한다.
-4. 한 호에 최소 세 가지 이상의 기사 레이아웃 리듬을 만든다.
-5. 동일 템플릿 구조를 모든 기사에 복제하지 않는다.
-6. 장식 모듈은 본문 반복이 아니라 새로운 정보나 읽기 전환을 제공해야 한다.
-7. 직전 회차보다 섹션 전환·정보 시각화·모바일 흐름 중 하나 이상을 개선한다.
+1. `LAYOUT_PLAN.md` 작성 후 `COMPLETE`
+2. 최종 DOM 순서 확정
+3. DATA/WATCH 필요성 판정
+4. 기사별 지면 리듬 확정
+5. 이미지 슬롯 필요성·지면 역할 확정
+6. LIFE SCENE 이미지 비율 확정
+7. `IMAGE_PLAN.md` 작성 후 `READY`
+8. 각 생성 대상 슬롯의 장면 브리프와 `SCENE_ONLY_PROMPT` 작성
+9. 이 `WORK_STATE.md`를 `LAYOUT: COMPLETE`, 다음 작업 `08:00 이미지 슬롯별 순차 제작`으로 갱신
 
-지면 설계를 시작하기 전 현재 `main`의 `editorial/LAYOUT_SYSTEM.md`, `editorial/IMAGE_DIRECTION.md`, `templates/TEMPLATE_CONTRACT.md`, `templates/NAVIGATION_CONTRACT.md`와 관련 현행 기준을 다시 확인한다.
+### 07:00 턴 이미지 생성 금지
+
+07:00 턴에서는 이미지 생성 도구를 호출하지 않는다.
+
+- 지면 미리보기 이미지를 만들지 않음
+- WORK_STATE·진행률·체크리스트 이미지를 만들지 않음
+- 기사 이미지 샘플을 미리 생성하지 않음
+- 결과는 `LAYOUT_PLAN.md`, `IMAGE_PLAN.md`, `WORK_STATE.md` 텍스트·파일로만 남김
+
+### IMAGE_PLAN 준비 기준
+
+08:00 이미지 턴이 원고 전체나 지면 설계 과정을 다시 해석하지 않아도 되도록 각 슬롯을 충분히 닫는다.
+
+각 생성 대상 슬롯에는 최소한 다음을 포함한다.
+
+- 필요성
+- 지면 역할
+- 비율·해상도
+- 기사와 장면의 자연스러운 연결점
+- 실제 보여줄 장면 하나
+- 중심 피사체·행동·사물
+- 카메라 거리·구도
+- 빛·재질·공간감
+- 필요한 안전영역
+- Politics 완전 무인 같은 하드 규칙
+- 초기 상태 `READY`
+- `SCENE_ONLY_PROMPT`
+
+`SCENE_ONLY_PROMPT`에는 실제 장면 정보만 남긴다. 프로젝트명·회차·GitHub·WORK_STATE·체크리스트·진행 보고·기사 제목을 그대로 그리라는 지시는 넣지 않는다.
 
 ## 최종 독서 순서
 
@@ -174,36 +202,32 @@
 
 이번 호 Deep Dive는 Politics 바로 뒤에 둔다.
 
-## 현행 제작 기준
+## 07:00 턴에서 읽을 현행 기준
 
-새 대화에서는 반드시 현재 `main`의 다음 문서를 기준으로 한다.
+지면 설계를 시작하기 전에 현재 `main`의 다음 문서를 기준으로 한다.
 
-1. `editorial/ARTICLE_WRITING_STANDARD.md`
+1. 이 `WORK_STATE.md`
 2. `editorial/WEEKLY_RUNBOOK.md`
-3. `editorial/EDITORIAL_STANDARD.md`
-4. `editorial/ISSUE_QUALITY_GATE.md`
-5. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
-6. `editorial/LIFE_SCENE_STANDARD.md`
-7. `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`
-8. `editorial/VOICE_AND_TONE.md`
-9. `editorial/SOURCE_POLICY.md`
-10. `editorial/IMAGE_DIRECTION.md`
-11. `editorial/LAYOUT_SYSTEM.md`
-12. `editorial/PUBLISHING_PIPELINE.md`
-13. `templates/TEMPLATE_CONTRACT.md`
-14. `templates/NAVIGATION_CONTRACT.md`
+3. `editorial/LAYOUT_SYSTEM.md`
+4. `editorial/IMAGE_PIPELINE.md`
+5. `editorial/IMAGE_DIRECTION.md`
+6. `editorial/ISSUE_QUALITY_GATE.md`
+7. `templates/TEMPLATE_CONTRACT.md`
+8. `templates/NAVIGATION_CONTRACT.md`
+
+01~09는 완성본으로만 사용하고 수정하지 않는다.
 
 ## 새 대화 실행 규칙
 
-저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 12 지면 설계부터 시작**한다.
+저장소와 이 `WORK_STATE.md`를 확인한 뒤 **별도 재확인 질문 없이 월요일 07:00 지면 설계 턴을 끝까지 실행**한다.
 
 - 01~09 수정 금지
-- 01~09 현행 원고를 완성본으로 사용
 - DATA/WATCH는 새 정보가 있을 때만 선택적으로 제작
-- 지면 설계 전 현행 LAYOUT·IMAGE·TEMPLATE·NAVIGATION 기준 확인
 - 기사마다 내용에 맞는 서로 다른 지면 리듬 설계
 - 동일 레이아웃 반복 금지
 - 09 EDITOR'S AFTERWORD는 모든 기사·DEEP DIVE 뒤 Sources 바로 앞에 배치
+- 07:00 턴에서 `LAYOUT_PLAN.md`와 `IMAGE_PLAN.md`를 모두 완성
+- 07:00 턴에서 이미지 생성 도구 호출 금지
 - 실제 이미지 생성 전 IMAGES를 COMPLETE로 변경하지 않음
-- 실제 HTML 렌더링·다중 화면 검수 전 SCREEN_REVIEW를 COMPLETE로 변경하지 않음
+- 실제 HTML 렌더링·화면 검수 전 SCREEN_REVIEW를 COMPLETE로 변경하지 않음
 - 실제 화면 검수 전 PUBLISH 상태로 변경하지 않음
