@@ -1,6 +1,6 @@
 {
   "schema": "weekly-signal-image-job-v1",
-  "state": "READY",
+  "state": "CONTEXT_FAILURE",
   "scheduled_date": "2026-08-08",
   "after_run": {
     "image_plan": "work/2026-07-27/IMAGE_PLAN.md",
