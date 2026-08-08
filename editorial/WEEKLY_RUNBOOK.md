@@ -4,23 +4,26 @@
 
 ## 1. 시작 전에 읽을 현행 기준
 
-새 회차 또는 재개 작업에서는 다음 순서로 확인한다.
+새 회차 또는 재개 작업에서는 먼저 해당 회차 `work/YYYY-MM-DD/WORK_STATE.md`를 읽는다.
 
-1. 해당 회차 `work/YYYY-MM-DD/WORK_STATE.md`
-2. `editorial/ARTICLE_WRITING_STANDARD.md`
-3. `editorial/EDITORIAL_STANDARD.md`
-4. `editorial/ISSUE_QUALITY_GATE.md`
-5. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
-6. `editorial/LIFE_SCENE_STANDARD.md`
-7. `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`
-8. `editorial/VOICE_AND_TONE.md`
-9. `editorial/SOURCE_POLICY.md`
-10. `editorial/IMAGE_PIPELINE.md`
-11. `editorial/IMAGE_DIRECTION.md`
-12. `editorial/LAYOUT_SYSTEM.md`
-13. `editorial/PUBLISHING_PIPELINE.md`
-14. `templates/TEMPLATE_CONTRACT.md`
-15. `templates/NAVIGATION_CONTRACT.md`
+그 뒤에는 **현재 재개 단계에 필요한 현행 계약만** 읽는다. 완료된 이전 예약 작업의 문서를 새 대화에 불필요하게 모두 다시 쌓지 않는다.
+
+전체 기준 목록:
+
+1. `editorial/ARTICLE_WRITING_STANDARD.md`
+2. `editorial/EDITORIAL_STANDARD.md`
+3. `editorial/ISSUE_QUALITY_GATE.md`
+4. `editorial/SECTION_AND_DEEP_DIVE_STANDARD.md`
+5. `editorial/LIFE_SCENE_STANDARD.md`
+6. `editorial/HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`
+7. `editorial/VOICE_AND_TONE.md`
+8. `editorial/SOURCE_POLICY.md`
+9. `editorial/IMAGE_PIPELINE.md`
+10. `editorial/IMAGE_DIRECTION.md`
+11. `editorial/LAYOUT_SYSTEM.md`
+12. `editorial/PUBLISHING_PIPELINE.md`
+13. `templates/TEMPLATE_CONTRACT.md`
+14. `templates/NAVIGATION_CONTRACT.md`
 
 회차별 세부 지면과 이미지 슬롯은 해당 회차의 `LAYOUT_PLAN.md`, `IMAGE_PLAN.md`가 소유한다.
 
@@ -197,9 +200,28 @@ ISSUE READBACK
 
 EDITOR'S AFTERWORD는 기본적으로 별도 생성 이미지를 요구하지 않는다.
 
-## 11. 지면 설계
+## 11. 지면 설계 — 월요일 07:00 독립 턴
 
-모든 원고가 닫힌 뒤 `LAYOUT_PLAN.md`를 만든다.
+모든 원고가 닫힌 뒤 **지면 설계만 수행하는 별도 예약 작업**을 시작한다.
+
+이 턴의 목적은 08:00 이미지 제작이 지면과 원고 전체를 다시 해석하지 않아도 되도록 **지면 구조와 이미지 실행 계획을 모두 닫는 것**이다.
+
+### 11.1 지면 설계 산출물
+
+07:00 턴은 다음 두 파일을 모두 완성한다.
+
+- `LAYOUT_PLAN.md`: 상태 `COMPLETE`
+- `IMAGE_PLAN.md`: 상태 `READY`
+
+그리고 `WORK_STATE.md`를 갱신해:
+
+- `LAYOUT: COMPLETE`
+- `IMAGES: PENDING`
+- 다음 작업: `08:00 이미지 슬롯별 순차 제작`
+
+으로 기록한다.
+
+### 11.2 LAYOUT_PLAN 작성
 
 1. 최종 DOM 순서 확정
 2. DATA/WATCH 필요성 판정
@@ -210,119 +232,135 @@ EDITOR'S AFTERWORD는 기본적으로 별도 생성 이미지를 요구하지 �
 
 이미지는 섹션 이름만 보고 자동으로 추가하지 않는다.
 
-지면 설계 단계에서는 이미지 생성 도구를 호출하지 않는다. `LAYOUT_PLAN.md`는 텍스트·파일 산출물이다.
+### 11.3 IMAGE_PLAN 작성
 
-## 12. 이미지 제작
+지면 설계 턴에서 각 이미지 슬롯의 실행값까지 미리 확정한다.
+
+각 `REQUIRED` 또는 `OPTIONAL` 슬롯에는 최소한 다음을 기록한다.
+
+- 슬롯 역할
+- 필요성: REQUIRED / OPTIONAL
+- 목표 비율
+- 목표 해상도
+- 기사와 장면의 자연스러운 연결점
+- 실제 보여줄 장면 또는 공간 하나
+- 중심 피사체·행동·사물
+- 카메라 거리와 구도
+- 빛·재질·공간감 방향
+- 필요한 안전영역
+- Politics라면 완전 무인 규칙
+- 초기 슬롯 상태: `READY`
+- **`SCENE_ONLY_PROMPT`**
+
+`SCENE_ONLY_PROMPT`는 08:00 이미지 생성 호출에서 바로 사용할 수 있도록 **시각 장면만 남긴 독립 입력**이다.
+
+포함:
+
+- 실제 세계의 한 장면
+- 피사체·행동·사물
+- 카메라·구도
+- 빛·재질·공간감
+- 비율·안전영역
+- 필요한 하드 금지
+
+제외:
+
+- WEEKLY SIGNAL 프로젝트명·브랜드명
+- 회차 번호·날짜·예약 시각
+- GitHub·저장소·브랜치·커밋·파일 경로
+- WORK_STATE·진행률·체크리스트
+- Markdown 표·상태 라벨
+- 기사 제목이나 섹션명을 그대로 그리라는 지시
+- 제작 보고·다음 턴·완료 문구
+
+### 11.4 07:00 절대 금지
+
+지면 설계 턴에서는 **이미지 생성 도구를 호출하지 않는다.**
+
+`LAYOUT_PLAN.md`, `IMAGE_PLAN.md`, WORK_STATE 갱신은 텍스트·파일 산출물이다. 지면 미리보기, 작업 대시보드, 이미지 샘플, 보고 화면을 생성 이미지로 만들지 않는다.
+
+07:00 턴은 `LAYOUT_PLAN COMPLETE + IMAGE_PLAN READY + WORK_STATE 갱신`으로 종료한다.
+
+## 12. 이미지 제작 — 월요일 08:00 독립 턴
 
 실행 계약은 `editorial/IMAGE_PIPELINE.md`가 소유한다.
 
-### 이미지 생성 도구 호출 하드 게이트
+08:00은 **이미지 제작만 수행하는 새 예약 작업/새 대화**다. 지면을 다시 설계하지 않는다.
 
-08:00 작업은 먼저 **CONTROL PHASE**로 시작한다. 다음 단계에서는 이미지 생성 도구 호출을 절대 금지한다.
+### 12.1 시작 조건
 
-- 저장소와 `WORK_STATE.md` 확인
-- 필요한 현행 계약 확인
-- `LAYOUT_PLAN.md` 작성·검토
-- `IMAGE_PLAN.md` 작성·검토
-- 현재 처리할 슬롯 선택
-- 기사·섹션 읽기
-- `GENERATION BRIEF` 작성·정제
-- 상태 기록·진행 보고·다음 슬롯 결정
+다음이 모두 충족되어야 이미지 턴을 시작한다.
 
-이 단계의 산출물은 텍스트와 저장소 파일뿐이다. 저장소 확인, WORK_STATE, 지면 설계, 이미지 계획, 체크리스트, 진행률, 실행 결과, 다음 턴 안내를 이미지로 만들지 않는다.
+- `WORK_STATE.md`: `LAYOUT: COMPLETE`
+- `LAYOUT_PLAN.md`: `COMPLETE`
+- `IMAGE_PLAN.md`: `READY`
 
-이미지 생성 도구를 호출할 수 있는 유일한 시점은 **특정 슬롯 하나의 GENERATION BRIEF가 완성되어 `GENERATION BRIEF READY` 조건을 모두 충족한 직후**다.
+조건이 충족되지 않으면 이미지 생성 도구를 호출하지 않는다.
 
-`GENERATION BRIEF READY` 조건:
+### 12.2 읽기 범위 최소화
 
-- 현재 슬롯이 `IMAGE_PLAN.md`에 존재하고 필요성이 확정됨
-- 기사와 이미지의 자연스러운 연결점이 한 문장으로 정리됨
-- 실제 보여줄 장면·공간이 하나로 확정됨
-- 중심 피사체·행동·사물이 확정됨
-- 카메라 거리·구도가 확정됨
-- 빛·재질·공간감 방향이 확정됨
-- 비율·해상도가 확정됨
-- Politics라면 완전 무인 규칙이 포함됨
-- 저장소·WORK_STATE·파일트리·진행률·보고 문구·다음 턴 문구가 생성 문맥에서 제거됨
-- `WEEKLY SIGNAL`, 회차 번호, 예약 시각, 브랜치, 커밋, 파일 경로 같은 운영 메타데이터가 이미지 생성 프롬프트에 들어가지 않음
+이미지 턴은 처음부터 제작 문맥을 과도하게 다시 쌓지 않는다.
 
-조건을 하나라도 충족하지 못하면 이미지 생성 도구를 호출하지 않고 CONTROL PHASE에서 계속 정리한다.
+기본적으로 읽는 문서:
 
-이미지 도구 호출 뒤 이미지 한 장이 반환되면 즉시 **CONTROL PHASE로 복귀**한다. 육안 판정·상태 기록·저장은 텍스트·파일 문맥에서 처리한다. 다음 슬롯 이미지는 그 슬롯의 새 GENERATION BRIEF가 다시 `READY`가 된 뒤에만 호출한다.
+1. `WORK_STATE.md` — 현재 단계 확인에 필요한 부분
+2. `editorial/IMAGE_PIPELINE.md`
+3. `editorial/IMAGE_DIRECTION.md`
+4. 해당 회차 `IMAGE_PLAN.md`
 
-따라서 08:00 턴에서 사용자에게 보이는 생성 이미지는 **실제 기사 슬롯용 에디토리얼 이미지 후보뿐**이어야 한다.
+`LAYOUT_PLAN.md`는 선행 단계 완료 여부와 모호한 슬롯 역할을 확인할 때만 보조적으로 참조하고 수정하지 않는다.
 
-### 08:00 턴과 생성 단위
+08:00 턴은 **원고 전체를 기본적으로 다시 읽지 않는다.** 07:00 턴이 `IMAGE_PLAN.md`의 장면 브리프와 `SCENE_ONLY_PROMPT`를 이미 완성했기 때문이다. 계획이 불완전하면 임의로 저장소·업무 화면을 시각화하지 말고 해당 슬롯을 `PLAN_INCOMPLETE`로 기록한다.
 
-월요일 08:00은 **지면 설계와 이미지 제작을 담당하는 하나의 예약 작업 턴**이다. 이 턴 안에서 회차 `IMAGE_PLAN.md`의 슬롯을 순차적으로 처리한다.
-
-이미지 생성 호출은 항상 다음 단위다.
+### 12.3 이미지 생성 단위
 
 ```text
 1 SLOT = 1 SCENE = 1 IMAGE
 ```
 
-즉 한 턴 안에서 여러 슬롯을 처리하지만 한 번의 생성 요청에는 한 슬롯만 넣는다. 한 슬롯을 생성·판정·기록한 뒤 같은 08:00 턴에서 다음 `READY/RETRY` 슬롯로 계속 진행한다. 첫 이미지 한 장을 만들었다는 이유만으로 08:00 턴을 종료하지 않는다.
+한 턴 안에서 여러 슬롯을 순차 처리하지만, 한 번의 이미지 생성 호출은 현재 슬롯 한 장만 다룬다.
+
+기본 반복:
 
 ```text
-CONTROL PHASE — IMAGE TOOL FORBIDDEN
-WORK_STATE / CONTRACTS 확인
-→ LAYOUT_PLAN 작성
-→ IMAGE_PLAN 작성
-→ 다음 슬롯 선택
-→ 기사 / 섹션 읽기
-→ GENERATION BRIEF 작성
-→ GENERATION BRIEF READY 확인
-
-GENERATE PHASE — IMAGE TOOL ALLOWED ONCE
-→ 현재 슬롯 이미지 1장 생성
-
-CONTROL PHASE — IMAGE TOOL FORBIDDEN
+IMAGE TURN PRECHECK
+→ 다음 READY / RETRY 슬롯 선택
+→ 해당 슬롯 블록만 확인
+→ SCENE_ONLY_PROMPT READY 확인
+→ 이미지 1장 생성
 → OUTPUT CONTRACT 확인
 → 육안 품질 확인
 → ACCEPT / RETRY / BLOCKED
-→ 상태 기록
+→ IMAGE_PLAN 상태 기록
 → 다음 슬롯
 → 반복
 ```
 
-모든 REQUIRED 슬롯이 `ACCEPTED/SAVED`가 되거나, 남은 처리 대상이 모두 `BLOCKED`이거나, 실제 이미지 생성 도구를 더 이상 실행할 수 없을 때 루프를 종료한다.
+첫 이미지 한 장이 나왔다는 이유로 08:00 턴을 종료하지 않는다.
 
-### GENERATION BRIEF
+### 12.4 이미지 생성 도구 호출 하드 게이트
 
-각 이미지 호출 직전에는 현재 슬롯의 **시각 정보만** 남긴 짧은 GENERATION BRIEF를 만든다.
+이미지 생성 도구를 호출할 수 있는 유일한 시점은 **현재 슬롯의 `SCENE_ONLY_PROMPT`가 준비된 직후**다.
 
-포함:
+`SCENE_ONLY_PROMPT READY` 조건:
 
-- 기사와 이미지의 자연스러운 연결점
-- 실제 보여줄 한 장면·공간
-- 중심 피사체·행동·사물
-- 카메라 거리와 구도
-- 자연스럽거나 약간 시네마틱한 조명
-- 현실적인 재질·공간감·원근
-- 필요한 안전영역
-- 비율·해상도
-- Politics라면 완전 무인 규칙
+- 현재 슬롯이 IMAGE_PLAN에 존재함
+- 필요성이 REQUIRED 또는 OPTIONAL로 확정됨
+- 실제 한 장면이 명확함
+- 피사체·구도·빛·재질 방향이 명확함
+- 비율·해상도가 확정됨
+- Politics라면 완전 무인 규칙이 포함됨
+- 운영 메타데이터·상태 보고·파일 트리·프로젝트명이 생성 입력에서 제거됨
 
-제외:
+이미지 생성 도구 호출 직전에는 **SCENE_ONLY_PROMPT의 시각 장면을 현재 생성 지시의 중심으로 사용한다.** 기사 제목·프로젝트명·WORK_STATE·지면 설계 과정·진행 보고를 이미지 소재로 전달하지 않는다.
 
-- `WEEKLY SIGNAL` 프로젝트명·브랜드명
-- 회차 번호·날짜·예약 시각
-- GitHub·저장소·브랜치·커밋·파일 경로
-- WORK_STATE·진행률·체크리스트
-- 파일 트리·단계 번호
-- 다음 턴 계획·제작 보고서 문구
-- Markdown 제목·표·카드·상태 라벨
+이미지 한 장이 반환되면 즉시 이미지 생성 단계에서 빠져나와 텍스트·파일 문맥에서 판정과 상태 기록을 수행한다. 다음 이미지 호출은 다음 슬롯의 `SCENE_ONLY_PROMPT READY` 확인 이후에만 가능하다.
 
-작업 문서는 장면을 정하기 위한 입력일 뿐 이미지의 소재가 아니다. 이미지 호출은 GENERATION BRIEF가 `READY`인 경우에만 수행하고, 결과가 나온 뒤 즉시 상태 기록 문맥으로 돌아간다.
+### 12.5 절대 산출물
 
-기사 제목·섹션명·프로젝트명을 그대로 이미지 모델에 던져 시각화시키지 않는다. **기사 내용을 실제 세계의 한 장면으로 번역한 긍정적 장면 묘사**를 이미지 생성 입력으로 사용한다.
+08:00 턴에서 사용자에게 보이는 생성 이미지는 **실제 기사 슬롯용 독립 에디토리얼 이미지 후보뿐**이어야 한다.
 
-### 절대 산출물
-
-각 생성 호출의 결과는 **현재 기사 슬롯에 직접 넣을 독립된 단일 에디토리얼 이미지 1장**이어야 한다.
-
-다음 결과는 즉시 `OUTPUT_CONTRACT` 실패다.
+다음은 즉시 `OUTPUT_CONTRACT` 실패다.
 
 - 작업 보고서 또는 다음 턴 보고 이미지
 - 프로젝트 상태 대시보드
@@ -333,11 +371,11 @@ CONTROL PHASE — IMAGE TOOL FORBIDDEN
 - 연락시트·스토리보드·무드보드·이미지 팩
 - 잡지명·회차·상태·표·차트·카드가 들어간 리포트형 화면
 
-업무 화면 안에 좋은 사진이 포함되어 있어도 전체 출력은 실패로 처리한다. 내부 사진을 잘라 최종 이미지로 우회하지 않는다.
+업무 화면 안에 좋은 사진이 포함되어 있어도 전체 출력은 실패다. 내부 사진을 잘라 최종 이미지로 우회하지 않는다.
 
 이미지 생성 뒤 작업 상태를 알려야 하면 **텍스트로만 보고**한다.
 
-### 실사용 품질선
+### 12.6 실사용 품질선
 
 목표는 초고난도 광고 비주얼이나 완벽한 보도사진 재현이 아니다. 실제 잡지 지면에 바로 사용할 수 있는 자연스럽고 충분히 완성된 사진적 에디토리얼 이미지면 합격이다.
 
@@ -355,9 +393,7 @@ CONTROL PHASE — IMAGE TOOL FORBIDDEN
 
 핵심:
 
-- `1 SLOT = 1 SCENE = 1 IMAGE`
 - 한 번의 요청에 여러 슬롯을 묶지 않음
-- GENERATION BRIEF READY 전 이미지 도구 호출 금지
 - 한 슬롯 판정 후 같은 08:00 턴에서 다음 슬롯로 진행
 - Cover 장변 2200px 이상 목표
 - 나머지 주요 이미지 장변 2000px 이상 목표
@@ -441,8 +477,10 @@ python tools/validate_repository.py
 - LIFE SCENE 서사 실패 → SCENE MAP부터
 - PROLOGUE 실패 → PREVIEW MAP부터
 - EDITOR'S AFTERWORD 실패 → 실제 제작 후기 역할부터
-- 이미지 도구 호출 게이트 위반 → 생성물을 폐기하고 CONTROL PHASE로 복귀해 GENERATION BRIEF READY부터 다시 확인
-- 이미지 OUTPUT CONTRACT 실패 → 해당 슬롯을 단일 장면 생성으로 즉시 교정
+- 07:00 IMAGE_PLAN 불완전 → 07:00 지면 설계 턴에서 해당 슬롯 계획 보완
+- 08:00 `PLAN_INCOMPLETE` → 해당 슬롯 이미지 생성 금지, 다른 정상 슬롯은 계속 진행
+- 이미지 도구 호출 게이트 위반 → 생성물을 폐기하고 현재 슬롯의 scene-only 입력부터 다시 확인
+- 이미지 OUTPUT CONTRACT 실패 → 해당 슬롯의 scene-only 장면만 유지해 형식 교정
 - 이미지 시각 품질 실패 → 해당 이미지 슬롯만 `RETRY` 또는 `BLOCKED`
 
 이미지 도구 호출 게이트를 위반해 만들어진 결과는 유효 이미지 시도 횟수에 포함하지 않는다.
