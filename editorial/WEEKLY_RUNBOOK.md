@@ -210,9 +210,47 @@ EDITOR'S AFTERWORD는 기본적으로 별도 생성 이미지를 요구하지 �
 
 이미지는 섹션 이름만 보고 자동으로 추가하지 않는다.
 
+지면 설계 단계에서는 이미지 생성 도구를 호출하지 않는다. `LAYOUT_PLAN.md`는 텍스트·파일 산출물이다.
+
 ## 12. 이미지 제작
 
 실행 계약은 `editorial/IMAGE_PIPELINE.md`가 소유한다.
+
+### 이미지 생성 도구 호출 하드 게이트
+
+08:00 작업은 먼저 **CONTROL PHASE**로 시작한다. 다음 단계에서는 이미지 생성 도구 호출을 절대 금지한다.
+
+- 저장소와 `WORK_STATE.md` 확인
+- 필요한 현행 계약 확인
+- `LAYOUT_PLAN.md` 작성·검토
+- `IMAGE_PLAN.md` 작성·검토
+- 현재 처리할 슬롯 선택
+- 기사·섹션 읽기
+- `GENERATION BRIEF` 작성·정제
+- 상태 기록·진행 보고·다음 슬롯 결정
+
+이 단계의 산출물은 텍스트와 저장소 파일뿐이다. 저장소 확인, WORK_STATE, 지면 설계, 이미지 계획, 체크리스트, 진행률, 실행 결과, 다음 턴 안내를 이미지로 만들지 않는다.
+
+이미지 생성 도구를 호출할 수 있는 유일한 시점은 **특정 슬롯 하나의 GENERATION BRIEF가 완성되어 `GENERATION BRIEF READY` 조건을 모두 충족한 직후**다.
+
+`GENERATION BRIEF READY` 조건:
+
+- 현재 슬롯이 `IMAGE_PLAN.md`에 존재하고 필요성이 확정됨
+- 기사와 이미지의 자연스러운 연결점이 한 문장으로 정리됨
+- 실제 보여줄 장면·공간이 하나로 확정됨
+- 중심 피사체·행동·사물이 확정됨
+- 카메라 거리·구도가 확정됨
+- 빛·재질·공간감 방향이 확정됨
+- 비율·해상도가 확정됨
+- Politics라면 완전 무인 규칙이 포함됨
+- 저장소·WORK_STATE·파일트리·진행률·보고 문구·다음 턴 문구가 생성 문맥에서 제거됨
+- `WEEKLY SIGNAL`, 회차 번호, 예약 시각, 브랜치, 커밋, 파일 경로 같은 운영 메타데이터가 이미지 생성 프롬프트에 들어가지 않음
+
+조건을 하나라도 충족하지 못하면 이미지 생성 도구를 호출하지 않고 CONTROL PHASE에서 계속 정리한다.
+
+이미지 도구 호출 뒤 이미지 한 장이 반환되면 즉시 **CONTROL PHASE로 복귀**한다. 육안 판정·상태 기록·저장은 텍스트·파일 문맥에서 처리한다. 다음 슬롯 이미지는 그 슬롯의 새 GENERATION BRIEF가 다시 `READY`가 된 뒤에만 호출한다.
+
+따라서 08:00 턴에서 사용자에게 보이는 생성 이미지는 **실제 기사 슬롯용 에디토리얼 이미지 후보뿐**이어야 한다.
 
 ### 08:00 턴과 생성 단위
 
@@ -227,11 +265,19 @@ EDITOR'S AFTERWORD는 기본적으로 별도 생성 이미지를 요구하지 �
 즉 한 턴 안에서 여러 슬롯을 처리하지만 한 번의 생성 요청에는 한 슬롯만 넣는다. 한 슬롯을 생성·판정·기록한 뒤 같은 08:00 턴에서 다음 `READY/RETRY` 슬롯로 계속 진행한다. 첫 이미지 한 장을 만들었다는 이유만으로 08:00 턴을 종료하지 않는다.
 
 ```text
-LAYOUT / IMAGE PLAN 확인
+CONTROL PHASE — IMAGE TOOL FORBIDDEN
+WORK_STATE / CONTRACTS 확인
+→ LAYOUT_PLAN 작성
+→ IMAGE_PLAN 작성
 → 다음 슬롯 선택
 → 기사 / 섹션 읽기
-→ GENERATION BRIEF
-→ 이미지 1장 생성
+→ GENERATION BRIEF 작성
+→ GENERATION BRIEF READY 확인
+
+GENERATE PHASE — IMAGE TOOL ALLOWED ONCE
+→ 현재 슬롯 이미지 1장 생성
+
+CONTROL PHASE — IMAGE TOOL FORBIDDEN
 → OUTPUT CONTRACT 확인
 → 육안 품질 확인
 → ACCEPT / RETRY / BLOCKED
@@ -260,12 +306,17 @@ LAYOUT / IMAGE PLAN 확인
 
 제외:
 
-- GitHub·저장소 경로
+- `WEEKLY SIGNAL` 프로젝트명·브랜드명
+- 회차 번호·날짜·예약 시각
+- GitHub·저장소·브랜치·커밋·파일 경로
 - WORK_STATE·진행률·체크리스트
 - 파일 트리·단계 번호
 - 다음 턴 계획·제작 보고서 문구
+- Markdown 제목·표·카드·상태 라벨
 
-작업 문서는 장면을 정하기 위한 입력일 뿐 이미지의 소재가 아니다. 이미지 호출은 GENERATION BRIEF 직후 수행하고, 결과가 나온 뒤에만 상태 기록 문맥으로 돌아간다.
+작업 문서는 장면을 정하기 위한 입력일 뿐 이미지의 소재가 아니다. 이미지 호출은 GENERATION BRIEF가 `READY`인 경우에만 수행하고, 결과가 나온 뒤 즉시 상태 기록 문맥으로 돌아간다.
+
+기사 제목·섹션명·프로젝트명을 그대로 이미지 모델에 던져 시각화시키지 않는다. **기사 내용을 실제 세계의 한 장면으로 번역한 긍정적 장면 묘사**를 이미지 생성 입력으로 사용한다.
 
 ### 절대 산출물
 
@@ -280,6 +331,7 @@ LAYOUT / IMAGE PLAN 확인
 - 문서·프레젠테이션·웹페이지·앱 UI
 - 기사 미리보기와 제작 정보를 섞은 제작 보드
 - 연락시트·스토리보드·무드보드·이미지 팩
+- 잡지명·회차·상태·표·차트·카드가 들어간 리포트형 화면
 
 업무 화면 안에 좋은 사진이 포함되어 있어도 전체 출력은 실패로 처리한다. 내부 사진을 잘라 최종 이미지로 우회하지 않는다.
 
@@ -305,6 +357,7 @@ LAYOUT / IMAGE PLAN 확인
 
 - `1 SLOT = 1 SCENE = 1 IMAGE`
 - 한 번의 요청에 여러 슬롯을 묶지 않음
+- GENERATION BRIEF READY 전 이미지 도구 호출 금지
 - 한 슬롯 판정 후 같은 08:00 턴에서 다음 슬롯로 진행
 - Cover 장변 2200px 이상 목표
 - 나머지 주요 이미지 장변 2000px 이상 목표
@@ -388,8 +441,11 @@ python tools/validate_repository.py
 - LIFE SCENE 서사 실패 → SCENE MAP부터
 - PROLOGUE 실패 → PREVIEW MAP부터
 - EDITOR'S AFTERWORD 실패 → 실제 제작 후기 역할부터
+- 이미지 도구 호출 게이트 위반 → 생성물을 폐기하고 CONTROL PHASE로 복귀해 GENERATION BRIEF READY부터 다시 확인
 - 이미지 OUTPUT CONTRACT 실패 → 해당 슬롯을 단일 장면 생성으로 즉시 교정
 - 이미지 시각 품질 실패 → 해당 이미지 슬롯만 `RETRY` 또는 `BLOCKED`
+
+이미지 도구 호출 게이트를 위반해 만들어진 결과는 유효 이미지 시도 횟수에 포함하지 않는다.
 
 이미지에서 실패할수록 생성 횟수를 무한히 늘리지 않는다. `IMAGE_PIPELINE.md`의 최대 시도와 실패 유형을 따른다.
 
