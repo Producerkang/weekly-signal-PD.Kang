@@ -4,7 +4,7 @@
 
 ## 0. 현행 운영 우선순위
 
-현재 운영 경로는 **이미지 생성 없이 발행하는 경로**다.
+현재 운영 경로는 **이미지 생성 없이 발행하는 5-페이즈 경로**다.
 
 다음 문서가 현행 실행 기준이다.
 
@@ -125,11 +125,11 @@
 
 1. 해당 회차 `WORK_STATE.md`와 현행 계약 문서를 먼저 읽는다.
 2. `QUALITY_LEARNING_LOG.md`와 최근 `ISSUE_HISTORY.md`를 확인한다.
-3. 분야별 독립 질문과 일반 기사 원고를 먼저 완성한다.
-4. CROSS-ARTICLE REVIEW 뒤 필요한 DEEP DIVE만 선택한다.
-5. LIFE SCENE → PROLOGUE → EDITOR'S AFTERWORD 순서로 프런트·마감 원고를 닫는다.
-6. 07:00에는 `LAYOUT_PLAN.md`와 HTML 발행 준비만 완료하고 `WORK_STATE.md`를 `HTML_READY`로 갱신한다.
-7. 08:00 제작 단계는 실행하지 않는다.
-8. 09:00에 HTML 제작, 실제 화면 검수와 발행을 수행한다.
+3. 일요일 22:00 FRONT DESK에서 Cover Story → Economy를 각각 COMPLETE한다.
+4. 월요일 00:00 SECTION DESK에서 Politics → Society → Tech를 각각 COMPLETE한다.
+5. 월요일 02:00 REVIEW DESK에서 CROSS-ARTICLE REVIEW → 필요한 교정 → DEEP DIVE를 완료한다.
+6. 월요일 04:00 FEATURE DESK에서 LIFE SCENE → PROLOGUE → EDITOR'S AFTERWORD를 순차적으로 완료한다.
+7. 월요일 09:00 PUBLISH DESK에서 `LAYOUT_PLAN.md` 작성·COMPLETE → HTML 제작 → 실제 화면 검수 → 발행까지 한 턴에서 수행한다.
+8. 05:00 이전 네 제작 턴은 2시간 간격이며 07:00·08:00 별도 제작 턴은 두지 않는다.
 9. 새 이미지 생성 여부는 현행 발행 조건이 아니다.
 10. 직전 회차보다 나아진 점과 실패를 `ISSUE_HISTORY.md`에 기록한다.
