@@ -1,0 +1,11 @@
+{
+  "slot": "01_cover",
+  "attempt": 1,
+  "prompt_file": "work/2026-07-27/image_prompts/01_cover.txt",
+  "artifact": null,
+  "verdict": "CONTEXT_FAILURE",
+  "valid_photo_attempt": false,
+  "generation_id": "fa80e0e2-8b10-437b-8ace-e693e4b9f7da",
+  "persistence": "PERSISTENCE_BLOCKED",
+  "notes": "Generated result was a dashboard/report composition rather than a single continuous photographic scene. The image artifact was returned to the execution runtime, but the available GitHub connector could not persist the binary image artifact; diagnostic metadata is preserved here. This does not count toward the 0/3 valid photo attempts."
+}
