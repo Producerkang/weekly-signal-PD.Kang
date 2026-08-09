@@ -32,7 +32,7 @@
       "run_dir": "work/2026-07-27/image_runs/01_cover",
       "final_output": "cover.webp",
       "state": "READY",
-      "next_attempt": 1
+      "next_attempt": 3
     },
     {
       "id": "02_cover_story",
