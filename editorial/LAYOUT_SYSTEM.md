@@ -215,22 +215,32 @@ HTML 코드만 읽고 검수를 끝내지 않는다. 네 화면을 실제 렌더
 
 새 구조가 깨끗하다는 이유로 완성도가 낮아지는 것은 허용하지 않는다.
 
-## 12. 월요일 07:00 완료 계약
+## 12. 월요일 09:00 PUBLISH DESK 레이아웃 계약
 
-07:00은 **지면 설계와 09:00 HTML 발행 준비**까지 완성한다.
+별도 07:00 레이아웃 예약을 두지 않는다. 09:00 PUBLISH DESK가 완성 원고를 읽고 `LAYOUT_PLAN.md`를 작성한 뒤 같은 턴에서 HTML 제작·화면 검수·발행까지 이어간다.
 
-완료 조건:
+완료 순서:
 
-1. `LAYOUT_PLAN.md` 작성 및 `COMPLETE`
-2. 최종 DOM 순서 확정
-3. DATA / WATCH 필요성 확정
-4. 기사별 지면 리듬과 정보 모듈 확정
-5. 이미지 없이 완결되는 Cover·LIFE SCENE·기사 도입부 설계
-6. 1440 / 1366 / 1024 / 390 반응형 계획 확정
-7. `WORK_STATE.md`를 `HTML_READY`로 갱신
-8. `NEXT`를 09:00 HTML 제작 + 화면 검수 + 발행으로 설정
+```text
+완성 원고 readback
+→ LAYOUT_PLAN 작성
+→ LAYOUT_PLAN COMPLETE
+→ HTML/CSS 제작
+→ 실제 화면 검수
+→ 수정·재검수
+→ 발행
+```
 
-### 12.1 07:00에서 만들지 않는 것
+`LAYOUT_PLAN.md`에서 최소한 다음을 확정한다.
+
+1. 최종 DOM 순서
+2. DATA / WATCH 필요성
+3. 기사별 지면 리듬과 정보 모듈
+4. 이미지 없이 완결되는 Cover·LIFE SCENE·기사 도입부
+5. 1440 / 1366 / 1024 / 390 반응형 계획
+6. 기존 archive 이미지의 임의 재사용 금지
+
+### 12.1 만들지 않는 것
 
 현행 운영에서는 다음을 만들거나 갱신하지 않는다.
 
@@ -240,25 +250,33 @@ HTML 코드만 읽고 검수를 끝내지 않는다. 네 화면을 실제 렌더
 - `jobs/image_job.json`
 - 이미지 생성 handoff
 
-과거 파일이 존재하더라도 07:00 작업은 이를 다음 단계로 전달하지 않는다.
+과거 이미지 파일이 존재하더라도 PUBLISH DESK는 이를 발행 선행 조건으로 사용하지 않는다.
 
-### 12.2 WORK_STATE 인계
+### 12.2 WORK_STATE 진행 예
 
-07:00 완료 뒤 예:
+09:00 시작 시:
 
 ```text
-STAGE: HTML_READY
+STAGE: PUBLISH_DESK
+MANUSCRIPT_STAGE: COMPLETE
+LAYOUT: PENDING
+IMAGES: NOT_REQUIRED
+HTML: PENDING
+SCREEN_REVIEW: PENDING
+PUBLISH: PENDING
+```
+
+LAYOUT_PLAN 완료 뒤 HTML과 화면 검수를 이어서 수행하고, 최종 반영이 끝나면:
+
+```text
+STAGE: PUBLISHED
 MANUSCRIPT_STAGE: COMPLETE
 LAYOUT: COMPLETE
 IMAGES: NOT_REQUIRED
-HTML: READY
-SCREEN_REVIEW: PENDING
-PUBLISH: PENDING
-NEXT: 09:00 HTML 제작 + 화면 검수 + 발행
+HTML: COMPLETE
+SCREEN_REVIEW: COMPLETE
+PUBLISH: COMPLETE
+NEXT: ISSUE CLOSED
 ```
 
-### 12.3 07:00 종료
-
-`LAYOUT_PLAN.md`가 COMPLETE이고 `WORK_STATE.md`가 HTML_READY이면 종료한다.
-
-**07:00 이후 08:00 단계 없이 09:00으로 바로 이어진다.**
+로 종료한다.
