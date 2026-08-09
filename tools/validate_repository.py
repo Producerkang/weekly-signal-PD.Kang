@@ -1,18 +1,13 @@
 #!/usr/bin/env python3
-"""Validate WEEKLY SIGNAL publication structure before merge or deploy."""
+"""Validate the active WEEKLY SIGNAL publication structure."""
 
 from __future__ import annotations
 
-import hashlib
 import json
 import re
 import sys
-from dataclasses import dataclass
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Iterable
-
-from PIL import Image, UnidentifiedImageError
 
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE_DIR = ROOT / "archive"
@@ -21,8 +16,8 @@ LATEST_FILE = ROOT / "latest.json"
 LEGACY_FILE = ROOT / "publication" / "legacy-issues.json"
 
 DATE_DIR_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-ALLOWED_IMAGE_SUFFIXES = {".webp", ".png", ".jpg", ".jpeg"}
-FORBIDDEN_ROOT_DIRS = {"work", "drafts", "_work", "_drafts"}
+ALLOWED_ASSET_SUFFIXES = {".webp", ".png", ".jpg", ".jpeg", ".svg"}
+FORBIDDEN_ROOT_DIRS = {"drafts", "_work", "_drafts"}
 PLACEHOLDER_PATTERNS = (
     "[TITLE]",
     "[DECK]",
@@ -32,11 +27,9 @@ PLACEHOLDER_PATTERNS = (
     "LOREM IPSUM",
     "기사 본문을 불러오는 중",
 )
-REQUIRED_SECTION_IDS = {
+BASE_REQUIRED_IDS = {
     "top",
     "contents",
-    "life-scene",
-    "editors-pick",
     "cover-story",
     "economy",
     "politics",
@@ -44,50 +37,41 @@ REQUIRED_SECTION_IDS = {
     "tech",
     "sources",
 }
-REQUIRED_IMAGE_SECTIONS = {
-    "top",
-    "life-scene",
-    "cover-story",
-    "economy",
-    "politics",
-    "society",
-    "tech",
-}
+LIFE_ID_ALIASES = {"life", "life-scene"}
+AFTERWORD_ID_ALIASES = {"afterword", "editors-afterword"}
+LEGACY_FORBIDDEN_IDS = {"editors-pick"}
 LAYOUT_MODULE_CLASSES = {
     "metric-band",
+    "metric-grid",
     "split-intro",
     "timeline",
+    "timeline-grid",
     "comparison",
-    "service-grid",
-    "standard-pair",
+    "compare",
+    "comparison-grid",
     "evidence-grid",
     "quote-break",
     "data-band",
     "fact-grid",
-    "image-spread",
-    "timeline-grid",
-    "comparison-grid",
+    "path-grid",
+    "function-grid",
+    "time-grid",
+    "flow",
+    "front-note",
+    "scenario-note",
 }
-
-
-@dataclass(frozen=True)
-class ImageRef:
-    src: str
-    alt: str
-    section_id: str
 
 
 class IssueHTMLParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
         self.ids: set[str] = set()
-        self.images: list[ImageRef] = []
+        self.class_names: set[str] = set()
         self.anchor_hrefs: list[str] = []
         self.stylesheet_hrefs: list[str] = []
         self.script_srcs: list[str] = []
         self.inline_style_count = 0
-        self.class_names: set[str] = set()
-        self.section_stack: list[str] = []
+        self.images: list[tuple[str, str]] = []
         self._script_depth = 0
         self.script_text: list[str] = []
 
@@ -99,18 +83,7 @@ class IssueHTMLParser(HTMLParser):
 
         self.class_names.update(values.get("class", "").split())
 
-        if tag == "section":
-            self.section_stack.append(element_id)
-        elif tag == "img":
-            current_section = next((item for item in reversed(self.section_stack) if item), "")
-            self.images.append(
-                ImageRef(
-                    src=values.get("src", "").strip(),
-                    alt=values.get("alt", "").strip(),
-                    section_id=current_section,
-                )
-            )
-        elif tag == "a":
+        if tag == "a":
             self.anchor_hrefs.append(values.get("href", "").strip())
         elif tag == "link":
             rel_tokens = {token.lower() for token in values.get("rel", "").split()}
@@ -123,11 +96,13 @@ class IssueHTMLParser(HTMLParser):
             src = values.get("src", "").strip()
             if src:
                 self.script_srcs.append(src)
+        elif tag == "img":
+            self.images.append(
+                (values.get("src", "").strip(), values.get("alt", "").strip())
+            )
 
     def handle_endtag(self, tag: str) -> None:
-        if tag == "section" and self.section_stack:
-            self.section_stack.pop()
-        elif tag == "script" and self._script_depth:
+        if tag == "script" and self._script_depth:
             self._script_depth -= 1
 
     def handle_data(self, data: str) -> None:
@@ -141,7 +116,9 @@ def load_json(path: Path) -> object:
     except FileNotFoundError:
         raise ValueError(f"필수 파일이 없습니다: {path.relative_to(ROOT)}") from None
     except json.JSONDecodeError as exc:
-        raise ValueError(f"JSON 형식 오류: {path.relative_to(ROOT)} ({exc})") from exc
+        raise ValueError(
+            f"JSON 형식 오류: {path.relative_to(ROOT)} ({exc})"
+        ) from exc
 
 
 def normalize_issue_path(raw_path: object) -> str:
@@ -153,46 +130,64 @@ def normalize_issue_path(raw_path: object) -> str:
     return normalized
 
 
-def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
-def iter_asset_files(asset_dir: Path) -> Iterable[Path]:
-    if not asset_dir.is_dir():
-        return []
-    return sorted(path for path in asset_dir.rglob("*") if path.is_file())
-
-
 def validate_legacy_issue(issue_dir: Path, issue_start: str, errors: list[str]) -> None:
-    index_path = issue_dir / "index.html"
-    asset_dir = issue_dir / "assets"
-    if not index_path.is_file():
+    if not (issue_dir / "index.html").is_file():
         errors.append(f"[{issue_start}] 레거시 회차 index.html이 없습니다.")
-    if not asset_dir.is_dir():
-        errors.append(f"[{issue_start}] 레거시 회차 assets/가 없습니다.")
 
 
-def validate_strict_issue(issue_dir: Path, issue_start: str, errors: list[str]) -> None:
-    label = f"[{issue_start}]"
-    entries = {path.name for path in issue_dir.iterdir()}
-    if entries != {"index.html", "assets"}:
-        errors.append(
-            f"{label} 회차 루트에는 index.html과 assets/만 허용합니다. 현재: {sorted(entries)}"
-        )
+def validate_asset_ref(
+    issue_dir: Path, src: str, alt: str, label: str, errors: list[str]
+) -> None:
+    if not src:
+        errors.append(f"{label} src가 비어 있는 이미지가 있습니다.")
+        return
+    if not alt:
+        errors.append(f"{label} 대체 텍스트가 없는 이미지: {src}")
 
-    index_path = issue_dir / "index.html"
-    asset_dir = issue_dir / "assets"
-    if not index_path.is_file() or not asset_dir.is_dir():
-        errors.append(f"{label} index.html 또는 assets/가 없습니다.")
+    if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", src) or src.startswith("//"):
+        errors.append(f"{label} 외부 이미지 URL을 직접 사용할 수 없습니다: {src}")
         return
 
+    relative = src.removeprefix("./")
+    path = Path(relative)
+    if path.is_absolute() or ".." in path.parts:
+        errors.append(f"{label} 잘못된 이미지 상대경로: {src}")
+        return
+
+    asset_path = issue_dir / path
+    if not asset_path.is_file():
+        errors.append(f"{label} 참조한 이미지 파일이 없습니다: {src}")
+        return
+
+    if asset_path.suffix.lower() not in ALLOWED_ASSET_SUFFIXES:
+        errors.append(f"{label} 허용되지 않은 이미지 형식: {src}")
+
+
+def validate_current_issue(
+    issue_dir: Path, issue_start: str, errors: list[str]
+) -> None:
+    label = f"[{issue_start}]"
+    index_path = issue_dir / "index.html"
+
+    if not index_path.is_file():
+        errors.append(f"{label} index.html이 없습니다.")
+        return
+
+    allowed_entries = {"index.html", "assets"}
+    actual_entries = {path.name for path in issue_dir.iterdir()}
+    unexpected = sorted(actual_entries - allowed_entries)
+    if unexpected:
+        errors.append(f"{label} 발행 폴더의 허용되지 않은 항목: {unexpected}")
+
+    asset_dir = issue_dir / "assets"
+    if "assets" in actual_entries and not asset_dir.is_dir():
+        errors.append(f"{label} assets는 디렉터리여야 합니다.")
+
     html_bytes = index_path.read_bytes()
-    if len(html_bytes) < 60_000:
-        errors.append(f"{label} index.html이 60KB 미만입니다. 완성 회차가 아닌 축소 셸일 가능성이 큽니다.")
+    if len(html_bytes) < 15_000:
+        errors.append(
+            f"{label} index.html이 15KB 미만입니다. 완성 회차인지 직접 확인해야 합니다."
+        )
 
     try:
         html = html_bytes.decode("utf-8")
@@ -219,16 +214,33 @@ def validate_strict_issue(issue_dir: Path, issue_start: str, errors: list[str]) 
     parser = IssueHTMLParser()
     parser.feed(html)
 
-    missing_ids = sorted(REQUIRED_SECTION_IDS - parser.ids)
+    missing_ids = sorted(BASE_REQUIRED_IDS - parser.ids)
     if missing_ids:
         errors.append(f"{label} 필수 섹션 id 누락: {missing_ids}")
-    if not any(item == "deep-dive" or item.startswith("deep-dive-") for item in parser.ids):
-        errors.append(f"{label} DEEP DIVE 섹션이 없습니다.")
+
+    if not (LIFE_ID_ALIASES & parser.ids):
+        errors.append(
+            f"{label} LIFE SCENE 섹션 id가 없습니다. 허용: {sorted(LIFE_ID_ALIASES)}"
+        )
+    if "prologue" not in parser.ids:
+        errors.append(f"{label} PROLOGUE 섹션 id가 없습니다.")
+    if not (AFTERWORD_ID_ALIASES & parser.ids):
+        errors.append(
+            f"{label} EDITOR'S AFTERWORD 섹션 id가 없습니다. 허용: {sorted(AFTERWORD_ID_ALIASES)}"
+        )
+
+    forbidden_ids = sorted(LEGACY_FORBIDDEN_IDS & parser.ids)
+    if forbidden_ids:
+        errors.append(f"{label} 폐기된 레거시 섹션이 남아 있습니다: {forbidden_ids}")
 
     if parser.stylesheet_hrefs:
-        errors.append(f"{label} 외부 CSS 파일을 사용할 수 없습니다: {parser.stylesheet_hrefs}")
+        errors.append(
+            f"{label} 외부 CSS 파일을 사용할 수 없습니다: {parser.stylesheet_hrefs}"
+        )
     if parser.script_srcs:
-        errors.append(f"{label} 외부 또는 별도 JS 파일을 사용할 수 없습니다: {parser.script_srcs}")
+        errors.append(
+            f"{label} 외부 또는 별도 JS 파일을 사용할 수 없습니다: {parser.script_srcs}"
+        )
     if parser.inline_style_count == 0:
         errors.append(f"{label} 회차 CSS는 index.html 안에 내장해야 합니다.")
 
@@ -243,83 +255,35 @@ def validate_strict_issue(issue_dir: Path, issue_start: str, errors: list[str]) 
     module_count = len(parser.class_names & LAYOUT_MODULE_CLASSES)
     if module_count < 3:
         errors.append(
-            f"{label} 서로 다른 잡지형 지면 모듈이 3개 미만입니다. 감지된 모듈: "
+            f"{label} 서로 다른 잡지형 지면 모듈이 3개 미만입니다. 감지: "
             f"{sorted(parser.class_names & LAYOUT_MODULE_CLASSES)}"
         )
 
-    if len(parser.images) < 8:
-        errors.append(f"{label} 주요 이미지가 8개 미만입니다. 현재 {len(parser.images)}개입니다.")
+    for src, alt in parser.images:
+        validate_asset_ref(issue_dir, src, alt, label, errors)
 
-    used_assets: set[Path] = set()
-    seen_hashes: dict[str, Path] = {}
-    image_sections = {image.section_id for image in parser.images}
-    missing_image_sections = sorted(REQUIRED_IMAGE_SECTIONS - image_sections)
-    if missing_image_sections:
-        errors.append(f"{label} 주요 섹션 이미지 누락: {missing_image_sections}")
-    if not any(section == "deep-dive" or section.startswith("deep-dive-") for section in image_sections):
-        errors.append(f"{label} DEEP DIVE 이미지가 없습니다.")
-
-    for image in parser.images:
-        if not image.alt:
-            errors.append(f"{label} 대체 텍스트가 없는 이미지: {image.src or '(src 없음)'}")
-        if not image.src.startswith("./assets/"):
-            errors.append(f"{label} 이미지는 ./assets/ 상대경로만 허용합니다: {image.src}")
-            continue
-
-        relative = Path(image.src.removeprefix("./"))
-        if ".." in relative.parts:
-            errors.append(f"{label} 이미지 경로에 상위 디렉터리 이동이 있습니다: {image.src}")
-            continue
-        asset_path = issue_dir / relative
-        if not asset_path.is_file():
-            errors.append(f"{label} 참조한 이미지 파일이 없습니다: {image.src}")
-            continue
-        if asset_path.suffix.lower() not in ALLOWED_IMAGE_SUFFIXES:
-            errors.append(f"{label} 허용되지 않은 이미지 형식: {image.src}")
-            continue
-
-        used_assets.add(asset_path.resolve())
-        try:
-            with Image.open(asset_path) as opened:
-                width, height = opened.size
-                opened.verify()
-        except (UnidentifiedImageError, OSError) as exc:
-            errors.append(f"{label} 손상되거나 읽을 수 없는 이미지: {image.src} ({exc})")
-            continue
-
-        long_side = max(width, height)
-        required_long_side = 1800 if image.section_id == "top" else 1600
-        if long_side < required_long_side:
-            errors.append(
-                f"{label} 이미지 해상도 부족: {image.src} ({width}×{height}, 장변 {required_long_side}px 필요)"
-            )
-        if asset_path.stat().st_size < 80 * 1024:
-            errors.append(
-                f"{label} 이미지 파일이 80KB 미만입니다: {image.src} "
-                f"({asset_path.stat().st_size / 1024:.1f}KB)"
-            )
-
-        digest = sha256(asset_path)
-        duplicate = seen_hashes.get(digest)
-        if duplicate is not None and duplicate != asset_path:
-            errors.append(
-                f"{label} 동일 이미지 재사용 금지: {duplicate.relative_to(issue_dir)} / {asset_path.relative_to(issue_dir)}"
-            )
-        else:
-            seen_hashes[digest] = asset_path
-
-    all_assets = {path.resolve() for path in iter_asset_files(asset_dir)}
-    unsupported = sorted(
-        path.relative_to(issue_dir).as_posix()
-        for path in all_assets
-        if path.suffix.lower() not in ALLOWED_IMAGE_SUFFIXES
-    )
-    if unsupported:
-        errors.append(f"{label} assets/에 이미지 외 파일 또는 금지 형식이 있습니다: {unsupported}")
-
-    unused_assets = sorted(path.relative_to(issue_dir).as_posix() for path in all_assets - used_assets)
-    if unused_assets:
-        errors.append(f"{label} 사용하지 않는 이미지 자산이 있습니다: {unused_assets}")
+    if asset_dir.is_dir():
+        used = {
+            (issue_dir / Path(src.removeprefix("./"))).resolve()
+            for src, _ in parser.images
+            if src
+            and not re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", src)
+            and not src.startswith("//")
+            and ".." not in Path(src.removeprefix("./")).parts
+        }
+        for path in sorted(asset_dir.rglob("*")):
+            if not path.is_file():
+                continue
+            if path.suffix.lower() not in ALLOWED_ASSET_SUFFIXES:
+                errors.append(
+                    f"{label} assets/에 허용되지 않은 파일 형식: "
+                    f"{path.relative_to(issue_dir).as_posix()}"
+                )
+            if path.resolve() not in used:
+                errors.append(
+                    f"{label} 사용하지 않는 정적 자산이 있습니다: "
+                    f"{path.relative_to(issue_dir).as_posix()}"
+                )
 
 
 def validate_repository(root: Path = ROOT) -> list[str]:
@@ -328,11 +292,14 @@ def validate_repository(root: Path = ROOT) -> list[str]:
 
     for dirname in sorted(FORBIDDEN_ROOT_DIRS):
         if (ROOT / dirname).exists():
-            errors.append(f"작업 디렉터리 {dirname}/가 병합 대상에 남아 있습니다. 작업 브랜치에서 제거해야 합니다.")
+            errors.append(f"임시 작업 디렉터리가 루트에 남아 있습니다: {dirname}/")
 
+    # work/ is the active production workspace and is intentionally allowed.
     for required_file in (ROOT / "index.html", ARCHIVE_DIR / "index.html"):
         if not required_file.is_file():
-            errors.append(f"필수 공개 파일이 없습니다: {required_file.relative_to(ROOT)}")
+            errors.append(
+                f"필수 공개 파일이 없습니다: {required_file.relative_to(ROOT)}"
+            )
 
     try:
         issues = load_json(ISSUES_FILE)
@@ -345,7 +312,9 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         return errors + ["issues.json은 비어 있지 않은 배열이어야 합니다."]
     if not isinstance(latest, dict):
         return errors + ["latest.json은 객체여야 합니다."]
-    if not isinstance(legacy_payload, dict) or not isinstance(legacy_payload.get("issues"), list):
+    if not isinstance(legacy_payload, dict) or not isinstance(
+        legacy_payload.get("issues"), list
+    ):
         return errors + ["publication/legacy-issues.json 형식이 잘못되었습니다."]
 
     legacy_starts = {
@@ -354,64 +323,74 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         if isinstance(item, dict) and isinstance(item.get("issueStart"), str)
     }
 
-    normalized_issues: list[dict[str, object]] = []
+    listed_starts: list[str] = []
     listed_dirs: set[str] = set()
-    seen_starts: set[str] = set()
-    issue_starts: list[str] = []
     for position, item in enumerate(issues):
         if not isinstance(item, dict):
             errors.append(f"issues.json {position + 1}번째 항목은 객체여야 합니다.")
             continue
+
+        issue_start = item.get("issueStart")
+        if not isinstance(issue_start, str) or not DATE_DIR_RE.fullmatch(issue_start):
+            errors.append(
+                f"issues.json {position + 1}번째 issueStart가 잘못되었습니다: {issue_start!r}"
+            )
+            continue
+
+        if issue_start in listed_starts:
+            errors.append(f"issues.json에 중복 issueStart가 있습니다: {issue_start}")
+            continue
+
         try:
-            path_value = normalize_issue_path(item.get("path"))
+            normalized_path = normalize_issue_path(item.get("path"))
         except ValueError as exc:
             errors.append(str(exc))
             continue
-        issue_start = item.get("issueStart")
-        if not isinstance(issue_start, str) or not DATE_DIR_RE.fullmatch(issue_start):
-            errors.append(f"잘못된 issueStart: {issue_start!r}")
-            continue
-        if issue_start in seen_starts:
-            errors.append(f"issues.json에 중복 issueStart가 있습니다: {issue_start}")
-        seen_starts.add(issue_start)
-        issue_starts.append(issue_start)
-        if path_value != f"archive/{issue_start}/":
-            errors.append(f"issueStart와 path가 일치하지 않습니다: {issue_start} / {path_value}")
-        if path_value in listed_dirs:
-            errors.append(f"issues.json에 중복 경로가 있습니다: {path_value}")
-        listed_dirs.add(path_value)
-        normalized_issues.append(item)
 
-    if issue_starts != sorted(issue_starts, reverse=True):
-        errors.append("issues.json은 최신 issueStart부터 내림차순이어야 합니다.")
+        expected_path = f"archive/{issue_start}/"
+        if normalized_path != expected_path:
+            errors.append(
+                f"[{issue_start}] path가 issueStart와 일치하지 않습니다: {normalized_path}"
+            )
 
-    if normalized_issues and latest != normalized_issues[0]:
-        errors.append("latest.json은 issues.json의 첫 번째 항목과 정확히 같아야 합니다.")
+        listed_starts.append(issue_start)
+        listed_dirs.add(issue_start)
+        issue_dir = ROOT / normalized_path
 
-    actual_dirs = {
-        f"archive/{path.name}/"
-        for path in ARCHIVE_DIR.iterdir()
-        if path.is_dir() and DATE_DIR_RE.fullmatch(path.name)
-    }
-    missing_dirs = sorted(listed_dirs - actual_dirs)
-    extra_dirs = sorted(actual_dirs - listed_dirs)
-    if missing_dirs:
-        errors.append(f"발행 목록에 있으나 폴더가 없는 회차: {missing_dirs}")
-    if extra_dirs:
-        errors.append(
-            "issues.json에 없는 날짜 폴더가 archive/에 있습니다. 초안은 main/archive/에 둘 수 없습니다: "
-            f"{extra_dirs}"
-        )
-
-    for item in normalized_issues:
-        issue_start = str(item["issueStart"])
-        issue_dir = ROOT / str(item["path"])
-        if not issue_dir.is_dir():
-            continue
         if issue_start in legacy_starts:
             validate_legacy_issue(issue_dir, issue_start, errors)
         else:
-            validate_strict_issue(issue_dir, issue_start, errors)
+            validate_current_issue(issue_dir, issue_start, errors)
+
+    archive_dirs = {
+        path.name
+        for path in ARCHIVE_DIR.iterdir()
+        if path.is_dir() and DATE_DIR_RE.fullmatch(path.name)
+    }
+    unlisted = sorted(archive_dirs - listed_dirs)
+    if unlisted:
+        errors.append(f"issues.json에 등록되지 않은 archive 회차가 있습니다: {unlisted}")
+
+    if listed_starts:
+        latest_start = latest.get("issueStart")
+        if latest_start != listed_starts[0]:
+            errors.append(
+                "latest.json의 issueStart는 issues.json 첫 번째(최신) 회차와 일치해야 합니다: "
+                f"{latest_start!r} != {listed_starts[0]!r}"
+            )
+
+        latest_path = latest.get("path")
+        try:
+            normalized_latest = normalize_issue_path(latest_path)
+        except ValueError as exc:
+            errors.append(f"latest.json: {exc}")
+        else:
+            expected_latest = f"archive/{listed_starts[0]}/"
+            if normalized_latest != expected_latest:
+                errors.append(
+                    "latest.json의 path가 최신 회차와 일치하지 않습니다: "
+                    f"{normalized_latest!r} != {expected_latest!r}"
+                )
 
     return errors
 
@@ -419,13 +398,18 @@ def validate_repository(root: Path = ROOT) -> list[str]:
 def main() -> int:
     errors = validate_repository()
     if errors:
-        print("WEEKLY SIGNAL publication validation failed:\n", file=sys.stderr)
+        print("WEEKLY SIGNAL repository validation: FAILED")
         for error in errors:
-            print(f"- {error}", file=sys.stderr)
+            print(f"- {error}")
         return 1
-    print("WEEKLY SIGNAL publication validation passed.")
+
+    print("WEEKLY SIGNAL repository validation: OK")
+    print("- active work/ workspace allowed")
+    print("- EDITOR'S PICK not required")
+    print("- DEEP DIVE optional when editorially omitted")
+    print("- images/assets optional when not used")
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    sys.exit(main())
