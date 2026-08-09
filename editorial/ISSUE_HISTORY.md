@@ -71,4 +71,14 @@
 4. 이 문서의 최신 회차 기록
 5. 해당 회차 `WORK_STATE.md`
 
-Issue 03의 월요일 마감 흐름은 `07:00 LAYOUT_PLAN + HTML 발행 준비 → 09:00 HTML 제작 + 화면 검수 + 발행`이다.
+Issue 03의 현행 마감 흐름은 5-페이즈 계약을 따른다.
+
+```text
+일요일 22:00 FRONT DESK
+→ 월요일 00:00 SECTION DESK
+→ 02:00 REVIEW DESK
+→ 04:00 FEATURE DESK
+→ 09:00 PUBLISH DESK
+```
+
+09:00 PUBLISH DESK가 `LAYOUT_PLAN → HTML → 실제 화면 검수 → 발행`을 한 턴에서 완료한다. 07:00·08:00 별도 제작 단계는 사용하지 않는다.
