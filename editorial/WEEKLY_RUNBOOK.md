@@ -2,9 +2,9 @@
 
 이 문서는 한 호를 조사·작성·편집·검수·발행하는 실행 순서를 규정한다. GitHub Actions는 사용하지 않는다. 최종 통과 여부는 자동 검사보다 제작자의 직접 편집 검수로 결정한다.
 
-## 1. 작업 진입점과 이미지 격리
+## 1. 작업 진입점
 
-일반 제작 작업은 해당 회차의:
+모든 제작 작업은 해당 회차의:
 
 ```text
 work/YYYY-MM-DD/WORK_STATE.md
@@ -12,42 +12,19 @@ work/YYYY-MM-DD/WORK_STATE.md
 
 에서 시작한다.
 
-이미지 작업은 `jobs/image_job.json`을 CONTROL PLANE manifest로 사용한다.
-
-다만 **manifest를 읽은 턴은 이미지 생성 턴이 아니다.**
-
-이미지 생성은 다음 경계를 지켜야 한다.
-
-```text
-CONTROL PLANE
-job / queue / GitHub / prompt path
-        ↓ isolated dispatch
-IMAGE PLANE
-scene prompt text only
-        ↓
-image generation
-        ↓
-PERSISTENCE PLANE
-returned artifact → Git work/.../image_runs/
-```
-
-`jobs/image_job.json`이 `weekly-signal-image-job-v2`이면 `editorial/IMAGE_CONTRACT.md` v2와 `jobs/IMAGE_JOB_V2.md`가 이미지 실행의 최우선 기준이다.
+현재 운영 경로에서는 이미지 생성 단계를 사용하지 않는다. 이미지 관련 job·queue·prompt·attempt 기록은 과거 실험 자료로 남아 있을 수 있으나 현행 제작 선후관계에 참여하지 않는다.
 
 ## 2. GitHub 작업영역
 
-- `work/YYYY-MM-DD/` = 제작 상태와 검증·흐름설계·원고·지면·이미지 prompt·이미지 생성 기록
-- `jobs/` = 이미지 CONTROL PLANE manifest와 실행 계약
+- `work/YYYY-MM-DD/` = 제작 상태와 검증·흐름설계·원고·지면 계획
 - `archive/YYYY-MM-DD/` = 독자에게 공개되는 완성 발행본
-
-`work/`와 `jobs/`는 GitHub Pages 발행 대상이 아니다.
-
-이미지 생성 결과는 `work/YYYY-MM-DD/image_runs/`에 Git으로 보존한다.
+- 이미지 관련 `jobs/`, `image_prompts/`, `image_runs/`는 현행 발행 경로의 필수 요소가 아니다.
 
 ## 3. 기본 상태
 
 각 회차의 `WORK_STATE.md`가 전체 제작 상태를 소유한다.
 
-일반 상태:
+주요 상태:
 
 - `PENDING`
 - `VERIFYING`
@@ -55,21 +32,12 @@ returned artifact → Git work/.../image_runs/
 - `WRITING`
 - `IN_REVIEW`
 - `COMPLETE`
+- `LAYOUT_READY`
+- `HTML_READY`
+- `SCREEN_REVIEW`
+- `PUBLISHED`
 
-이미지 상태는 `editorial/IMAGE_CONTRACT.md`를 따른다.
-
-주요 이미지 상태:
-
-- `READY`
-- `DISPATCHED`
-- `GENERATED`
-- `ACCEPTED`
-- `RETRY`
-- `BLOCKED`
-- `CONTEXT_FAILURE`
-- `DISPATCH_BLOCKED`
-- `PERSISTENCE_BLOCKED`
-- `COMPLETE`
+이미지 상태는 현행 제작 게이트로 사용하지 않는다.
 
 ## 4. 기본 회차 구성
 
@@ -161,7 +129,7 @@ SUBJECT SELECT
 → COMPLETE
 ```
 
-이미지 비율은 07:00 입력 패키지 작성에서 가로 `4:3` 또는 세로 `4:5` 중 하나를 확정한다.
+현재 운영 경로에서는 LIFE SCENE용 생성 이미지를 필수로 요구하지 않는다.
 
 ## 9. PROLOGUE
 
@@ -183,7 +151,7 @@ ISSUE READBACK
 → COMPLETE
 ```
 
-PROLOGUE는 기본적으로 별도 생성 이미지를 요구하지 않는다.
+PROLOGUE는 텍스트 중심 편집 스프레드로 구성할 수 있다.
 
 ## 10. EDITOR'S AFTERWORD
 
@@ -199,225 +167,87 @@ ISSUE READBACK
 → COMPLETE
 ```
 
-EDITOR'S AFTERWORD는 기본적으로 별도 생성 이미지를 요구하지 않는다.
+## 11. 월요일 07:00 — LAYOUT_PLAN + HTML 발행 준비
 
-## 11. 월요일 07:00 — LAYOUT_PLAN + 이미지 입력 패키지 작성
-
-07:00은 **텍스트·파일 작업 전용 독립 턴**이다. 실제 이미지를 생성하지 않는다.
+07:00은 완성된 원고를 09:00 HTML 작업이 즉시 사용할 수 있도록 지면과 발행 구조를 확정하는 단계다.
 
 ### 11.1 입력
 
 - 현재 회차 `WORK_STATE.md`
 - 완성된 원고
 - `editorial/LAYOUT_SYSTEM.md`
-- `editorial/IMAGE_CONTRACT.md`
 - `editorial/ISSUE_QUALITY_GATE.md`
 - 필요한 템플릿 계약
+
+이미지 계약, 이미지 job, 이미지 prompt는 현행 07:00 필수 입력이 아니다.
 
 ### 11.2 필수 산출물
 
 ```text
 work/YYYY-MM-DD/
-├─ LAYOUT_PLAN.md
-├─ IMAGE_PLAN.md
-├─ image_prompts/
-│  ├─ 01_*.txt
-│  ├─ 02_*.txt
-│  └─ ...
-└─ image_runs/
-   └─ README.md
-
-jobs/
-├─ IMAGE_JOB_V2.md
-└─ image_job.json
+└─ LAYOUT_PLAN.md
 ```
 
 완료 상태:
 
 - `LAYOUT_PLAN.md`: `COMPLETE`
-- `IMAGE_PLAN.md`: `READY`
-- 생성 대상 슬롯마다 scene prompt 파일 1개
-- `jobs/image_job.json`: `weekly-signal-image-job-v2`, `READY`, `CONTROL_ONLY`
-- `WORK_STATE.md`: 이미지 CONTROL dispatch 대기 상태
+- `WORK_STATE.md`: `HTML_READY`
+- `NEXT`: 09:00 HTML 제작 + 화면 검수 + 발행
 
 ### 11.3 LAYOUT_PLAN
 
-1. 최종 DOM 순서 확정
-2. DATA/WATCH 필요성 판정
-3. 기사별 지면 리듬 선택
-4. 이미지 슬롯 필요성 판정
-5. 각 이미지의 지면 역할과 배치 결정
-6. 1440 / 1366 / 1024 / 390 반응형 구조 설계
+최소한 다음을 확정한다.
 
-### 11.4 IMAGE_PLAN
+1. 최종 DOM 순서
+2. DATA / WATCH 필요성
+3. 기사별 지면 리듬
+4. 텍스트·표·인용·데이터·여백을 이용한 시각적 전환
+5. 이미지 없이도 완결되는 Cover와 각 기사 도입부
+6. 1440 / 1366 / 1024 / 390 반응형 구조
+7. 기존 archive 이미지의 임의 재사용 금지
 
-각 슬롯에 최소한 다음을 기록한다.
+### 11.4 이미지 없는 지면 원칙
 
-- 순서
-- 슬롯명
-- 필요성
-- prompt 파일 경로
-- `image_runs/` 저장 디렉터리
-- 최종 발행 파일명
-- 상태
-- 유효 사진 시도 횟수
-- 목표 비율
-- 목표 해상도
+현재 운영 경로에서는 새 이미지를 생성하지 않는다.
 
-장면 프롬프트 전문은 넣지 않는다.
+따라서 07:00은 이미지 슬롯, 이미지 prompt, `IMAGE_PLAN.md`, `jobs/image_job.json`, 이미지 handoff를 만들지 않는다.
 
-### 11.5 image_prompts
+이미지가 없는 자리는 빈 placeholder로 남기지 않는다. 해당 지면은 다음 요소를 사용해 완성한다.
 
-각 슬롯의 실제 생성 문장은 독립 `.txt` 파일 하나에 저장한다.
+- 강한 타이포그래피 계층
+- 여백과 규칙선
+- Deck과 핵심 문장
+- 데이터 또는 비교표
+- 인용 블록
+- 섹션 라벨과 번호
+- 배경·테두리·그리드 등 CSS 기반 편집 요소
 
-프롬프트에는 이미지로 보일 내용만 담는다.
+이미지 없음이 미완성 상태처럼 보이지 않아야 한다.
 
-- 실제 세계의 한 장면
-- 중심 피사체·행동·사물
-- 카메라 거리·구도
-- 빛·재질·공간감
-- 필요한 안전영역과 비율
-- Politics 완전 무인 같은 장면 자체의 하드 제약
+### 11.5 07:00 종료
 
-운영 상태, 저장소 구조, queue, output path, 저장 지시는 넣지 않는다.
+`LAYOUT_PLAN.md`가 COMPLETE이고 `WORK_STATE.md`가 HTML_READY이면 07:00은 종료한다.
 
-### 11.6 image_job v2
+**07:00 다음 단계는 바로 09:00이다. 08:00 제작 단계는 없다.**
 
-`jobs/image_job.json`은 이미지 모델용 prompt가 아니라 CONTROL PLANE manifest다.
-
-최소 구조:
-
-```json
-{
-  "schema": "weekly-signal-image-job-v2",
-  "state": "READY",
-  "mode": "CONTROL_ONLY",
-  "isolation": {
-    "controller_calls_image_tool": false,
-    "generator_input": "SCENE_PROMPT_ONLY",
-    "one_scene_per_turn": true
-  },
-  "persistence": {
-    "required": true,
-    "persist_all_results": true,
-    "run_root": "work/YYYY-MM-DD/image_runs"
-  },
-  "queue": [
-    {
-      "id": "01_cover",
-      "prompt": "work/YYYY-MM-DD/image_prompts/01_cover.txt",
-      "run_dir": "work/YYYY-MM-DD/image_runs/01_cover",
-      "final_output": "cover.webp",
-      "state": "READY",
-      "next_attempt": 1
-    }
-  ]
-}
-```
-
-### 11.7 07:00 종료
-
-07:00에서는 이미지 생성 도구를 호출하지 않는다.
-
-`LAYOUT_PLAN + IMAGE_PLAN + scene prompts + v2 controller manifest`가 완료되면 종료한다.
-
-## 12. 월요일 08:00 — 이미지 CONTROL / IMAGE / PERSISTENCE
-
-08:00은 하나의 오염된 턴에서 모든 것을 처리하지 않는다.
-
-### 12.1 CONTROL PLANE
-
-CONTROL 턴은:
-
-1. `jobs/image_job.json`을 읽는다.
-2. schema가 `weekly-signal-image-job-v2`인지 확인한다.
-3. READY queue item 하나를 선택한다.
-4. 해당 prompt 파일의 텍스트를 확보한다.
-5. 그 텍스트만 새 독립 IMAGE PLANE 턴/작업의 입력으로 dispatch한다.
-
-**CONTROL 턴에서는 이미지 생성 도구를 호출하지 않는다.**
-
-이미지 생성 전에 repo 파일을 이미 읽은 턴은 IMAGE PLANE으로 재사용할 수 없다.
-
-### 12.2 ISOLATED IMAGE PLANE
-
-새 IMAGE PLANE 턴의 입력은 scene prompt 전문 하나뿐이다.
-
-이 턴에서는 이미지 생성 전 다음을 하지 않는다.
-
-- GitHub 접근
-- 저장소 파일 읽기
-- job/queue/state 확인
-- output path 확인
-- 작업 보고
-- 다음 슬롯 준비
-- 저장·업로드 설명
-
-```text
-scene prompt text only
-→ image generation
-→ returned image
-```
-
-한 턴에서 한 장면만 생성한다.
-
-독립 IMAGE PLANE 턴을 만들 수 없으면 `DISPATCH_BLOCKED`로 중단한다. CONTROL 턴에서 대신 생성하지 않는다.
-
-### 12.3 PERSISTENCE PLANE
-
-이미지가 반환된 뒤에는 제어 문맥을 다시 사용할 수 있다.
-
-가장 먼저 반환 원본을 Git에 저장한다.
-
-```text
-work/YYYY-MM-DD/image_runs/<slot>/attempt-01.<original-ext>
-work/YYYY-MM-DD/image_runs/<slot>/attempt-01.json
-```
-
-- 정상 사진 후보 저장
-- 품질 실패 후보 저장
-- `CONTEXT_FAILURE` 결과도 저장
-- 가능하면 이미지와 sidecar를 같은 커밋으로 반영
-- Git 저장 완료 전 다음 슬롯 금지
-- 저장할 수 없으면 `PERSISTENCE_BLOCKED`
-
-### 12.4 PHOTO-SCENE GATE
-
-Git 보존 뒤 다음을 판정한다.
-
-1. 프레임 전체가 하나의 연속된 장면인가?
-2. 사진적 에디토리얼 이미지인가?
-
-작업 화면·파일 트리·문서·UI·리포트·대시보드가 주된 구조라면 `CONTEXT_FAILURE`다.
-
-이 경우:
-
-- 저장된 실패 이미지는 유지
-- 유효 사진 시도 횟수는 증가시키지 않음
-- 오염된 IMAGE PLANE 턴에서 추가 생성 금지
-- 다음 시도는 새 독립 IMAGE PLANE 턴
-
-### 12.5 정상 사진 재시도
-
-PHOTO-SCENE을 통과한 정상 사진만 유효 시도로 계산한다.
-
-슬롯당 기본 최대 3회이며, 매 재시도도 새 독립 IMAGE PLANE 턴이다.
-
-## 13. 월요일 09:00 — HTML 제작
+## 12. 월요일 09:00 — HTML 제작 + 화면 검수 + 발행
 
 `templates/ISSUE_TEMPLATE.html`을 시작점으로 사용하되 그대로 복제한 결과를 완성본으로 보지 않는다.
 
 - COMPLETE 원고만 사용
+- `LAYOUT_PLAN.md`를 실제 DOM에 반영
 - CSS와 최소 JavaScript는 회차 `index.html`에 내장
 - 목차·내비게이션·DOM 순서 일치
 - DEEP DIVE는 연결 기사 바로 뒤
 - EDITOR'S AFTERWORD는 Sources 직전
 - 미사용 클래스·숨김 모듈·임시 주석 삭제
-- `image_runs/`의 ACCEPTED attempt를 발행용 자산으로 변환해 `archive/.../assets/`에 반영
+- 이미지가 없어도 모든 섹션이 완결된 편집 지면으로 보이게 구성
+- 존재하지 않는 이미지 파일이나 placeholder 경로를 참조하지 않음
+- 이전 회차 이미지를 새 회차 이미지처럼 임의 재사용하지 않음
 
-최종 발행은 모든 REQUIRED 이미지가 반영되고 화면 검수를 통과해야 가능하다.
+이미지 부재는 발행 차단 조건이 아니다.
 
-## 14. 실제 화면 검수
+## 13. 실제 화면 검수
 
 다음 화면을 실제 렌더링하거나 캡처해 확인한다.
 
@@ -428,17 +258,16 @@ PHOTO-SCENE을 통과한 정상 사진만 유효 시도로 계산한다.
 
 확인 항목:
 
-- Cover 제목 안전영역과 이미지 선명도
-- 기본 구성과 Contents 일치
-- LIFE SCENE → PROLOGUE → 본 기사 흐름
-- 기사별 시각적 차이
-- 이미지 디테일과 실제 크롭
-- Politics 이미지 완전 무인
-- 표·카드·제목 오버플로
-- 링크와 상대경로
-- EDITOR'S AFTERWORD → Sources 마감 흐름
+- Cover가 이미지 없이도 완결된 첫 화면으로 보이는가
+- 기본 구성과 Contents가 일치하는가
+- LIFE SCENE → PROLOGUE → 본 기사 흐름이 자연스러운가
+- 기사별 시각적 리듬 차이가 있는가
+- 표·카드·제목 오버플로가 없는가
+- 링크와 상대경로가 올바른가
+- 존재하지 않는 자산 요청이 없는가
+- EDITOR'S AFTERWORD → Sources 마감 흐름이 자연스러운가
 
-## 15. 보조 구조 검사
+## 14. 보조 구조 검사
 
 필요하면 다음을 직접 실행한다.
 
@@ -449,7 +278,7 @@ python tools/validate_repository.py
 
 이 검사는 기술적 실수를 찾는 보조 수단이다.
 
-## 16. 실패 처리
+## 15. 실패 처리
 
 실패한 단위만 되돌린다.
 
@@ -457,17 +286,15 @@ python tools/validate_repository.py
 - LIFE SCENE 서사 실패 → SCENE MAP부터
 - PROLOGUE 실패 → PREVIEW MAP부터
 - EDITOR'S AFTERWORD 실패 → 실제 제작 후기 역할부터
-- 이미지 계획 실패 → 07:00 해당 prompt와 controller manifest 수정
-- 독립 IMAGE PLANE 생성 불가 → `DISPATCH_BLOCKED`
-- 생성 artifact Git 저장 불가 → `PERSISTENCE_BLOCKED`
-- 정상 이미지 품질 실패 → 해당 슬롯 새 독립 턴 재시도
-- `CONTEXT_FAILURE` → 실패 이미지 Git 보존 후 해당 IMAGE PLANE 종료, 새 독립 턴 재시도
+- 지면 실패 → 07:00 LAYOUT_PLAN 수정
+- HTML 구조 실패 → 09:00 HTML 수정
+- 화면 실패 → CSS/DOM 수정 후 재검수
 
-이미지 실패를 이유로 전체 지면 설계를 다시 하지 않는다.
+이미지 생성 실패 또는 이미지 부재는 현행 경로의 실패 조건이 아니다.
 
-## 17. 최종 반영
+## 16. 최종 반영
 
-1. 원고·지면·REQUIRED 이미지·실제 화면 검수 완료
+1. 원고·지면·실제 화면 검수 완료
 2. 발견 문제 수정 후 재검수
 3. 완성 회차를 `archive/YYYY-MM-DD/`에 반영
 4. `ISSUE_HISTORY.md`, `issues.json`, `archive/index.html`, `latest.json` 갱신
