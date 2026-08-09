@@ -16,16 +16,16 @@ work/YYYY-MM-DD/WORK_STATE.md
 
 에서 시작합니다.
 
-이미지 작업은 `jobs/image_job.json`을 CONTROL PLANE manifest로 사용합니다.
+현재 운영 경로에서는 **이미지 생성 단계를 사용하지 않습니다.**
 
-**중요:** `jobs/image_job.json`을 읽은 턴은 이미지 생성 턴이 아닙니다. job·queue·GitHub 문맥을 읽은 동일 턴에서 이미지 생성 도구를 호출하지 않습니다.
-
-이미지 생성은 scene prompt 전문 하나만 입력받는 새 독립 IMAGE PLANE 턴에서 수행합니다.
-
-현행 상세 계약:
-
-- `editorial/IMAGE_CONTRACT.md`
+- `jobs/image_job.json`
 - `jobs/IMAGE_JOB_V2.md`
+- `editorial/IMAGE_CONTRACT.md`
+- 기존 `IMAGE_PLAN.md`, `image_prompts/`, `image_runs/`
+
+위 파일과 경로는 과거 실험·진단 기록으로 남아 있을 수 있지만, 현행 월요일 발행 흐름의 필수 입력이나 선행 조건이 아닙니다.
+
+이미지가 없다는 이유로 HTML 제작 또는 발행을 차단하지 않습니다.
 
 ---
 
@@ -44,120 +44,68 @@ work/YYYY-MM-DD/WORK_STATE.md
 | 월요일 04:00 | DEEP DIVE 제작 |
 | 월요일 05:00 | LIFE SCENE 제작 |
 | 월요일 06:00 | PROLOGUE + EDITOR'S AFTERWORD |
-| 월요일 07:00 | LAYOUT_PLAN + 이미지 입력 패키지 준비 |
-| 월요일 08:00 | 이미지 CONTROL dispatch + 독립 생성 + Git 보존 |
+| 월요일 07:00 | LAYOUT_PLAN + HTML 발행 준비 |
 | 월요일 09:00 | HTML 제작 + 화면 검수 + 발행 |
 
-예약 시각은 제작 리듬을 위한 기준이며 실제 선후관계는 상태 파일이 소유합니다.
+**08:00 이미지 작업은 현행 운영 경로에서 제거되었습니다.**
+
+예약 시각은 제작 리듬을 위한 기준이며 실제 선후관계는 `WORK_STATE.md`가 소유합니다.
 
 ---
 
-## 3. 07:00 — 이미지 입력 준비
+## 3. 07:00 — LAYOUT_PLAN + HTML 발행 준비
 
-07:00은 텍스트·파일 작업 전용입니다. 실제 이미지를 생성하지 않습니다.
+07:00은 완성된 원고를 실제 HTML로 옮길 수 있도록 지면 구조와 발행 조건을 확정하는 단계입니다.
 
-필수 산출물:
+필수 작업:
 
-```text
-work/YYYY-MM-DD/
-├─ LAYOUT_PLAN.md
-├─ IMAGE_PLAN.md
-├─ image_prompts/
-│  ├─ 01_*.txt
-│  ├─ 02_*.txt
-│  └─ ...
-└─ image_runs/
-   └─ README.md
+1. 완성 원고와 `WORK_STATE.md` 확인
+2. 최종 DOM 순서 확정
+3. DATA / WATCH 등 선택 모듈 필요성 판정
+4. 기사별 지면 리듬과 정보 모듈 확정
+5. 1440 / 1366 / 1024 / 390 반응형 구조 설계
+6. 이미지가 없는 상태에서도 완결되는 Cover와 기사 지면 설계
+7. `LAYOUT_PLAN.md`를 `COMPLETE`로 종료
+8. `WORK_STATE.md`를 `HTML_READY` 상태로 갱신
 
-jobs/
-└─ image_job.json
-```
+07:00에서는 다음을 하지 않습니다.
 
-각 `image_prompts/*.txt`에는 이미지로 보일 실제 장면만 둡니다.
+- 이미지 생성 프롬프트 작성
+- `IMAGE_PLAN.md` 갱신
+- `jobs/image_job.json` 생성 또는 갱신
+- 이미지 작업으로의 handoff
+- 이미지 생성 성공 여부를 HTML 제작의 조건으로 설정
 
-- 중심 피사체·행동·사물
-- 카메라 거리·구도
-- 빛·재질·공간감
-- 필요한 비율·안전영역
-- Politics 완전 무인 같은 장면 자체의 하드 제약
-
-저장소·queue·state·파일 경로·저장 지시는 scene prompt에 넣지 않습니다.
+07:00 완료 뒤 다음 제작 단계는 바로 **09:00 HTML 제작**입니다.
 
 ---
 
-## 4. 08:00 — CONTROL / IMAGE / PERSISTENCE 분리
+## 4. 09:00 — HTML 제작 + 화면 검수 + 발행
 
-현행 v2 구조:
+`templates/ISSUE_TEMPLATE.html`을 시작점으로 사용하되 그대로 복제한 결과를 완성본으로 보지 않습니다.
 
-```text
-CONTROL PLANE
-jobs/image_job.json
-→ READY item 선택
-→ scene prompt 텍스트 확보
-→ 새 독립 이미지 턴으로 dispatch
+- COMPLETE 원고만 사용
+- `LAYOUT_PLAN.md`를 기준으로 최종 DOM 구성
+- CSS와 최소 JavaScript는 회차 `index.html`에 내장
+- Contents와 실제 DOM 순서 일치
+- DEEP DIVE는 연결 기사 바로 뒤
+- EDITOR'S AFTERWORD는 Sources 직전
+- 미사용 클래스·숨김 모듈·임시 주석 삭제
+- 이미지가 없어도 모든 섹션이 시각적으로 완결되도록 구성
+- 기존 archive 자산을 새 회차의 필수 이미지처럼 임의 재사용하지 않음
 
-IMAGE PLANE
-scene prompt text only
-→ 이미지 1장 생성
+화면 검수:
 
-PERSISTENCE PLANE
-반환 이미지
-→ work/YYYY-MM-DD/image_runs/<slot>/attempt-NN.<ext>
-→ Git 저장
-→ PHOTO-SCENE / 품질 판정
-→ 상태 갱신
-```
+- 1440px 이상
+- 1366px
+- 1024px
+- 390px
 
-### 금지된 구형 방식
-
-```text
-image_job 읽기
-→ prompt 읽기
-→ 같은 턴에서 즉시 이미지 생성
-```
-
-이 방식은 운영 문맥이 이미지 생성에 남을 수 있으므로 사용하지 않습니다.
-
-### 독립 IMAGE PLANE 규칙
-
-이미지 생성 턴은 다음을 알면 안 됩니다.
-
-- GitHub·저장소·브랜치
-- job·queue·state
-- `WORK_STATE.md`, `IMAGE_PLAN.md`
-- prompt 파일 경로
-- output filename
-- 저장·업로드 지시
-
-현재 입력은 장면 프롬프트 한 개뿐이어야 합니다.
-
-독립 이미지 턴을 만들 수 없으면 `DISPATCH_BLOCKED`로 중단하고 같은 제어 턴에서 이미지를 만들지 않습니다.
+이미지 부재는 실패 조건이 아닙니다. 대신 타이포그래피, 여백, 규칙선, 데이터 조판, 인용, 표, 섹션 전환 등 HTML/CSS 요소로 매거진 밀도와 리듬을 확보합니다.
 
 ---
 
-## 5. 이미지 결과는 Git에 보존
-
-새 생성 결과는 임시 폴더에만 두지 않습니다.
-
-```text
-work/YYYY-MM-DD/image_runs/<slot>/attempt-01.<original-ext>
-work/YYYY-MM-DD/image_runs/<slot>/attempt-01.json
-```
-
-- 정상 후보 저장
-- 품질 실패 후보 저장
-- 작업 화면·문서·UI형 `CONTEXT_FAILURE`도 진단용으로 저장
-- 가능하면 이미지와 sidecar를 같은 커밋으로 반영
-- 저장 완료 전에 다음 슬롯으로 진행하지 않음
-- 저장할 수 없으면 `PERSISTENCE_BLOCKED`
-
-`CONTEXT_FAILURE` 결과는 Git에는 남기되 유효 사진 시도 횟수에는 포함하지 않습니다.
-
-`archive/YYYY-MM-DD/assets/`에는 최종 ACCEPTED 발행본만 둡니다.
-
----
-
-## 6. 문서 역할
+## 5. 문서 역할
 
 ### `editorial/`
 
@@ -173,9 +121,10 @@ work/YYYY-MM-DD/image_runs/<slot>/attempt-01.json
 - `HEADLINE_PROLOGUE_AND_AFTERWORD_STANDARD.md`
 - `VOICE_AND_TONE.md`
 - `SOURCE_POLICY.md`
-- `IMAGE_CONTRACT.md`
 - `LAYOUT_SYSTEM.md`
 - `PUBLISHING_PIPELINE.md`
+
+이미지 관련 문서는 향후 이미지 파이프라인을 별도로 재설계할 때 참고할 수 있는 비활성 계약으로 취급합니다.
 
 ### `work/YYYY-MM-DD/`
 
@@ -183,31 +132,24 @@ work/YYYY-MM-DD/image_runs/<slot>/attempt-01.json
 
 - `WORK_STATE.md` — 현재 단계
 - `LAYOUT_PLAN.md` — 지면 설계
-- `IMAGE_PLAN.md` — 이미지 상태·발행 연결
-- `image_prompts/*.txt` — 순수 장면 프롬프트
-- `image_runs/` — 생성 이미지 원본·실패 후보·attempt metadata의 Git 기록
 - `01_cover/` ~ 회차별 기사 작업 디렉터리
 
-### `jobs/`
-
-예약 이미지 작업의 CONTROL PLANE manifest와 실행 계약을 둡니다.
-
-- `jobs/image_job.json`
-- `jobs/IMAGE_JOB_V2.md`
+과거 이미지 실험 파일이 남아 있어도 현행 발행 선행 조건으로 사용하지 않습니다.
 
 ### `archive/YYYY-MM-DD/`
 
-독자에게 공개되는 최종 발행본만 둡니다.
+독자에게 공개되는 최종 발행본을 둡니다.
 
 ```text
 archive/YYYY-MM-DD/
-├─ index.html
-└─ assets/
+└─ index.html
 ```
+
+필요한 정적 자산이 실제로 존재할 때만 `assets/`를 함께 둡니다.
 
 ---
 
-## 7. 기본 회차 구성
+## 6. 기본 회차 구성
 
 별도 지시가 없으면 한 호는 다음 구성을 목표로 합니다.
 
@@ -246,7 +188,7 @@ DEEP DIVE는 연결된 일반 기사 바로 뒤에 둡니다.
 
 ---
 
-## 8. 전체 제작 흐름
+## 7. 전체 제작 흐름
 
 ```text
 Cover Story
@@ -258,9 +200,8 @@ Cover Story
 → DEEP DIVE
 → LIFE SCENE
 → PROLOGUE + EDITOR'S AFTERWORD
-→ 07:00 LAYOUT_PLAN + image prompts + controller manifest
-→ 08:00 isolated image generation + Git persistence
+→ 07:00 LAYOUT_PLAN + HTML 발행 준비
 → 09:00 HTML + 화면 검수 + 발행
 ```
 
-이미지와 관련해 이전 문서에 `job → prompt → 같은 턴에서 생성`이라고 적힌 레거시 규칙이 남아 있으면 `editorial/IMAGE_CONTRACT.md` v2가 우선합니다.
+현행 경로에서는 07:00과 09:00 사이에 이미지 생성 단계를 두지 않습니다.
