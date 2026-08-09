@@ -1,0 +1,11 @@
+{
+  "slot": "01_cover",
+  "attempt": 2,
+  "prompt_file": "work/2026-07-27/image_prompts/01_cover.txt",
+  "artifact": null,
+  "verdict": "CONTEXT_FAILURE",
+  "valid_photo_attempt": false,
+  "generation_id": "ce042351-1452-45a2-90b0-d73e2842b5c0",
+  "persistence": "PERSISTENCE_BLOCKED",
+  "notes": "A second retry with the unchanged scene prompt again produced a dashboard/report composition instead of a single continuous photographic scene. The binary image artifact could not be written through the available GitHub connector; diagnostic metadata is preserved here. This does not count toward the 0/3 valid photo attempts."
+}
