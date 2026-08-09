@@ -4,8 +4,8 @@
 ISSUE: 03
 ISSUE_START: 2026-08-03
 ISSUE_END: 2026-08-09
-STAGE: PENDING
-COVER_STORY: PENDING
+STAGE: FRONT_DESK
+COVER_STORY: COMPLETE
 ECONOMY: PENDING
 POLITICS: PENDING
 SOCIETY: PENDING
@@ -20,36 +20,20 @@ IMAGES: NOT_REQUIRED
 HTML: PENDING
 SCREEN_REVIEW: PENDING
 PUBLISH: PENDING
-NEXT: 2026-08-09 22:00 FRONT DESK — Cover Story → Economy
+NEXT: FRONT DESK — Economy
 ```
 
-Issue 03은 현행 이미지 없는 5-페이즈 제작 경로를 사용한다.
+## FRONT DESK 진행 상태
 
-예약 실행 순서:
+Cover Story를 먼저 전체 제작 순서대로 닫았다.
 
-```text
-2026-08-09 22:00 FRONT DESK
-Cover Story → Economy
+- `01_cover/VERIFY.md`: COMPLETE
+- `01_cover/FLOW.md`: COMPLETE
+- `01_cover/ARTICLE.md`: COMPLETE
+- Cover Story 주제: 2026년 8월 1일 시행된 안전보건 현황 공시 의무
 
-2026-08-10 00:00 SECTION DESK
-Politics → Society → Tech
+Cover Story가 COMPLETE된 뒤에만 Economy 심층 리서치와 집필로 이동한다.
 
-2026-08-10 02:00 REVIEW DESK
-CROSS-ARTICLE REVIEW → 필요한 기사 교정 → DEEP DIVE
+Issue 03은 현행 이미지 없는 5-페이즈 제작 경로를 사용한다. 이미지 생성 프롬프트, `IMAGE_PLAN.md`, `jobs/image_job.json`, 이미지 handoff는 현행 실행 경로에 포함하지 않는다.
 
-2026-08-10 04:00 FEATURE DESK
-LIFE SCENE → PROLOGUE → EDITOR'S AFTERWORD
-
-2026-08-10 09:00 PUBLISH DESK
-LAYOUT_PLAN → HTML 제작 → 화면 검수 → 발행
-```
-
-05:00 이전의 네 제작 턴은 2시간 간격이다. 07:00과 08:00에는 별도 제작 예약을 두지 않는다.
-
-각 페이즈의 내부 작업은 반드시 직렬로 수행한다. 앞 단위가 COMPLETE되지 않으면 뒤 단위를 건너뛰어 작성하지 않는다.
-
-09:00 PUBLISH DESK가 별도 레이아웃 예약 없이 `LAYOUT_PLAN.md`를 작성·COMPLETE한 뒤 같은 턴에서 HTML 제작, 1440 / 1366 / 1024 / 390 화면 검수, 공개 반영까지 수행한다.
-
-이미지 생성 프롬프트, `IMAGE_PLAN.md`, `jobs/image_job.json`, 이미지 handoff는 현행 Issue 03 실행 경로에 포함하지 않는다.
-
-각 예약 작업은 실행 시점의 GitHub `main`과 현행 `README.md`, `editorial/WEEKLY_RUNBOOK.md`, 관련 편집 계약, 이 `WORK_STATE.md`를 기준으로 진행한다.
+최종 FRONT DESK 종료 시 Economy까지 COMPLETE한 뒤 `NEXT`를 `2026-08-10 00:00 SECTION DESK — Politics → Society → Tech`로 갱신한다.
