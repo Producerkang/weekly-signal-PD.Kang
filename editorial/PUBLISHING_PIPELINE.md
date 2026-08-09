@@ -4,11 +4,11 @@
 
 ## 1. 작업 위치
 
-- 조사 메모, 원고 초안, 이미지 후보, 중간 HTML, 렌더링 캡처와 검수 파일은 작업 환경에서 처리한다.
-- `main`에는 승인 대기본이나 실패 후보를 쌓지 않는다.
+- 조사 메모, 원고 초안, 지면 계획과 검수 파일은 `work/`에서 관리한다.
+- 이미지 생성 결과는 임시 폴더에만 두지 않고 `work/YYYY-MM-DD/image_runs/`에 Git으로 보존한다.
+- 이미지 후보와 실패본은 `work/.../image_runs/`에 남길 수 있으며 `archive/`에는 넣지 않는다.
 - `archive/YYYY-MM-DD/`에는 공개 가능한 최종 `index.html`과 실제 사용 이미지 자산만 둔다.
-- 실패본·중간 이미지 후보를 `archive/`에 남기지 않는다.
-- `jobs/`는 예약 작업 실행 인계용이며 발행 대상이 아니다.
+- `jobs/`는 예약 작업의 CONTROL PLANE 실행 인계용이며 발행 대상이 아니다.
 
 ## 2. 제작 순서
 
@@ -19,42 +19,86 @@
 → LIFE SCENE
 → PROLOGUE
 → EDITOR'S AFTERWORD
-→ 07:00 LAYOUT_PLAN + 이미지 실행 패키지 준비
-→ 08:00 jobs/image_job.json 전용 실행
+→ 07:00 LAYOUT_PLAN + 이미지 입력 패키지 준비
+→ 08:00 CONTROL PLANE dispatch + 독립 이미지 생성 + Git 보존
 → 09:00 HTML + 화면 검수 + 발행
 ```
 
-07:00과 08:00은 별도 예약 작업이다.
+07:00과 08:00의 역할은 분리한다.
 
 - 07:00은 `LAYOUT_PLAN.md`, `IMAGE_PLAN.md`, `image_prompts/*.txt`, `jobs/image_job.json`을 완성한다.
-- 08:00은 `jobs/image_job.json`을 유일한 시작점으로 사용한다.
-- 이미지 생성 구간이 끝나기 전에는 `WORK_STATE.md`와 `IMAGE_PLAN.md`를 다시 읽지 않는다.
+- 08:00의 `jobs/image_job.json`은 **controller manifest**다.
+- job 또는 repository를 읽은 턴에서 이미지 생성 도구를 호출하지 않는다.
+- 각 이미지는 scene prompt 전문 하나만 입력받는 새 독립 이미지 턴에서 생성한다.
+- 이미지가 반환된 뒤에만 Git 저장·상태 기록·품질 판정을 수행한다.
 - 모든 필수 이미지가 반영되고 실제 화면 검수를 통과하기 전에는 발행하지 않는다.
 
 ## 3. 이미지 제작
 
-이미지 준비·생성·검수·상태·저장은 `editorial/IMAGE_CONTRACT.md`를 따른다.
+이미지 준비·생성·격리·검수·저장은 `editorial/IMAGE_CONTRACT.md`를 따른다.
 
 핵심:
 
 ```text
-1 QUEUE ITEM = 1 PROMPT FILE = 1 SCENE = 1 IMAGE
+CONTROL PLANE
+job + queue + Git paths
+        ↓ isolated dispatch
+IMAGE PLANE
+scene prompt only
+        ↓
+image generation
+        ↓
+PERSISTENCE PLANE
+Git work/.../image_runs/
 ```
 
-- 이미지 장면은 07:00의 `image_prompts/*.txt`에서 확정
-- 08:00은 `jobs/image_job.json`의 queue 순서대로 prompt 파일을 읽고 한 장씩 생성
-- 생성 중간에 `WORK_STATE.md`나 `IMAGE_PLAN.md`를 열지 않음
-- 모든 이미지 호출이 끝난 뒤 한 번에 상태 갱신
+### 3.1 생성 격리
+
+다음 방식은 금지한다.
+
+```text
+image_job 읽기
+→ prompt 파일 읽기
+→ 같은 턴에서 이미지 생성
+```
+
+마지막으로 읽은 파일이 prompt여도 앞선 운영 문맥은 남을 수 있으므로, 각 생성은 새 독립 이미지 턴에서 실행한다.
+
+독립 이미지 턴에는 다음을 넣지 않는다.
+
+- GitHub·저장소명
+- job·queue·state
+- `WORK_STATE.md`, `IMAGE_PLAN.md`
+- 파일 경로·output filename
+- 저장·업로드 지시
+
+### 3.2 생성 결과 Git 저장
+
+모든 생성 결과를 다음 경로에 보존한다.
+
+```text
+work/YYYY-MM-DD/image_runs/<slot>/attempt-01.<original-ext>
+work/YYYY-MM-DD/image_runs/<slot>/attempt-01.json
+```
+
+- 정상 사진 후보 저장
+- 품질 실패 후보 저장
+- `CONTEXT_FAILURE` 결과도 진단 목적으로 저장
+- 가능하면 이미지와 sidecar를 같은 커밋으로 반영
+- Git 저장 완료 전에 다음 슬롯으로 넘어가지 않음
+- 저장할 수 없으면 `PERSISTENCE_BLOCKED`
+
+`CONTEXT_FAILURE` 결과는 유효 사진 시도 횟수에는 포함하지 않는다.
+
+### 3.3 품질 기준
+
 - Cover 장변 2200px 이상 목표
 - 나머지 주요 이미지 장변 2000px 이상 목표
 - LIFE SCENE은 4:3 또는 4:5 중 회차별 하나
 - Politics와 Politics DEEP DIVE는 완전 무인
 - 정상 사진 품질 재시도는 슬롯당 기본 최대 3회
+- 재시도도 매번 새 독립 IMAGE PLANE 턴
 - 합격권 이미지는 취향상 재생성하지 않음
-
-작업 화면·문서·UI형 결과가 나오면 `CONTEXT_FAILURE`로 처리하고 같은 이미지 턴을 중단한다.
-
-최종 채택 이미지와 실제 발행 파일만 회차 assets에 둔다.
 
 ## 4. 발행 후보 구성
 
@@ -72,6 +116,7 @@ archive/YYYY-MM-DD/
 - 기사 본문을 별도 HTML 파일이나 `fetch()`로 조립하지 않음
 - 모든 최종 이미지는 `./assets/...` 상대경로 사용
 - 외부 이미지 URL 직접 사용 금지
+- `work/.../image_runs/`의 ACCEPTED 원본을 필요하면 WebP로 변환·크롭해 `archive/.../assets/`로 복사
 
 기본 독서 순서:
 
@@ -97,6 +142,7 @@ archive/YYYY-MM-DD/
 - 최종 해상도 충분
 - LIFE SCENE 비율 적합
 - Politics와 Politics DEEP DIVE 완전 무인
+- 발행에 사용한 attempt가 `work/.../image_runs/`에 보존되어 있음
 
 ### 지면
 
@@ -129,6 +175,19 @@ python tools/validate_repository.py
 
 ## 8. main 직접 반영
 
+### 제작 중
+
+다음은 제작 중에도 `main`의 `work/`에 반영할 수 있다.
+
+- 제작 상태 문서
+- 이미지 prompt
+- 이미지 생성 원본과 실패 후보 (`work/.../image_runs/`)
+- attempt sidecar
+
+이는 발행 자산이 아니라 재현·진단 가능한 제작 기록이다.
+
+### 발행 시
+
 제작자 직접 검수를 모두 통과한 뒤 다음을 `main`에 반영한다.
 
 1. 완성된 `archive/YYYY-MM-DD/`
@@ -145,9 +204,11 @@ GitHub Pages는 `main` 루트의 정적 파일을 그대로 사용한다.
 
 - 원고 실패 → 해당 원고 단계
 - 지면 실패 → 해당 레이아웃
-- 이미지 입력 실패 → 해당 `image_prompts/*.txt`와 `jobs/image_job.json`
-- 정상 이미지 품질 실패 → 해당 이미지 슬롯
-- `CONTEXT_FAILURE` → 같은 이미지 턴 중단 후 새 전용 이미지 턴
+- 이미지 입력 실패 → 해당 `image_prompts/*.txt`와 controller manifest
+- 독립 이미지 턴 생성 불가 → `DISPATCH_BLOCKED`
+- 결과 Git 저장 불가 → `PERSISTENCE_BLOCKED`
+- 정상 이미지 품질 실패 → 해당 이미지 슬롯을 새 독립 턴으로 재시도
+- `CONTEXT_FAILURE` → 실패 이미지를 Git에 보존하고 오염된 이미지 턴 종료 후 새 독립 이미지 턴
 - 크롭 실패 → 먼저 CSS/지면 조정 후 필요할 때만 이미지 재생성
 
 필수 이미지가 끝내 해결되지 않으면 발행은 차단한다.

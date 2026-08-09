@@ -229,7 +229,7 @@ HTML 코드만 읽고 검수를 끝내지 않는다. 네 화면을 실제 렌더
 
 ## 12. 월요일 07:00 완료 계약
 
-07:00은 지면 설계뿐 아니라 08:00 전용 **이미지 실행 패키지까지 완성**해야 한다.
+07:00은 지면 설계와 **이미지 CONTROL 입력 패키지**까지 완성한다. 실제 이미지 생성은 하지 않는다.
 
 완료 조건:
 
@@ -238,8 +238,9 @@ HTML 코드만 읽고 검수를 끝내지 않는다. 네 화면을 실제 렌더
 3. LIFE SCENE 비율 확정
 4. `IMAGE_PLAN.md` 작성 및 `READY`
 5. 모든 생성 대상 슬롯에 `image_prompts/*.txt` 작성
-6. `jobs/image_job.json` 생성 또는 교체 후 `READY`
-7. `WORK_STATE.md`를 08:00 전용 진입점을 가리키는 최소 인계 상태로 축약
+6. `jobs/image_job.json`을 `weekly-signal-image-job-v2`, `CONTROL_ONLY`, `READY`로 생성 또는 교체
+7. `work/YYYY-MM-DD/image_runs/` 보존 경로 준비
+8. `WORK_STATE.md`를 IMAGE dispatch 대기 상태로 갱신
 
 ### 12.1 프롬프트 준비 책임
 
@@ -254,31 +255,33 @@ HTML 코드만 읽고 검수를 끝내지 않는다. 네 화면을 실제 렌더
 - 비율·안전영역
 - Politics 완전 무인처럼 필요한 하드 제약
 
-운영 상태나 문서 구조는 프롬프트 파일에 넣지 않는다.
+운영 상태, 저장소 구조, queue, output filename, 저장 지시는 프롬프트 파일에 넣지 않는다.
 
-### 12.2 전용 job 생성
+### 12.2 controller manifest 생성
 
 모든 prompt 파일이 확정된 뒤 `jobs/image_job.json`을 마지막으로 만든다.
 
-job 파일은 장면 전문을 포함하지 않고 prompt 경로와 output 파일명만 큐로 전달한다.
+job 파일은 scene prompt 자체가 아니라 CONTROL PLANE의 queue·run directory·최종 발행 파일명만 소유한다.
 
-08:00 예약 작업은 이 job 파일을 유일한 시작점으로 사용한다.
+**job을 읽은 동일 턴에서 이미지 생성 도구를 호출하지 않는다.**
 
-### 12.3 WORK_STATE 최소 인계
+### 12.3 WORK_STATE 인계
 
-07:00 완료 뒤 `WORK_STATE.md`에는 상세 제작 보고를 반복하지 않는다.
+07:00 완료 뒤 `WORK_STATE.md`에는 다음 이미지 단계가 CONTROL dispatch임을 명확히 남긴다.
 
-최소한 다음만 남긴다.
+예:
 
 ```text
 STAGE: IMAGE_GENERATION
-ENTRYPOINT: jobs/image_job.json
+CONTROL_MANIFEST: jobs/image_job.json
+GENERATION_MODE: ISOLATED_SCENE_TURN
+PERSISTENCE: GIT_REQUIRED
 LAYOUT: COMPLETE
-IMAGES: PENDING
+IMAGES: READY
 ```
 
 ### 12.4 07:00에서 하지 않는 것
 
 07:00에서는 실제 이미지 생성·판정·저장을 하지 않는다.
 
-지면과 이미지 실행 패키지가 완성되면 작업을 종료한다.
+지면과 v2 이미지 입력 패키지가 완성되면 작업을 종료한다.

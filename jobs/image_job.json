@@ -1,39 +1,83 @@
 {
-  "schema": "weekly-signal-image-job-v1",
-  "state": "CONTEXT_FAILURE",
-  "scheduled_date": "2026-08-08",
+  "schema": "weekly-signal-image-job-v2",
+  "state": "READY",
+  "mode": "CONTROL_ONLY",
+  "scheduled_date": "2026-08-10",
+  "contract": "jobs/IMAGE_JOB_V2.md",
+  "isolation": {
+    "controller_calls_image_tool": false,
+    "generator_input": "SCENE_PROMPT_ONLY",
+    "one_scene_per_turn": true,
+    "generator_repo_reads_before_generation": 0,
+    "generator_receives_job_metadata": false
+  },
+  "persistence": {
+    "required": true,
+    "persist_all_results": true,
+    "persist_context_failures": true,
+    "run_root": "work/2026-07-27/image_runs",
+    "commit_before_next_slot": true
+  },
   "after_run": {
     "image_plan": "work/2026-07-27/IMAGE_PLAN.md",
     "work_state": "work/2026-07-27/WORK_STATE.md"
   },
   "queue": [
     {
+      "id": "01_cover",
       "prompt": "work/2026-07-27/image_prompts/01_cover.txt",
-      "output": "cover.webp"
+      "run_dir": "work/2026-07-27/image_runs/01_cover",
+      "final_output": "cover.webp",
+      "state": "READY",
+      "next_attempt": 1
     },
     {
+      "id": "02_cover_story",
       "prompt": "work/2026-07-27/image_prompts/02_cover_story.txt",
-      "output": "cover-story.webp"
+      "run_dir": "work/2026-07-27/image_runs/02_cover_story",
+      "final_output": "cover-story.webp",
+      "state": "READY",
+      "next_attempt": 1
     },
     {
+      "id": "03_economy",
       "prompt": "work/2026-07-27/image_prompts/03_economy.txt",
-      "output": "economy.webp"
+      "run_dir": "work/2026-07-27/image_runs/03_economy",
+      "final_output": "economy.webp",
+      "state": "READY",
+      "next_attempt": 1
     },
     {
+      "id": "04_politics",
       "prompt": "work/2026-07-27/image_prompts/04_politics.txt",
-      "output": "politics.webp"
+      "run_dir": "work/2026-07-27/image_runs/04_politics",
+      "final_output": "politics.webp",
+      "state": "READY",
+      "next_attempt": 1
     },
     {
+      "id": "05_society",
       "prompt": "work/2026-07-27/image_prompts/05_society.txt",
-      "output": "society.webp"
+      "run_dir": "work/2026-07-27/image_runs/05_society",
+      "final_output": "society.webp",
+      "state": "READY",
+      "next_attempt": 1
     },
     {
+      "id": "06_tech",
       "prompt": "work/2026-07-27/image_prompts/06_tech.txt",
-      "output": "tech.webp"
+      "run_dir": "work/2026-07-27/image_runs/06_tech",
+      "final_output": "tech.webp",
+      "state": "READY",
+      "next_attempt": 1
     },
     {
+      "id": "07_life_scene",
       "prompt": "work/2026-07-27/image_prompts/07_life_scene.txt",
-      "output": "life-scene.webp"
+      "run_dir": "work/2026-07-27/image_runs/07_life_scene",
+      "final_output": "life-scene.webp",
+      "state": "READY",
+      "next_attempt": 1
     }
   ]
 }

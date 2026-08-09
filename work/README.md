@@ -1,11 +1,11 @@
 # WEEKLY SIGNAL 작업공간
 
-`work/`는 WEEKLY SIGNAL의 회차별 제작 상태를 저장하는 GitHub 작업영역이다. GitHub Pages 발행 대상이 아니며, `archive/`와 역할을 분리한다.
+`work/`는 WEEKLY SIGNAL의 회차별 제작 상태와 제작 자산을 저장하는 GitHub 작업영역이다. GitHub Pages 발행 대상이 아니며 `archive/`와 역할을 분리한다.
 
 ## 기본 대응 관계
 
 ```text
-work/2026-07-27/      → 제작 상태
+work/2026-07-27/      → 제작 상태 + 이미지 생성 기록
 archive/2026-07-27/   → 완성 발행본
 ```
 
@@ -16,52 +16,82 @@ archive/2026-07-27/   → 완성 발행본
 ```text
 work/YYYY-MM-DD/
 ├─ WORK_STATE.md
+├─ LAYOUT_PLAN.md
+├─ IMAGE_PLAN.md
+├─ image_prompts/
+│  ├─ 01_*.txt
+│  └─ ...
+├─ image_runs/
+│  ├─ README.md
+│  ├─ 01_cover/
+│  │  ├─ attempt-01.<ext>
+│  │  └─ attempt-01.json
+│  └─ ...
 ├─ 01_cover/
 │  ├─ VERIFY.md
 │  ├─ FLOW.md
 │  └─ ARTICLE.md
 ├─ 02_economy/
-│  ├─ VERIFY.md
-│  ├─ FLOW.md
-│  └─ ARTICLE.md
 ├─ 03_politics/
-│  ├─ VERIFY.md
-│  ├─ FLOW.md
-│  └─ ARTICLE.md
 ├─ 04_society/
-│  ├─ VERIFY.md
-│  ├─ FLOW.md
-│  └─ ARTICLE.md
 ├─ 05_tech/
-│  ├─ VERIFY.md
-│  ├─ FLOW.md
-│  └─ ARTICLE.md
 ├─ 06_deep_dive/
 ├─ 07_life_scene/
-└─ 08_editors_pick/
+└─ ...
 ```
 
-빈 폴더는 미리 만들지 않는다. 해당 작업을 시작할 때 필요한 파일과 함께 생성한다.
+빈 기사 폴더는 미리 만들지 않는다. 이미지 생성 결과 디렉터리도 실제 결과가 생길 때 만든다.
 
 ## 파일 역할
 
 ### WORK_STATE.md
 
-회차 전체 진행 상태와 다음 작업을 기록한다. 새 턴이나 예약 실행은 이 파일을 먼저 읽고 다음 미완료 단계 하나를 수행한다.
+회차 전체 진행 상태와 다음 작업을 기록한다. 일반 제작 턴은 이 파일을 기준으로 재개한다.
 
 ### VERIFY.md
 
-내부 검증용 파일이다. 사실·상태·수치·제도 차이·예외·상충 자료·출처를 기록한다. `A ≠ B` 같은 검증 축약 표현을 사용할 수 있다.
+내부 검증용 파일이다. 사실·상태·수치·제도 차이·예외·상충 자료·출처를 기록한다.
 
 ### FLOW.md
 
-검증 결과를 독자가 따라갈 순서로 재구성하는 내부 설계 파일이다. 기사 중심 질문, 5~7개 안팎의 설명 단위, 각 단위의 연결 관계와 분석 전환 지점을 기록한다.
-
-FLOW는 초안이 아니다. 사실을 중요도순으로 병렬 나열하지 않고 `앞 내용을 이해하면 다음 내용이 필요해지는` 선형 흐름을 만드는 것이 목적이다.
+검증 결과를 독자가 따라갈 순서로 재구성하는 내부 설계 파일이다.
 
 ### ARTICLE.md
 
-독자에게 보여줄 최종 기사만 저장한다. 내부 Claim Ledger, 오해 목록, VERIFY 메모, FLOW 설계, PASS별 초안은 넣지 않는다.
+독자에게 보여줄 최종 기사만 저장한다. 내부 검증 메모나 중간 초안은 넣지 않는다.
+
+### image_prompts/
+
+07:00이 만든 순수 장면 프롬프트를 저장한다. 저장소·queue·state·output path·저장 지시는 넣지 않는다.
+
+### image_runs/
+
+이미지 생성 결과의 Git 보존 영역이다.
+
+- 정상 후보 저장
+- 품질 실패 후보 저장
+- `CONTEXT_FAILURE` 이미지 저장
+- attempt별 sidecar JSON 저장
+- 유효 시도 횟수와 파일 보존 여부는 별개
+- 최종 ACCEPTED 이미지만 발행 시 `archive/.../assets/`로 복사
+
+생성 결과를 임시 디렉터리에만 두고 폐기하지 않는다.
+
+## 이미지 실행 분리
+
+이미지 작업은 `editorial/IMAGE_CONTRACT.md` v2를 따른다.
+
+```text
+CONTROL PLANE
+GitHub / job / queue
+→ isolated dispatch
+IMAGE PLANE
+scene prompt only
+→ image generation
+→ Git persistence to image_runs/
+```
+
+CONTROL PLANE과 IMAGE PLANE을 같은 이미지 생성 턴으로 합치지 않는다.
 
 ## 일반 기사 기본 파이프라인
 
@@ -72,11 +102,9 @@ FLOW는 초안이 아니다. 사실을 중요도순으로 병렬 나열하지 �
 - 검증 언어, 흐름 설계, 독자용 문장을 같은 파일에 섞지 않는다.
 - 한 번에 일반 기사 하나만 제작한다.
 - 현재 기사가 COMPLETE가 되기 전 다음 일반 기사 본문을 작성하지 않는다.
-- 문단은 하나의 중심 질문 또는 논리 단위를 충분히 설명하는 단위로 사용한다.
-- 한두 문장마다 습관적으로 문단을 끊지 않는다.
 - 같은 급의 사실을 병렬적으로 늘어놓지 않고 앞뒤 관계를 만든다.
-- 새 문단은 주제·시간·원인·행위주체·작동 단계 등 실제 논리적 전환에서 연다.
-- `archive/`에는 완성본만 둔다.
-- `work/`에 저장되는 자료도 공개 GitHub 저장소에 있으므로 비공개 정보·인증정보·개인정보를 기록하지 않는다.
+- `archive/`에는 완성 발행본만 둔다.
+- `work/`의 이미지 실패 후보는 발행물이 아니라 재현·진단 가능한 제작 기록이다.
+- `work/`는 공개 GitHub 저장소에 있으므로 비공개 정보·인증정보·개인정보를 기록하지 않는다.
 
-세부 기사 제작 규칙은 `editorial/ARTICLE_WRITING_STANDARD.md`, 전체 회차 순서는 `editorial/WEEKLY_RUNBOOK.md`를 따른다.
+세부 기사 제작 규칙은 `editorial/ARTICLE_WRITING_STANDARD.md`, 전체 회차 순서는 `editorial/WEEKLY_RUNBOOK.md`, 이미지 격리·저장은 `editorial/IMAGE_CONTRACT.md`를 따른다.

@@ -2,11 +2,7 @@
 
 이 문서는 한 호를 조사·작성·편집·검수·발행하는 실행 순서를 규정한다. GitHub Actions는 사용하지 않는다. 최종 통과 여부는 자동 검사보다 제작자의 직접 편집 검수로 결정한다.
 
-## 1. 예약 작업 진입점 규칙
-
-예약 작업은 먼저 **해당 작업의 진입점**을 따른다.
-
-### 기본
+## 1. 작업 진입점과 이미지 격리
 
 일반 제작 작업은 해당 회차의:
 
@@ -16,30 +12,36 @@ work/YYYY-MM-DD/WORK_STATE.md
 
 에서 시작한다.
 
-### 전용 진입점
+이미지 작업은 `jobs/image_job.json`을 CONTROL PLANE manifest로 사용한다.
 
-전용 실행 파일이 정의된 작업은 `WORK_STATE.md`보다 그 파일을 우선한다.
+다만 **manifest를 읽은 턴은 이미지 생성 턴이 아니다.**
 
-현재 유일한 전용 진입점:
+이미지 생성은 다음 경계를 지켜야 한다.
 
 ```text
-월요일 08:00 이미지 제작
-→ jobs/image_job.json
+CONTROL PLANE
+job / queue / GitHub / prompt path
+        ↓ isolated dispatch
+IMAGE PLANE
+scene prompt text only
+        ↓
+image generation
+        ↓
+PERSISTENCE PLANE
+returned artifact → Git work/.../image_runs/
 ```
 
-08:00 이미지 제작은 시작 전에 `WORK_STATE.md`, README, 이 런북, `IMAGE_PLAN.md`, `LAYOUT_PLAN.md`, 기사 원고를 읽지 않는다.
-
-`jobs/image_job.json`이 없거나 `state != READY`이면 다른 문서로 우회하지 않고 이미지 작업을 중단한다.
-
-이미지 생성이 모두 끝난 뒤에만 다시 제어 문맥으로 돌아와 `IMAGE_PLAN.md`, `WORK_STATE.md`를 갱신한다.
+`jobs/image_job.json`이 `weekly-signal-image-job-v2`이면 `editorial/IMAGE_CONTRACT.md` v2와 `jobs/IMAGE_JOB_V2.md`가 이미지 실행의 최우선 기준이다.
 
 ## 2. GitHub 작업영역
 
-- `work/YYYY-MM-DD/` = 제작 상태와 검증·흐름설계·원고·지면·이미지 계획
-- `jobs/` = 전용 예약 작업의 실행 인계 파일
+- `work/YYYY-MM-DD/` = 제작 상태와 검증·흐름설계·원고·지면·이미지 prompt·이미지 생성 기록
+- `jobs/` = 이미지 CONTROL PLANE manifest와 실행 계약
 - `archive/YYYY-MM-DD/` = 독자에게 공개되는 완성 발행본
 
-`work/`와 `jobs/`는 발행 대상이 아니다.
+`work/`와 `jobs/`는 GitHub Pages 발행 대상이 아니다.
+
+이미지 생성 결과는 `work/YYYY-MM-DD/image_runs/`에 Git으로 보존한다.
 
 ## 3. 기본 상태
 
@@ -54,7 +56,20 @@ work/YYYY-MM-DD/WORK_STATE.md
 - `IN_REVIEW`
 - `COMPLETE`
 
-이미지 슬롯 상태는 `editorial/IMAGE_CONTRACT.md`를 따른다.
+이미지 상태는 `editorial/IMAGE_CONTRACT.md`를 따른다.
+
+주요 이미지 상태:
+
+- `READY`
+- `DISPATCHED`
+- `GENERATED`
+- `ACCEPTED`
+- `RETRY`
+- `BLOCKED`
+- `CONTEXT_FAILURE`
+- `DISPATCH_BLOCKED`
+- `PERSISTENCE_BLOCKED`
+- `COMPLETE`
 
 ## 4. 기본 회차 구성
 
@@ -186,14 +201,14 @@ ISSUE READBACK
 
 EDITOR'S AFTERWORD는 기본적으로 별도 생성 이미지를 요구하지 않는다.
 
-## 11. 월요일 07:00 — LAYOUT_PLAN + 이미지 실행 패키지 작성
+## 11. 월요일 07:00 — LAYOUT_PLAN + 이미지 입력 패키지 작성
 
 07:00은 **텍스트·파일 작업 전용 독립 턴**이다. 실제 이미지를 생성하지 않는다.
 
 ### 11.1 입력
 
 - 현재 회차 `WORK_STATE.md`
-- 완성된 01~09 원고
+- 완성된 원고
 - `editorial/LAYOUT_SYSTEM.md`
 - `editorial/IMAGE_CONTRACT.md`
 - `editorial/ISSUE_QUALITY_GATE.md`
@@ -205,12 +220,15 @@ EDITOR'S AFTERWORD는 기본적으로 별도 생성 이미지를 요구하지 �
 work/YYYY-MM-DD/
 ├─ LAYOUT_PLAN.md
 ├─ IMAGE_PLAN.md
-└─ image_prompts/
-   ├─ 01_*.txt
-   ├─ 02_*.txt
-   └─ ...
+├─ image_prompts/
+│  ├─ 01_*.txt
+│  ├─ 02_*.txt
+│  └─ ...
+└─ image_runs/
+   └─ README.md
 
 jobs/
+├─ IMAGE_JOB_V2.md
 └─ image_job.json
 ```
 
@@ -218,9 +236,9 @@ jobs/
 
 - `LAYOUT_PLAN.md`: `COMPLETE`
 - `IMAGE_PLAN.md`: `READY`
-- 생성 대상 슬롯마다 prompt 파일 1개
-- `jobs/image_job.json`: `READY`
-- `WORK_STATE.md`: 08:00 전용 진입점을 가리키는 최소 인계 상태
+- 생성 대상 슬롯마다 scene prompt 파일 1개
+- `jobs/image_job.json`: `weekly-signal-image-job-v2`, `READY`, `CONTROL_ONLY`
+- `WORK_STATE.md`: 이미지 CONTROL dispatch 대기 상태
 
 ### 11.3 LAYOUT_PLAN
 
@@ -233,17 +251,16 @@ jobs/
 
 ### 11.4 IMAGE_PLAN
 
-`IMAGE_PLAN.md`는 결과 상태와 발행 연결을 위한 제어 문서다.
-
 각 슬롯에 최소한 다음을 기록한다.
 
 - 순서
 - 슬롯명
 - 필요성
 - prompt 파일 경로
-- 최종 이미지 파일명
-- 초기 상태 `READY`
-- 시도 횟수 `0/3`
+- `image_runs/` 저장 디렉터리
+- 최종 발행 파일명
+- 상태
+- 유효 사진 시도 횟수
 - 목표 비율
 - 목표 해상도
 
@@ -260,139 +277,131 @@ jobs/
 - 카메라 거리·구도
 - 빛·재질·공간감
 - 필요한 안전영역과 비율
-- Politics 완전 무인 같은 필요한 하드 제약
+- Politics 완전 무인 같은 장면 자체의 하드 제약
 
-운영 상태, 저장소 구조, 기사 제작 과정은 넣지 않는다.
+운영 상태, 저장소 구조, queue, output path, 저장 지시는 넣지 않는다.
 
-### 11.6 jobs/image_job.json
+### 11.6 image_job v2
 
-07:00은 prompt 파일을 모두 확정한 뒤 **마지막 단계로** `jobs/image_job.json`을 생성 또는 교체한다.
+`jobs/image_job.json`은 이미지 모델용 prompt가 아니라 CONTROL PLANE manifest다.
 
-형식:
+최소 구조:
 
 ```json
 {
-  "schema": "weekly-signal-image-job-v1",
+  "schema": "weekly-signal-image-job-v2",
   "state": "READY",
-  "scheduled_date": "YYYY-MM-DD",
-  "after_run": {
-    "image_plan": "work/YYYY-MM-DD/IMAGE_PLAN.md",
-    "work_state": "work/YYYY-MM-DD/WORK_STATE.md"
+  "mode": "CONTROL_ONLY",
+  "isolation": {
+    "controller_calls_image_tool": false,
+    "generator_input": "SCENE_PROMPT_ONLY",
+    "one_scene_per_turn": true
+  },
+  "persistence": {
+    "required": true,
+    "persist_all_results": true,
+    "run_root": "work/YYYY-MM-DD/image_runs"
   },
   "queue": [
     {
-      "prompt": "work/YYYY-MM-DD/image_prompts/01_*.txt",
-      "output": "example.webp"
+      "id": "01_cover",
+      "prompt": "work/YYYY-MM-DD/image_prompts/01_cover.txt",
+      "run_dir": "work/YYYY-MM-DD/image_runs/01_cover",
+      "final_output": "cover.webp",
+      "state": "READY",
+      "next_attempt": 1
     }
   ]
 }
 ```
 
-`queue`에는 실제 생성할 슬롯만 넣는다. 장면 전문은 넣지 않는다.
-
-### 11.7 07:00 WORK_STATE 인계 규칙
-
-07:00 완료 시 `WORK_STATE.md`를 장문의 제작 보고서로 남기지 않는다.
-
-08:00이 실수로 이 파일을 먼저 읽더라도 오염이 최소가 되도록 다음 정도의 **최소 인계 상태**만 남긴다.
-
-```text
-STAGE: IMAGE_GENERATION
-ENTRYPOINT: jobs/image_job.json
-LAYOUT: COMPLETE
-IMAGES: PENDING
-NEXT: execute dedicated image job
-```
-
-완료된 원고 세부 제목·체크리스트·진행률·커밋 로그를 이 시점의 WORK_STATE에 반복하지 않는다.
-
-### 11.8 07:00 종료 조건
-
-`LAYOUT_PLAN COMPLETE + IMAGE_PLAN READY + prompt files complete + image_job READY + WORK_STATE handoff`가 끝나면 턴을 종료한다.
+### 11.7 07:00 종료
 
 07:00에서는 이미지 생성 도구를 호출하지 않는다.
 
-## 12. 월요일 08:00 — 전용 이미지 작업
+`LAYOUT_PLAN + IMAGE_PLAN + scene prompts + v2 controller manifest`가 완료되면 종료한다.
 
-08:00은 **전용 진입점 기반 이미지 생성 턴**이다.
+## 12. 월요일 08:00 — 이미지 CONTROL / IMAGE / PERSISTENCE
 
-### 12.1 시작점
+08:00은 하나의 오염된 턴에서 모든 것을 처리하지 않는다.
 
-유일한 시작점:
+### 12.1 CONTROL PLANE
+
+CONTROL 턴은:
+
+1. `jobs/image_job.json`을 읽는다.
+2. schema가 `weekly-signal-image-job-v2`인지 확인한다.
+3. READY queue item 하나를 선택한다.
+4. 해당 prompt 파일의 텍스트를 확보한다.
+5. 그 텍스트만 새 독립 IMAGE PLANE 턴/작업의 입력으로 dispatch한다.
+
+**CONTROL 턴에서는 이미지 생성 도구를 호출하지 않는다.**
+
+이미지 생성 전에 repo 파일을 이미 읽은 턴은 IMAGE PLANE으로 재사용할 수 없다.
+
+### 12.2 ISOLATED IMAGE PLANE
+
+새 IMAGE PLANE 턴의 입력은 scene prompt 전문 하나뿐이다.
+
+이 턴에서는 이미지 생성 전 다음을 하지 않는다.
+
+- GitHub 접근
+- 저장소 파일 읽기
+- job/queue/state 확인
+- output path 확인
+- 작업 보고
+- 다음 슬롯 준비
+- 저장·업로드 설명
 
 ```text
-jobs/image_job.json
+scene prompt text only
+→ image generation
+→ returned image
 ```
 
-`WORK_STATE.md`를 먼저 읽지 않는다.
+한 턴에서 한 장면만 생성한다.
 
-`jobs/image_job.json`이 없거나 `state != READY`이면 작업을 중단한다. `WORK_STATE.md`나 기사 원고를 읽어 큐를 복원하지 않는다.
+독립 IMAGE PLANE 턴을 만들 수 없으면 `DISPATCH_BLOCKED`로 중단한다. CONTROL 턴에서 대신 생성하지 않는다.
 
-### 12.2 생성 구간 읽기 범위
+### 12.3 PERSISTENCE PLANE
 
-생성 구간에서는 다음만 사용한다.
+이미지가 반환된 뒤에는 제어 문맥을 다시 사용할 수 있다.
 
-1. `jobs/image_job.json`
-2. 현재 queue item이 지정한 prompt `.txt`
-3. 다음 queue item의 prompt `.txt`
-
-`editorial/IMAGE_CONTRACT.md`도 이미지 생성 직전에 다시 읽지 않는다. 07:00이 필요한 품질·섹션 규칙을 prompt에 이미 반영해야 한다.
-
-### 12.3 생성 단위
+가장 먼저 반환 원본을 Git에 저장한다.
 
 ```text
-1 QUEUE ITEM = 1 PROMPT FILE = 1 SCENE = 1 IMAGE
+work/YYYY-MM-DD/image_runs/<slot>/attempt-01.<original-ext>
+work/YYYY-MM-DD/image_runs/<slot>/attempt-01.json
 ```
 
-기본 실행:
+- 정상 사진 후보 저장
+- 품질 실패 후보 저장
+- `CONTEXT_FAILURE` 결과도 저장
+- 가능하면 이미지와 sidecar를 같은 커밋으로 반영
+- Git 저장 완료 전 다음 슬롯 금지
+- 저장할 수 없으면 `PERSISTENCE_BLOCKED`
 
-```text
-image_job 확인
-→ queue[0].prompt 읽기
-→ 즉시 이미지 1장 생성
-→ 실제 픽셀 판정
-→ 필요하면 사진 품질 재시도
-→ queue[1].prompt 읽기
-→ 즉시 이미지 1장 생성
-→ 반복
-```
+### 12.4 PHOTO-SCENE GATE
 
-prompt 파일을 읽은 뒤 이미지가 반환될 때까지:
+Git 보존 뒤 다음을 판정한다.
 
-- 다른 저장소 파일을 읽지 않는다.
-- 작업 보고를 작성하지 않는다.
-- 상태 문서를 열지 않는다.
-- 다른 슬롯 정보를 함께 넣지 않는다.
+1. 프레임 전체가 하나의 연속된 장면인가?
+2. 사진적 에디토리얼 이미지인가?
 
-### 12.4 상태 기록 시점
-
-이미지 생성 도중에는 `IMAGE_PLAN.md`나 `WORK_STATE.md`를 열어 상태를 기록하지 않는다.
-
-모든 이미지 생성 호출이 끝난 뒤 한 번에 제어 단계로 돌아와:
-
-1. `IMAGE_PLAN.md` 갱신
-2. `jobs/image_job.json` 상태 갱신
-3. `WORK_STATE.md` 갱신
-
-순서로 기록한다.
-
-이 원칙은 첫 이미지와 다음 이미지 사이에 운영 문맥이 끼어드는 것을 막기 위한 것이다.
-
-### 12.5 CONTEXT_FAILURE
-
-결과가 사진 한 장이 아니라 작업 화면·문서·UI·리포트형 구조이면 `CONTEXT_FAILURE`다.
+작업 화면·파일 트리·문서·UI·리포트·대시보드가 주된 구조라면 `CONTEXT_FAILURE`다.
 
 이 경우:
 
-- 결과 저장 금지
-- 유효 이미지 시도로 계산하지 않음
-- 남은 큐 실행 중단
-- 같은 대화에서 재생성 금지
-- 제어 단계로 돌아가 job 상태만 `CONTEXT_FAILURE`로 기록
+- 저장된 실패 이미지는 유지
+- 유효 사진 시도 횟수는 증가시키지 않음
+- 오염된 IMAGE PLANE 턴에서 추가 생성 금지
+- 다음 시도는 새 독립 IMAGE PLANE 턴
 
-### 12.6 정상 이미지 품질
+### 12.5 정상 사진 재시도
 
-정상 사진 결과의 품질·Politics/LIFE SCENE·해상도·재시도 기준은 `editorial/IMAGE_CONTRACT.md`를 따른다.
+PHOTO-SCENE을 통과한 정상 사진만 유효 시도로 계산한다.
+
+슬롯당 기본 최대 3회이며, 매 재시도도 새 독립 IMAGE PLANE 턴이다.
 
 ## 13. 월요일 09:00 — HTML 제작
 
@@ -404,6 +413,7 @@ prompt 파일을 읽은 뒤 이미지가 반환될 때까지:
 - DEEP DIVE는 연결 기사 바로 뒤
 - EDITOR'S AFTERWORD는 Sources 직전
 - 미사용 클래스·숨김 모듈·임시 주석 삭제
+- `image_runs/`의 ACCEPTED attempt를 발행용 자산으로 변환해 `archive/.../assets/`에 반영
 
 최종 발행은 모든 REQUIRED 이미지가 반영되고 화면 검수를 통과해야 가능하다.
 
@@ -447,9 +457,11 @@ python tools/validate_repository.py
 - LIFE SCENE 서사 실패 → SCENE MAP부터
 - PROLOGUE 실패 → PREVIEW MAP부터
 - EDITOR'S AFTERWORD 실패 → 실제 제작 후기 역할부터
-- 이미지 계획 실패 → 07:00의 해당 prompt 파일과 image job만 수정
-- 정상 이미지 품질 실패 → 해당 슬롯 재시도
-- `CONTEXT_FAILURE` → 같은 08:00 대화 중단 후 새 이미지 턴
+- 이미지 계획 실패 → 07:00 해당 prompt와 controller manifest 수정
+- 독립 IMAGE PLANE 생성 불가 → `DISPATCH_BLOCKED`
+- 생성 artifact Git 저장 불가 → `PERSISTENCE_BLOCKED`
+- 정상 이미지 품질 실패 → 해당 슬롯 새 독립 턴 재시도
+- `CONTEXT_FAILURE` → 실패 이미지 Git 보존 후 해당 IMAGE PLANE 종료, 새 독립 턴 재시도
 
 이미지 실패를 이유로 전체 지면 설계를 다시 하지 않는다.
 

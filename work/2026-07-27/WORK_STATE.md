@@ -2,33 +2,28 @@
 
 ```text
 STAGE: IMAGE_GENERATION
-ENTRYPOINT: jobs/image_job.json
+CONTROL_MANIFEST: jobs/image_job.json
+IMAGE_CONTRACT: editorial/IMAGE_CONTRACT.md
 MANUSCRIPT_STAGE: COMPLETE
 LAYOUT: COMPLETE
-IMAGES: CONTEXT_FAILURE
+IMAGES: READY
+GENERATION_MODE: ISOLATED_SCENE_TURN
+PERSISTENCE: GIT_REQUIRED
 HTML: PENDING
 SCREEN_REVIEW: PENDING
 PUBLISH: PENDING
-NEXT: start a new image turn, reset the dedicated image job to READY, and retry Cover first
+NEXT: dispatch Cover scene prompt into a clean image-only turn; do not generate from the controller turn
 ```
 
-08:00 이미지 예약 작업은 `jobs/image_job.json`을 진입점으로 실행되었다.
+현재 이미지 파이프라인은 `weekly-signal-image-job-v2`로 전환되었다.
 
-Cover 첫 이미지 생성 결과가 단일 연속 사진 장면이 아니라 문서형/UI형 이미지 작업 대시보드로 반환되어 `PHOTO-SCENE` 게이트를 통과하지 못했다.
+핵심 변경:
 
-현행 `editorial/IMAGE_CONTRACT.md`의 `CONTEXT_FAILURE` 규칙에 따라:
+- `jobs/image_job.json`은 CONTROL PLANE manifest이며 이미지 프롬프트가 아니다.
+- job·queue·repository를 읽은 동일 턴에서는 이미지 생성 도구를 호출하지 않는다.
+- 각 이미지는 scene prompt 전문 하나만 입력받는 새 독립 IMAGE PLANE 턴에서 생성한다.
+- 이미지 반환 뒤에만 Git 저장·상태 기록·품질 판정을 수행한다.
+- 생성된 모든 결과는 합격 여부와 관계없이 `work/2026-07-27/image_runs/`에 Git 보존한다.
+- UI·작업트리형 `CONTEXT_FAILURE`도 진단 자료로 저장하되 유효 시도로 계산하지 않는다.
 
-- 실패 이미지는 채택·저장하지 않았다.
-- 유효 사진 시도 횟수는 증가시키지 않았다.
-- 남은 6개 queue item은 실행하지 않았다.
-- 같은 대화에서 추가 이미지 생성을 진행하지 않는다.
-
-현재 상태:
-
-- `work/2026-07-27/LAYOUT_PLAN.md`: COMPLETE
-- `work/2026-07-27/IMAGE_PLAN.md`: CONTEXT_FAILURE
-- `jobs/image_job.json`: CONTEXT_FAILURE
-- 01~09 원고: COMPLETE / 미수정
-- 발행용 신규 이미지: 저장 없음
-
-다음 이미지 생성 시도는 새 이미지 턴에서 Cover부터 다시 시작해야 한다.
+기존 2026-08-08 Cover context failure 결과는 당시 저장되지 않았다. 새 v2 재시도부터 모든 생성 결과를 보존한다.
