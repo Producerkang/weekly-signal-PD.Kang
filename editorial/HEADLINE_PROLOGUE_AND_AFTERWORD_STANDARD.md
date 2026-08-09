@@ -69,10 +69,10 @@ Cover 한 문단 깊게 설명 → Economy 한 문단 깊게 설명 → Politics
 
 PROLOGUE는 독서 순서상 앞에 배치하지만 **작성은 뒤에서 한다.**
 
-다음이 모두 완성된 뒤 작성한다.
+다음이 모두 닫힌 뒤 작성한다.
 
 1. Cover Story와 분야별 일반 기사 전체
-2. DEEP DIVE
+2. DEEP DIVE는 `COMPLETE` 또는 편집 판단과 근거가 기록된 `OMIT`
 3. LIFE SCENE
 
 본문을 바로 쓰지 않는다. 먼저 `work/YYYY-MM-DD/08_prologue/PREVIEW_MAP.md`를 만든다.
@@ -103,7 +103,7 @@ PREVIEW MAP은 문장 초안이 아니라 **독자의 시선을 어디서 넓게
 
 ### 5.1 ISSUE READBACK
 
-완성된 일반 기사·DEEP DIVE·LIFE SCENE을 전체로 다시 읽는다.
+완성된 일반 기사·LIFE SCENE과, 제작된 경우 DEEP DIVE를 전체로 다시 읽는다.
 
 이 단계에서는 공통 주제나 교훈을 찾지 않는다. 대신 다음을 표시한다.
 
@@ -390,7 +390,7 @@ PANORAMA·ORIENTATION·FOCUS·ARTICLE PREVIEW는 내부 편집 기능이다.
 
 ## 9. EDITOR'S AFTERWORD의 목적
 
-EDITOR'S AFTERWORD는 한 호의 기사와 DEEP DIVE를 모두 읽은 뒤, Sources 앞에서 만나는 **에디터 후기**다.
+EDITOR'S AFTERWORD는 한 호의 기사와, 제작된 경우 DEEP DIVE를 모두 읽은 뒤 Sources 앞에서 만나는 **에디터 후기**다.
 
 이 섹션의 목적은 무엇인가를 `픽`하거나 이번 호의 대표 교훈을 선정하는 데 있지 않다. 편집자가 한 호의 조사·집필·편집을 마친 자리에서 실제로 남은 생각, 망설임, 인상, 미완의 질문을 독자에게 짧게 건넨다.
 
@@ -405,9 +405,9 @@ PROLOGUE와 달리 **제작 후 시점을 숨기지 않는다.** 다음과 같�
 
 ## 10. EDITOR'S AFTERWORD 작성과 배치
 
-EDITOR'S AFTERWORD는 일반 기사·DEEP DIVE·LIFE SCENE·PROLOGUE가 모두 완성된 뒤 마지막 편집 원고로 작성한다.
+EDITOR'S AFTERWORD는 일반 기사·LIFE SCENE·PROLOGUE가 모두 완성되고, DEEP DIVE가 `COMPLETE` 또는 근거 있는 `OMIT`으로 닫힌 뒤 마지막 편집 원고로 작성한다.
 
-최종 지면에서는 **모든 일반 기사와 각 기사에 연결된 DEEP DIVE 뒤, Sources 바로 앞**에 둔다. Sources는 참고자료 부록이므로 서사적 독서의 마지막 문장은 AFTERWORD가 맡는다.
+최종 지면에서는 **모든 일반 기사와 실제로 제작된 각 DEEP DIVE 뒤, Sources 바로 앞**에 둔다. Sources는 참고자료 부록이므로 서사적 독서의 마지막 문장은 AFTERWORD가 맡는다.
 
 독자는 본문을 모두 읽었다고 전제할 수 있다. 따라서 기사 내용을 다시 이해시키기 위한 배경 설명은 최소화한다.
 
