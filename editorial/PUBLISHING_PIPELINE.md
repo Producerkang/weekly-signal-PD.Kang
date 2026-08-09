@@ -20,7 +20,7 @@ Cover Story → Economy
 Politics → Society → Tech
 
 월요일 02:00 REVIEW DESK
-CROSS-ARTICLE REVIEW → 필요한 교정 → DEEP DIVE
+CROSS-ARTICLE REVIEW → 필요한 교정 → 필요한 경우 DEEP DIVE 또는 OMIT
 
 월요일 04:00 FEATURE DESK
 LIFE SCENE → PROLOGUE → EDITOR'S AFTERWORD
@@ -39,7 +39,7 @@ LAYOUT_PLAN → HTML → 화면 검수 → 발행
 
 - Cover Story, Economy, Politics, Society, Tech COMPLETE
 - CROSS-ARTICLE REVIEW COMPLETE
-- DEEP DIVE COMPLETE 또는 편집 판단상 OMIT
+- DEEP DIVE COMPLETE 또는 편집 판단과 근거가 기록된 OMIT
 - LIFE SCENE COMPLETE
 - PROLOGUE COMPLETE
 - EDITOR'S AFTERWORD COMPLETE
@@ -60,6 +60,7 @@ PUBLISH DESK는 지면 설계부터 최종 공개 반영까지 한 턴에서 처
 → HTML/CSS 제작
 → 1440 / 1366 / 1024 / 390 화면 검수
 → 문제 수정·재검수
+→ 보조 구조 검사
 → archive 반영
 → issues.json / latest.json / ISSUE_HISTORY.md 갱신
 → WORK_STATE PUBLISHED
@@ -100,14 +101,17 @@ archive/YYYY-MM-DD/
 
 기본 독서 순서:
 
-`Cover → Contents → LIFE SCENE → PROLOGUE → 본 기사와 연결 DEEP DIVE → EDITOR'S AFTERWORD → Sources`
+`Cover → Contents → LIFE SCENE → PROLOGUE → 본 기사와 실제로 제작된 연결 DEEP DIVE → EDITOR'S AFTERWORD → Sources`
+
+`DEEP_DIVE: OMIT`이면 DEEP DIVE DOM을 만들지 않는다.
 
 ## 7. 제작자 직접 검수
 
 ### 원고
 
 - Cover Story와 분야별 일반 기사 전체 존재
-- DEEP DIVE가 일반 기사를 반복하지 않음
+- DEEP DIVE가 제작된 경우 일반 기사를 반복하지 않음
+- `DEEP_DIVE: OMIT`인 경우 편집 판단과 근거가 기록됨
 - LIFE SCENE이 개인 조언으로 끝나지 않음
 - PROLOGUE가 기사 결론을 미리 소진하지 않음
 - EDITOR'S AFTERWORD가 기사 요약이나 방법론 보고서가 아님
@@ -128,9 +132,10 @@ archive/YYYY-MM-DD/
 필요하면:
 
 ```bash
-python -m pip install -r requirements-tools.txt
 python tools/validate_repository.py
 ```
+
+현행 검사기는 표준 라이브러리만 사용한다. 별도 `requirements-tools.txt` 설치 단계는 없다.
 
 검사기는 기술적 실수를 찾는 보조 수단이다. 검사 통과는 발행 품질 통과와 동일하지 않다.
 
@@ -164,7 +169,7 @@ GitHub Pages는 `main` 루트의 정적 파일을 그대로 사용한다.
 
 - 원고 실패 → 해당 원고 단계
 - CROSS-ARTICLE REVIEW 실패 → 해당 기사만 교정
-- DEEP DIVE 실패 → 해당 심화 제작 단계
+- DEEP DIVE 실패 → 해당 심화 제작 단계 또는 OMIT 판정 재검토
 - LIFE SCENE / PROLOGUE / AFTERWORD 실패 → 해당 편집 원고 단계
 - 지면 실패 → 09:00 LAYOUT_PLAN
 - HTML 구조 실패 → 09:00 HTML
