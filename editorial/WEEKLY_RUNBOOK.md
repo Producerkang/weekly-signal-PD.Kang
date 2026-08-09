@@ -1,6 +1,8 @@
 # WEEKLY SIGNAL 주간 제작 절차
 
-이 문서는 한 호를 조사·작성·편집·검수·발행하는 실행 순서를 규정한다. GitHub Actions는 사용하지 않는다. 최종 통과 여부는 자동 검사보다 제작자의 직접 편집 검수로 결정한다.
+이 문서는 한 호를 조사·작성·편집·검수·발행하는 현행 실행 순서를 규정한다. GitHub Actions는 사용하지 않는다. 최종 통과 여부는 자동 검사보다 제작자의 직접 편집 검수로 결정한다.
+
+현재 운영 경로는 **이미지 생성 없는 5-페이즈 파이프라인**이다.
 
 ## 1. 작업 진입점
 
@@ -12,17 +14,17 @@ work/YYYY-MM-DD/WORK_STATE.md
 
 에서 시작한다.
 
-현재 운영 경로에서는 이미지 생성 단계를 사용하지 않는다. 이미지 관련 job·queue·prompt·attempt 기록은 과거 실험 자료로 남아 있을 수 있으나 현행 제작 선후관계에 참여하지 않는다.
+`WORK_STATE.md`가 실제 선후관계와 완료 상태를 소유한다. 이미지 관련 job·queue·prompt·attempt 기록은 과거 실험 자료이며 현행 제작 선후관계에 참여하지 않는다.
 
 ## 2. GitHub 작업영역
 
-- `work/YYYY-MM-DD/` = 제작 상태와 검증·흐름설계·원고·지면 계획
+- `work/YYYY-MM-DD/` = 제작 상태, 검증, 흐름 설계, 원고, 지면 계획
 - `archive/YYYY-MM-DD/` = 독자에게 공개되는 완성 발행본
-- 이미지 관련 `jobs/`, `image_prompts/`, `image_runs/`는 현행 발행 경로의 필수 요소가 아니다.
+- `jobs/`, 과거 `IMAGE_PLAN.md`, `image_prompts/`, `image_runs/` = 비활성 과거 기록
+
+`work/`는 현행 정상 제작공간이다. 발행 후보에서만 임시·미사용 파일을 제거한다.
 
 ## 3. 기본 상태
-
-각 회차의 `WORK_STATE.md`가 전체 제작 상태를 소유한다.
 
 주요 상태:
 
@@ -48,7 +50,7 @@ work/YYYY-MM-DD/WORK_STATE.md
 - Politics 일반 기사 1편
 - Society 일반 기사 1편
 - Tech 일반 기사 1편
-- DEEP DIVE 1~2편
+- DEEP DIVE — 필요할 때 1~2편, 불필요하면 근거 기록 후 `OMIT`
 - LIFE SCENE 1편
 - PROLOGUE 1편
 - EDITOR'S AFTERWORD 1편
@@ -93,16 +95,16 @@ Cover Story와 Economy·Politics·Society·Tech가 모두 COMPLETE가 된 뒤 �
 - 분야별 깊이 편차
 - 출처 역할 편중
 - 빠진 배경지식
-- FLOW가 같은 템플릿으로 수렴하지 않는지
+- FLOW 템플릿화
 - 한 호 전체 정보 밀도
 
 수정이 필요하면 해당 기사만 IN_REVIEW로 되돌리고 다시 COMPLETE로 닫는다.
 
 ## 7. DEEP DIVE
 
-일반 기사 전체 비교와 필요한 교정이 끝난 뒤 심화가 필요한 기사만 선택한다.
+DEEP DIVE는 의무 편수가 아니다. 일반 기사 전체 비교와 필요한 교정이 끝난 뒤, 심화가 실제로 필요한 기사만 선택한다.
 
-필수 확인:
+만드는 경우 필수 확인:
 
 - 일반 기사가 이미 답한 질문
 - DEEP DIVE가 새로 답할 단 하나의 질문
@@ -111,6 +113,8 @@ Cover Story와 Economy·Politics·Society·Tech가 모두 COMPLETE가 된 뒤 �
 - 일반 기사와 다른 심화 방식
 
 같은 정의·원인·경로·결론을 반복하면 실패다.
+
+심화 질문이나 새 근거가 충분하지 않으면 억지로 작성하지 않는다. 이 경우 `WORK_STATE.md`에 `DEEP_DIVE: OMIT`과 근거를 기록하고 다음 단계로 넘어간다.
 
 ## 8. LIFE SCENE
 
@@ -129,11 +133,11 @@ SUBJECT SELECT
 → COMPLETE
 ```
 
-현재 운영 경로에서는 LIFE SCENE용 생성 이미지를 필수로 요구하지 않는다.
+LIFE SCENE용 생성 이미지를 필수로 요구하지 않는다.
 
 ## 9. PROLOGUE
 
-일반 기사·DEEP DIVE·LIFE SCENE이 모두 COMPLETE가 된 뒤 작성한다.
+일반 기사 전체, CROSS-ARTICLE REVIEW, DEEP DIVE의 `COMPLETE` 또는 근거 있는 `OMIT`, LIFE SCENE이 모두 닫힌 뒤 작성한다.
 
 ```text
 ISSUE READBACK
@@ -179,13 +183,11 @@ ISSUE READBACK
 월요일 09:00  PUBLISH DESK
 ```
 
-05:00 이전의 네 제작 턴은 2시간 간격이다. 07:00과 08:00에는 별도 제작 턴을 두지 않는다.
+05:00 이전 네 제작 턴은 2시간 간격이다. 07:00과 08:00에는 별도 제작 턴을 두지 않는다.
 
 각 턴은 시작 시점의 GitHub `main`, 현행 편집 계약, 해당 회차 `WORK_STATE.md`를 읽고 선행 완료 상태를 확인한다.
 
 ## 12. 일요일 22:00 — FRONT DESK
-
-순서:
 
 ```text
 Cover Story
@@ -201,11 +203,9 @@ Cover Story가 완료되지 않으면 Economy를 건너뛰어 작성하지 않�
 
 - `COVER_STORY: COMPLETE`
 - `ECONOMY: COMPLETE`
-- 다음 페이즈가 `SECTION DESK`로 명확히 기록됨
+- `NEXT: 00:00 SECTION DESK`
 
 ## 13. 월요일 00:00 — SECTION DESK
-
-순서:
 
 ```text
 Politics
@@ -217,39 +217,35 @@ Politics
 → WORK_STATE 갱신
 ```
 
-각 기사는 기존 기사와 독립적인 사건·핵심 질문·1차 자료를 가져야 한다. 앞 기사를 닫기 전 다음 기사로 넘어가지 않는다.
+각 기사는 기존 기사와 독립적인 사건·핵심 질문·1차 자료를 가져야 한다.
 
 완료 조건:
 
 - `POLITICS: COMPLETE`
 - `SOCIETY: COMPLETE`
 - `TECH: COMPLETE`
-- 다섯 일반 기사 전체가 COMPLETE
+- 다섯 일반 기사 전체 COMPLETE
+- `NEXT: 02:00 REVIEW DESK`
 
 ## 14. 월요일 02:00 — REVIEW DESK
-
-순서:
 
 ```text
 CROSS-ARTICLE REVIEW
 → 필요한 기사만 교정·재검수
 → 전체 일반 기사 COMPLETE 확인
-→ DEEP DIVE 선정·제작
-→ COMPLETE
+→ DEEP DIVE 필요성 판정
+→ 필요한 경우 DEEP DIVE 제작 또는 근거와 함께 OMIT
 → WORK_STATE 갱신
 ```
-
-CROSS-ARTICLE REVIEW에서 결함이 확인되면 해당 기사만 IN_REVIEW로 되돌린다. 교정을 완료하기 전 DEEP DIVE로 넘어가지 않는다.
 
 완료 조건:
 
 - `CROSS_ARTICLE_REVIEW: COMPLETE`
 - 교정 대상 일반 기사 모두 다시 COMPLETE
-- `DEEP_DIVE: COMPLETE` 또는 편집 판단상 `OMIT`
+- `DEEP_DIVE: COMPLETE` 또는 근거 있는 `OMIT`
+- `NEXT: 04:00 FEATURE DESK`
 
 ## 15. 월요일 04:00 — FEATURE DESK
-
-순서:
 
 ```text
 LIFE SCENE
@@ -268,8 +264,9 @@ LIFE SCENE이 닫히기 전 PROLOGUE를 작성하지 않는다. PROLOGUE가 닫�
 - `LIFE_SCENE: COMPLETE`
 - `PROLOGUE: COMPLETE`
 - `EDITOR_AFTERWORD: COMPLETE`
-- 모든 원고 제작 완료
-- 다음 페이즈가 `PUBLISH DESK`로 기록됨
+- 모든 필수 원고 제작 완료
+- `DEEP_DIVE: COMPLETE` 또는 `OMIT`
+- `NEXT: 09:00 PUBLISH DESK`
 
 ## 16. 월요일 09:00 — PUBLISH DESK
 
@@ -285,6 +282,7 @@ LIFE SCENE이 닫히기 전 PROLOGUE를 작성하지 않는다. PROLOGUE가 닫�
 → HTML/CSS 제작
 → 실제 화면 검수
 → 문제 수정·재검수
+→ 보조 구조 검사
 → archive 반영
 → 발행 메타데이터 갱신
 → PUBLISHED
@@ -312,8 +310,10 @@ LIFE SCENE이 닫히기 전 PROLOGUE를 작성하지 않는다. PROLOGUE가 닫�
 - `LAYOUT_PLAN.md`를 실제 DOM에 반영
 - CSS와 최소 JavaScript는 회차 `index.html`에 내장
 - 목차·내비게이션·DOM 순서 일치
-- DEEP DIVE는 연결 기사 바로 뒤
+- DEEP DIVE가 COMPLETE인 경우에만 연결 기사 바로 뒤에 배치
+- `DEEP_DIVE: OMIT`이면 DEEP DIVE DOM을 만들지 않음
 - EDITOR'S AFTERWORD는 Sources 직전
+- 폐기된 `EDITOR'S PICK`을 만들지 않음
 - 미사용 클래스·숨김 모듈·임시 주석 삭제
 - 이미지가 없어도 모든 섹션이 완결된 편집 지면으로 보이게 구성
 - 존재하지 않는 이미지 파일이나 placeholder 경로를 참조하지 않음
@@ -346,11 +346,17 @@ LIFE SCENE이 닫히기 전 PROLOGUE를 작성하지 않는다. PROLOGUE가 닫�
 필요하면 다음을 직접 실행한다.
 
 ```bash
-python -m pip install -r requirements-tools.txt
 python tools/validate_repository.py
 ```
 
-이 검사는 기술적 실수를 찾는 보조 수단이다.
+현행 검사기는 다음을 전제로 한다.
+
+- `work/`는 정상 제작공간
+- `EDITOR'S PICK`은 금지된 레거시 섹션
+- DEEP DIVE는 조건부이며 `OMIT` 가능
+- 이미지와 `assets/`는 실제 사용 시에만 필요
+
+이 검사는 기술적 실수를 찾는 보조 수단이며 최종 편집 검수를 대체하지 않는다.
 
 ## 19. 실패 처리
 
@@ -358,7 +364,7 @@ python tools/validate_repository.py
 
 - 일반 기사 FLOW 실패 → 해당 기사 FLOW부터
 - CROSS-ARTICLE REVIEW 실패 → 해당 일반 기사만 교정
-- DEEP DIVE 실패 → 심화 질문·근거 단계부터
+- DEEP DIVE 실패 → 심화 질문·근거 단계부터, 필요 없으면 OMIT 판정 재검토
 - LIFE SCENE 서사 실패 → SCENE MAP부터
 - PROLOGUE 실패 → PREVIEW MAP부터
 - EDITOR'S AFTERWORD 실패 → 실제 제작 후기 역할부터
