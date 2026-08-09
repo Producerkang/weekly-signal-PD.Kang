@@ -13,13 +13,13 @@
 3. Politics 일반 기사 1편
 4. Society 일반 기사 1편
 5. Tech 일반 기사 1편
-6. DEEP DIVE 1~2편
+6. DEEP DIVE — 필요할 때 1~2편, 불필요하면 근거를 기록하고 `OMIT`
 7. LIFE SCENE 1편
 8. PROLOGUE 1편
 9. EDITOR'S AFTERWORD 1편
 10. Sources
 
-`EDITOR'S PICK`은 폐기된 레거시 섹션이다.
+`EDITOR'S PICK`은 폐기된 레거시 섹션이다. 다시 만들지 않는다.
 
 Cover Story는 분야 일반 기사를 대체하지 않는다. DATA와 WATCH도 일반 기사 대체물이 아니다.
 
@@ -43,9 +43,27 @@ Cover Story는 분야 일반 기사를 대체하지 않는다. DATA와 WATCH도 
 - Deck에 본문의 지식이 거의 모두 들어 있음
 - 같은 인과를 표현만 바꿔 반복함
 
-## 3. DEEP DIVE 차별성 게이트
+## 3. CROSS-ARTICLE REVIEW 게이트
 
-필수 확인:
+Cover Story와 Economy·Politics·Society·Tech가 모두 COMPLETE된 뒤 다섯 기사를 한꺼번에 비교한다.
+
+확인:
+
+- 주제·설명 중복
+- 같은 결론·수사 반복
+- 분야별 깊이 편차
+- 출처 역할 편중
+- 빠진 배경지식
+- FLOW 템플릿화
+- 한 호 전체 정보 밀도
+
+문제가 있으면 해당 기사만 `IN_REVIEW`로 되돌리고 수정·재검수한다. 다섯 일반 기사가 다시 COMPLETE가 되기 전에는 DEEP DIVE로 넘어가지 않는다.
+
+## 4. DEEP DIVE 선정·차별성 게이트
+
+DEEP DIVE는 의무 편수가 아니다. 일반 기사에서 해소되지 않은 심화 질문이 실제로 있을 때만 만든다.
+
+만드는 경우 필수 확인:
 
 - 일반 기사가 이미 답한 질문
 - DEEP DIVE가 새로 답할 단 하나의 질문
@@ -60,7 +78,9 @@ Cover Story는 분야 일반 기사를 대체하지 않는다. DATA와 WATCH도 
 - 일반 기사 소제목을 길게 반복
 - 새 정보 없이 표나 카드만 추가
 
-## 4. LIFE SCENE 게이트
+적절한 심화 질문을 만들 수 없거나 새 주장·독립 근거가 부족하면 억지로 작성하지 않는다. `WORK_STATE.md`에 `DEEP_DIVE: OMIT`과 그 근거를 기록하면 이 게이트를 통과할 수 있다.
+
+## 5. LIFE SCENE 게이트
 
 LIFE SCENE은 제도·기관·서비스·절차의 문제가 개인의 생활에서 어떻게 체감되는지를 가상의 한 인물과 하나의 사건으로 보여준다.
 
@@ -78,7 +98,7 @@ LIFE SCENE은 제도·기관·서비스·절차의 문제가 개인의 생활에
 - 실제 취재 사례처럼 보이게 만든 허구
 - 생활 마찰을 체크리스트처럼 배치함
 
-## 5. PROLOGUE 게이트
+## 6. PROLOGUE 게이트
 
 PROLOGUE는 한 호의 지면을 넓게 열었다가 몇 군데로 시선을 좁히고 본문으로 넘기는 매거진 도입부다.
 
@@ -90,9 +110,9 @@ PROLOGUE는 한 호의 지면을 넓게 열었다가 몇 군데로 시선을 좁
 - 선택 기사 미니 초록 모음으로 변하지 않음
 - PANORAMA의 넓은 커버리지를 뒤에서 다시 전부 반복하지 않음
 
-## 6. EDITOR'S AFTERWORD 게이트
+## 7. EDITOR'S AFTERWORD 게이트
 
-EDITOR'S AFTERWORD는 모든 기사와 DEEP DIVE 뒤, Sources 직전에 읽는 실제 에디터 후기다.
+EDITOR'S AFTERWORD는 모든 기사와 선택된 DEEP DIVE 뒤, Sources 직전에 읽는 실제 에디터 후기다.
 
 통과 조건:
 
@@ -103,7 +123,7 @@ EDITOR'S AFTERWORD는 모든 기사와 DEEP DIVE 뒤, Sources 직전에 읽는 �
 - 내부 VERIFY·FLOW·검수 방법론 보고서가 아니다.
 - 끝을 질문·감사·다음 호 예고로 의무적으로 닫지 않는다.
 
-## 7. 이미지 정책
+## 8. 이미지 정책
 
 현재 운영 경로에서는 이미지 품질 게이트를 발행 차단 조건으로 사용하지 않는다.
 
@@ -111,11 +131,11 @@ EDITOR'S AFTERWORD는 모든 기사와 DEEP DIVE 뒤, Sources 직전에 읽는 �
 - 빈 이미지 placeholder를 만들지 않는다.
 - 존재하지 않는 이미지 파일을 참조하지 않는다.
 - 이전 회차 이미지를 새 회차 대표 이미지로 임의 재사용하지 않는다.
-- 실제 사용 가능한 정적 자산이 별도로 확정된 경우에만 그 자산의 품질과 크롭을 검수한다.
+- 실제 사용 가능한 정적 자산이 별도로 확정된 경우에만 그 자산의 품질과 경로를 검수한다.
 
 과거 `IMAGE_CONTRACT.md`, `image_job`, `CONTEXT_FAILURE`, 이미지 attempt 기록은 향후 별도 이미지 파이프라인을 재설계할 때 참고할 수 있는 비활성 기록이며 현행 발행 승인에 영향을 주지 않는다.
 
-## 8. 잡지 지면 게이트
+## 9. 잡지 지면 게이트
 
 `templates/ISSUE_TEMPLATE.html`은 DOM 시작점일 뿐 완성 디자인이 아니다.
 
@@ -130,7 +150,7 @@ EDITOR'S AFTERWORD는 모든 기사와 DEEP DIVE 뒤, Sources 직전에 읽는 �
 - EDITOR'S AFTERWORD → Sources가 자연스럽게 닫히는가
 - 1440px, 1366px, 1024px, 390px에서 문제가 없는가
 
-## 9. 실제 화면 게이트
+## 10. 실제 화면 게이트
 
 HTML 코드만 보고 통과시키지 않는다.
 
@@ -144,13 +164,15 @@ HTML 코드만 보고 통과시키지 않는다.
 - 링크와 상대경로
 - 깨진 이미지 또는 존재하지 않는 자산 요청 여부
 
-## 10. 발행 차단
+## 11. 발행 차단
 
 다음 상태에서는 발행하지 않는다.
 
 - 기본 기사 누락
 - 원고 품질 게이트 실패
-- DEEP DIVE 중복
+- CROSS-ARTICLE REVIEW 미완료
+- DEEP DIVE를 만들었으나 중복 게이트 실패
+- DEEP DIVE가 필요하지 않은데 `OMIT` 근거도 없음
 - LIFE SCENE 서사 실패
 - PROLOGUE 또는 AFTERWORD 역할 실패
 - LAYOUT_PLAN 미완료
