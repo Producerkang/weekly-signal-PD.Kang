@@ -1,0 +1,46 @@
+# ISSUE 03 WORK STATE
+
+```text
+ISSUE: 03
+ISSUE_START: 2026-08-03
+ISSUE_END: 2026-08-09
+STAGE: PENDING
+COVER_STORY: PENDING
+ECONOMY: PENDING
+POLITICS: PENDING
+SOCIETY: PENDING
+TECH: PENDING
+CROSS_ARTICLE_REVIEW: PENDING
+DEEP_DIVE: PENDING
+LIFE_SCENE: PENDING
+PROLOGUE: PENDING
+EDITOR_AFTERWORD: PENDING
+LAYOUT: PENDING
+IMAGES: NOT_REQUIRED
+HTML: PENDING
+SCREEN_REVIEW: PENDING
+PUBLISH: PENDING
+NEXT: 2026-08-09 22:00 Cover Story 제작
+```
+
+Issue 03은 현행 이미지 없는 제작 경로를 사용한다.
+
+주요 실행 순서:
+
+```text
+2026-08-09 22:00 Cover Story
+→ 23:00 Economy
+→ 2026-08-10 00:00 Politics
+→ 01:00 Society
+→ 02:00 Tech
+→ 03:00 CROSS-ARTICLE REVIEW
+→ 04:00 DEEP DIVE
+→ 05:00 LIFE SCENE
+→ 06:00 PROLOGUE + EDITOR'S AFTERWORD
+→ 07:00 LAYOUT_PLAN + HTML 발행 준비
+→ 09:00 HTML 제작 + 화면 검수 + 발행
+```
+
+08:00 이미지 작업은 실행하지 않는다. 07:00 작업은 이미지 프롬프트, `IMAGE_PLAN.md`, `jobs/image_job.json`을 만들거나 다음 단계로 전달하지 않으며 `WORK_STATE.md`를 `HTML_READY`로 넘긴다.
+
+각 예약 작업은 실행 시점의 GitHub `main`과 현행 `README.md`, `editorial/WEEKLY_RUNBOOK.md`, 관련 편집 계약, 이 `WORK_STATE.md`를 기준으로 진행한다.
