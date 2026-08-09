@@ -4,9 +4,11 @@ status: READY
 layout_dependency: COMPLETE
 issue: 2026-07-27—2026-08-02
 controller_manifest: `jobs/image_job.json`
-generation_mode: `ISOLATED_SCENE_TURN`
-persistence: `GIT_REQUIRED`
+generation_mode: `INLINE_SCENE_EXECUTION`
+persistence_target: `GIT`
 run_root: `work/2026-07-27/image_runs/`
+run_date: `2026-08-10`
+issue_start: `2026-07-27`
 
 ## Queue
 
@@ -20,17 +22,19 @@ run_root: `work/2026-07-27/image_runs/`
 | 6 | Tech | REQUIRED | `image_prompts/06_tech.txt` | `image_runs/06_tech/` | `tech.webp` | READY | 0/3 | 3:2 | 2100×1400 |
 | 7 | LIFE SCENE | REQUIRED | `image_prompts/07_life_scene.txt` | `image_runs/07_life_scene/` | `life-scene.webp` | READY | 0/3 | 4:5 | 2000×2500 |
 
-## v2 execution rule
+## v2.1 execution rule
 
-- `jobs/image_job.json`은 CONTROL PLANE manifest다.
-- job이나 repository를 읽은 턴에서는 이미지 생성 도구를 호출하지 않는다.
-- 각 slot은 scene prompt 전문만 전달받는 새 독립 이미지 턴에서 생성한다.
-- 생성 결과는 판정 전에 `image_runs/<slot>/attempt-NN.<ext>`로 Git에 저장한다.
-- `CONTEXT_FAILURE` 결과도 진단용으로 저장하지만 유효 사진 시도에는 포함하지 않는다.
-- Git 저장이 되지 않으면 `PERSISTENCE_BLOCKED`로 중단한다.
+- `jobs/image_job.json`은 제어 manifest이지만, 같은 08:00 실행 턴에서 이미지 생성 도구 호출이 허용된다.
+- READY slot의 scene prompt를 읽은 직후 그 전문을 그대로 이미지 장면 지시로 사용한다.
+- prompt를 읽은 뒤 이미지 호출 전에는 다른 파일 읽기·상태 보고·다른 slot 준비를 하지 않는다.
+- scene prompt에 GitHub, queue, 저장 경로, 작업 상태 같은 운영 언어를 추가하지 않는다.
+- 별도 대화창이나 독립 IMAGE PLANE 생성은 요구하지 않는다.
+- 생성 결과는 가능한 경우 `image_runs/<slot>/attempt-NN.<ext>`로 Git에 보존한다.
+- `CONTEXT_FAILURE` 결과도 진단용 보존 대상이지만 유효 사진 시도에는 포함하지 않는다.
+- 저장 기능이 즉시 가능하지 않더라도 이미지 생성 자체를 사전에 차단하지 않는다.
 
 ## prior context failures
 
 2026-08-08의 기존 방식과 dedicated-job v1 재시험에서 Cover가 작업 화면·문서/UI형 결과로 두 차례 실패했다. 두 결과는 당시 계약에 따라 저장되지 않았으며 유효 사진 시도에는 포함하지 않는다.
 
-이번 재시도부터는 `weekly-signal-image-job-v2` 격리 규칙과 Git 영구 보존 규칙을 적용한다.
+이번 재시도부터는 `weekly-signal-image-job-v2.1` 실행 규칙을 적용한다.
