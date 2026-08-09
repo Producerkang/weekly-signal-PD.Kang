@@ -32,7 +32,7 @@ work/YYYY-MM-DD/WORK_STATE.md
 |---|---|---|
 | 일요일 22:00 | FRONT DESK | Cover Story → Economy |
 | 월요일 00:00 | SECTION DESK | Politics → Society → Tech |
-| 월요일 02:00 | REVIEW DESK | CROSS-ARTICLE REVIEW → 필요한 교정 → DEEP DIVE |
+| 월요일 02:00 | REVIEW DESK | CROSS-ARTICLE REVIEW → 필요한 교정 → 필요한 경우 DEEP DIVE |
 | 월요일 04:00 | FEATURE DESK | LIFE SCENE → PROLOGUE → EDITOR'S AFTERWORD |
 | 월요일 09:00 | PUBLISH DESK | LAYOUT_PLAN → HTML → 화면 검수 → 발행 |
 
@@ -70,6 +70,8 @@ Politics
 
 앞 작업이 COMPLETE되지 않으면 뒤 작업을 건너뛰어 작성하지 않습니다. 실패한 단위만 수정·재검수합니다.
 
+REVIEW DESK에서 DEEP DIVE는 의무 편수가 아닙니다. 실제 심화 질문과 새 근거가 충분할 때만 1~2편을 만들고, 불필요하면 근거를 기록한 뒤 `DEEP_DIVE: OMIT`으로 닫습니다.
+
 ---
 
 ## 4. 09:00 — PUBLISH DESK
@@ -94,7 +96,8 @@ Politics
 
 - COMPLETE 원고만 사용
 - Contents와 실제 DOM 순서 일치
-- DEEP DIVE는 연결 기사 바로 뒤
+- DEEP DIVE가 COMPLETE인 경우에만 연결 기사 바로 뒤에 배치
+- `DEEP_DIVE: OMIT`이면 DEEP DIVE DOM을 만들지 않음
 - EDITOR'S AFTERWORD는 Sources 직전
 - 이미지 없이도 모든 섹션이 시각적으로 완결되도록 구성
 - 존재하지 않는 이미지 파일이나 placeholder를 참조하지 않음
@@ -112,6 +115,7 @@ Politics
 
 주요 문서:
 
+- `EDITORIAL_STANDARD.md`
 - `WEEKLY_RUNBOOK.md`
 - `ARTICLE_WRITING_STANDARD.md`
 - `ISSUE_QUALITY_GATE.md`
@@ -123,7 +127,7 @@ Politics
 - `LAYOUT_SYSTEM.md`
 - `PUBLISHING_PIPELINE.md`
 
-이미지 관련 문서는 향후 이미지 파이프라인을 별도로 재설계할 때 참고하는 비활성 계약으로 취급합니다.
+이미지 관련 문서는 향후 이미지 파이프라인을 별도로 재설계할 때 참고하는 **비활성·아카이브 계약**으로 취급합니다. `jobs/image_job.json`도 `ARCHIVED_DISABLED` 상태이며 실행 manifest가 아닙니다.
 
 ### `work/YYYY-MM-DD/`
 
@@ -155,7 +159,7 @@ archive/YYYY-MM-DD/
 - Politics 1편
 - Society 1편
 - Tech 1편
-- DEEP DIVE 1~2편
+- DEEP DIVE — 필요할 때 1~2편, 불필요하면 근거 기록 후 `OMIT`
 - LIFE SCENE 1편
 - PROLOGUE 1편
 - EDITOR'S AFTERWORD 1편
@@ -173,7 +177,7 @@ Cover
 → Cover Story
 → Economy
 → Politics
-→ 연결 DEEP DIVE
+→ 연결 DEEP DIVE (있는 경우)
 → Society
 → Tech
 → 선택적 DATA / WATCH
@@ -181,7 +185,7 @@ Cover
 → Sources
 ```
 
-DEEP DIVE는 연결된 일반 기사 바로 뒤에 둡니다.
+DEEP DIVE를 제작한 경우 심화 대상 일반 기사 바로 뒤에 둡니다.
 
 ---
 
@@ -195,7 +199,7 @@ Cover Story → Economy
 Politics → Society → Tech
 
 02:00 REVIEW DESK
-CROSS-ARTICLE REVIEW → 교정 → DEEP DIVE
+CROSS-ARTICLE REVIEW → 교정 → 필요한 경우 DEEP DIVE 또는 OMIT
 
 04:00 FEATURE DESK
 LIFE SCENE → PROLOGUE → EDITOR'S AFTERWORD
