@@ -1,22 +1,25 @@
 {
-  "schema": "weekly-signal-image-job-v2",
+  "schema": "weekly-signal-image-job-v2.1",
   "state": "READY",
-  "mode": "CONTROL_ONLY",
-  "scheduled_date": "2026-08-10",
+  "mode": "INLINE_SCENE_EXECUTION",
+  "run_date": "2026-08-10",
+  "issue_start": "2026-07-27",
+  "work_root": "work/2026-07-27",
   "contract": "jobs/IMAGE_JOB_V2.md",
-  "isolation": {
-    "controller_calls_image_tool": false,
-    "generator_input": "SCENE_PROMPT_ONLY",
-    "one_scene_per_turn": true,
-    "generator_repo_reads_before_generation": 0,
-    "generator_receives_job_metadata": false
+  "generation": {
+    "controller_calls_image_tool": true,
+    "scene_prompt_is_generation_instruction": true,
+    "one_slot_at_a_time": true,
+    "no_operational_rewrite_before_image_call": true,
+    "do_not_add_repo_terms_to_scene_prompt": true
   },
   "persistence": {
-    "required": true,
-    "persist_all_results": true,
+    "target": "GIT",
+    "persist_generated_results": true,
     "persist_context_failures": true,
     "run_root": "work/2026-07-27/image_runs",
-    "commit_before_next_slot": true
+    "temporary_only_storage": false,
+    "persistence_must_not_block_generation": true
   },
   "after_run": {
     "image_plan": "work/2026-07-27/IMAGE_PLAN.md",
