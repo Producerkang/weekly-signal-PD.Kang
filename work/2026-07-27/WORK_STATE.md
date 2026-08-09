@@ -1,21 +1,25 @@
 # ISSUE 02 WORK STATE
 
 ```text
-STAGE: HTML_READY
+STAGE: PUBLISHED
 MANUSCRIPT_STAGE: COMPLETE
 LAYOUT: COMPLETE
 IMAGES: NOT_REQUIRED
-HTML: READY
-SCREEN_REVIEW: PENDING
-PUBLISH: PENDING
-NEXT: 09:00 HTML 제작 + 화면 검수 + 발행
+HTML: COMPLETE
+SCREEN_REVIEW: DEFERRED
+PUBLISH: PUBLISHED
+PUBLISHED_AT: 2026-08-09T19:51:00+09:00
+NEXT: ISSUE 03 / work/2026-08-03/WORK_STATE.md
 ```
 
-현행 제작 경로는 이미지 생성 단계를 사용하지 않는다.
+Issue 02는 이미지 생성 단계를 제외한 현행 경로로 최종 재발행됐다.
 
-- 01~09 원고는 COMPLETE 상태다.
-- `LAYOUT_PLAN.md`는 이미지 없이 완결되는 지면 설계로 갱신됐다.
-- 과거 `IMAGE_PLAN.md`, `image_prompts/`, `image_runs/`, `jobs/image_job.json`은 진단 기록으로만 남으며 현재 발행 선행 조건이 아니다.
-- 07:00 이후 08:00 작업 없이 09:00 HTML 제작으로 바로 이어진다.
-- 새 이미지 미확보, 과거 `CONTEXT_FAILURE`, 이미지 attempt 상태는 발행 차단 사유가 아니다.
-- 최종 HTML은 존재하지 않는 이미지 경로를 참조하지 않고 이전 회차 이미지를 임의 재사용하지 않는다.
+- 최종 원고 흐름을 기준으로 `archive/2026-07-27/index.html`을 다시 구성했다.
+- 레거시 `EDITOR'S PICK`과 별도 WATCH 섹션을 제거했다.
+- 최종 Society는 방학 틈새돌봄, Tech는 공공나노팹센터, DEEP DIVE는 한·메르코수르 비준·발효 구조로 반영했다.
+- LIFE SCENE과 PROLOGUE, EDITOR'S AFTERWORD를 최종 원고 흐름에 맞춰 반영했다.
+- 새 이미지가 없는 상태에서 완결되도록 Cover와 기사 지면을 HTML/CSS 중심으로 구성했다.
+- 기존 Issue 02 임시·재사용 이미지 자산은 최종 아카이브에서 제거했다.
+- `latest.json`, `issues.json`, `ISSUE_HISTORY.md`를 최종 재발행 상태로 갱신했다.
+
+이 실행 환경에서는 실제 브라우저 폭별 시각 검수를 수행하지 못했으므로 `SCREEN_REVIEW`는 `DEFERRED`로 기록한다. 공개 파일 반영은 사용자 지시에 따라 완료했다.
