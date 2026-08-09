@@ -10,26 +10,64 @@
 - `archive/YYYY-MM-DD/`에는 공개 가능한 최종 `index.html`과 실제로 사용되는 정적 자산만 둔다.
 - 이미지 관련 `jobs/`, `image_prompts/`, `image_runs/`는 과거 실험·진단 기록으로 남을 수 있으나 현행 발행 경로의 필수 입력이 아니다.
 
-## 2. 제작 순서
+## 2. 5-페이즈 제작 순서
 
 ```text
-원고 제작
-→ CROSS-ARTICLE REVIEW
-→ DEEP DIVE
-→ LIFE SCENE
-→ PROLOGUE
-→ EDITOR'S AFTERWORD
-→ 07:00 LAYOUT_PLAN + HTML 발행 준비
-→ 09:00 HTML + 화면 검수 + 발행
+일요일 22:00 FRONT DESK
+Cover Story → Economy
+
+월요일 00:00 SECTION DESK
+Politics → Society → Tech
+
+월요일 02:00 REVIEW DESK
+CROSS-ARTICLE REVIEW → 필요한 교정 → DEEP DIVE
+
+월요일 04:00 FEATURE DESK
+LIFE SCENE → PROLOGUE → EDITOR'S AFTERWORD
+
+월요일 09:00 PUBLISH DESK
+LAYOUT_PLAN → HTML → 화면 검수 → 발행
 ```
 
-07:00과 09:00 사이에 08:00 이미지 제작 단계는 두지 않는다.
+05:00 이전 네 제작 턴은 2시간 간격으로 둔다. 07:00과 08:00에는 별도 제작 작업을 두지 않는다.
 
-07:00은 `LAYOUT_PLAN.md`를 COMPLETE로 닫고 `WORK_STATE.md`를 `HTML_READY`로 갱신한다.
+각 페이즈는 해당 작업을 순차적으로 COMPLETE하고 `WORK_STATE.md`를 갱신한 뒤 종료한다.
 
-09:00은 이미지 생성 여부를 확인하지 않고 완성 원고와 LAYOUT_PLAN을 기준으로 HTML 제작을 시작한다.
+## 3. PUBLISH DESK 인계 조건
 
-## 3. 이미지 없는 발행 원칙
+04:00 FEATURE DESK 종료 시 다음이 충족되어야 한다.
+
+- Cover Story, Economy, Politics, Society, Tech COMPLETE
+- CROSS-ARTICLE REVIEW COMPLETE
+- DEEP DIVE COMPLETE 또는 편집 판단상 OMIT
+- LIFE SCENE COMPLETE
+- PROLOGUE COMPLETE
+- EDITOR'S AFTERWORD COMPLETE
+- `IMAGES: NOT_REQUIRED`
+- `LAYOUT: PENDING`
+- `HTML: PENDING`
+- `NEXT: 09:00 PUBLISH DESK`
+
+09:00은 별도 07:00 작업을 기다리지 않는다.
+
+## 4. 09:00 PUBLISH DESK
+
+PUBLISH DESK는 지면 설계부터 최종 공개 반영까지 한 턴에서 처리한다.
+
+```text
+전체 원고 readback
+→ LAYOUT_PLAN 작성·COMPLETE
+→ HTML/CSS 제작
+→ 1440 / 1366 / 1024 / 390 화면 검수
+→ 문제 수정·재검수
+→ archive 반영
+→ issues.json / latest.json / ISSUE_HISTORY.md 갱신
+→ WORK_STATE PUBLISHED
+```
+
+`templates/ISSUE_TEMPLATE.html`은 DOM 시작점일 뿐 완성 디자인이 아니다.
+
+## 5. 이미지 없는 발행 원칙
 
 - 새 이미지를 생성하지 않아도 발행할 수 있다.
 - 이미지가 없다는 이유로 빈 placeholder를 만들지 않는다.
@@ -38,7 +76,7 @@
 - 실제 사용 가능한 정적 자산이 별도로 확정된 경우에만 해당 자산을 포함한다.
 - 이미지가 없을 때는 타이포그래피, 색면, 여백, 규칙선, 데이터, 표, 인용, 섹션 전환으로 지면 밀도를 확보한다.
 
-## 4. 발행 후보 구성
+## 6. 발행 후보 구성
 
 기본:
 
@@ -64,7 +102,7 @@ archive/YYYY-MM-DD/
 
 `Cover → Contents → LIFE SCENE → PROLOGUE → 본 기사와 연결 DEEP DIVE → EDITOR'S AFTERWORD → Sources`
 
-## 5. 제작자 직접 검수
+## 7. 제작자 직접 검수
 
 ### 원고
 
@@ -85,7 +123,7 @@ archive/YYYY-MM-DD/
 - 1440px, 1366px, 1024px, 390px 화면 문제 없음
 - 깨진 이미지·존재하지 않는 자산 요청 없음
 
-## 6. 보조 구조 검사
+## 8. 보조 구조 검사
 
 필요하면:
 
@@ -96,7 +134,7 @@ python tools/validate_repository.py
 
 검사기는 기술적 실수를 찾는 보조 수단이다. 검사 통과는 발행 품질 통과와 동일하지 않다.
 
-## 7. main 직접 반영
+## 9. main 직접 반영
 
 ### 제작 중
 
@@ -116,15 +154,19 @@ python tools/validate_repository.py
 3. `latest.json`
 4. `archive/index.html`
 5. `ISSUE_HISTORY.md`
+6. 해당 회차 `WORK_STATE.md`의 `PUBLISHED` 상태
 
 GitHub Pages는 `main` 루트의 정적 파일을 그대로 사용한다.
 
-## 8. 실패 처리
+## 10. 실패 처리
 
 품질 검수에 실패하면 실패한 단위만 되돌린다.
 
 - 원고 실패 → 해당 원고 단계
-- 지면 실패 → 07:00 LAYOUT_PLAN
+- CROSS-ARTICLE REVIEW 실패 → 해당 기사만 교정
+- DEEP DIVE 실패 → 해당 심화 제작 단계
+- LIFE SCENE / PROLOGUE / AFTERWORD 실패 → 해당 편집 원고 단계
+- 지면 실패 → 09:00 LAYOUT_PLAN
 - HTML 구조 실패 → 09:00 HTML
 - 화면 실패 → CSS/DOM 수정 후 재검수
 
