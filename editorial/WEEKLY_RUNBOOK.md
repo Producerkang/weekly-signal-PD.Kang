@@ -56,7 +56,7 @@ work/YYYY-MM-DD/WORK_STATE.md
 
 `EDITOR'S PICK`은 폐기된 레거시 섹션이다. 다시 만들지 않는다.
 
-## 5. 일반 기사 제작
+## 5. 일반 기사 제작 계약
 
 기본 순서:
 
@@ -82,7 +82,7 @@ VERIFY
 → COMPLETE
 ```
 
-현재 일반 기사 하나를 COMPLETE로 닫기 전에는 다음 일반 기사 본문을 작성하지 않는다.
+한 예약 턴 안에 여러 기사가 포함되더라도 현재 기사 하나를 COMPLETE로 닫기 전에는 다음 기사 본문을 작성하지 않는다.
 
 ## 6. 일반 기사 전체 비교
 
@@ -96,11 +96,11 @@ Cover Story와 Economy·Politics·Society·Tech가 모두 COMPLETE가 된 뒤 �
 - FLOW가 같은 템플릿으로 수렴하지 않는지
 - 한 호 전체 정보 밀도
 
-수정이 필요하면 해당 기사만 IN_REVIEW로 되돌린다.
+수정이 필요하면 해당 기사만 IN_REVIEW로 되돌리고 다시 COMPLETE로 닫는다.
 
 ## 7. DEEP DIVE
 
-일반 기사 전체가 닫힌 뒤 심화가 필요한 기사만 선택한다.
+일반 기사 전체 비교와 필요한 교정이 끝난 뒤 심화가 필요한 기사만 선택한다.
 
 필수 확인:
 
@@ -167,34 +167,130 @@ ISSUE READBACK
 → COMPLETE
 ```
 
-## 11. 월요일 07:00 — LAYOUT_PLAN + HTML 발행 준비
+## 11. 5-페이즈 예약 계약
 
-07:00은 완성된 원고를 09:00 HTML 작업이 즉시 사용할 수 있도록 지면과 발행 구조를 확정하는 단계다.
-
-### 11.1 입력
-
-- 현재 회차 `WORK_STATE.md`
-- 완성된 원고
-- `editorial/LAYOUT_SYSTEM.md`
-- `editorial/ISSUE_QUALITY_GATE.md`
-- 필요한 템플릿 계약
-
-이미지 계약, 이미지 job, 이미지 prompt는 현행 07:00 필수 입력이 아니다.
-
-### 11.2 필수 산출물
+활성 예약 작업은 5개 페이즈로 운영한다. 기사 하나마다 예약 작업을 만들지 않는다.
 
 ```text
-work/YYYY-MM-DD/
-└─ LAYOUT_PLAN.md
+일요일 22:00  FRONT DESK
+월요일 00:00  SECTION DESK
+월요일 02:00  REVIEW DESK
+월요일 04:00  FEATURE DESK
+월요일 09:00  PUBLISH DESK
 ```
 
-완료 상태:
+05:00 이전의 네 제작 턴은 2시간 간격이다. 07:00과 08:00에는 별도 제작 턴을 두지 않는다.
 
-- `LAYOUT_PLAN.md`: `COMPLETE`
-- `WORK_STATE.md`: `HTML_READY`
-- `NEXT`: 09:00 HTML 제작 + 화면 검수 + 발행
+각 턴은 시작 시점의 GitHub `main`, 현행 편집 계약, 해당 회차 `WORK_STATE.md`를 읽고 선행 완료 상태를 확인한다.
 
-### 11.3 LAYOUT_PLAN
+## 12. 일요일 22:00 — FRONT DESK
+
+순서:
+
+```text
+Cover Story
+→ COMPLETE
+→ Economy
+→ COMPLETE
+→ WORK_STATE 갱신
+```
+
+Cover Story가 완료되지 않으면 Economy를 건너뛰어 작성하지 않는다.
+
+완료 조건:
+
+- `COVER_STORY: COMPLETE`
+- `ECONOMY: COMPLETE`
+- 다음 페이즈가 `SECTION DESK`로 명확히 기록됨
+
+## 13. 월요일 00:00 — SECTION DESK
+
+순서:
+
+```text
+Politics
+→ COMPLETE
+→ Society
+→ COMPLETE
+→ Tech
+→ COMPLETE
+→ WORK_STATE 갱신
+```
+
+각 기사는 기존 기사와 독립적인 사건·핵심 질문·1차 자료를 가져야 한다. 앞 기사를 닫기 전 다음 기사로 넘어가지 않는다.
+
+완료 조건:
+
+- `POLITICS: COMPLETE`
+- `SOCIETY: COMPLETE`
+- `TECH: COMPLETE`
+- 다섯 일반 기사 전체가 COMPLETE
+
+## 14. 월요일 02:00 — REVIEW DESK
+
+순서:
+
+```text
+CROSS-ARTICLE REVIEW
+→ 필요한 기사만 교정·재검수
+→ 전체 일반 기사 COMPLETE 확인
+→ DEEP DIVE 선정·제작
+→ COMPLETE
+→ WORK_STATE 갱신
+```
+
+CROSS-ARTICLE REVIEW에서 결함이 확인되면 해당 기사만 IN_REVIEW로 되돌린다. 교정을 완료하기 전 DEEP DIVE로 넘어가지 않는다.
+
+완료 조건:
+
+- `CROSS_ARTICLE_REVIEW: COMPLETE`
+- 교정 대상 일반 기사 모두 다시 COMPLETE
+- `DEEP_DIVE: COMPLETE` 또는 편집 판단상 `OMIT`
+
+## 15. 월요일 04:00 — FEATURE DESK
+
+순서:
+
+```text
+LIFE SCENE
+→ COMPLETE
+→ PROLOGUE
+→ COMPLETE
+→ EDITOR'S AFTERWORD
+→ COMPLETE
+→ WORK_STATE 갱신
+```
+
+LIFE SCENE이 닫히기 전 PROLOGUE를 작성하지 않는다. PROLOGUE가 닫히기 전 EDITOR'S AFTERWORD를 작성하지 않는다.
+
+완료 조건:
+
+- `LIFE_SCENE: COMPLETE`
+- `PROLOGUE: COMPLETE`
+- `EDITOR_AFTERWORD: COMPLETE`
+- 모든 원고 제작 완료
+- 다음 페이즈가 `PUBLISH DESK`로 기록됨
+
+## 16. 월요일 09:00 — PUBLISH DESK
+
+09:00은 별도 07:00 레이아웃 턴 없이 지면 설계부터 발행까지 한 턴에서 수행한다.
+
+### 16.1 순서
+
+```text
+완성 원고 전체 확인
+→ LAYOUT_PLAN 작성
+→ LAYOUT_PLAN COMPLETE
+→ 최종 DOM 구성
+→ HTML/CSS 제작
+→ 실제 화면 검수
+→ 문제 수정·재검수
+→ archive 반영
+→ 발행 메타데이터 갱신
+→ PUBLISHED
+```
+
+### 16.2 LAYOUT_PLAN
 
 최소한 다음을 확정한다.
 
@@ -206,31 +302,9 @@ work/YYYY-MM-DD/
 6. 1440 / 1366 / 1024 / 390 반응형 구조
 7. 기존 archive 이미지의 임의 재사용 금지
 
-### 11.4 이미지 없는 지면 원칙
+이미지 슬롯, 이미지 prompt, `IMAGE_PLAN.md`, `jobs/image_job.json`, 이미지 handoff를 만들지 않는다.
 
-현재 운영 경로에서는 새 이미지를 생성하지 않는다.
-
-따라서 07:00은 이미지 슬롯, 이미지 prompt, `IMAGE_PLAN.md`, `jobs/image_job.json`, 이미지 handoff를 만들지 않는다.
-
-이미지가 없는 자리는 빈 placeholder로 남기지 않는다. 해당 지면은 다음 요소를 사용해 완성한다.
-
-- 강한 타이포그래피 계층
-- 여백과 규칙선
-- Deck과 핵심 문장
-- 데이터 또는 비교표
-- 인용 블록
-- 섹션 라벨과 번호
-- 배경·테두리·그리드 등 CSS 기반 편집 요소
-
-이미지 없음이 미완성 상태처럼 보이지 않아야 한다.
-
-### 11.5 07:00 종료
-
-`LAYOUT_PLAN.md`가 COMPLETE이고 `WORK_STATE.md`가 HTML_READY이면 07:00은 종료한다.
-
-**07:00 다음 단계는 바로 09:00이다. 08:00 제작 단계는 없다.**
-
-## 12. 월요일 09:00 — HTML 제작 + 화면 검수 + 발행
+### 16.3 HTML 제작
 
 `templates/ISSUE_TEMPLATE.html`을 시작점으로 사용하되 그대로 복제한 결과를 완성본으로 보지 않는다.
 
@@ -247,7 +321,7 @@ work/YYYY-MM-DD/
 
 이미지 부재는 발행 차단 조건이 아니다.
 
-## 13. 실제 화면 검수
+## 17. 실제 화면 검수
 
 다음 화면을 실제 렌더링하거나 캡처해 확인한다.
 
@@ -267,7 +341,7 @@ work/YYYY-MM-DD/
 - 존재하지 않는 자산 요청이 없는가
 - EDITOR'S AFTERWORD → Sources 마감 흐름이 자연스러운가
 
-## 14. 보조 구조 검사
+## 18. 보조 구조 검사
 
 필요하면 다음을 직접 실행한다.
 
@@ -278,24 +352,27 @@ python tools/validate_repository.py
 
 이 검사는 기술적 실수를 찾는 보조 수단이다.
 
-## 15. 실패 처리
+## 19. 실패 처리
 
 실패한 단위만 되돌린다.
 
 - 일반 기사 FLOW 실패 → 해당 기사 FLOW부터
+- CROSS-ARTICLE REVIEW 실패 → 해당 일반 기사만 교정
+- DEEP DIVE 실패 → 심화 질문·근거 단계부터
 - LIFE SCENE 서사 실패 → SCENE MAP부터
 - PROLOGUE 실패 → PREVIEW MAP부터
 - EDITOR'S AFTERWORD 실패 → 실제 제작 후기 역할부터
-- 지면 실패 → 07:00 LAYOUT_PLAN 수정
+- 지면 실패 → 09:00 LAYOUT_PLAN 수정
 - HTML 구조 실패 → 09:00 HTML 수정
 - 화면 실패 → CSS/DOM 수정 후 재검수
 
 이미지 생성 실패 또는 이미지 부재는 현행 경로의 실패 조건이 아니다.
 
-## 16. 최종 반영
+## 20. 최종 반영
 
 1. 원고·지면·실제 화면 검수 완료
 2. 발견 문제 수정 후 재검수
 3. 완성 회차를 `archive/YYYY-MM-DD/`에 반영
 4. `ISSUE_HISTORY.md`, `issues.json`, `archive/index.html`, `latest.json` 갱신
-5. GitHub Pages는 `main` 루트 정적 파일 사용
+5. `WORK_STATE.md`를 `PUBLISHED`로 종료
+6. GitHub Pages는 `main` 루트 정적 파일 사용
