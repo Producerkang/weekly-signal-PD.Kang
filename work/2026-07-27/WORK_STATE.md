@@ -6,13 +6,13 @@ CONTROL_MANIFEST: jobs/image_job.json
 IMAGE_CONTRACT: editorial/IMAGE_CONTRACT.md
 MANUSCRIPT_STAGE: COMPLETE
 LAYOUT: COMPLETE
-IMAGES: READY
+IMAGES: RETRY
 GENERATION_MODE: INLINE_SCENE_EXECUTION
 PERSISTENCE_TARGET: GIT
 HTML: PENDING
 SCREEN_REVIEW: PENDING
 PUBLISH: PENDING
-NEXT: execute 08:00 job from jobs/image_job.json; read Cover prompt and generate in the same turn
+NEXT: retry Cover from attempt-03 with the unchanged scene prompt; valid photo attempts remain 0/3
 ```
 
 현재 이미지 파이프라인은 `weekly-signal-image-job-v2.1`이다.
@@ -34,4 +34,12 @@ NEXT: execute 08:00 job from jobs/image_job.json; read Cover prompt and generate
 
 즉 이번 08:00 작업은 2026-08-10에 ISSUE 02의 이미지 생성을 재시도하는 작업이다.
 
-기존 2026-08-08 Cover context failure 결과는 당시 저장되지 않았다. v2.1 재시도부터 생성 결과 보존을 우선한다.
+## 2026-08-10 08:00 manual execution
+
+- Cover prompt를 v2.1 규칙대로 읽고 같은 실행 턴에서 이미지 생성 도구를 호출했다.
+- `attempt-01` 결과는 PHOTO-SCENE 게이트 실패로 `CONTEXT_FAILURE`다.
+- scene prompt를 변경하지 않고 재시도한 `attempt-02`도 `CONTEXT_FAILURE`다.
+- 두 결과 모두 유효 사진 시도로 계산하지 않으므로 Cover는 여전히 0/3이다.
+- 반환된 binary 이미지 원본은 현재 GitHub connector 경로로 직접 업로드할 수 없어 `PERSISTENCE_BLOCKED`이며, 진단 sidecar JSON 두 개는 Git에 보존했다.
+- 반복 실패 양상이 prompt 자체가 아니라 실행 문맥 영향을 시사하므로 다른 슬롯으로 진행하지 않았다.
+- `jobs/image_job.json`의 Cover `next_attempt`는 3으로 갱신했으며 다음 실행은 동일 prompt로 `attempt-03`부터 시작한다.
