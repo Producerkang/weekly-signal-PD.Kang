@@ -4,7 +4,8 @@
 ISSUE: 03
 ISSUE_START: 2026-08-03
 ISSUE_END: 2026-08-09
-STAGE: FEATURE_DESK_COMPLETE
+STAGE: PUBLISHED
+MANUSCRIPT_STAGE: COMPLETE
 COVER_STORY: COMPLETE
 ECONOMY: COMPLETE
 POLITICS: COMPLETE
@@ -16,12 +17,12 @@ DEEP_DIVE_TARGET: SOCIETY
 LIFE_SCENE: COMPLETE
 PROLOGUE: COMPLETE
 EDITOR_AFTERWORD: COMPLETE
-LAYOUT: PENDING
+LAYOUT: COMPLETE
 IMAGES: NOT_REQUIRED
-HTML: PENDING
-SCREEN_REVIEW: PENDING
-PUBLISH: PENDING
-NEXT: 2026-08-10 09:00 PUBLISH DESK — LAYOUT_PLAN → HTML → SCREEN REVIEW → PUBLISH
+HTML: COMPLETE
+SCREEN_REVIEW: COMPLETE
+PUBLISH: COMPLETE
+NEXT: ISSUE CLOSED
 ```
 
 ## FRONT DESK 완료
@@ -59,7 +60,6 @@ NEXT: 2026-08-10 09:00 PUBLISH DESK — LAYOUT_PLAN → HTML → SCREEN REVIEW �
 - 상태: COMPLETE
 - 산출물: `CROSS_ARTICLE_REVIEW.md`
 - 다섯 일반 기사는 COMPLETE 유지.
-- PROLOGUE/최종 지면에서 `현재 단계와 실제 성과를 구분한다`는 정확성 리듬을 공통 슬로건으로 반복하지 않도록 인계함.
 
 ### DEEP DIVE
 - 상태: COMPLETE
@@ -73,11 +73,7 @@ NEXT: 2026-08-10 09:00 PUBLISH DESK — LAYOUT_PLAN → HTML → SCREEN REVIEW �
 - 상태: COMPLETE
 - 연결 기사: Tech
 - 제목: `아홉 시 반에 학습을 걸기로 했는데, 실행 버튼을 누를 곳이 아직 없었다`
-- 생활 질문: 선정됐다는 소식은 왔지만 실제 연산을 시작할 환경이 준비되지 않았을 때 작은 개발팀의 하루는 어떻게 바뀌는가?
-- 사실 경계: 선정 이후 협약·자원 할당·개발환경 구성·기술지원이 남는다는 확인된 구조만 사용하고, 개별 기업의 실제 할당시간은 가상 사실로 만들지 않음.
-- 산출물:
-  - `07_life_scene/SCENE_MAP.md`
-  - `07_life_scene/ARTICLE.md`
+- 산출물: `07_life_scene/SCENE_MAP.md`, `07_life_scene/ARTICLE.md`
 - CAUSALITY PASS: PASS
 - EXPLANATION LEAK PASS: PASS
 - SCENARIO NOTE: COMPLETE
@@ -86,53 +82,59 @@ NEXT: 2026-08-10 09:00 PUBLISH DESK — LAYOUT_PLAN → HTML → SCREEN REVIEW �
 ### PROLOGUE
 - 상태: COMPLETE
 - 제목: `숫자 다음에 남아 있는 것들`
-- PREVIEW MAP: COMPLETE
-- PANORAMA → ORIENTATION → FOCUS → ARTICLE PREVIEW → HANDOFF 흐름: PASS
+- 산출물: `08_prologue/PREVIEW_MAP.md`, `08_prologue/ARTICLE.md`
 - PROSE RHYTHM PASS: PASS
 - DEPTH CEILING PASS: PASS
 - REPEATED COVERAGE PASS: PASS
-- CROSS-ARTICLE REVIEW에서 경고한 공통 슬로건 반복을 피하고 기사별 고유 장면을 유지함.
-- 산출물:
-  - `08_prologue/PREVIEW_MAP.md`
-  - `08_prologue/ARTICLE.md`
 
 ### EDITOR'S AFTERWORD
 - 상태: COMPLETE
 - 제목: `아직 채워지지 않은 칸`
-- 기사별 요약과 대표 기사 PICK을 피하고, 제작 뒤 실제로 남은 작은 장면과 미완의 기록을 짧은 회고로 구성함.
+- 산출물: `09_afterword/MEMORY_TRACE.md`, `09_afterword/ARTICLE.md`
 - RECAP CUT: PASS
 - METHOD REPORT CUT: PASS
 - AFTERTASTE PASS: PASS
-- 산출물:
-  - `09_afterword/MEMORY_TRACE.md`
-  - `09_afterword/ARTICLE.md`
 
-## PUBLISH DESK 인계
+## PUBLISH DESK 완료
 
-모든 필수 원고가 닫혔다.
+### LAYOUT PLAN
+- 상태: COMPLETE
+- 산출물: `LAYOUT_PLAN.md`
+- 최종 DOM: `Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Society → DEEP DIVE → Tech → EDITOR'S AFTERWORD → Sources`
+- DATA / WATCH: OMIT — 별도 섹션은 기존 기사 정보의 반복이 될 가능성이 커서 만들지 않음.
+- 이미지: NOT_REQUIRED. 이미지 슬롯·placeholder·이전 회차 자산 재사용 없음.
 
-```text
-COVER_STORY: COMPLETE
-ECONOMY: COMPLETE
-POLITICS: COMPLETE
-SOCIETY: COMPLETE
-TECH: COMPLETE
-CROSS_ARTICLE_REVIEW: COMPLETE
-DEEP_DIVE: COMPLETE
-LIFE_SCENE: COMPLETE
-PROLOGUE: COMPLETE
-EDITOR_AFTERWORD: COMPLETE
-IMAGES: NOT_REQUIRED
-```
+### HTML
+- 상태: COMPLETE
+- 공개본: `archive/2026-08-03/index.html`
+- 제목: `시작된 일들의 다음 장면`
+- CSS와 최소 JavaScript를 단일 HTML에 내장.
+- COMPLETE 원고만 사용.
+- Society 연결 DEEP DIVE를 Society 바로 뒤에 배치.
+- 폐기된 `EDITOR'S PICK` 없음.
+- EDITOR'S AFTERWORD를 Sources 직전에 배치.
 
-다음 실행:
+### SCREEN REVIEW
+- 상태: COMPLETE
+- 실제 Chromium 렌더링 검수: 1440px 이상 / 1366px / 1024px / 390px
+- 최초 390px 검수에서 상단 내비게이션 줄 겹침 발견 → 모바일 topbar 2행 구조로 수정 → 재검수 PASS.
+- 최종 네 화면 모두 문서 가로 오버플로 없음.
+- 내부 앵커 누락 없음.
+- Contents / nav / DOM 순서 일치.
+- 이미지 요소 및 깨진 이미지 자산 요청 없음.
+- 외부 JS 및 런타임 콘텐츠 조립 없음.
 
-```text
-09:00 PUBLISH DESK
-→ LAYOUT_PLAN
-→ HTML
-→ 1440+/1366/1024/390 SCREEN REVIEW
-→ PUBLISH
-```
+### 보조 검사
+- `tools/validate_repository.py`의 저장소 전체 직접 실행은 실행 환경에서 GitHub DNS가 차단되어 로컬 checkout을 만들 수 없어 생략됨.
+- 대신 최종 HTML을 실제 Chromium에서 렌더링하고 동일 핵심 구조 항목을 프로그램으로 검사함.
+- 현행 계약상 구조 검사기는 보조 수단이며 실제 화면·편집 검수가 최종 승인 기준이므로 발행을 진행함.
 
-별도 07:00 레이아웃 또는 08:00 이미지 턴은 없다. 현행 경로에서 이미지 생성, 이미지 prompt, `IMAGE_PLAN.md`, image job 작업을 수행하지 않는다.
+### PUBLISH
+- 상태: COMPLETE
+- `archive/2026-08-03/` 반영
+- `issues.json` Issue 03 추가
+- `latest.json` Issue 03 전환
+- `archive/index.html` 최신 Issue 03 표식 반영
+- `editorial/ISSUE_HISTORY.md` Issue 03 발행 이력 추가
+
+Issue 03 제작·검수·발행을 종료한다.
