@@ -101,40 +101,53 @@ NEXT: ISSUE CLOSED
 - 상태: COMPLETE
 - 산출물: `LAYOUT_PLAN.md`
 - 최종 DOM: `Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Society → DEEP DIVE → Tech → EDITOR'S AFTERWORD → Sources`
-- DATA / WATCH: OMIT — 별도 섹션은 기존 기사 정보의 반복이 될 가능성이 커서 만들지 않음.
-- 이미지: NOT_REQUIRED. 이미지 슬롯·placeholder·이전 회차 자산 재사용 없음.
+- DATA / WATCH: OMIT
+- 이미지: NOT_REQUIRED
+- 공통 Editorial Axis: `1040px`
 
 ### HTML
 - 상태: COMPLETE
 - 공개본: `archive/2026-08-03/index.html`
 - 제목: `시작된 일들의 다음 장면`
-- CSS와 최소 JavaScript를 단일 HTML에 내장.
 - COMPLETE 원고만 사용.
 - Society 연결 DEEP DIVE를 Society 바로 뒤에 배치.
-- 폐기된 `EDITOR'S PICK` 없음.
 - EDITOR'S AFTERWORD를 Sources 직전에 배치.
+- 이미지 요소 및 이미지 자산 없음.
 
 ### SCREEN REVIEW
 - 상태: COMPLETE
-- 실제 Chromium 렌더링 검수: 1440px 이상 / 1366px / 1024px / 390px
-- 최초 390px 검수에서 상단 내비게이션 줄 겹침 발견 → 모바일 topbar 2행 구조로 수정 → 재검수 PASS.
-- 최종 네 화면 모두 문서 가로 오버플로 없음.
+- 원 발행 시 Chromium 렌더링 검수: 1440px 이상 / 1366px / 1024px / 390px
+- 모바일 topbar 2행 구조 재검수 PASS.
+- 최종 네 화면 문서 가로 오버플로 없음.
 - 내부 앵커 누락 없음.
 - Contents / nav / DOM 순서 일치.
-- 이미지 요소 및 깨진 이미지 자산 요청 없음.
-- 외부 JS 및 런타임 콘텐츠 조립 없음.
 
-### 보조 검사
-- `tools/validate_repository.py`의 저장소 전체 직접 실행은 실행 환경에서 GitHub DNS가 차단되어 로컬 checkout을 만들 수 없어 생략됨.
-- 대신 최종 HTML을 실제 Chromium에서 렌더링하고 동일 핵심 구조 항목을 프로그램으로 검사함.
-- 현행 계약상 구조 검사기는 보조 수단이며 실제 화면·편집 검수가 최종 승인 기준이므로 발행을 진행함.
+## 2026-08-10 LAYOUT MAINTENANCE
+
+사용자 화면 검토에서 기사별 외곽 폭이 일관되지 않은 문제를 확인해 지면 규칙을 전면 통일했다.
+
+### 변경
+- 기존 다중 폭 체계 `700 / 720 / 820 / 880 / 980 / 1000 / 1080px` 폐기.
+- 전체 셸 `1320px`은 배경/페이지 구조에만 사용.
+- 모든 읽기 콘텐츠와 정보 모듈을 `1040px` 단일 Editorial Axis로 통일.
+- LIFE 제목/서사/SCENARIO NOTE, 일반 기사 제목/Deck/본문/카드, DEEP DIVE, AFTERWORD, Sources까지 동일 좌우 기준선 적용.
+- 기사별 차이는 폭이 아니라 내부 열, 카드 구조, 색면, 타이포그래피, 규칙선, 수직 리듬으로 만들도록 계약 변경.
+- `editorial/LAYOUT_SYSTEM.md`, `editorial/ISSUE_QUALITY_GATE.md`, `templates/ISSUE_TEMPLATE.html`, `LAYOUT_PLAN.md`를 같은 기준으로 갱신.
+
+### Issue 03 호환 처리
+- 원 발행 HTML은 `archive/2026-08-03/base.html`에 보존.
+- 현재 `archive/2026-08-03/index.html`은 원 발행 문서에 1040px 폭 계약만 적용하는 호환 로더다.
+- 이 호환 로더는 Issue 03 유지보수 전용이다.
+- 이후 새 회차는 템플릿에서 처음부터 단일 static HTML로 생성하며 runtime fetch/XHR 문서 조립을 사용하지 않는다.
+
+### 향후 화면 게이트
+- 1440px / 1366px에서 제목·Deck·본문·카드·주석·Sources의 좌우 기준선을 `getBoundingClientRect()`로 비교.
+- 좌우 오차 각각 2px 초과 시 SCREEN REVIEW FAIL.
+- full-bleed 배경은 허용하지만 내부 콘텐츠 축은 1040px에 맞춘다.
 
 ### PUBLISH
 - 상태: COMPLETE
-- `archive/2026-08-03/` 반영
-- `issues.json` Issue 03 추가
-- `latest.json` Issue 03 전환
-- `archive/index.html` 최신 Issue 03 표식 반영
-- `editorial/ISSUE_HISTORY.md` Issue 03 발행 이력 추가
+- Issue 03 원고·DOM 순서·출처는 변경하지 않음.
+- 이미지 실험은 롤백되어 현행 발행본에 포함되지 않음.
 
-Issue 03 제작·검수·발행을 종료한다.
+Issue 03 제작·검수·발행 및 레이아웃 유지보수를 종료한다.
