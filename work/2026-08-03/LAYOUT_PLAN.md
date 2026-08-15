@@ -24,46 +24,80 @@ DEEP DIVE is COMPLETE and targets Society, so it is placed immediately after Soc
 
 ## 2. DATA / WATCH
 
-No standalone DATA or WATCH section is created. The issue already contains enough article-specific numbers, procedural checkpoints, and follow-up evidence; repeating them in generic auxiliary sections would reduce density and duplicate the manuscripts.
+No standalone DATA or WATCH section is created. The issue already contains enough article-specific numbers, procedural checkpoints, and follow-up evidence; repeating them in generic auxiliary sections would duplicate the manuscripts.
 
-## 3. Visual rhythm by section
+## 3. Unified width contract
 
-- Cover: no-image dark typographic field, issue number, large headline, concise issue deck, four short thematic rails.
-- Contents: two-column reading map on desktop, single column on mobile.
-- LIFE SCENE: narrow narrative column, generous vertical rhythm, inline time stamps and a distinct SCENARIO NOTE.
-- PROLOGUE: broad text spread with larger lead paragraph and restrained transition typography.
-- Cover Story: dark-to-paper transition, three-part disclosure metric band and standard long-form prose.
-- Economy: process timeline from annual quota to workplace placement plus long-form prose.
-- Politics: two-track comparison block distinguishing online participation from statutory committee membership.
-- Society: light-blue field with discovery-to-support process strip.
-- DEEP DIVE: dark analytical field with three-layer evaluation grid: selection accuracy / delivery / information governance.
-- Tech: pale field with four-step compute-use sequence and long-form prose.
-- EDITOR'S AFTERWORD: compact single-column closing card.
-- Sources: grouped, compact link list immediately after Afterword.
+Issue 03 uses one editorial content axis for every readable element.
 
-At least five distinct article rhythms are used; modules only restate information when they provide a different structural view.
+- Outer page shell: `1320px` maximum. Background/shell only.
+- Editorial content axis: `1040px` maximum.
+- Gutter: `clamp(20px, 4vw, 64px)`.
+- `--prose` and `--wide`, if retained for compatibility, resolve to `var(--content)` and must not create separate widths.
 
-## 4. No-image completion
+The following all align to the same 1040px outer left/right edges:
 
-No `<img>` element, image placeholder, `./assets/` reference, image prompt, IMAGE_PLAN, image job, or previous-issue representative image is used. Cover, LIFE SCENE, and all article entrances are complete through typography, color fields, spacing, rules, numbers, tables, and process modules.
+- Contents heading, intro and TOC
+- LIFE heading, subhead, story and SCENARIO NOTE
+- PROLOGUE prose
+- every article heading, deck, information module and body
+- DEEP DIVE evaluation grid and body
+- EDITOR'S AFTERWORD
+- Sources
 
-## 5. Responsive plan
+Layout variation is created only inside this axis through columns, cards, background fields, typography, rules and vertical rhythm. Section-by-section outer widths such as 700 / 720 / 820 / 880 / 980 / 1000 / 1080px are not used.
 
-- 1440+ / 1366: page max-width 1320px, prose 820px, wide modules 1080px.
-- 1024: multi-column modules collapse where needed; navigation remains horizontally scrollable without changing DOM order.
-- 390: all content becomes single column; tables convert to block rows; title sizes use clamp(); body uses 16px minimum; no fixed-width elements; `overflow-x:hidden` on body and `min-width:0` on grid children.
-- Contents, nav, and DOM order remain identical at every viewport.
+## 4. Visual rhythm by section
 
-## 6. Publication checks
+- Cover: no-image dark typographic field; copy aligns to the common editorial axis.
+- Contents: two-column reading map inside the common axis, single column on mobile.
+- LIFE SCENE: continuous narrative with distinct SCENARIO NOTE; same outer axis.
+- PROLOGUE: broad text rhythm within the same axis.
+- Cover Story: metric band inside the same axis.
+- Economy: process timeline inside the same axis.
+- Politics: two-track comparison block inside the same axis.
+- Society: discovery-to-support process strip inside the same axis.
+- DEEP DIVE: three-layer evaluation grid inside the same axis.
+- Tech: compute-use sequence inside the same axis.
+- EDITOR'S AFTERWORD: quiet treatment via padding/typography, not narrower max-width.
+- Sources: grouped compact links on the same axis.
+
+## 5. No-image completion
+
+No generated image, `<img>` placeholder, image prompt, IMAGE_PLAN, image job, or previous-issue representative image is used.
+
+## 6. Responsive plan
+
+- 1440+ / 1366: page shell 1320px, common editorial axis 1040px.
+- 1024: editorial axis becomes available width inside gutters; multi-column modules collapse where needed.
+- 390: all content single column; no fixed-width elements and no horizontal overflow.
+- Contents, nav and DOM order remain identical at every viewport.
+
+## 7. Screen review width gate
+
+At desktop sizes, compare the bounding rectangles of titles, decks, story/body columns, cards/timelines/flows, afterword and sources. Their outer left/right edges must match within 2px. Full-width background colors do not count as content-axis exceptions.
+
+## 8. Issue 03 maintenance implementation
+
+Issue 03 was already published before the unified-width contract was adopted. To preserve the published manuscript byte-for-byte while correcting the layout immediately:
+
+- `archive/2026-08-03/base.html` preserves the pre-maintenance published HTML.
+- `archive/2026-08-03/index.html` is a compatibility loader that applies only the unified-width CSS override to that preserved document.
+- No images or image assets are used.
+- This compatibility loader is **Issue 03 maintenance only** and is not the forward publishing architecture.
+
+All **new issues** must be emitted directly as one static `index.html` from `templates/ISSUE_TEMPLATE.html`; runtime fetch/XHR document assembly is prohibited for new publications.
+
+## 9. Publication checks
 
 - Complete manuscripts only.
 - Society DEEP DIVE immediately follows Society.
 - AFTERWORD immediately precedes Sources.
 - No EDITOR'S PICK.
-- Inline CSS and minimal inline JavaScript only.
-- No runtime fetch()/XHR assembly.
-- Internal anchors must resolve.
+- Internal anchors resolve.
 - Actual screen review targets: 1440+, 1366, 1024, 390.
+- Width-axis check is mandatory in addition to overflow checks.
+- New issues: single static HTML, no runtime content assembly.
 
 LAYOUT: COMPLETE
-NEXT: HTML → SCREEN REVIEW → PUBLISH
+NEXT: ISSUE CLOSED

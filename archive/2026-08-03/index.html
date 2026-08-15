@@ -16,16 +16,23 @@
     if(!r.ok) throw new Error('base load failed');
     const text=await r.text();
     const doc=new DOMParser().parseFromString(text,'text/html');
-    const style=doc.createElement('style');
-    style.textContent=`
+    const s=doc.createElement('style');
+    s.textContent=`
+:root{--content:1040px;--prose:var(--content)!important;--wide:var(--content)!important}
+.contents-head,.toc,.life-head,.story,.scenario-note,.head,.prose,.metric-band,.timeline,.dual,.flow,.eval,.after-card,.source-group{width:min(var(--content),100%)!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important}
+.life-sub,.contents-intro,.footer p{max-width:none!important}
+.cover-copy{width:min(calc(var(--content) + 2 * var(--g)),100%)!important}
+.cover h1,.cover-deck{max-width:none!important}
+.after-card{box-sizing:border-box}
 .section-visual{width:min(var(--wide),100%);margin:0 auto 52px}
 .section-visual img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 .life-visual{width:min(560px,100%);margin:0 auto 52px}
 .life-visual img{aspect-ratio:3/4}
 .dark .section-visual img{box-shadow:0 0 0 1px rgba(255,255,255,.08)}
-@media(max-width:700px){.section-visual,.life-visual{margin-bottom:38px}}
+@media(max-width:1024px){.contents-head{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(2,1fr)}.eval,.dual{grid-template-columns:1fr}}
+@media(max-width:700px){.toc,.metric-band,.timeline{grid-template-columns:1fr}.section-visual,.life-visual{margin-bottom:38px}}
 `;
-    doc.head.appendChild(style);
+    doc.head.appendChild(s);
     function add(id,src,life=false){
       const sec=doc.getElementById(id);
       if(!sec) return;
@@ -45,7 +52,7 @@
     add('society','assets/society.webp');
     add('tech','assets/tech.webp');
     const footer=doc.querySelector('.footer p');
-    if(footer) footer.textContent='2026.08.03—08.09 · 설명형 주간 웹 매거진. 이 회차는 섹션별 이미지와 함께 구성된 HTML/CSS 지면으로 제작됐습니다.';
+    if(footer) footer.textContent='2026.08.03—08.09 · 설명형 주간 웹 매거진. 이 회차는 섹션별 이미지와 함께 구성된 HTML/CSS 지면으로 제작됐으며, 단일 Editorial Axis 구조로 정리했습니다.';
     document.open();
     document.write('<!doctype html>'+doc.documentElement.outerHTML);
     document.close();
