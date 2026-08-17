@@ -89,8 +89,7 @@
 - `LAYOUT_PLAN.md`를 09:00 PUBLISH DESK에서 작성하고 같은 턴에서 HTML까지 이어서 제작했다.
 - 최종 DOM은 `Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Society → DEEP DIVE → Tech → EDITOR'S AFTERWORD → Sources`다.
 - Society 심화편을 Society 바로 뒤에 배치했다.
-- DATA와 WATCH는 별도 지면으로 만들지 않았다. 각 기사 안의 수치·절차 모듈만으로 필요한 정보를 충분히 전달할 수 있고 별도 섹션은 반복을 늘린다고 판단했다.
-- Cover는 무이미지 대형 타이포그래피, Economy는 절차 타임라인, Politics는 두 참여 통로 비교, Society는 발굴→지원 흐름, DEEP DIVE는 3층 평가 그리드, Tech는 연산자원 이용 단계로 서로 다른 지면 리듬을 사용했다.
+- DATA와 WATCH는 별도 지면으로 만들지 않았다.
 - 이미지·이미지 placeholder·`assets/` 참조·이전 회차 이미지 재사용은 모두 사용하지 않았다.
 - `EDITOR'S PICK`은 만들지 않았다.
 
@@ -106,7 +105,56 @@
 - 외부 JS 및 런타임 `fetch()` 기사 조립 없음.
 - Society → DEEP DIVE, EDITOR'S AFTERWORD → Sources 연결 정상.
 
-`tools/validate_repository.py`의 저장소 전체 직접 실행은 실행 환경의 GitHub DNS 제한 때문에 로컬 checkout을 만들 수 없어 수행하지 못했다. 대신 공개 HTML을 실제 Chromium 렌더링하고 구조 검사를 별도로 수행했으며, 최종 편집 검수는 통과했다. 구조 검사기는 보조 수단이고 실제 화면·편집 검수가 최종 승인 기준이라는 현행 계약에 따라 발행했다.
+`tools/validate_repository.py`의 저장소 전체 직접 실행은 실행 환경의 GitHub DNS 제한 때문에 로컬 checkout을 만들 수 없어 수행하지 못했다. 대신 공개 HTML을 실제 Chromium 렌더링하고 구조 검사를 별도로 수행했으며, 최종 편집 검수는 통과했다.
+
+---
+
+## Issue 04 — 2026.08.10–08.16
+
+- 발행 경로: `archive/2026-08-10/`
+- 발행일: 2026년 8월 17일
+- 제목: `문이 닫힌 뒤에 시작되는 것들`
+- 상태: **PUBLISHED · 이미지 없는 5-페이즈 경로**
+
+### 최종 원고 구성
+
+- Cover Story: 상습체불건설사업자 명단공표의 대상 기준·심의·최소 3개월 소명·공개 절차
+- Economy: 2027년 최저임금안 10,700원이 월 환산액과 사업장 비용으로 전달되는 단계
+- Politics: 규제합리화 대국민 공모전 접수 이후 부처 검토·전문가 심사·실제 제도개정 경로
+- Society: 청소년건강패널조사와 횡단면 조사의 질문 차이, 종단자료의 정책 활용과 한계
+- Tech: 정보보호제품 성능평가의 보안기능·처리성능·자원효율과 지원사업의 의미
+- DEEP DIVE: `OMIT` — 독립 질문·새 주장·새 근거가 충분한 후보가 없어 억지 심화편을 만들지 않음
+- LIFE SCENE: 공개 명단 검색 결과가 비어 있을 때 소규모 장비업체 대표가 계약 지급일과 투입 범위를 다시 확인하는 가상 생활 서사
+- PROLOGUE: `문이 닫힌 뒤에 시작되는 것들`
+- EDITOR'S AFTERWORD: `확인했다는 말의 크기`
+
+### 지면 설계
+
+- `LAYOUT_PLAN.md`를 PUBLISH DESK에서 작성하고 COMPLETE한 뒤 HTML 제작으로 이어갔다.
+- 최종 DOM은 `Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Society → Tech → EDITOR'S AFTERWORD → Sources`다.
+- DEEP DIVE는 `OMIT`이므로 DOM·Contents·내비게이션에서 완전히 제외했다.
+- DATA와 WATCH는 별도 지면을 만들지 않고 기사 내부 정보 모듈로 흡수했다.
+- 모든 편집 요소의 외곽 기준선은 `--content: 1040px` 단일 Editorial Axis를 따른다.
+- Cover Story는 명단공표 절차 strip, Economy는 metric board, Politics는 timeline, Society는 comparison table, Tech는 4차원 evidence grid를 사용해 폭을 바꾸지 않고 지면 리듬을 구분했다.
+- 이미지·이미지 placeholder·`assets/` 참조·이전 회차 이미지 재사용은 사용하지 않았다.
+- `EDITOR'S PICK`은 만들지 않았다.
+
+### 실제 화면 검수
+
+Chromium DevTools Protocol로 1440×1100, 1366×1000, 1024×1000, 390×844 실제 화면을 렌더링·검수했다.
+
+- 네 화면 모두 문서 가로 오버플로 없음.
+- 1440·1366 화면의 Contents/LIFE/PROLOGUE/모든 기사/AFTERWORD/Sources 외곽축은 정확히 1040px로 일치.
+- 1024·390에서는 가용 폭에 맞춰 같은 축이 정상 축소됨.
+- 390px 상단 내비게이션은 3열 그리드로 전환되어 겹침 없음.
+- 제목·표·카드의 viewport 이탈 요소 없음.
+- Contents와 내비게이션의 내부 앵커 누락 없음.
+- DEEP DIVE DOM 없음.
+- `EDITOR'S PICK` DOM 없음.
+- `<img>` 요소 0개, 깨진 이미지 0개.
+- EDITOR'S AFTERWORD는 Sources 직전에 배치됨.
+
+`tools/validate_repository.py` 전체 저장소 실행은 repository checkout 없이 GitHub connector로 직접 반영하는 환경이라 생략했다. 대신 최종 HTML에 대해 실제 Chromium 렌더링, viewport overflow 검사, Editorial Axis 좌우값 비교, 내부 앵커·선택 섹션·이미지 DOM 검사를 수행했다. 최종 편집 검수는 통과했다.
 
 ### 다음 회차 시작 기준
 
@@ -116,7 +164,7 @@
 4. 이 문서의 최신 회차 기록
 5. 해당 회차 `WORK_STATE.md`
 
-현행 마감 흐름은 계속 5-페이즈 계약을 따른다.
+현행 5-페이즈 계약을 계속 사용한다.
 
 ```text
 일요일 22:00 FRONT DESK
