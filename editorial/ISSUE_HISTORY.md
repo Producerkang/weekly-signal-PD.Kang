@@ -175,3 +175,50 @@ Chromium DevTools Protocol로 1440×1100, 1366×1000, 1024×1000, 390×844 실�
 ```
 
 09:00 PUBLISH DESK가 `LAYOUT_PLAN → HTML → 실제 화면 검수 → 발행`을 한 턴에서 완료한다. 07:00·08:00 별도 제작 단계는 사용하지 않는다.
+
+---
+
+## Issue 05 — 2026.08.17–08.23
+
+- 발행 경로: `archive/2026-08-17/`
+- 발행일: 2026년 8월 31일
+- 제목: `멈춘 5분과, 그 뒤에 남은 일들`
+- 상태: **PUBLISHED · 실제 화면 재검수 완료**
+
+### 최종 원고 구성
+
+- Cover Story: 특별재난지역 우선 선포 이후 정밀 피해조사·복구비·국비 부담·주민 지원으로 이어지는 절차
+- Economy: 코스피200 선물 급변으로 발동하는 매도 사이드카가 실제로 멈추는 주문과 5분의 의미
+- Politics: 유죄판결이 어려운 경우에도 재산과 범죄의 관련성을 별도 법원 절차에서 심사하는 독립몰수제
+- Society: 학교 200m 교육환경보호구역 안 집회 신고와 학교장 판단·경찰 조치의 연결 구조
+- Tech: CPU·GPU·NPU를 함께 쓰는 이기종 AI 인프라와 소프트웨어·실증의 역할
+- DEEP DIVE: `OMIT` — 독립 질문·새 주장·새 근거가 충분한 후보가 없어 억지 심화편을 만들지 않음
+- LIFE SCENE: 학교 담장 밖 집회와 수업이 동시에 이어지는 교실의 가상 장면
+- PROLOGUE: `멈춘 5분과, 그 뒤에 남은 일들`
+- EDITOR'S AFTERWORD: `끝났다는 말 뒤에 남는 시간`
+
+### 지면 설계
+
+- `LAYOUT_PLAN.md` COMPLETE 상태를 그대로 사용했다.
+- 최종 DOM은 `Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Society → Tech → EDITOR'S AFTERWORD → Sources`다.
+- DEEP DIVE는 OMIT이므로 DOM·Contents·내비게이션에서 완전히 제외했다.
+- `EDITOR'S PICK`은 만들지 않았다.
+- 이미지·placeholder·이전 회차 대표 이미지 재사용은 사용하지 않았다.
+- 공통 Editorial Axis는 `--content: 1040px`다.
+
+### 실제 화면 검수
+
+2026년 8월 31일 PUBLISH DESK 재개 실행에서 system Chromium을 Playwright로 직접 기동하고 HTML을 DOM에 주입해 1440×1100, 1366×1000, 1024×1000, 390×844를 실제 렌더링했다.
+
+- 네 화면 모두 `scrollWidth == clientWidth`, 가로 오버플로 없음.
+- viewport 밖으로 이탈한 DOM 요소 0개.
+- 1440·1366에서 TOC·본문·AFTERWORD·Sources가 정확히 1040px Editorial Axis에 정렬됨.
+- 1024에서는 가용 폭으로 정상 축소됨.
+- 390에서는 단일열 전환과 3열 모바일 내비게이션이 정상이며 겹침 없음.
+- 실제 전체 페이지 스크린샷 시각 검수에서 제목·본문·정보 모듈·Sources의 잘림이나 겹침 없음.
+- 내부 앵커 정상, DEEP DIVE/EDITOR'S PICK DOM 없음, `<img>` 0개.
+- EDITOR'S AFTERWORD는 Sources 직전에 배치됨.
+
+초기 발행 시도에서 발생했던 Chromium headless timeout은 이번 실행환경에서는 재현되지 않았다. `file://` 접근은 런타임 정책으로 차단됐지만 HTML을 `page.set_content()`로 직접 주입해 동일한 CSS/DOM을 실제 Chromium으로 렌더링했다.
+
+`python tools/validate_repository.py`는 컨테이너의 GitHub DNS 제한으로 저장소 checkout을 만들 수 없어 실행하지 못했다. 보조 검사 미실행과 무관하게 최종 편집 품질 게이트는 실제 브라우저 렌더링과 시각 검수로 통과했다.
