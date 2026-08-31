@@ -81,6 +81,19 @@ PUBLISH DESK는 실제 Chromium으로 1440×1100, 1366×1000, 1024×1000, 390×8
 
 현재 실행환경의 `/usr/bin/chromium`이 headless 모드에서 DBus/zygote 관련 오류와 함께 종료되지 않았고 screenshot 파일을 생성하지 못했다. 기본 headless 실행과 `--headless=new`, `--no-sandbox`, `--disable-gpu`, `--disable-dev-shm-usage`, `--no-zygote`, `--single-process` 조합을 재시도했으나 동일하게 timeout됐다.
 
+2026-08-31 PUBLISH DESK 재시도에서도 동일 현상이 재현됐다. Issue 05 preview뿐 아니라 최소 `Hello` HTML에서도 `/usr/bin/chromium --headless`가 DBus/zygote 오류 뒤 timeout되어 screenshot을 만들지 못했다. 따라서 콘텐츠나 CSS가 아니라 현재 자동화 런타임의 Chromium 실행 계층 문제로 확인했다.
+
+재시도 시 preview를 다시 정적으로 검사했고 다음을 재확인했다.
+
+- HTML 38,780 bytes
+- 필수 DOM id와 내부 앵커 일치
+- `<img>` 0개
+- `EDITOR'S PICK` 없음
+- DEEP DIVE DOM 없음 (`DEEP_DIVE: OMIT` 반영)
+- 외부 script 없음
+- 런타임 `fetch()` 없음
+- `--content:1040px` 적용
+
 `editorial/ISSUE_QUALITY_GATE.md`는 실제 화면 검수를 필수 발행 게이트로 규정하므로, 구조 검사만으로 `PUBLISHED`를 선언하지 않는다.
 
 ## 재개 지점
