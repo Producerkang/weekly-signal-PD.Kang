@@ -6,8 +6,8 @@ ISSUE_START: 2026-08-31
 ISSUE_END: 2026-09-06
 STAGE: FRONT_DESK
 MANUSCRIPT_STAGE: FRONT_DESK_IN_PROGRESS
-COVER_STORY: VERIFYING
-ECONOMY: PENDING
+COVER_STORY: COMPLETE
+ECONOMY: VERIFYING
 POLITICS: PENDING
 SOCIETY: PENDING
 TECH: PENDING
@@ -21,11 +21,18 @@ IMAGES: NOT_REQUIRED
 HTML: PENDING
 SCREEN_REVIEW: PENDING
 PUBLISH: PENDING
-NEXT: FRONT DESK — Cover Story
+NEXT: FRONT DESK — Economy
 ```
 
 이번 회차는 현행 이미지 없는 5-페이즈 제작 경로를 사용한다.
 
-FRONT DESK는 `Cover Story → Economy` 순서로 직렬 실행한다. Cover Story를 COMPLETE로 닫기 전 Economy 본문을 작성하지 않는다.
+## FRONT DESK 진행
+
+- Cover Story: `820.9조 원 예산안, 실제 나라 살림이 되기까지 남은 단계` — COMPLETE
+- Economy — VERIFYING
+
+Cover Story는 `VERIFY → FLOW → ARTICLE DRAFT → ANALYSIS → COHERENCE PASS → STYLE & ARGUMENT PASS → HEADLINE & DECK → ARTICLE REVIEW → COMPLETE` 순서로 닫았다.
+
+Economy는 Cover Story와 독립적인 사건·핵심 질문·1차 자료를 사용한다.
 
 이미지 생성, 이미지 prompt, `IMAGE_PLAN.md`, image job은 현행 실행 경로에 포함하지 않는다.
