@@ -222,3 +222,48 @@ Chromium DevTools Protocol로 1440×1100, 1366×1000, 1024×1000, 390×844 실�
 초기 발행 시도에서 발생했던 Chromium headless timeout은 이번 실행환경에서는 재현되지 않았다. `file://` 접근은 런타임 정책으로 차단됐지만 HTML을 `page.set_content()`로 직접 주입해 동일한 CSS/DOM을 실제 Chromium으로 렌더링했다.
 
 `python tools/validate_repository.py`는 컨테이너의 GitHub DNS 제한으로 저장소 checkout을 만들 수 없어 실행하지 못했다. 보조 검사 미실행과 무관하게 최종 편집 품질 게이트는 실제 브라우저 렌더링과 시각 검수로 통과했다.
+
+---
+
+## Issue 06 — 2026.08.31–09.06
+
+- 발행 경로: `archive/2026-08-31/`
+- 발행일: 2026년 9월 7일
+- 제목: `숫자가 지나간 자리에 남은 일`
+- 상태: **PUBLISHED · 실제 화면 검수 완료**
+
+### 최종 원고 구성
+
+- Cover Story: 820.9조 원 정부 예산안이 국회 심의·입법·사업 집행을 거쳐 실제 나라 살림이 되는 단계
+- Economy: 8월 CPI 3.1%에서 지난해 통신비 할인 기저효과·전월비·근원물가·가중치를 분리해 읽는 구조
+- Politics: 공공기관 109곳 감축안에서 자산·채무·계약·인력·서비스 책임 승계
+- Society: 반복 신고 뒤 경찰·지방정부 정보공유·공동판단·분리보호·보호공간·사후연계
+- Tech: 티빙 사고의 접속키·권한·탐지·로그·취약점 조치 연쇄 실패와 3,954만 계정의 의미
+- DEEP DIVE: `OMIT` — 독립 질문·새 핵심 주장·독립 1차 자료 조건을 동시에 충족하는 심화 후보가 없어 강제하지 않음
+- LIFE SCENE: `집에 갈 수 있는지부터 다시 정해야 했다`
+- PROLOGUE: `숫자가 지나간 자리에 남은 일`
+- EDITOR'S AFTERWORD: `숫자보다 늦게 도착하는 것`
+
+### 지면 설계
+
+- PUBLISH DESK에서 `LAYOUT_PLAN.md`를 작성해 COMPLETE한 뒤 같은 턴에서 HTML 제작으로 이어갔다.
+- 최종 DOM은 `Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Society → Tech → EDITOR'S AFTERWORD → Sources`다.
+- DEEP DIVE는 OMIT이며 DATA·WATCH도 별도 DOM을 만들지 않았다.
+- 공통 Editorial Axis는 `--content: 1040px`다.
+- Cover Story와 Economy는 핵심 수치 band, Politics는 dual card, Society는 flow, Tech는 control grid를 사용해 폭을 바꾸지 않고 기사별 리듬을 구분했다.
+- 이미지·placeholder·이전 회차 이미지 재사용은 사용하지 않았고 `EDITOR'S PICK`도 만들지 않았다.
+
+### 실제 화면 검수
+
+system Chromium을 Playwright로 직접 기동하고 최종 HTML/CSS를 실제 렌더링해 1440×1100, 1366×1000, 1024×1000, 390×844를 검수했다.
+
+- 1440: `clientWidth=scrollWidth=1440`, 주요 편집축 `x=200 / width=1040 / right=1240`.
+- 1366: `clientWidth=scrollWidth=1366`, 주요 편집축 `x=163 / width=1040 / right=1203`.
+- 1024: `clientWidth=scrollWidth=1024`, 가용 편집축 약 `942.09px`, `x≈40.95`.
+- 390: 최초 검수에서 상단 내비게이션의 가로 이탈을 발견해 3열 모바일 그리드로 수정했다. 재검수에서 `clientWidth=scrollWidth=390`, 편집축 `348px`, `x=21 / right=369`로 통과했다.
+- 수정 후 네 화면 모두 viewport 밖으로 이탈한 DOM 요소 0개.
+- 전체 페이지 시각 검수에서 제목·본문·카드·Sources 잘림과 겹침 없음.
+- 내부 앵커 정상, `<img>` 0개, DEEP DIVE DOM 없음, `EDITOR'S PICK` 없음.
+- EDITOR'S AFTERWORD는 Sources 직전에 배치됐다.
+
+`python tools/validate_repository.py`는 connector 기반 실행환경에서 저장소 전체 checkout을 확보할 수 없어 repo-wide 실행하지 못했다. 대신 검사기의 현행 계약을 확인해 최종 HTML 구조 검사와 실제 Chromium 화면 검수를 수행했으며, 보조 검사 미실행은 직접 편집 검수를 대체하지 않았다.
