@@ -267,3 +267,56 @@ system Chromium을 Playwright로 직접 기동하고 최종 HTML/CSS를 실제 �
 - EDITOR'S AFTERWORD는 Sources 직전에 배치됐다.
 
 `python tools/validate_repository.py`는 connector 기반 실행환경에서 저장소 전체 checkout을 확보할 수 없어 repo-wide 실행하지 못했다. 대신 검사기의 현행 계약을 확인해 최종 HTML 구조 검사와 실제 Chromium 화면 검수를 수행했으며, 보조 검사 미실행은 직접 편집 검수를 대체하지 않았다.
+
+---
+
+## Issue 07 — 2026.09.07–09.13
+
+- 발행 경로: `archive/2026-09-07/`
+- 발행일: 2026년 9월 14일
+- 제목: `낮의 전기, 현관의 초인종, 72시간`
+- 상태: **PUBLISHED · 실제 화면 검수 및 모바일 교정 완료**
+
+### 최종 원고 구성
+
+- Cover Story: 가을철 저수요 시간에 발전을 줄이고 플러스DR·ESS·전기차 충전시간 이동으로 소비를 옮기는 전력계통 운영
+- Economy: 9월 1~10일 수출 349억 7천만 달러와 반도체 약 47% 집중을 가격·물량·비반도체·내수 전달로 나눠 읽는 구조
+- Politics: 지방체육 보조금 실태점검 뒤 권익위 조사와 지방정부 반환명령·제재부가금·형사수사의 권한 구분
+- Society: 주민등록 방문조사 뒤 추가 확인·최고·공고·직권조치·복지연계로 이어지는 행정 흐름
+- Tech: 9월 11일 개인정보 보호법 개정에서 대표자 책임·CPO 권한·유출 가능성 72시간 통지·사전예방 투자 감경의 연결
+- DEEP DIVE: `OMIT` — 실제 후속 처분·월간 통계·복지연계 결과·개정법 적용 사례가 아직 충분하지 않아 새 주장 3개와 독립 근거 2개 기준을 충족하는 심화 후보가 없음
+- LIFE SCENE: `낮 두 시의 초인종은 그의 한밤중이었다`
+- PROLOGUE: `낮의 전기, 현관의 초인종, 72시간`
+- EDITOR'S AFTERWORD: `낮 두 시는 모두에게 낮이 아니다`
+
+### 교차 검수
+
+- Cover와 Economy의 숫자 중심 결론 수사를 기준으로 Politics의 `다음 숫자`형 마감을 책임·처분 기록 중심으로 수정했다.
+- 수정 후 다섯 일반 기사에서 사건·질문·출처 역할·결론 기능의 독립성을 재검수했다.
+- DEEP DIVE는 강제하지 않고 근거 있는 OMIT으로 닫았다.
+
+### 지면 설계
+
+- PUBLISH DESK에서 `LAYOUT_PLAN.md` 작성·COMPLETE 후 같은 턴에서 HTML/CSS를 제작했다.
+- 최종 DOM은 `Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Society → Tech → EDITOR'S AFTERWORD → Sources`다.
+- DEEP DIVE는 OMIT이므로 DOM·Contents·내비게이션에서 완전히 제외했다.
+- DATA·WATCH 별도 DOM 없음, `EDITOR'S PICK` 없음.
+- 이미지·placeholder·이전 회차 대표 이미지 재사용 없음.
+- 공통 Editorial Axis는 `--content: 1040px`.
+- 기사별 리듬은 metric board, process grid, time grid, evidence grid와 배경·타이포그래피로 구분했다.
+
+### 실제 화면 검수
+
+system Chromium으로 최종 HTML을 1440, 1366, 1024, 390px에서 실제 렌더링했다.
+
+- 1차 390px 검수에서 Contents의 `ECONOMY`·`POLITICS` 라벨이 두 줄로 꺾이는 조판 문제를 발견했다.
+- 모바일 목차 라벨 칼럼을 `64px`로 넓히고 `white-space: nowrap`을 적용했다.
+- 수정 후 1440 / 1366 / 1024 / 390 전체를 다시 렌더링해 재검수했다.
+- 네 화면 모두 `scrollWidth == clientWidth`, 가로 오버플로 없음.
+- viewport 밖 요소 0개, 내부 앵커 누락 0개.
+- 1440·1366에서 Contents/LIFE/PROLOGUE/기사/AFTERWORD/Sources의 외곽선이 1040px Editorial Axis에 일치.
+- `<img>` 0개, 깨진 자산 0개, DEEP DIVE·EDITOR'S PICK 잔존 DOM 없음.
+- EDITOR'S AFTERWORD는 Sources 직전에 배치됐다.
+- 전체 페이지 시각 검수에서 제목·본문·정보 모듈·Sources의 잘림·겹침 없음.
+
+`python tools/validate_repository.py`는 connector 기반 환경에서 저장소 전체 checkout을 확보할 수 없어 repo-wide 실행하지 못했다. 대신 실제 Chromium 렌더링과 Editorial Axis·overflow·anchor·선택 섹션·이미지 DOM 검사를 발행 게이트로 사용했다.
