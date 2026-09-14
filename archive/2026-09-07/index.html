@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ko" data-issue="2026-09-07">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="weekly-signal-issue" content="2026-09-07">
+<title>WEEKLY SIGNAL 07 — 낮의 전기, 현관의 초인종, 72시간</title>
+<style>
+:root{--navy:#07101c;--ink:#101114;--paper:#f2eee4;--light:#faf8f2;--mid:#e4ddcf;--blue:#dfe8f4;--orange:#ff4a2f;--muted:#696b68;--rule:rgba(16,17,20,.2);--page:1320px;--content:1040px;--prose:var(--content);--wide:var(--content);--gutter:clamp(20px,4vw,64px);--sans:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;--serif:"Noto Serif KR","Nanum Myeongjo","Batang",serif}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.75;word-break:keep-all;overflow-wrap:break-word;overflow-x:hidden}
+a{color:inherit;text-underline-offset:3px}
+h1,h2,h3{word-break:keep-all;text-wrap:balance}
+.progress{position:fixed;left:0;top:0;width:0;height:3px;background:var(--orange);z-index:1000}
+.topbar{position:sticky;top:0;z-index:500;background:rgba(7,16,28,.98);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar-in{max-width:var(--page);margin:auto;padding:11px var(--gutter);display:flex;align-items:center;gap:18px}
+.brand{font-size:12px;font-weight:900;letter-spacing:.15em;text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:13px;overflow-x:auto;font-size:10px;letter-spacing:.045em;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;text-decoration:none;white-space:nowrap;opacity:.72}
+.nav a:hover,.nav a:focus{opacity:1}
+.archive{margin-left:auto;font-size:10px;opacity:.72;text-decoration:none;white-space:nowrap}
+.section{scroll-margin-top:58px}
+.wrap{max-width:var(--page);margin:auto;padding:clamp(72px,8.5vw,124px) var(--gutter)}
+.axis{width:min(var(--content),100%);margin-left:auto;margin-right:auto}
+.label{font-size:11px;font-weight:900;letter-spacing:.15em;color:var(--orange)}
+.cover{min-height:90svh;background:var(--navy);color:#fff;display:grid;align-items:end;position:relative;overflow:hidden}
+.cover:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 84% 15%,rgba(255,74,47,.30),transparent 27%),linear-gradient(125deg,rgba(255,255,255,.06),transparent 46%)}
+.cover:after{content:"13:00  ·  14:00  ·  72H";position:absolute;right:max(var(--gutter),calc((100vw - var(--content))/2));top:17%;font:800 clamp(15px,1.5vw,21px)/1 var(--sans);letter-spacing:.18em;color:rgba(255,255,255,.24);writing-mode:vertical-rl}
+.cover-copy{position:relative;z-index:1;width:min(var(--content),calc(100% - 2 * var(--gutter)));margin:auto;padding:clamp(110px,15vh,178px) 0 clamp(62px,8vh,106px)}
+.cover h1{margin:16px 0 24px;font-family:var(--serif);font-size:clamp(50px,7vw,100px);line-height:1.04;letter-spacing:-.055em}
+.cover-deck{margin:0;font-family:var(--serif);font-size:clamp(18px,2vw,27px);line-height:1.62;max-width:none}
+.cover-meta{display:flex;gap:13px;flex-wrap:wrap;margin-top:34px;font-size:12px;opacity:.76}
+.cover-meta span{padding-top:9px;border-top:1px solid rgba(255,255,255,.42)}
+.contents{background:var(--mid);border-top:8px solid var(--orange)}
+.contents-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:40px;align-items:end}
+.contents h2,.head h2{margin:10px 0 0;font-family:var(--serif);font-size:clamp(41px,5vw,69px);line-height:1.1;letter-spacing:-.045em}
+.contents-intro{margin:0;font-family:var(--serif);font-size:20px;color:#3d403d}
+.toc{margin-top:42px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px}
+.toc a{display:grid;grid-template-columns:48px 1fr;gap:12px;padding:18px 0;border-top:1px solid var(--rule);text-decoration:none}
+.toc em{font-style:normal;font-size:10px;letter-spacing:.12em;color:var(--muted);padding-top:5px}
+.toc strong{display:block;font-family:var(--serif);font-size:19px;line-height:1.38}
+.life{background:var(--light)}
+.life-head{margin-bottom:44px}
+.life-head h2{margin:12px 0 16px;font-family:var(--serif);font-size:clamp(42px,5.7vw,76px);line-height:1.09;letter-spacing:-.05em}
+.life-sub{margin:0;font-family:var(--serif);font-size:clamp(18px,2vw,26px);line-height:1.62}
+.story,.prose{font-family:var(--serif);font-size:17px;line-height:1.96}
+.story p,.prose p{margin:0 0 1.34em}
+.story code,.prose code,.after-card code{font-family:inherit;background:rgba(16,17,20,.07);padding:.05em .25em;border-radius:3px}
+.scenario-note{margin-top:54px;padding:28px 30px;background:#fff;border-top:5px solid var(--ink);font-size:14px;line-height:1.8}
+.scenario-note h3{margin:0 0 14px;font-size:12px;letter-spacing:.12em}
+.scenario-note p{margin:.55em 0}
+.prologue{background:#d8d0c2}
+.prologue .prose{font-size:clamp(18px,1.6vw,22px);line-height:1.86}
+.article.alt{background:#e9e2d6}
+.article.blue{background:var(--blue)}
+.article.dark{background:#15191f;color:#fff}
+.head{margin-bottom:42px}
+.deck{margin:17px 0 0;font-family:var(--serif);font-size:clamp(19px,2.05vw,27px);line-height:1.6;color:#3b3e3c}
+.dark .deck{color:rgba(255,255,255,.82)}
+.prose h2{margin:2.5em 0 .82em;padding-top:.82em;border-top:1px solid var(--rule);font-family:var(--sans);font-size:24px;line-height:1.4;letter-spacing:-.02em}
+.dark .prose h2{border-color:rgba(255,255,255,.22)}
+.metric-board,.process-grid,.time-grid,.evidence-grid{margin-top:44px;margin-bottom:58px;display:grid;border-top:6px solid var(--orange)}
+.metric-board{grid-template-columns:repeat(3,1fr);background:var(--navy);color:#fff}
+.metric{padding:25px 22px;border-right:1px solid rgba(255,255,255,.15)}
+.metric:last-child{border-right:0}
+.metric b{display:block;font:800 clamp(27px,3vw,43px)/1.08 var(--sans);letter-spacing:-.045em;margin-bottom:10px}
+.metric span{font-size:12px;opacity:.75;line-height:1.5}
+.process-grid{grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule)}
+.process{background:#fff;padding:23px 20px;min-height:154px}
+.process i{font-style:normal;font-size:10px;font-weight:900;color:var(--orange);letter-spacing:.12em}
+.process b{display:block;font-size:17px;line-height:1.35;margin:15px 0 8px}
+.process p{font-size:12px;line-height:1.55;margin:0;color:#555}
+.time-grid{grid-template-columns:repeat(3,1fr);gap:10px;border-top:0}
+.time-card{padding:25px 22px;background:#fff;border-top:6px solid var(--orange)}
+.time-card b{display:block;font-size:18px;margin-bottom:8px}
+.time-card time{font-size:12px;color:var(--muted)}
+.time-card p{font-size:12px;line-height:1.6;margin:12px 0 0}
+.evidence-grid{grid-template-columns:repeat(2,1fr);gap:10px;border-top:0}
+.evidence{padding:27px;background:rgba(7,16,28,.96);color:#fff;border-top:6px solid var(--orange)}
+.evidence b{display:block;font-size:clamp(23px,2.5vw,34px);line-height:1.15;margin-bottom:10px}
+.evidence span{font-size:13px;line-height:1.6;color:rgba(255,255,255,.75)}
+.afterword{background:#ddd5c8}
+.after-card{padding:clamp(35px,5vw,62px);background:#faf7ef;border-top:8px solid var(--orange);font-family:var(--serif);font-size:17px;line-height:1.9}
+.after-card h2{margin:10px 0 28px;font-family:var(--serif);font-size:clamp(41px,5vw,64px);line-height:1.12;letter-spacing:-.04em}
+.after-card p{margin:0 0 1.3em}
+.sources{background:#e7e0d4}
+.sources .head{margin-bottom:52px}
+.source-group{margin-bottom:42px}
+.source-group h3{font-size:12px;letter-spacing:.12em;margin:0 0 12px}
+.source-group ul{list-style:none;margin:0;padding:0}
+.source-group li{padding:14px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr;gap:18px;font-size:12px;line-height:1.55}
+.source-group a{overflow-wrap:anywhere;color:#3d526a}
+.footer{background:var(--navy);color:#fff}
+.footer-in{width:min(var(--content),calc(100% - 2 * var(--gutter)));margin:auto;padding:56px 0;font-size:12px;letter-spacing:.1em}
+@media(max-width:1024px){
+ .contents-head{grid-template-columns:1fr}
+ .process-grid{grid-template-columns:repeat(2,1fr)}
+ .time-grid{grid-template-columns:1fr}
+ .source-group li{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+ .section{scroll-margin-top:128px}
+ .topbar-in{padding:9px 18px 10px;display:grid;grid-template-columns:1fr auto;gap:7px 12px}
+ .brand{grid-column:1}
+ .archive{grid-column:2;grid-row:1;margin-left:0}
+ .nav{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px 9px;width:100%;overflow:visible}
+ .nav a{font-size:9px;line-height:1.65;overflow:hidden;text-overflow:ellipsis}
+ .wrap{padding-left:21px;padding-right:21px}
+ .cover-copy{width:calc(100% - 42px)}
+ .cover:after{display:none}
+ .cover h1{font-size:clamp(44px,14vw,62px)}
+ .toc,.metric-board,.process-grid,.evidence-grid{grid-template-columns:1fr}
+ .toc a{grid-template-columns:64px 1fr}
+ .toc em{font-size:9px;white-space:nowrap}
+ .metric{border-right:0;border-bottom:1px solid rgba(255,255,255,.15)}
+ .metric:last-child{border-bottom:0}
+ .process{min-height:0}
+ .head h2{font-size:39px}
+ .story,.prose,.after-card{font-size:16px;line-height:1.9}
+ .source-group li{font-size:11px}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="topbar">
+ <div class="topbar-in">
+  <a class="brand" href="#top">WEEKLY SIGNAL</a>
+  <nav class="nav" aria-label="이번 호">
+   <a href="#contents">CONTENTS</a><a href="#life">LIFE</a><a href="#prologue">PROLOGUE</a>
+   <a href="#cover-story">COVER</a><a href="#economy">ECONOMY</a><a href="#politics">POLITICS</a>
+   <a href="#society">SOCIETY</a><a href="#tech">TECH</a><a href="#afterword">AFTERWORD</a><a href="#sources">SOURCES</a>
+  </nav>
+  <a class="archive" href="../index.html">과월호 ↗</a>
+ </div>
+</header>
+<main>
+<section class="cover section" id="top">
+ <div class="cover-copy">
+  <div class="label">WEEKLY SIGNAL · ISSUE 07 · 2026.09.07–09.13</div>
+  <h1>낮의 전기, 현관의 초인종, 72시간</h1>
+  <p class="cover-deck">전력망의 낮, 야간근무자의 낮, 개인정보 사고의 72시간. 같은 한 주 안에서도 사람과 시스템은 서로 다른 시계에 맞춰 움직입니다.</p>
+  <div class="cover-meta"><span>5 GENERAL ARTICLES</span><span>TEXT-FIRST EDITION</span><span>IMAGE-FREE EDITION</span></div>
+ </div>
+</section>
+
+<section class="contents section" id="contents"><div class="wrap">
+ <div class="contents-head axis">
+  <div><div class="label">CONTENTS</div><h2>이번 호의 독서 지도</h2></div>
+  <p class="contents-intro">생활의 한 장면에서 시작해, 이번 주의 전력·수출·재정감독·주민등록·개인정보 운영을 서로 다른 질문으로 읽습니다.</p>
+ </div>
+ <div class="toc axis">
+  <a href="#life"><em>01 · LIFE</em><strong>낮 두 시의 초인종은 그의 한밤중이었다</strong></a>
+  <a href="#prologue"><em>02 · OPEN</em><strong>낮의 전기, 현관의 초인종, 72시간</strong></a>
+  <a href="#cover-story"><em>03 · COVER</em><strong>전기가 남는 가을, 왜 발전을 줄이고 소비를 늘리나</strong></a>
+  <a href="#economy"><em>04 · ECONOMY</em><strong>9월 열흘 수출 350억 달러, 반도체 비중 47%를 어떻게 읽어야 하나</strong></a>
+  <a href="#politics"><em>05 · POLITICS</em><strong>지방체육 보조금 점검 뒤, 환수와 제재는 누가 집행하나</strong></a>
+  <a href="#society"><em>06 · SOCIETY</em><strong>주민등록 방문조사, 문을 연 뒤 행정은 어디까지 움직이나</strong></a>
+  <a href="#tech"><em>07 · TECH</em><strong>개인정보 유출 전에 움직이라, 9월 11일 바뀐 책임 구조</strong></a>
+  <a href="#afterword"><em>08 · AFTER</em><strong>낮 두 시는 모두에게 낮이 아니다</strong></a>
+ </div>
+</div></section>
+
+<section class="life section" id="life"><div class="wrap">
+ <header class="life-head axis"><div class="label">LIFE SCENE</div><h2>낮 두 시의 초인종은 그의 한밤중이었다</h2><p class="life-sub">야간근무를 마치고 잠든 민재에게 오후 두 시는 깊은 밤과 같았다. 문 앞에 남은 작은 방문 안내는 다음 날의 잠드는 시간까지 조금 바꿔 놓았다.</p></header>
+ <article class="story axis"><p>오후 2시 14분, 민재는 베개 옆에서 울리는 휴대전화 진동보다 먼저 초인종 소리를 들었다. 눈을 뜬 뒤에도 몇 초 동안 소리가 어디서 났는지 알지 못했다. 오전 7시가 조금 넘어 물류센터 일을 마치고 돌아와 샤워를 한 뒤, 컵라면 하나를 먹고 열 시쯤 잠든 참이었다.</p>
+<p>초인종이 한 번 더 울렸다. 민재는 침대 옆에 벗어 둔 티셔츠를 걸치고 현관으로 갔다. 문을 열었을 때 복도에는 아무도 없었다. 엘리베이터 층수가 아래로 내려가고 있었고, 문 손잡이 옆에는 얇은 종이 한 장이 끼워져 있었다.</p>
+<p><code>주민등록 사실조사 방문.</code></p>
+<p>민재는 종이를 들고 한동안 문 앞에 서 있었다. 정부24로 비대면 조사를 할 수 있다는 알림을 본 기억은 났다. 퇴근길 지하철에서 나중에 해야지 하고 넘겼다가 기간을 놓쳤다. 방문조사가 올 수 있다는 것도 어렴풋이 알고 있었지만, 언제 오는지는 알지 못했다.</p>
+<p>종이 아래에는 연락처가 적혀 있었다. 민재는 바로 전화하지 않고 휴대전화로 동 주민센터 대표번호를 찾아 먼저 걸었다. 자신이 사는 건물에 사실조사가 진행 중인지 물었다. 직원은 방문 대상이 맞고, 조사원이 다시 연락할 수 있다고 했다.</p>
+<p>전화를 끊고 나니 잠이 조금 달아나 있었다. 방 안 커튼 사이로 낮빛이 들어왔다. 민재는 냉장고에서 물을 꺼내 마시고 방문 안내지의 번호로 전화를 걸었다. 상대는 오늘은 이미 다른 집들을 돌고 있고, 다음 날 오전에 다시 들를 수 있다고 말했다.</p>
+<p>“아침 일곱 시 반쯤이면 제가 들어와 있습니다.”</p>
+<p>민재가 말했다.</p>
+<p>잠깐의 침묵 뒤에 서로 가능한 시간을 다시 맞췄다. 민재는 휴대전화 캘린더에 <code>사실조사</code>라고 적고 알람을 하나 추가했다. 평소라면 출근 전까지 더 잘 수 있는 시간이었지만 그날은 세 시가 넘어서야 다시 눈을 감았다.</p>
+<p>저녁 7시 40분, 알람이 울렸다. 민재는 주방 불을 켜고 전자레인지에 밥을 넣었다. 작업복 주머니에 사원증이 있는지 확인하고, 현관 앞에서 작업화를 신다가 문 손잡이에 끼워져 있던 종이를 책상 위로 옮겼다. 밤 열 시 작업 시작은 그대로였다. 달라진 것은 그 사이에 낮 두 시의 초인종이 하나 들어왔다는 것뿐이었다.</p>
+<p>다음 날 오전 7시 18분, 민재는 다시 현관문을 열었다. 손에는 편의점 커피와 야간근무 때 쓰던 장갑이 들려 있었다. 장갑을 신발장 위에 올려놓고 세수를 한 뒤, 침대에 눕기 전에 휴대전화 알람을 확인했다.</p>
+<p>8시가 조금 지나 초인종이 울렸다. 이번에는 바로 문을 열었다. 조사원은 먼저 목에 걸린 증명서를 보여줬다. 민재는 이름과 사진을 확인한 뒤 질문에 답했다. 이 집에 실제로 살고 있는지, 등록된 내용과 다른 점이 있는지 묻는 짧은 확인이었다.</p>
+<p>민재가 지금 사는 곳과 등록된 주소가 같다고 답하자 조사는 오래 걸리지 않았다. 그는 혹시 더 해야 할 일이 있느냐고 물었고, 조사원은 현장에서의 확인은 끝났다고 말했다. 복도에서 다음 집 문을 찾는 발소리가 멀어졌다.</p>
+<p>민재는 문을 닫고 바로 커튼을 쳤다. 평소라면 퇴근한 뒤 이미 잠들었을 시간이었지만 오전의 빛이 방 안에 남아 있었다. 그는 휴대전화를 무음으로 바꾸고 이불을 끌어당겼다. 한 번 깬 몸은 생각보다 오래 깨어 있었다.</p>
+<p>오후 4시가 넘어서야 다시 눈을 떴다. 민재는 냉장고 문을 열어 남은 반찬을 꺼내고, 세탁기에 넣어 둔 작업복을 확인했다. 저녁 일정은 다시 평소 순서로 돌아갔다. 밥을 먹고, 물병을 채우고, 사원증을 챙겼다.</p>
+<p>8시 무렵 현관에서 작업화 끈을 묶다가 민재는 책상 모서리에 접어 둔 방문 안내지를 한 번 봤다. 종이 한 장은 그대로였지만, 그 종이가 들어온 자리는 그의 이틀 사이 수면시간 한가운데였다.</p>
+<p>그는 불을 끄고 문을 잠갔다. 엘리베이터가 내려가는 동안 휴대전화 화면에는 야간근무 시작까지 남은 시간이 떠 있었다. 낮의 방문은 끝났고, 민재의 하루는 다시 밤으로 넘어갔다.</p></article>
+ <aside class="scenario-note axis"><h3>SCENARIO NOTE</h3><p>민재, 직장, 주거지, 통화 내용, 방문 시각과 대화는 모두 가상이다. 특정 주민이나 실제 방문조사 사례를 재구성한 글이 아니다.</p>
+<p>행정안전부는 2026년 주민등록 사실조사에서 정부24 앱을 이용한 비대면 조사를 7월 20일부터 9월 7일까지 운영하고, 9월 8일부터 11월 9일까지 비대면 미참여 세대와 중점 조사 세대를 대상으로 방문조사를 진행한다고 밝혔다. 방문은 이·통장 또는 읍·면·동 공무원이 수행하며, 조사자는 사실조사원 증명서를 패용·제시하도록 안내됐다.</p>
+<p>본문은 등록주소와 실제 거주가 일치해 현장 확인으로 끝나는 가상 장면이다. 실제 조사에서 실거주가 확인되지 않거나 주민등록 사항이 다르면 지방정부 담당 공무원의 추가 확인과 주민등록법상 최고·공고 등 후속 절차가 이어질 수 있다. 방문조사 한 번만으로 즉시 주민등록이 직권 변경되는 것으로 묘사하지 않았다.</p></aside>
+</div></section>
+
+<section class="prologue section" id="prologue"><div class="wrap">
+ <header class="head axis"><div class="label">PROLOGUE</div><h2>낮의 전기, 현관의 초인종, 72시간</h2></header>
+ <article class="prose axis"><p>한 주를 펼치면 먼저 서로 다른 길이의 시간이 보인다. 추석 당일 오후 1시의 전력수요 전망이 있고, 9월 첫 열흘의 수출액이 있고, 3년 동안 이어진 지방체육 보조사업의 정산 기록이 있다. 9월 8일부터는 주민등록 사실조사원이 현관문을 두드리기 시작했고, 9월 11일부터 개인정보 사고 대응에는 72시간이라는 또 다른 시계가 걸렸다.</p>
+<p>숫자의 크기도 제각각이다. 추석 당일 13시 전력수요는 47.3GW로 전망됐다. 9월 1일부터 10일까지 수출은 349억 7천만 달러였고, 그중 반도체가 거의 절반을 차지했다. 2022년부터 2024년까지 기초지방정부가 교부한 체육 분야 보조금은 약 1조 5,313억 원이었다. 어느 숫자도 같은 질문에 답하지 않는다.</p>
+<p>그중 가장 낯선 장면 하나는 전기를 적게 쓰는 낮에 있다. 여름이 지나 냉방수요가 줄면 전력망이 한숨 돌릴 것 같지만, 재생에너지 발전이 많은 낮에는 공급이 수요보다 커질 수 있다. 그래서 이번 가을에는 발전을 더 하는 대신 일부 발전을 줄이고, 저장과 충전의 시간을 낮으로 옮기는 운영이 준비됐다. ‘절전’에 익숙한 전력정책의 언어와 반대 방향처럼 들리는 이유는 본문에서 더 천천히 따라가 볼 수 있다.</p>
+<p>생활의 시간은 훨씬 작다. 낮 두 시의 초인종 하나가 야간근무자에게는 한밤중의 호출이 될 수 있다. 주민등록 방문조사는 행정기관에게 정해진 조사기간이지만, 집 안의 사람에게는 출근과 수면, 부재와 재방문 사이에 들어오는 몇 분이다. 짧은 확인 뒤에 아무 일 없이 끝날 수도 있고, 실제 거주와 등록이 다르면 다른 행정절차로 넘어갈 수도 있다.</p>
+<p>시스템의 시간은 다시 다르게 흐른다. 개인정보 보호법 개정은 사고가 완전히 확인된 뒤 움직이는 것만으로 충분한지 묻는다. 유출 가능성을 인지한 순간부터 판단과 통지의 시계가 돌아갈 수 있고, 그 전에 누가 보안예산을 정하고 위험을 이사회까지 올릴 수 있는지도 책임 구조 안으로 들어왔다. 72시간은 단순한 마감시간이 아니라 조직 안에서 정보가 움직여야 하는 속도다.</p>
+<p>한편 다른 기사들은 시간을 숫자로만 재지 않는다. 수출 350억 달러에 가까운 기록은 반도체 가격과 물량, 다른 산업과 국내 소비로 퍼지는 폭을 함께 봐야 하고, 보조금 실태조사는 발표된 적발 규모보다 이후 지방정부가 어떤 처분 기록을 남기는지가 중요해진다. 큰 숫자가 나온 순간과 그 숫자의 의미가 확정되는 순간 사이에는 각 분야마다 다른 문서와 사람이 있다.</p>
+<p>이제 첫 기사에서는 그중 가장 먼저 낮 시간을 본다. 전기를 덜 쓰는 계절에 정부가 왜 오히려 소비를 늘리려 하는지, 그리고 발전을 줄이는 일이 어떻게 전력망을 지키는 방법이 되는지부터 시작한다.</p></article>
+</div></section>
+
+<section class="article dark section" id="cover-story"><div class="wrap">
+ <header class="head axis"><div class="label">COVER STORY</div><h2>전기가 남는 가을, 왜 발전을 줄이고 소비를 늘리나</h2><p class="deck">기후에너지환경부는 9월 19일부터 11월 15일까지 58일간 가을철 전력수급 안정화 대책을 운영한다. 여름처럼 전기가 모자랄 위험에 대비하는 계획이 아니다. 냉방수요가 줄고 재생에너지 발전이 늘 수 있는 낮 시간에 공급이 수요를 넘어서는 상황을 관리하기 위해 발전기 운전을 줄이고, ESS와 전기차 충전을 낮으로 옮기며, 필요하면 출력제어까지 시행하는 계획이다.</p></header>
+ <div class="metric-board axis" aria-label="Cover Story 핵심 수치">
+  <div class="metric"><b>58일</b><span>9월 19일~11월 15일 가을철 전력수급 안정화 대책</span></div>
+  <div class="metric"><b>47.3GW</b><span>추석 당일 13시 총 전력수요 전망</span></div>
+  <div class="metric"><b>10–16시</b><span>대책 기간 태양광 연계 ESS 충전시간</span></div>
+ </div>
+ <article class="prose axis"><p>여름이 지나면 전력수급 걱정도 끝날 것처럼 보인다. 냉방기 사용이 줄어드니 발전소가 감당해야 할 부담도 낮아질 것이라는 생각은 자연스럽다. 하지만 전력계통에서는 수요가 낮다는 사실 자체가 새로운 운영 문제를 만든다. 기후에너지환경부는 9월 10일 가을철 전력계통 점검회의를 열고, 9월 19일부터 11월 15일까지 58일을 경부하기 전력수급 안정화 대책 기간으로 정했다.</p>
+<p>이번 대책의 방향은 여름철과 반대다. 여름에는 수요가 급증할 때 발전량을 충분히 확보하는 것이 중요하다. 가을에는 냉방수요가 줄어드는 동시에 태양광과 풍력의 출력이 기상조건에 따라 높아질 수 있다. 특히 공장과 상점의 전력 사용이 줄어드는 주말·공휴일 낮에는 전기를 만드는 양이 쓰는 양을 웃돌 가능성이 커진다. 정부는 올해 가을의 대표적인 저수요 시점으로 9월 25일 추석 당일 13시를 꼽고 총 전력수요를 47.3GW로 전망했다.</p>
+<h2>전기는 많이 남겨둘 수 있는 상품이 아니다</h2>
+<p>전력계통에서 중요한 것은 발전량을 크게 만드는 것 자체가 아니다. 어느 순간에 전기를 얼마나 만들고, 그 순간 소비자가 얼마나 쓰는지를 계속 맞춰야 한다. 대규모 저장장치가 늘고 있지만 아직 전체 전력계통의 생산과 소비를 오랫동안 통째로 저장해 두는 구조는 아니다. 발전과 소비 사이의 균형이 크게 어긋나면 계통 주파수와 안정성을 유지하기 어려워진다.</p>
+<p>그래서 공급 부족과 공급 과잉은 방향만 다를 뿐 같은 균형 문제다. 전기가 부족하면 추가 발전기를 가동하거나 수요를 줄여야 한다. 반대로 전기가 남으면 일부 발전을 줄이거나 소비를 늘려야 한다. 최근에는 이 두 번째 문제가 더 자주 등장하고 있다. 낮에 태양광 발전이 늘어나는 속도가 같은 시간대 전력소비 증가보다 빠르면, 기존의 ‘수요가 많을수록 발전을 더 한다’는 운영방식만으로는 균형을 맞출 수 없다.</p>
+<p>이번 가을 대책은 이 문제를 여러 단계로 나눠 처리한다. 먼저 발전량을 줄이기 위해 주요 발전기의 정비 일정을 조정해 운전을 최소화하고, 석탄발전 단지의 운영도 낮춘다. 동시에 전력이 남는 시간으로 소비를 옮기기 위해 수요자원과 저장장치를 활용한다. 공급만 줄이는 것이 아니라 소비 시점도 바꾸는 것이다.</p>
+<h2>절전이 아니라 ‘낮에 더 쓰기’를 요구한다</h2>
+<p>가장 눈에 띄는 변화는 수요 측 조치다. 정부는 플러스 DR을 강화하고, 태양광 연계 에너지저장장치(ESS)의 충전시간을 평시 06~15시에서 대책 기간에는 10~16시로 옮긴다. 태양광 발전이 많은 낮 시간에 저장장치가 전기를 더 흡수하도록 시간표를 맞추는 방식이다.</p>
+<p>플러스 DR은 일반적인 수요반응과 방향이 반대다. 보통 DR은 전력이 부족할 때 기업이나 참여 고객이 소비를 줄이고 보상을 받는 제도로 알려져 있다. 플러스 DR은 공급이 넘치는 시간에 소비를 늘리는 자원을 시장에 참여시킨다. 전력거래소는 2024년 전력시장운영규칙을 개정해 육지 플러스DR 제도를 도입했다. 재생에너지 발전량이 많을 때 소비를 늘리는 행위 자체를 계통 운영 자원으로 취급하기 시작한 것이다.</p>
+<p>정부는 이번 대책에서 플러스 DR의 기준소비량을 계산하는 방식도 조정했다고 밝혔다. 과거에는 플러스 DR이 발령된 날도 기준선 산정에 포함했지만, 시장운영규칙 개정을 통해 발령일을 기준 계산에서 제외해 수요증대 효과를 더 정확히 평가하도록 기능을 강화했다. 제도의 세부 계산방식이 바뀐 이유도 결국 같은 데 있다. 실제로 추가 소비가 발생했는지를 정확히 측정해야 시장에서 수요 증가를 하나의 자원으로 인정할 수 있기 때문이다.</p>
+<h2>전기차 충전 시간에도 가격신호가 붙었다</h2>
+<p>전기차 충전 할인도 단순한 이용자 혜택만으로 보기 어렵다. 9월과 10월 주말·공휴일 낮 11시부터 14시까지 전기자동차 충전전력요금에 할인이 적용된다. 개인주택이나 회사 등 자가소비용 충전에는 전력량요금의 50%가 할인되고, 공공·지자체·민간 충전사업자에게 적용되는 충전서비스 사업자용 요금도 최대 32%까지 한시 할인된다.</p>
+<p>이 시간대는 우연히 정해진 것이 아니다. 한국전력은 올해 계절·시간대별 요금제를 개편하면서 봄·가을 주말 낮에 산업용(을)과 전기자동차 충전전력 요금을 50% 낮추는 구조를 도입했다. 한전은 태양광 발전이 풍부한 낮 시간으로 전력소비를 옮기고 출력제어를 줄이는 것이 목적이라고 설명한다. 전기차 이용자에게는 충전비 절감이지만, 계통 운영자에게는 남는 전기를 흡수하는 수요 이동 수단인 셈이다.</p>
+<p>전기요금은 원래 사용한 전력량에 비용을 매기는 장치다. 그런데 재생에너지 비중이 커지면서 ‘얼마나 썼는가’만큼 ‘언제 썼는가’가 중요해지고 있다. 발전비용과 공급여건이 시간대마다 달라지기 때문이다. 낮에 전력이 남는 구조에서는 같은 1kWh라도 낮에 쓰는 전기와 저녁 피크시간에 쓰는 전기의 계통 가치가 달라진다. 시간대별 요금제가 그 차이를 소비자에게 전달하는 가격신호 역할을 한다.</p>
+<h2>그래도 남으면 발전을 끈다</h2>
+<p>수요를 옮기고 발전기 운전을 조정해도 공급이 많다면 마지막에는 발전량을 직접 줄여야 한다. 정부는 추가 발전량 제어가 불가피할 경우 경직성 전원에 대한 출력제어를 실시하겠다고 밝혔다. 발전사업자의 예측 가능성을 높이기 위해 제어가 사전에 전망되는 경우에는 전일, 당일 오전 9시, 제어 30분 전 등 세 차례 안내할 계획이다.</p>
+<p>출력제어 자체를 전력시스템의 실패로 볼 필요는 없다. 전력계통은 실시간 균형을 유지해야 하므로 발전량을 줄이는 운영수단이 필요하다. 문제는 제어가 얼마나 자주, 얼마나 큰 규모로 발생하는가다. 출력제어가 반복되면 발전사업자는 생산할 수 있었던 전력을 팔지 못하고, 새 발전설비의 수익성에도 영향을 받을 수 있다. 반대로 계통이 감당할 수 없는 발전량을 그대로 받아들이면 전력망 안정성을 해칠 수 있다.</p>
+<p>이 지점에서 단기 운영과 장기 투자를 구분해야 한다. 올가을 대책은 정비 일정, 석탄발전 운영, 플러스 DR, ESS 충전, 전기차 요금 같은 수단을 조합해 두 달 남짓한 경부하기를 관리하는 계획이다. 재생에너지 비중이 계속 높아지는 상황에서는 이 조치만으로 모든 계절의 공급과잉 문제를 해결할 수 없다. 더 많은 저장장치, 지역 간 전력을 이동할 송전망, 빠르게 출력을 조절할 수 있는 발전원, 소비시간을 유연하게 바꿀 시장제도가 함께 늘어나야 한다.</p>
+<h2>47.3GW 다음에 볼 숫자</h2>
+<p>이번 발표에서 가장 눈에 띄는 숫자는 추석 당일 13시의 47.3GW 전망이다. 그러나 이 숫자는 결과가 아니라 운영계획을 세우기 위한 예상치다. 실제 기온, 구름, 풍속, 산업 가동률과 연휴 소비패턴이 달라지면 수요와 재생에너지 발전량도 변한다.</p>
+<p>따라서 이번 대책을 평가할 때는 추석날 실제 수요가 얼마였는지부터 확인해야 한다. 그 다음에는 플러스 DR이 얼마나 발령됐고 실제 소비가 얼마나 늘었는지, 전기차 할인 시간대 충전량이 평소보다 얼마나 이동했는지, ESS가 낮 시간 전력을 얼마나 흡수했는지, 그리고 출력제어가 몇 차례 어떤 규모로 시행됐는지를 봐야 한다.</p>
+<p>가을 전력수급 대책이 보여주는 변화는 분명하다. 전력정책의 질문이 더 이상 ‘전기를 충분히 만들 수 있는가’ 하나로 끝나지 않는다. 재생에너지가 늘어날수록 <code>언제 만들고, 언제 쓰고, 남는 전기를 어디로 옮기거나 저장할 것인가</code>가 같은 비중의 질문이 된다. 올가을 정부가 발전을 줄이면서 동시에 소비를 늘리려는 이유도 바로 그 시간의 불일치를 맞추기 위해서다.</p></article>
+</div></section>
+
+<section class="article alt section" id="economy"><div class="wrap">
+ <header class="head axis"><div class="label">ECONOMY</div><h2>9월 열흘 수출 350억 달러, 반도체 비중 47%를 어떻게 읽어야 하나</h2><p class="deck">9월 1~10일 수출은 349억 7천만 달러로 지난해 같은 기간보다 82.6% 늘었다. 지난해와 올해 조업일수도 8.5일로 같아 달력효과만으로 설명하기 어려운 증가다. 다만 반도체가 약 165억 달러로 전체의 47%를 차지했다. 기록적인 수출 증가와 반도체 집중, 그리고 국내 경기로의 전달은 같은 숫자가 아니다.</p></header>
+ <div class="metric-board axis" aria-label="Economy 핵심 수치">
+  <div class="metric"><b>349.7억$</b><span>9월 1~10일 잠정 수출액</span></div>
+  <div class="metric"><b>47.1%</b><span>열흘 수출에서 반도체가 차지한 비중</span></div>
+  <div class="metric"><b>103.7억$</b><span>같은 기간 상품 무역수지 흑자</span></div>
+ </div>
+ <article class="prose axis"><p>9월 첫 열흘 동안 한국에서 해외로 통관된 수출액은 349억 7천만 달러였다. 관세청이 9월 11일 발표한 잠정치다. 지난해 같은 기간 191억 5천만 달러보다 82.6% 늘었고, 수입은 246억 1천만 달러로 20.7% 증가했다. 이에 따라 1일부터 10일까지의 무역수지는 103억 7천만 달러 흑자를 기록했다.</p>
+<p>이번 증가율에서 먼저 확인해야 할 것은 조업일수다. 연휴 위치가 달라지면 짧은 기간의 수출 증가율은 크게 흔들릴 수 있다. 그러나 지난해와 올해 9월 1~10일의 조업일수는 모두 8.5일이었다. 관세청이 제시한 일평균 수출 증가율도 82.6%로 전체 증가율과 같다. 적어도 이번 기록을 ‘올해 영업일이 더 많았기 때문’이라고 설명할 수는 없다.</p>
+<p>다만 열흘 실적은 한 달 전체가 아니다. 수출신고가 수리되는 시점과 대형 선적 일정에 따라 초·중·후반의 숫자가 달라질 수 있다. 350억 달러는 9월의 강한 출발을 보여주는 잠정 통계이지, 월간 수출 증가율 82.6%가 확정됐다는 뜻은 아니다. 이 기록이 어떤 성격인지 보려면 먼저 수출액을 구성한 품목을 봐야 한다.</p>
+<h2>수출액의 약 절반이 반도체였다</h2>
+<p>9월 1~10일 반도체 수출은 약 165억 달러였다. 전체 수출 349억 7천만 달러의 약 47.1%다. 열흘 동안 해외로 나간 상품 금액 두 달러 가운데 거의 한 달러가 반도체에서 나온 셈이다. 반도체 수출액 자체도 1~10일 기준 역대 최대였다.</p>
+<p>이 집중은 갑자기 생긴 현상이 아니다. 산업통상부가 집계한 8월 전체 수출은 982억 5천만 달러로 전년 같은 달보다 68.7% 증가했다. 이 가운데 반도체가 466억 5천만 달러였다. 비중은 약 47.5%로 9월 초와 비슷하다. 8월 반도체 수출은 전년동월 대비 209.0% 증가했고, 월간 기준 역대 최대 기록을 다시 썼다.</p>
+<p>따라서 최근 수출 증가를 이해할 때 반도체는 여러 호조 품목 가운데 하나가 아니라 전체 숫자의 모양을 바꾸는 중심 변수다. 반도체가 빠르게 늘면 총수출 증가율도 크게 올라가고, 반대로 이 품목의 가격이나 글로벌 수요가 꺾이면 전체 수출 숫자도 민감하게 반응할 수 있다.</p>
+<h2>AI 투자가 수요를 만들고 가격도 수출액을 키운다</h2>
+<p>산업통상부는 최근 반도체 호조의 배경으로 구글과 아마존 같은 하이퍼스케일러의 설비투자 확대와 AI 인프라 수요를 들고 있다. 대형 데이터센터가 늘면서 고성능 연산장치뿐 아니라 메모리 수요도 커지는 구조다. 한국 수출기업이 강점을 가진 메모리 반도체가 이 투자주기의 직접적인 수혜를 받고 있다.</p>
+<p>여기에 가격도 움직였다. 산업통상부가 8월 수출입동향에서 제시한 메모리 고정가격을 보면 DDR5 16Gb 가격은 4월 35.0달러에서 8월 46.5달러로 올랐고, NAND 128Gb도 같은 기간 24.2달러에서 30.5달러로 상승했다. 같은 수량을 수출해도 단가가 높아지면 달러 기준 수출액은 커진다.</p>
+<p>그래서 ‘반도체 수출이 209% 늘었다’는 문장을 생산량이 209% 늘었다는 의미로 읽으면 안 된다. 실제 수출액에는 출하물량, 제품구성, 메모리 가격, 환율이 함께 반영된다. 지금 확인되는 것은 세계 AI 투자 확대와 메모리 가격 상승이 한국의 반도체 수출액을 동시에 끌어올리고 있다는 점이다.</p>
+<h2>반도체가 크다고 해서 나머지 수출이 멈춘 것은 아니다</h2>
+<p>반도체 비중 47%는 수출의 집중도를 보여준다. 그렇다고 최근 수출 증가를 ‘반도체만의 호황’이라고 정리하는 것도 정확하지 않다. 산업통상부에 따르면 8월에는 반도체를 제외한 수출도 전년동월 대비 20% 늘었다.</p>
+<p>다만 품목별 움직임은 한 방향이 아니다. 8월 석유제품은 전년동월보다 65.3%, 석유화학은 12.2% 증가했지만 자동차와 선박은 각각 29.8%, 45.9% 감소했다. 전체 수출이 크게 늘었다는 사실과 모든 주력 산업이 동시에 좋아졌다는 판단은 구분해야 한다.</p>
+<p>이 차이는 정책과 기업 판단에도 중요하다. 총수출만 보면 외부 수요가 전반적으로 강해 보일 수 있지만, 기업이 실제로 만나는 주문과 가격은 산업마다 다르다. 반도체처럼 AI 투자 사이클을 타는 업종과 자동차·선박처럼 계약시점, 생산일정, 관세와 지역별 수요에 영향을 받는 업종을 같은 경기로 묶을 수는 없다.</p>
+<h2>104억 달러 무역흑자는 기업이익과 같은 숫자가 아니다</h2>
+<p>9월 첫 열흘의 수출 350억 달러에서 수입 246억 달러를 빼면 약 104억 달러의 무역흑자가 남는다. 무역수지는 상품이 국경을 통과하면서 신고된 수출액과 수입액의 차이다. 국가의 대외 상품거래 흐름을 보여주는 중요한 숫자지만 기업의 순이익이나 국민 전체가 벌어들인 소득과 동일하지 않다.</p>
+<p>수출기업의 이익은 원재료비, 인건비, 설비투자, 환율과 판매가격에 따라 달라진다. 수출이 늘어난 뒤 국내 설비투자와 고용, 임금이 늘어나야 가계소득으로 전달된다. 다시 그 소득이 소비와 서비스업 매출로 이어져야 수출기업 밖에서도 경기개선이 넓게 체감된다. 수출액에서 가계의 소비까지는 여러 단계가 있다.</p>
+<p>KDI가 9월 경제동향에서 국내 경제의 개선이 AI 관련 투자와 밀접한 부문을 중심으로 이어지고 있다고 평가하면서도 소비 회복은 점진적이라고 본 이유가 여기에 있다. 제조업과 설비투자에서 강한 흐름이 나타나도 그 증가가 가계소득 전반으로 충분히 확산되지 않으면 도소매·숙박·음식 같은 소비 관련 서비스업의 회복 속도는 다를 수 있다.</p>
+<h2>좋은 기록의 다음 질문은 ‘얼마나 넓게 이어지나’다</h2>
+<p>이번 수출 숫자를 작게 볼 이유는 없다. 지난해와 조업일수가 같은 상황에서 열흘 수출이 82.6% 늘었고, 8월 월간 수출도 982억 5천만 달러로 강한 증가세를 보였다. AI 투자 확대와 메모리 업황 회복이 실제 한국 수출에 큰 수요를 만들고 있다는 근거도 분명하다.</p>
+<p>동시에 이 기록의 약점도 숫자 안에 들어 있다. 반도체 비중이 절반에 가까울수록 한국 수출은 글로벌 AI 설비투자와 메모리 가격 변화에 더 크게 노출된다. 미국의 통상정책이나 중동의 지정학적 불확실성처럼 한국 기업이 통제하기 어려운 외부 변수도 남아 있다. 한 품목의 강한 호황이 오래 지속되는 동안 다른 산업과 내수가 얼마나 따라오는지가 경기의 폭을 결정한다.</p>
+<p>따라서 9월 수출을 판단할 다음 자료는 350억 달러라는 기록 자체가 아니다. 먼저 1~20일 잠정치와 9월 전체 수출에서 반도체 비중과 비반도체 수출 증가가 유지되는지 봐야 한다. 그 다음 반도체 수출액을 가격과 물량으로 나누고, 제조업 생산과 설비투자, 고용과 임금이 함께 움직이는지 확인해야 한다. 마지막에는 그 변화가 소비와 서비스업으로 얼마나 퍼지는지를 봐야 한다.</p>
+<p>9월 첫 열흘의 수출은 한국 경제에 강한 외부 수요가 들어오고 있다는 신호다. 그 신호의 중심에는 반도체가 있다. 이제 확인할 것은 기록의 크기보다 범위다. 반도체가 만든 힘이 다른 수출품목과 투자, 고용, 가계소득으로 얼마나 넓게 이어지는지가 350억 달러 다음에 읽어야 할 숫자다.</p></article>
+</div></section>
+
+<section class="article section" id="politics"><div class="wrap">
+ <header class="head axis"><div class="label">POLITICS</div><h2>지방체육 보조금 점검 뒤, 환수와 제재는 누가 집행하나</h2><p class="deck">국민권익위원회는 2022~2024년 지방체육 보조사업 3만 1,578개, 약 1조 5,313억 원의 집행 구조를 살펴본 뒤 관리 부실 우려가 큰 12개 지방정부를 집중 조사했다. 수익금 누락과 허위집행 의심 사례가 확인돼 환수와 수사의뢰를 권고했지만, 실제 반환액과 제재를 확정하는 일은 각 지방정부의 후속 처분에서 시작된다.</p></header>
+ <div class="process-grid axis" aria-label="보조금 조사 이후 절차">
+  <div class="process"><i>01</i><b>권익위 조사</b><p>정산·관리 부실과 위반 의심 사례를 찾아 지방정부에 통보·권고합니다.</p></div>
+  <div class="process"><i>02</i><b>지방정부 확인</b><p>사업별 증빙과 교부조건을 다시 확인해 위반과 반환 범위를 특정합니다.</p></div>
+  <div class="process"><i>03</i><b>반환·제재</b><p>법정 요건에 따라 반환명령과 제재부가금 등 개별 처분이 이뤄집니다.</p></div>
+  <div class="process"><i>04</i><b>별도 수사</b><p>횡령·배임 의심은 행정상 환수와 별개의 형사절차로 넘어갑니다.</p></div>
+ </div>
+ <article class="prose axis"><p>9월 10일 국민권익위원회가 공개한 지방체육 보조사업 실태조사에는 큰 숫자가 먼저 등장한다. 2022년부터 2024년까지 226개 기초지방정부가 추진한 체육 분야 보조사업은 3만 1,578개, 교부된 보조금은 약 1조 5,313억 원이었다. 권익위는 이 가운데 정산과 관리가 부실할 우려가 있는 12개 지방정부를 골라 보조금의 편성부터 교부, 집행, 정산, 사후관리까지 들여다봤다.</p>
+<p>조사에서는 대회 참가비·입장료·협찬금 같은 자체 수입을 보조금 신청과 정산에 제대로 반영하지 않은 사례, 실제 용역 없이 허위 서류를 만들거나 가족·지인 사업체를 이용해 거래한 것으로 의심되는 사례, 법적 근거가 불분명한 수당 지급 등이 확인됐다. 권익위는 수익금 관리가 제대로 되지 않은 사업에 투입된 보조금만 최소 200억 원 이상이라고 밝혔다.</p>
+<p>여기서 숫자의 성격을 구분할 필요가 있다. 최소 200억 원은 관리가 부실했던 사업에 투입된 보조금 규모다. 그 전액이 이미 환수 결정된 금액은 아니다. 권익위의 조사 결과는 개별 사업의 책임을 확정하는 마지막 처분이 아니라, 지방정부가 다시 증빙과 교부조건을 확인해 실제 반환액과 제재 여부를 정하도록 넘기는 출발점이다.</p>
+<h2>권익위가 적발해도 돈을 돌려받는 처분은 지방정부가 한다</h2>
+<p>지방보조금은 지방자치단체가 특정 공익사업을 지원하기 위해 교부한다. 따라서 사업자가 교부조건을 어겼거나 거짓·부정한 방법으로 보조금을 받았는지, 목적과 다르게 썼는지, 정산에서 반환해야 할 금액이 있는지를 구체적으로 확인하고 처분하는 주체도 해당 지방자치단체다.</p>
+<p>권익위는 이번 결과를 12개 지방정부에 통보해 부당 지급된 보조금 환수 등 시정조치를 하도록 권고하겠다고 밝혔다. 지방정부는 그 다음 사업별로 지출증빙과 계약관계, 참가비 같은 수입금, 실제 사업비와 교부조건을 확인해야 한다. 조사에서 ‘의심’으로 잡힌 사실이 어느 법 조항의 어떤 위반에 해당하는지, 얼마를 돌려받아야 하는지도 이 단계에서 구체화된다.</p>
+<p>지방보조금법은 교부결정을 취소한 경우 등 법정 사유가 있으면 지방자치단체의 장이 반환을 명하도록 규정한다. 돈을 돌려받는 절차는 단순한 회계 수정이 아니다. 지급의 법적 근거를 다시 판단하고, 취소·반환 범위를 특정해 상대방에게 행정처분으로 통지하는 과정이다.</p>
+<p>이 구조 때문에 실태조사 발표일의 적발 규모와 몇 달 뒤 최종 환수액은 달라질 수 있다. 일부 지출은 증빙을 추가로 확인한 뒤 적법하다고 판단될 수 있고, 반대로 조사 당시 확인되지 않았던 누락분이 후속 정산에서 더 발견될 수도 있다.</p>
+<h2>환수와 제재부가금은 같은 돈이 아니다</h2>
+<p>위반이 확인되면 잘못 지급되거나 사용된 보조금을 돌려받는 것에서 끝나지 않을 수 있다. 지방보조금법은 일정한 반환 사유가 있는 경우 반환해야 할 지방보조금 총액의 5배 이내에서 제재부가금을 추가로 부과하도록 한다.</p>
+<p>다만 ‘최대 5배’가 모든 사건에 자동으로 붙는 것은 아니다. 시행령 별표는 위반행위의 유형에 따라 부과율을 나눈다. 거짓 신청이나 그 밖의 부정한 방법으로 보조금을 교부받은 경우에는 반환액의 500%, 목적 외 사용은 300%처럼 기준이 다르다. 다른 법률에 따른 벌금·과징금 등이 이미 부과된 경우에는 법이 정한 범위에서 제재부가금이 조정될 수도 있다.</p>
+<p>따라서 같은 조사에서 적발됐더라도 결과는 사업마다 달라진다. 수입금 정산을 잘못한 사례, 목적과 다른 지출, 처음부터 허위 서류를 이용해 보조금을 받은 것으로 판단되는 사례는 사실관계와 적용 규정이 다르다. ‘보조금 비리’라는 한 단어로 묶으면 실제 행정책임의 차이가 사라진다.</p>
+<p>처분 상대방에게도 절차가 있다. 지방정부는 제재부가금을 부과할 때 위반행위와 금액 등을 서면으로 통지해야 한다. 지방보조사업자는 교부결정 취소, 반환명령, 제재부가금 부과 등에 이의가 있으면 법에서 정한 기간 안에 서면으로 이의를 신청할 수 있다. 최종 책임은 조사 발표가 아니라 이런 개별 처분과 불복 기록에 남는다.</p>
+<h2>횡령·배임 의심은 별도의 수사 선로로 간다</h2>
+<p>권익위는 일부 사안에 대해서는 횡령·배임 등 형사처벌이 필요하다고 보고 수사의뢰하기로 했다. 이 절차는 지방정부의 반환명령이나 제재부가금과 별개다.</p>
+<p>행정상 환수는 공공재정이 잘못 지급·사용됐는지를 기준으로 돈을 되돌리는 절차다. 형사사건에서는 누가 어떤 행위를 했고 고의와 범죄구성요건이 충족되는지를 수사기관과 법원이 판단한다. 환수 결정을 받았다고 곧바로 범죄가 확정되는 것도 아니고, 수사의뢰가 있었다고 유죄가 확정되는 것도 아니다.</p>
+<p>반대로 형사절차가 진행된다는 이유로 행정상 정산과 환수가 모두 멈추는 것도 아니다. 공공재정환수법과 지방보조금법은 잘못 지급된 재정을 회수하고 추가 제재를 부과하는 행정체계를 두고 있다. 형사책임과 재정상 책임을 서로 다른 기록으로 따라가야 하는 이유다.</p>
+<h2>책임은 발표문이 아니라 처분 기록에 남는다</h2>
+<p>이번 조사에서 1조 5,313억 원이라는 전체 보조금 규모는 지방체육 재정이 얼마나 큰지를 보여준다. 그러나 관리제도가 실제로 작동했는지는 이후 남는 처분 기록으로 판단해야 한다.</p>
+<p>12개 지방정부가 사업별로 어떤 사실을 인정했고 얼마를 반환명령했는지, 제재부가금은 어떤 사유로 얼마가 부과됐는지, 불복 결과는 어땠는지를 따라가야 한다. 횡령·배임 의심 사안은 수사의뢰 뒤 어떤 처분으로 이어졌는지가 별도의 기록으로 남는다.</p>
+<p>제도 자체도 바뀔 수 있다. 권익위는 대회 참가비·협찬금 같은 수익금의 산정과 정산 기준이 부족해 현장에서 혼란과 부정행위가 생긴 부분에 대해 관계부처에 개선대책 마련을 통보하겠다고 했다. 이후 실제 예규나 지침이 어떻게 바뀌는지, 다음 보조사업 신청서와 정산서에 자체 수입이 어떤 방식으로 반영되는지가 중요하다.</p>
+<p>보조금 감독은 적발 발표로 닫히지 않는다. 조사기관이 문제를 찾고, 처분권자가 사업별 책임을 확정하고, 실제 반환과 제재가 집행되며, 반복 위반을 막는 규칙이 다음 교부 과정에 적용돼야 한다. 지방체육 보조금 조사의 성패는 결국 이 행정 기록이 얼마나 끝까지 이어지는지에서 드러난다.</p></article>
+</div></section>
+
+<section class="article blue section" id="society"><div class="wrap">
+ <header class="head axis"><div class="label">SOCIETY</div><h2>주민등록 방문조사, 문을 연 뒤 행정은 어디까지 움직이나</h2><p class="deck">2026년 주민등록 사실조사는 9월 8일부터 11월 9일까지 방문 단계로 넘어갔다. 비대면 조사에 참여하지 않은 세대와 복지위기가구 등 중점 조사 세대에는 이·통장이나 읍·면·동 공무원이 찾아간다. 현관 앞 확인은 주민등록을 즉시 바꾸는 처분이 아니라, 필요할 경우 추가 확인과 최고·공고, 직권조치 또는 복지 연계로 이어지는 첫 단계다.</p></header>
+ <div class="time-grid axis" aria-label="주민등록 사실조사 일정">
+  <div class="time-card"><b>비대면 조사</b><time>7.20 → 9.07</time><p>정부24 앱을 통한 비대면 확인 단계.</p></div>
+  <div class="time-card"><b>방문 조사</b><time>9.08 → 11.09</time><p>미참여 세대와 중점 조사 세대를 현장에서 확인합니다.</p></div>
+  <div class="time-card"><b>후속 직권조치 구간</b><time>11.10 → 12.07</time><p>필요한 경우 최고·공고를 거쳐 법정 후속조치가 이어집니다.</p></div>
+ </div>
+ <article class="prose axis"><p>9월 8일부터 전국 곳곳에서 주민등록 사실조사원이 집을 찾기 시작했다. 행정안전부는 올해 전 국민 주민등록 사실조사를 7월 20일부터 12월 14일까지 진행한다. 먼저 9월 7일까지 정부24 앱을 통한 비대면 조사를 받았고, 그 다음 날부터 11월 9일까지 방문조사가 이어진다.</p>
+<p>주민등록 사실조사의 목적은 주민등록지와 실제 거주지가 일치하는지를 확인하는 것이다. 주소는 단순한 통계 항목이 아니다. 복지, 재난관리, 각종 행정안내처럼 사람을 지역과 연결해 제공하는 서비스의 기본값이 된다. 그래서 실제로 살지 않는 주소가 오래 남거나 사망·전입 같은 변동이 반영되지 않으면 다른 행정도 틀어진 주소 위에서 움직일 수 있다.</p>
+<p>그렇다고 조사원이 현관을 방문한 순간 주민등록이 바로 바뀌는 것은 아니다. 방문조사는 사실을 확인하는 첫 단계이고, 등록사항이 실제와 다르다고 판단되면 그 다음에는 지방정부 담당 공무원의 추가 확인과 법정 절차가 이어진다.</p>
+<h2>비대면에 참여했어도 다시 방문할 수 있다</h2>
+<p>방문조사의 기본 대상은 비대면 조사에 참여하지 않은 세대다. 하지만 행정안전부가 정한 중점 조사 대상이 포함된 세대는 정부24 앱으로 이미 답했더라도 방문 확인을 받는다.</p>
+<p>중점 대상은 100세 이상 고령자, 5년 이상 장기 거주불명자, 사망 의심자, 고위험 복지위기가구, 장기 미인정 결석이나 학령기 미취학아동이 포함된 세대다. 단순히 전체 인구의 주소를 표본처럼 훑는 것이 아니라 행정상 확인 필요성이 큰 집단을 한 번 더 직접 확인하는 구조다.</p>
+<p>지난해 비대면 조사에는 약 1,275만 명이 참여해 참여율이 24.9%까지 올라갔다. 앱 참여가 늘면 방문해야 할 세대는 줄어들 수 있다. 다만 중점 대상은 비대면 참여 여부와 무관하게 현장 확인을 유지하기 때문에 ‘앱으로 끝냈으니 올해 조사가 모두 끝났다’고 볼 수 없는 가구도 있다.</p>
+<p>행정안전부는 방문하는 조사원이 사실조사원 증명서를 패용하거나 제시하도록 안내했다. 집을 직접 찾아가는 조사 특성상 주민 입장에서는 상대가 실제 조사원인지 확인할 수 있는 표지가 중요하다. 방문조사의 신뢰가 낮으면 문을 열지 않는 가구가 늘고, 결국 담당 공무원의 추가 확인 부담도 커진다.</p>
+<h2>주소가 다르면 먼저 ‘사실대로 신고하라’는 절차가 온다</h2>
+<p>이·통장의 방문 결과 실거주가 확인되지 않거나 등록사항이 실제와 다른 사람은 지방정부 담당 공무원이 추가로 확인한다. 이 단계에서도 바로 직권말소로 넘어가지 않는다.</p>
+<p>주민등록법 제20조는 신고해야 할 사항을 신고하지 않았거나 신고 내용이 사실과 다른 것을 확인하면 시장·군수·구청장이 일정한 기간을 정해 사실대로 신고하도록 최고하도록 규정한다. 최고를 할 수 없는 경우 등에는 공고 절차가 이어진다. 시행령은 최고와 공고에 7일 이상의 유예기간을 두도록 한다.</p>
+<p>정해진 기간에도 신고가 이뤄지지 않으면 그 다음에 직권조치가 가능해진다. 지방정부는 사실조사 결과와 공적 서류, 이·통장의 확인 등을 근거로 등록사항을 정정하거나 법이 정한 경우 말소할 수 있다. 실제 거주지가 분명하지 않으면 마지막 신고 주소를 행정상 관리주소로 하는 거주불명 등록 절차가 적용될 수 있다.</p>
+<p>이 순서는 생활에서 중요하다. 장기출장이나 입원, 가족관계 변화처럼 집에 사람이 없었던 이유와 실제 전입 미신고는 결과가 같지 않다. 방문 한 번에 결론을 내리지 않고 추가 확인과 신고 기회를 두는 이유가 여기에 있다.</p>
+<h2>복지위기가구 조사는 주소 확인에서 끝나지 않는다</h2>
+<p>올해 중점 조사에서 별도의 의미를 갖는 대상은 고위험 복지위기가구다. 행정안전부는 장기 체납 등 위기징후 정보로 선별된 대상 가운데 연락두절 등의 이유로 보건복지부가 조사를 요청한 세대를 중점 확인하고, 사실조사 결과를 보건복지부와 공유해 복지 사각지대 발굴과 지원에 활용할 계획이다.</p>
+<p>여기에서도 단계는 구분해야 한다. 주민등록 조사 결과가 공유된다고 특정 복지급여 수급자격이 자동으로 확정되는 것은 아니다. 사실조사는 사람이 실제 어디에 거주하는지, 연락과 방문이 가능한지를 확인하는 행정 기반을 제공한다. 그 뒤 필요한 상담과 소득·재산 등 각 제도의 자격 확인은 복지 절차에서 따로 진행된다.</p>
+<p>그럼에도 주소 확인의 역할은 작지 않다. 위기정보가 있어도 사람이 실제로 어디에 있는지 찾지 못하면 상담과 지원도 시작하기 어렵다. 복지 사각지대 문제에서 데이터가 있다는 것과 현장에서 당사자를 만나는 것은 다른 단계다. 주민등록 사실조사는 두 단계 사이의 연결고리 하나를 담당한다.</p>
+<h2>1인 가구와 맞벌이 가구에는 ‘시간을 맞추는 행정’이 된다</h2>
+<p>비대면 조사가 도입된 배경에는 1인 가구와 맞벌이 가구의 증가도 있다. 낮 시간 집이 비어 있는 가구에서는 방문자가 여러 번 찾아도 사람을 만나기 어렵다. 스마트폰으로 먼저 확인할 수 있는 세대를 줄이면 현장 인력을 실제 확인이 필요한 곳에 더 집중시킬 수 있다.</p>
+<p>반대로 방문 대상이 된 가구에서는 일정 조정 자체가 행정 접점이 된다. 조사원이 방문한 시간에 집을 비웠거나, 세대원이 장기간 다른 곳에 머무는 경우에는 한 번의 방문으로 사실관계를 닫기 어렵다. 연락, 재방문, 담당 공무원의 추가 확인이 이어질 수 있다.</p>
+<p>이 과정에서 중요한 것은 방문 횟수를 늘리는 것이 아니라 정확한 사실을 확인하는 것이다. 주소를 실제와 맞추려다 오히려 정상적인 장기 부재를 잘못 처리하면 행정서비스의 기반이 흔들린다. 반대로 불일치를 장기간 방치하면 각종 안내와 지원이 엉뚱한 주소로 갈 수 있다.</p>
+<h2>방문조사의 성과는 11월 9일 뒤에 보인다</h2>
+<p>11월 9일 방문조사가 끝나면 사실조사는 후속 정리 단계로 넘어간다. 행정안전부가 7월 발표한 일정에 따르면 주민등록 사항을 고칠 필요가 있는 경우 지방정부는 최고와 공고를 거쳐 11월 10일부터 12월 7일까지 직권조치를 진행하고, 전체 조사는 12월 14일까지 이어진다.</p>
+<p>따라서 올해 조사를 평가할 때는 몇 집을 방문했는지만 볼 일이 아니다. 실제 등록 불일치가 몇 건 정정됐는지, 거주불명 상태가 적절히 정리됐는지, 고위험 복지위기가구가 상담과 지원으로 얼마나 연결됐는지, 비대면 참여 증가가 현장 조사 부담을 얼마나 줄였는지까지 확인해야 한다.</p>
+<p>현관 앞에서 조사원에게 답하는 시간은 짧을 수 있다. 그러나 그 답이 행정에서 이동하는 경로는 길다. 방문 확인에서 추가 조사로, 필요하면 최고와 공고로, 다시 주소 정정이나 복지 연결로 이어진다. 주민등록 사실조사의 실제 역할은 사람을 세는 데서 끝나지 않고, 사람과 행정서비스가 만날 주소를 다시 맞추는 데 있다.</p></article>
+</div></section>
+
+<section class="article section" id="tech"><div class="wrap">
+ <header class="head axis"><div class="label">TECH</div><h2>개인정보 유출 전에 움직이라, 9월 11일 바뀐 책임 구조</h2><p class="deck">9월 11일 시행된 개인정보 보호법 개정은 반복적·중대한 침해의 과징금을 전체 매출액의 최대 10%까지 높였다. 그러나 변화의 중심은 벌금 숫자 하나가 아니다. 대표자의 인력·예산 책임, CPO의 독립성과 이사회 연결, 유출 가능성의 조기 통지, 사전예방 투자 감경이 한 묶음으로 들어오면서 개인정보 보호를 사고 뒤 처리보다 사고 전 운영의 문제로 옮긴다.</p></header>
+ <div class="evidence-grid axis" aria-label="개인정보 보호법 개정 핵심">
+  <div class="evidence"><b>대표자 책임</b><span>개인정보 보호 전문인력과 예산을 경영 의사결정에 연결합니다.</span></div>
+  <div class="evidence"><b>CPO 권한</b><span>독립성·예산 관리·대표자 또는 이사회 보고의 실질성을 강화합니다.</span></div>
+  <div class="evidence"><b>72시간</b><span>법정 유출 가능성을 인지한 때부터 조기 판단·통지 시계가 작동할 수 있습니다.</span></div>
+  <div class="evidence"><b>최대 10%</b><span>반복적·중대한 위반의 과징금 상한. 모든 유출에 자동 적용되는 비율은 아닙니다.</span></div>
+ </div>
+ <article class="prose axis"><p>개인정보 유출 사고가 발생하면 가장 먼저 주목받는 숫자는 피해자 수와 과징금이다. 9월 11일부터 시행된 개정 개인정보 보호법에도 강한 숫자가 들어 있다. 고의·중과실에 의한 반복적이거나 중대한 침해 등 법이 정한 경우 과징금 상한을 전체 매출액의 최대 10%까지 높였다.</p>
+<p>하지만 이 숫자만 보면 개정의 기술적 의미를 놓치기 쉽다. 같은 개정은 사업주·대표자가 개인정보 보호를 위한 전문인력과 예산을 지원하도록 책임을 명시하고, 개인정보 보호책임자(CPO)의 권한과 독립성을 강화했다. 실제 유출이 확정되기 전이라도 일정한 ‘유출 가능성’을 인지하면 정보주체에게 알리는 제도도 들어왔다.</p>
+<p>즉 사고가 난 뒤 제재를 얼마나 크게 할 것인가와 함께, 사고가 나기 전 누가 예산을 정하고 누가 위험을 보고하며 어떤 징후에서 대응을 시작할 것인가가 법의 영역으로 들어온 것이다.</p>
+<h2>보안 담당자의 책임이 이사회와 연결된다</h2>
+<p>CPO는 회사에서 개인정보 보호 업무를 총괄하는 책임자다. 이전에도 법적 역할이 있었지만 이번 개정은 독립성과 실질 권한을 더 명시적으로 강화했다. 개인정보보호위원회는 CPO가 전문인력을 확보하고 관련 예산을 관리하며 대표자나 이사회에 보고할 수 있도록 권한을 두는 방향으로 제도를 정비했다.</p>
+<p>일정 규모 이상 개인정보처리자에서는 CPO의 지정·변경·해제에 이사회 의결과 개인정보위 신고 절차가 붙는다. 시행령은 이미 CPO를 지정해 둔 대상 사업자에게 시행일부터 6개월 안에 신고하도록 하는 특례도 뒀다.</p>
+<p>이 변화는 보안팀 내부의 직함 하나를 바꾸는 문제가 아니다. 개인정보 사고의 원인이 오래된 시스템, 부족한 모니터링 인력, 미뤄진 패치, 외부 위탁업체 관리처럼 예산과 조직 의사결정에 걸려 있을 때 CPO가 문제를 발견해도 해결권한이 없다면 기술팀만으로는 위험을 줄이기 어렵다.</p>
+<p>대표자의 관리책임과 CPO의 보고권한을 함께 둔 것은 이 단절을 줄이려는 구조다. 앞으로 중요한 기록은 ‘보안 담당자가 경고했다’에서 끝나지 않는다. 어떤 위험이 보고됐고, 어떤 예산과 인력이 요청됐으며, 경영진이 무엇을 결정했는지가 사고 뒤 책임 판단에서도 더 선명하게 남는다.</p>
+<h2>시스템은 ‘유출 확정’보다 앞에서 경보를 울려야 한다</h2>
+<p>사고 대응에서 더 직접적인 기술 변화는 유출 가능성 통지다. 개인정보위는 이번 개정에서 실제 유출이 확인된 경우뿐 아니라 법이 정한 유출 가능성을 인지한 경우에도 72시간 안에 정보주체에게 통지하는 제도를 도입했다고 설명했다.</p>
+<p>이 제도가 작동하려면 기업 내부의 사고 대응도 앞당겨져야 한다. 예를 들어 외부로 비정상적인 대량 전송이 감지됐지만 어떤 개인정보가 실제 빠져나갔는지 아직 확정되지 않은 상황을 생각할 수 있다. 과거 대응체계가 ‘유출 여부를 완전히 확인한 뒤 보고’에 맞춰져 있었다면, 이제는 가능성을 어느 단계에서 법적 판단으로 올릴지 정해야 한다.</p>
+<p>그러려면 로그가 충분히 남아 있어야 하고, 이상징후를 탐지하는 기준이 있어야 하며, 보안관제팀에서 CPO와 법무·경영진으로 사건을 올리는 에스컬레이션 경로가 작동해야 한다. 72시간은 사고가 발견된 뒤 보고서를 쓰는 시간만이 아니다. 무엇이 발생했는지 좁히고, 확산을 막고, 통지 대상과 내용을 판단하는 시간이 한꺼번에 흐른다.</p>
+<p>따라서 조기 통지제도는 문구 하나를 개인정보 처리방침에 더하는 작업보다 사고대응 플레이북의 설계를 바꾸는 요구에 가깝다.</p>
+<h2>예방에 쓴 돈도 과징금 판단 자료가 된다</h2>
+<p>개정 제도는 사전예방 투자에도 인센티브를 둔다. 개인정보 보호 관련 예산과 인력을 투자·운영하는 등 선제적 보호 노력이 확인되면 과징금 산정에서 필수 감경 요소로 반영하도록 했다.</p>
+<p>이 규정이 중요한 이유는 보안투자의 결과가 항상 ‘사고 0건’으로 증명되기 어렵기 때문이다. 공격을 많이 받는 대규모 서비스일수록 충분히 투자해도 사고 가능성을 완전히 없앨 수 없다. 그렇다면 사고 뒤에는 기업이 위험을 알고도 방치했는지, 합리적인 예방통제를 실제로 운영했는지를 구분할 필요가 있다.</p>
+<p>다만 예산을 썼다는 사실 자체가 충분한 것은 아니다. 장비를 구매했지만 로그를 보지 않거나, 보안조직 인원은 있지만 핵심 시스템에 접근권한이 없거나, 취약점 보고가 경영 의사결정으로 올라가지 않는다면 예방체계의 실질성은 약하다. 기업 입장에서는 예산 규모뿐 아니라 패치, 접근통제, 모니터링, 교육, 위탁관리와 사고훈련이 실제로 운영됐다는 기록을 남기는 일이 중요해진다.</p>
+<h2>‘매출 10%’는 모든 유출의 자동 벌금이 아니다</h2>
+<p>최대 10%라는 상한은 강하지만 적용조건이 있다. 개인정보위는 고의·중과실에 따른 반복적·대규모 유출 등 중대한 위반에 엄정 대응하기 위한 장치라고 설명한다. 법은 위반의 내용과 정도, 반복성 등 구체적인 사정을 전제로 과징금을 산정한다.</p>
+<p>따라서 개인정보가 한 건이라도 유출되면 전체 매출의 10%가 자동으로 부과된다고 이해하면 잘못이다. 반대로 ‘상한일 뿐 실제 의미가 없다’고 보기도 어렵다. 대규모 개인정보를 다루는 기업에서 같은 취약점이 반복되거나 경영진이 중대한 위험을 알고도 방치했다는 사실이 확인되면 제재의 최대 범위 자체가 이전보다 커졌다.</p>
+<p>여기에 예방투자 감경이 결합되면서 과징금 판단은 사고 결과와 사고 이전의 운영기록을 함께 보게 된다. 무엇을 했는지뿐 아니라 무엇을 할 수 있었는데 하지 않았는지가 더 중요해진다.</p>
+<h2>2027년 의무와 지금의 의무는 시간표가 다르다</h2>
+<p>이번 개정과 함께 개인정보보호 관리체계 인증(ISMS-P) 의무 대상도 확대되지만 시행시점은 구분해야 한다. 개인정보위 안내에 따르면 관련 의무화 확대는 2027년 7월 1일부터 시행된다. 9월 11일에 모든 대상 사업자가 즉시 새 인증을 받아야 하는 것은 아니다.</p>
+<p>지금부터 바로 달라지는 것은 책임과 사고대응의 시간표다. 대표자는 개인정보 보호 인력과 예산을 경영 의제로 다뤄야 하고, CPO는 조직 안에서 실제 보고·관리 권한을 가져야 한다. 기술팀은 유출이 확정된 뒤가 아니라 의심 신호가 생긴 순간부터 증거를 보존하고 판단을 올릴 수 있어야 한다.</p>
+<p>개인정보 보호는 방화벽이나 암호화 제품 하나의 성능으로 끝나는 기술이 아니다. 데이터가 어디에 있고 누가 접근하며, 이상징후를 누가 보고, 몇 시간 안에 누구에게 알리고, 그동안 어떤 예방조치를 운영했는지를 연결하는 시스템이다. 9월 11일 개정이 바꾼 핵심도 이 연결의 책임을 더 앞단으로 옮긴 데 있다.</p>
+<p>앞으로 볼 지표는 첫 ‘10% 과징금’ 사건만이 아니다. 유출 가능성 통지가 실제 어떤 상황에서 이뤄지는지, 기업이 72시간 판단을 위해 어떤 내부 기준을 만드는지, CPO의 이사회 보고가 실제 예산과 시스템 개선으로 이어지는지, 사전예방 투자가 제재 산정에서 어떤 근거로 인정되는지가 법의 효과를 보여줄 것이다.</p></article>
+</div></section>
+
+<section class="afterword section" id="afterword"><div class="wrap">
+ <article class="after-card axis"><div class="label">EDITOR'S AFTERWORD</div><h2>낮 두 시는 모두에게 낮이 아니다</h2><p>이번 호를 닫고 나서 가장 오래 남은 것은 큰 숫자가 아니라 낮 두 시였습니다. 주민등록 사실조사를 LIFE SCENE으로 옮기면서 만든 야간근무자의 방 안에서, 오후 두 시는 한창 활동하는 시간이 아니라 깊이 잠들어 있어야 하는 시간이었습니다. 행정의 달력에는 평범한 방문시간이 한 사람의 생활에서는 한밤중이 될 수 있었습니다.</p>
+<p>문서 속 시간은 늘 반듯합니다. 9월 8일부터 11월 9일까지, 오후 1시, 72시간. 시작과 끝이 정확해서 이해하기 쉽습니다. 그런데 그 시간을 실제 생활에 놓으면 모양이 달라집니다. 누군가는 잠에서 깨고, 누군가는 충전시간을 옮기고, 누군가는 사고 징후를 발견한 순간부터 내부 보고를 시작해야 합니다.</p>
+<p>시간을 적는 일은 그래서 생각보다 많은 것을 정합니다. 언제 전기를 쓰면 싼지, 언제 집에 사람이 있어야 하는지, 언제까지 알리고 판단해야 하는지가 정해지면 그 다음에는 사람과 시스템이 그 시각에 맞춰 움직입니다. 같은 한 시간이 누구에게나 같은 비용을 갖는 것은 아닙니다.</p>
+<p>이번 호에서는 그 차이를 억지로 하나의 결론으로 묶고 싶지는 않았습니다. 전력망의 낮과 야간근무자의 낮, 보안조직의 72시간은 서로 다른 문제입니다. 다만 여러 원고에 시각을 적고 나니 정책이나 제도의 작동을 읽을 때 <code>무엇을 하는가</code>만큼 <code>언제 하도록 설계됐는가</code>도 구체적인 질문이라는 생각이 남았습니다.</p>
+<p>마지막 교정을 끝내고 LIFE SCENE의 문장을 다시 읽었습니다. 책상 모서리에 접어 둔 방문 안내지와, 곧 다시 밤 근무로 나가는 사람이 있었습니다. 실제 사건도 실제 인물도 아닌 장면이지만, 제도에 적힌 시간이 생활의 시간으로 바뀌는 순간을 가장 조용하게 보여주는 장면이었습니다. 이번 호는 그 작은 시차를 남겨 둔 채 닫습니다.</p></article>
+</div></section>
+
+<section class="sources section" id="sources"><div class="wrap">
+ <header class="head axis"><div class="label">SOURCES</div><h2>주요 자료</h2></header>
+ <div class="source-group axis"><h3>COVER STORY</h3><ul><li><span>기후에너지환경부, 「가을철 경부하기 안정적 전력계통 운영에 만전을 기한다」, 2026-09-10</span><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156781060" target="_blank" rel="noopener">https://www.korea.kr/briefing/pressReleaseView.do?newsId=156781060</a></li><li><span>한국전력공사, 「계절·시간대별 요금제 개편 — 전기요금을 둘러싼 오해와 진실」, 2026년 8월</span><a href="https://www.kepco.co.kr/KEPCO_FILE/html/2026_08/issue.html" target="_blank" rel="noopener">https://www.kepco.co.kr/KEPCO_FILE/html/2026_08/issue.html</a></li><li><span>전력거래소, 「전력시장운영규칙(2024.3.29 시행) — 육지 플러스DR 제도도입」</span><a href="https://www.kpx.or.kr/board.es?act=view&amp;bid=0030&amp;list_no=72142&amp;mid=a31100000000" target="_blank" rel="noopener">https://www.kpx.or.kr/board.es?act=view&amp;bid=0030&amp;list_no=72142&amp;mid=a31100000000</a></li></ul></div>
+<div class="source-group axis"><h3>ECONOMY</h3><ul><li><span>관세청, 「2026년 9월 1일~9월 10일 수출입 현황 [잠정치]」, 2026-09-11</span><a href="https://customs.go.kr/kcs/na/ntt/selectNttInfo.do?bbsId=1362&amp;mi=2891&amp;nttSn=10176444" target="_blank" rel="noopener">https://customs.go.kr/kcs/na/ntt/selectNttInfo.do?bbsId=1362&amp;mi=2891&amp;nttSn=10176444</a></li><li><span>산업통상부, 「2026년 8월 수출입동향」, 2026-09-01</span><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156776348" target="_blank" rel="noopener">https://www.korea.kr/briefing/pressReleaseView.do?newsId=156776348</a></li><li><span>한국개발연구원, 「KDI 경제동향 2026. 9」, 2026-09-07</span><a href="https://www.kdi.re.kr/eng/research/monTrends" target="_blank" rel="noopener">https://www.kdi.re.kr/eng/research/monTrends</a></li></ul></div>
+<div class="source-group axis"><h3>POLITICS</h3><ul><li><span>국민권익위원회, 「공공재정환수 관련 실태점검 결과 발표」, 2026-09-10</span><a href="https://m.korea.kr/briefing/policyBriefingView.do?newsId=156781054" target="_blank" rel="noopener">https://m.korea.kr/briefing/policyBriefingView.do?newsId=156781054</a></li><li><span>국가법령정보센터, 「지방자치단체 보조금 관리에 관한 법률」</span><a href="https://www.law.go.kr/LSW/lsInfoP.do?lsId=013988" target="_blank" rel="noopener">https://www.law.go.kr/LSW/lsInfoP.do?lsId=013988</a></li><li><span>국가법령정보센터, 「지방자치단체 보조금 관리에 관한 법률 시행령」</span><a href="https://www.law.go.kr/LSW/lsInfoP.do?lsId=014114" target="_blank" rel="noopener">https://www.law.go.kr/LSW/lsInfoP.do?lsId=014114</a></li><li><span>국가법령정보센터, 「공공재정 부정청구 금지 및 부정이익 환수 등에 관한 법률」</span><a href="https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&amp;chrClsCd=010202&amp;efYd=20240927&amp;lsiSeq=261479&amp;urlMode=lsInfoP" target="_blank" rel="noopener">https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&amp;chrClsCd=010202&amp;efYd=20240927&amp;lsiSeq=261479&amp;urlMode=lsInfoP</a></li></ul></div>
+<div class="source-group axis"><h3>SOCIETY</h3><ul><li><span>행정안전부, 「스마트폰으로 집에서 간편하게 ‘2026년 주민등록 사실조사’ 실시」, 2026-07-15</span><a href="https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&amp;nttId=127848" target="_blank" rel="noopener">https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&amp;nttId=127848</a></li><li><span>행정안전부, 「똑똑! 주민등록 사실조사를 위해 사실조사원이 방문합니다」, 2026-09-07</span><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156780487" target="_blank" rel="noopener">https://www.korea.kr/briefing/pressReleaseView.do?newsId=156780487</a></li><li><span>국가법령정보센터, 「주민등록법」 제20조·제20조의2</span><a href="https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1021635791" target="_blank" rel="noopener">https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1021635791</a></li><li><span>국가법령정보센터, 「주민등록법 시행령」 제27조·제28조</span><a href="https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&amp;chrClsCd=010202&amp;efYd=20260428&amp;lsiSeq=285733&amp;urlMode=lsInfoP" target="_blank" rel="noopener">https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&amp;chrClsCd=010202&amp;efYd=20260428&amp;lsiSeq=285733&amp;urlMode=lsInfoP</a></li></ul></div>
+<div class="source-group axis"><h3>TECH</h3><ul><li><span>개인정보보호위원회, 「개인정보 유출 사전예방·피해구제 강화를 위한 개인정보 보호법·시행령·고시, 9월 11일부터 시행」, 2026-09-10</span><a href="https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&amp;mCode=C010010000&amp;nttId=12459" target="_blank" rel="noopener">https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&amp;mCode=C010010000&amp;nttId=12459</a></li><li><span>국가법령정보센터, 「개인정보 보호법」 [시행 2026. 9. 11.]</span><a href="https://www.law.go.kr/LSW/lsRvsRsnListP.do?chrClsCd=010102&amp;lsId=011357" target="_blank" rel="noopener">https://www.law.go.kr/LSW/lsRvsRsnListP.do?chrClsCd=010102&amp;lsId=011357</a></li><li><span>국가법령정보센터, 「개인정보 보호법 시행령」 [시행 2026. 9. 11.]</span><a href="https://law.go.kr/LSW/lsRvsRsnListP.do?chrClsCd=010102&amp;lsId=011468" target="_blank" rel="noopener">https://law.go.kr/LSW/lsRvsRsnListP.do?chrClsCd=010102&amp;lsId=011468</a></li><li><span>개인정보보호위원회, 「달라지는 개인정보 보호법」, 2026-09-11</span><a href="https://www.korea.kr/multi/visualNewsView.do?newsId=148971741" target="_blank" rel="noopener">https://www.korea.kr/multi/visualNewsView.do?newsId=148971741</a></li></ul></div>
+<div class="source-group axis"><h3>LIFE SCENE</h3><ul><li><span>행정안전부, 「스마트폰으로 집에서 간편하게 ‘2026년 주민등록 사실조사’ 실시」, 2026-07-15</span><a href="https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&amp;nttId=127848" target="_blank" rel="noopener">https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&amp;nttId=127848</a></li><li><span>행정안전부, 「똑똑! 주민등록 사실조사를 위해 사실조사원이 방문합니다」, 2026-09-07</span><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156780487" target="_blank" rel="noopener">https://www.korea.kr/briefing/pressReleaseView.do?newsId=156780487</a></li></ul></div>
+</div></section>
+</main>
+<footer class="footer"><div class="footer-in">WEEKLY SIGNAL · ISSUE 07 · 2026.09.07–09.13</div></footer>
+<script>
+const p=document.getElementById('progress');
+function u(){const d=document.documentElement,m=d.scrollHeight-d.clientHeight;p.style.width=(m>0?d.scrollTop/m*100:0)+'%'}
+addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u();
+</script>
+</body></html>
