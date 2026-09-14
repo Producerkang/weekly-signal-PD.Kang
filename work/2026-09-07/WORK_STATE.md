@@ -4,7 +4,7 @@
 ISSUE: 07
 ISSUE_START: 2026-09-07
 ISSUE_END: 2026-09-13
-STAGE: FEATURE_DESK_COMPLETE
+STAGE: PUBLISHED
 MANUSCRIPT_STAGE: ALL_REQUIRED_MANUSCRIPTS_COMPLETE
 COVER_STORY: COMPLETE
 ECONOMY: COMPLETE
@@ -17,12 +17,14 @@ DEEP_DIVE_TARGET: NONE
 LIFE_SCENE: COMPLETE
 PROLOGUE: COMPLETE
 EDITOR_AFTERWORD: COMPLETE
-LAYOUT: PENDING
+LAYOUT: COMPLETE
 IMAGES: NOT_REQUIRED
-HTML: PENDING
-SCREEN_REVIEW: PENDING
-PUBLISH: PENDING
-NEXT: PUBLISH DESK — LAYOUT_PLAN → HTML/CSS → 1440/1366/1024/390 screen review → publish
+HTML: PUBLISHED
+SCREEN_REVIEW: PASS
+PUBLISH: COMPLETE
+PUBLISHED_AT: 2026-09-14T21:55:00+09:00
+ARCHIVE_PATH: archive/2026-09-07/
+NEXT: ISSUE 08 FRONT DESK
 ```
 
 ## 완성 원고
@@ -38,44 +40,58 @@ NEXT: PUBLISH DESK — LAYOUT_PLAN → HTML/CSS → 1440/1366/1024/390 screen re
 
 ## CROSS-ARTICLE REVIEW
 
-- `work/2026-09-07/CROSS_ARTICLE_REVIEW.md`
-- COMPLETE
-- Politics 결론 수사 1건 교정 후 재검수 완료
+- `work/2026-09-07/CROSS_ARTICLE_REVIEW.md`: COMPLETE
+- Cover Story와 Economy의 숫자 중심 마감 수사가 반복되는 점을 기준으로 Politics 결론부의 `다음 숫자`형 수사를 책임·처분 기록 중심으로 교정했다.
+- 교정 후 다섯 일반 기사를 다시 비교했고 분야별 핵심 질문, 근거 역할, 결론 기능이 독립적임을 확인했다.
 
 ## DEEP DIVE
 
 `OMIT`
 
-현재 어느 후보도 일반 기사와 다른 한 가지 질문에 대해 새 핵심 주장 3개 이상과 독립 근거 2개 이상을 동시에 확보하지 못한다. 실제 후속 처분·월간 통계·복지연계 결과·개정법 적용 사례가 축적되기 전 억지 심화편을 만들지 않는다.
+어느 후보도 일반 기사와 다른 단 하나의 심화 질문에 대해 새 핵심 주장 3개 이상과 독립 근거 2개 이상을 동시에 확보하지 못했다. 실제 후속 처분, 월간 통계, 복지연계 결과, 개정법 적용 사례가 축적되기 전 억지 심화편을 만들지 않는다.
 
-## LIFE SCENE
+## 최종 DOM
 
-- `07_life_scene/SCENE_MAP.md`: COMPLETE
-- `07_life_scene/ARTICLE.md`: COMPLETE
-- 야간근무 1인 가구와 낮 방문조사의 시간 마찰을 가상 서사로 구성했다.
-- 정책 설명은 SCENARIO NOTE로 분리했고 방문 한 번을 즉시 직권조치로 묘사하지 않았다.
+`Cover → Contents → LIFE SCENE → PROLOGUE → Cover Story → Economy → Politics → Society → Tech → EDITOR'S AFTERWORD → Sources`
 
-## PROLOGUE
+- DEEP DIVE: OMIT이므로 DOM·Contents·내비게이션에서 제외
+- DATA / WATCH: 별도 DOM 없음
+- EDITOR'S PICK: 없음
+- 이미지·placeholder·이전 회차 대표 이미지 재사용: 없음
+- EDITOR'S AFTERWORD는 Sources 직전에 배치
 
-- `08_prologue/PREVIEW_MAP.md`: COMPLETE
-- `08_prologue/ARTICLE.md`: COMPLETE
-- 넓은 PANORAMA에서 시작해 추석 낮 전력, 낮 두 시의 초인종, 개인정보 72시간으로 시야를 좁힌 뒤 Cover Story로 넘겼다.
-- 기사 결론과 핵심 메커니즘은 본문에 남겼다.
+## LAYOUT
 
-## EDITOR'S AFTERWORD
+- `work/2026-09-07/LAYOUT_PLAN.md`: COMPLETE
+- 공통 Editorial Axis: `--content: 1040px`
+- Cover / Contents / LIFE / PROLOGUE / 모든 기사 / AFTERWORD / Sources가 같은 외곽 축을 사용한다.
+- 기사별 차이는 폭이 아니라 metric board, process grid, time grid, evidence grid와 배경·타이포그래피·수직 리듬으로 구성했다.
 
-- `09_afterword/ARTICLE.md`: COMPLETE
-- 제목: `낮 두 시는 모두에게 낮이 아니다`
-- 기사 목록 요약이나 제작방법 보고 대신, 제도에 적힌 시간과 생활시간의 시차에 대한 편집 후 인상을 중심으로 마감했다.
+## 실제 화면 검수
 
-## PUBLISH DESK 인계 조건
+system Chromium을 사용해 최종 HTML을 실제 렌더링하고 1440px, 1366px, 1024px, 390px 화면을 검수했다.
 
-- 모든 필수 일반 기사 COMPLETE
-- CROSS_ARTICLE_REVIEW COMPLETE
-- DEEP_DIVE 근거 있는 OMIT
-- LIFE SCENE COMPLETE
-- PROLOGUE COMPLETE
-- EDITOR'S AFTERWORD COMPLETE
-- IMAGES NOT_REQUIRED
+- 1440: 문서 가로 오버플로 없음, 주요 편집 요소 1040px Editorial Axis 일치
+- 1366: 문서 가로 오버플로 없음, 주요 편집 요소 1040px Editorial Axis 일치
+- 1024: 가용 폭으로 정상 축소, 카드·표·제목 viewport 이탈 없음
+- 390: 1차 검수에서 Contents의 `ECONOMY`·`POLITICS` 라벨 줄바꿈을 발견해 모바일 목차 라벨 칼럼을 64px로 확대하고 `white-space: nowrap` 적용
+- 수정 후 1440 / 1366 / 1024 / 390 전체 재검수 PASS
+- 최종 네 화면 모두 `scrollWidth == clientWidth`
+- viewport 밖 DOM 요소 0개
+- 내부 앵커 누락 0개
+- `<img>` 요소 0개, 깨진 이미지·존재하지 않는 자산 요청 없음
+- DEEP DIVE / EDITOR'S PICK 잔존 DOM 없음
+- 최종 전체 페이지 시각 검수에서 제목·본문·정보 모듈·Sources 잘림 및 겹침 없음
 
-발행 선행 조건 충족. 별도 07:00 작업 없이 LAYOUT_PLAN부터 진행한다.
+`python tools/validate_repository.py`는 connector 기반 환경에서 저장소 전체 checkout을 확보할 수 없어 repo-wide 실행하지 못했다. 보조 검사 대신 실제 Chromium 렌더링, Editorial Axis 수치 비교, overflow·anchor·선택 섹션·이미지 DOM 검사를 수행했으며 직접 편집 검수는 통과했다.
+
+## 발행 반영
+
+- `archive/2026-09-07/index.html`
+- `issues.json`
+- `latest.json`
+- `archive/index.html`
+- `editorial/ISSUE_HISTORY.md`
+- `work/2026-09-07/WORK_STATE.md`
+
+Issue 07 PUBLISH DESK 완료.
